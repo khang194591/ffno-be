@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Member {
+  id              String    @id @default(uuid())
+  name            String
+  gender          Int       @db.SmallInt // 0 = Male, 1 = Female
+  imgUrl          String?
+  address         String?
+  dateOfBirth     DateTime? @db.Date
+  identityNumber  String
+  identityImgUrls String[]
+}
+
+model Property {
+  id        String            @id @default(uuid())
+  // Basic info
+  name      String
+  type      Int               @default(0) @db.SmallInt // 0 = Single Unit, 1 = Multiple Units
+  address   String
+  ward      String
+  district  String
+  province  String
+  imgUrls   String[]
+  // Amenities
+  amenities PropertyAmenity[]
+  // Units
+  units     Unit[]
+}
+
+model Unit {
+  id              String        @id @default(uuid())
+  // Basic info
+  name            String
+  type            Int           @default(0) @db.SmallInt // 0 = Single Unit, 1 = Multiple Units
+  area            Decimal
+  price           Decimal
+  deposit         Decimal
+  details         String?       @db.Text
+  // Basic amenities
+  beds            String
+  baths           String
+  parking         String
+  laundry         String
+  airConditioning String
+  // Unit features
+  unitFeatures    UnitFeature[]
+  //   Relations
+  property        Property      @relation(fields: [propertyId], references: [id])
+  propertyId      String
+}
+
+model UnitFeature {
+  name  String @id @unique
+  units Unit[]
+}
+
+model PropertyAmenity {
+  name       String     @id @unique
+  properties Property[]
+}
