@@ -8,14 +8,20 @@ datasource db {
 }
 
 model Member {
-  id              String    @id @default(uuid())
+  id              String     @id @default(uuid())
+  // Auth info
+  email           String     @unique
+  password        String
+  // Basic info
   name            String
-  gender          Int       @db.SmallInt // 0 = Male, 1 = Female
+  gender          Int        @db.SmallInt // 0 = Male, 1 = Female
   imgUrl          String?
   address         String?
-  dateOfBirth     DateTime? @db.Date
+  dateOfBirth     DateTime?  @db.Date
   identityNumber  String
   identityImgUrls String[]
+  // Properties
+  ownedProperties Property[]
 }
 
 model Property {
@@ -32,6 +38,9 @@ model Property {
   amenities PropertyAmenity[]
   // Units
   units     Unit[]
+  // Owner
+  ownerId   String?
+  owner     Member?           @relation(fields: [ownerId], references: [id])
 }
 
 model Unit {
@@ -54,6 +63,8 @@ model Unit {
   //   Relations
   property        Property      @relation(fields: [propertyId], references: [id])
   propertyId      String
+
+  @@unique([name, propertyId])
 }
 
 model UnitFeature {

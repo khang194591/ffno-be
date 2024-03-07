@@ -1,7 +1,8 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from 'src/app.module';
 import { PrismaClient } from '@prisma/client';
+import cookieParser from 'cookie-parser';
+import { AppModule } from 'src/app.module';
 
 export interface ITestContext {
   app: INestApplication;
@@ -27,6 +28,8 @@ beforeAll(async () => {
       transform: true,
     }),
   );
+
+  testApp.use(cookieParser());
 
   await testApp.init();
   await testApp.listen(0);
