@@ -1,3 +1,4 @@
+import { PartialType } from '@nestjs/swagger';
 import {
   IsArray,
   IsNumber,
@@ -42,6 +43,12 @@ export class CreatePropertyDto {
   @IsString({ each: true })
   amenities: string[];
 
+  @IsArray()
+  @IsUUID('4', { each: true })
+  equipments: string[];
+
   @IsUUID('4')
   ownerId: string;
 }
+
+export class UpdatePropertyDto extends PartialType(CreatePropertyDto) {}

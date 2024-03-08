@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from '@prisma/client';
-import { AddUnitDto, CreatePropertyDto } from 'src/libs/dto';
+import { CreateUnitDto, CreatePropertyDto } from 'src/libs/dto';
 import { fakeProperty } from 'test/factory/property';
 
 export class PropertyHelper {
@@ -26,16 +26,18 @@ export class PropertyHelper {
   async createProperty(
     ownerId: string,
     override: Partial<CreatePropertyDto> = {},
-    units: AddUnitDto[] = [],
+    units: CreateUnitDto[] = [],
   ) {
-    const { amenities, ...partialData } = fakeProperty(ownerId, override);
+    const { amenities, equipments, ...partialData } = fakeProperty(
+      ownerId,
+      override,
+    );
 
     const item = await this.prisma.property.create({
       data: {
         ...partialData,
-        amenities: {
-          connect: amenities.map((amenity) => ({ name: amenity })),
-        },
+        amenities: { connect: amenities.map((amenity) => ({ name: amenity })) },
+        equipments: { connect: equipments.map((id) => ({ id })) },
       },
     });
 

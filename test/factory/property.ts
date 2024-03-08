@@ -16,6 +16,7 @@ export const fakeProperty = (
     province: faker.string.alpha(4),
     imgUrls: [faker.internet.url(), faker.internet.url()],
     amenities: [],
+    equipments: [],
     ...override,
     ownerId,
   });

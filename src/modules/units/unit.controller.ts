@@ -1,9 +1,19 @@
-import { Body, Controller, Delete, Get, Param, Patch } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { IdUUIDParams } from 'src/common/dto';
-import { UpdateUnitDto } from 'src/libs/dto';
+import { CreateUnitDto, UpdateUnitDto } from 'src/libs/dto';
 import { UnitService } from './unit.service';
 
 @Controller('units')
+@ApiTags('Units', 'Properties')
 export class UnitController {
   constructor(private readonly unitService: UnitService) {}
 
@@ -13,17 +23,22 @@ export class UnitController {
   }
 
   @Get(':id')
-  async getUnit(@Param() param: IdUUIDParams) {
-    return this.unitService.getUnit(param.id);
+  async getUnit(@Param() { id }: IdUUIDParams) {
+    return this.unitService.getUnitOrThrow(id);
+  }
+
+  @Post(':id/units')
+  async addUnit(@Param() { id }: IdUUIDParams, @Body() body: CreateUnitDto) {
+    return this.unitService.createUnit({ ...body, propertyId: id });
   }
 
   @Patch(':id')
-  async updateUnit(@Param() param: IdUUIDParams, @Body() body: UpdateUnitDto) {
-    return this.unitService.updateUnit(param.id, { ...body, id: param.id });
+  async updateUnit(@Param() { id }: IdUUIDParams, @Body() body: UpdateUnitDto) {
+    return this.unitService.updateUnit(id, { ...body, id: id });
   }
 
   @Delete(':id')
-  async deleteUnit(@Param() param: IdUUIDParams) {
-    return this.unitService.deleteUnit(param.id);
+  async deleteUnit(@Param() { id }: IdUUIDParams) {
+    return this.unitService.deleteUnit(id);
   }
 }

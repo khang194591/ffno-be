@@ -8,22 +8,28 @@ import {
   Post,
 } from '@nestjs/common';
 import { IdUUIDParams } from 'src/common/dto';
-import { AddUnitDto, CreatePropertyDto, UpdatePropertyDto } from 'src/libs/dto';
+import {
+  CreatePropertyDto,
+  GetListPropertyDto,
+  UpdatePropertyDto,
+} from 'src/libs/dto';
 import { StaffId } from '../../common/decorators/staff.decorator';
 import { PropertyService } from './property.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('properties')
+@ApiTags('Properties')
 export class PropertyController {
   constructor(private readonly propertyService: PropertyService) {}
 
   @Get()
-  async getProperties(@StaffId() staffId: string) {
-    return this.propertyService.getProperties(staffId);
+  async getProperties(@StaffId() staffId: string, query: GetListPropertyDto) {
+    return this.propertyService.getProperties(staffId, query);
   }
 
   @Get(':id')
-  async getProperty(@Param() params: IdUUIDParams) {
-    return this.propertyService.getProperty(params.id);
+  async getProperty(@Param() { id }: IdUUIDParams) {
+    return this.propertyService.getPropertyOrThrow(id);
   }
 
   @Post()
@@ -34,21 +40,16 @@ export class PropertyController {
   @Patch(':id')
   async updateProperty(
     @Body() body: UpdatePropertyDto,
-    @Param() params: IdUUIDParams,
+    @Param() { id }: IdUUIDParams,
   ) {
-    return this.propertyService.updateProperty(params.id, {
+    return this.propertyService.updateProperty(id, {
       ...body,
-      id: params.id,
+      id,
     });
   }
 
   @Delete(':id')
-  async deleteProperty(@Param() params: IdUUIDParams) {
-    return this.propertyService.deleteProperty(params.id);
-  }
-
-  @Post(':id/units')
-  async addUnit(@Param() params: IdUUIDParams, @Body() body: AddUnitDto) {
-    return this.propertyService.addUnit({ ...body, propertyId: params.id });
+  async deleteProperty(@Param() { id }: IdUUIDParams) {
+    return this.propertyService.deleteProperty(id);
   }
 }

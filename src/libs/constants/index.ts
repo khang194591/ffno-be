@@ -8,4 +8,10 @@ export enum PropertyType {
   MULTIPLE_UNIT = 1,
 }
 
+export enum MaintainStatus {
+  GOOD = 0,
+  MAINTAINING = 1,
+  BAD = 2,
+}
+
 export const COOKIE_TOKEN = 'token';

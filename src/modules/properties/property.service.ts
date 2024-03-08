@@ -1,22 +1,18 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/config';
 import {
-  AddUnitDto,
   CreatePropertyDto,
+  GetListPropertyDto,
   UpdatePropertyDto,
-  UpdateUnitDto,
 } from 'src/libs/dto';
-import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class PropertyService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getProperties(ownerId: string) {
+  async getProperties(ownerId: string, query: GetListPropertyDto) {
+    const {} = query;
     const properties = await this.prisma.property.findMany({
       where: { ownerId },
       include: {
@@ -27,8 +23,8 @@ export class PropertyService {
     return properties.map((property) => this.parseProperty(property));
   }
 
-  async getProperty(id: string) {
-    const property = await this.prisma.property.findUnique({
+  async getPropertyOrThrow(id: string) {
+    const property = await this.prisma.property.findUniqueOrThrow({
       where: { id },
       include: {
         amenities: true,
@@ -36,101 +32,34 @@ export class PropertyService {
       },
     });
 
-    if (!property) {
-      throw new NotFoundException(`Property with id = ${id} not found`);
-    }
-
     return this.parseProperty(property);
   }
 
-  async createProperty(data: CreatePropertyDto): Promise<string> {
-    const { amenities, ...partialProperty } = data;
-
-    await this.validateAmenities(amenities);
+  async createProperty(dto: CreatePropertyDto): Promise<string> {
+    const data = await this.validatePropertyInput(dto);
 
     const property = await this.prisma.property.create({
-      data: {
-        ...partialProperty,
-        amenities: { connect: amenities.map((amenity) => ({ name: amenity })) },
-      },
+      data: data as Prisma.PropertyCreateInput,
     });
 
     return property.id;
   }
 
-  async updateProperty(id: string, data: UpdatePropertyDto) {
-    const { amenities, ...partialProperty } = data;
+  async updateProperty(id: string, dto: UpdatePropertyDto) {
+    const data = await this.validatePropertyInput(dto);
 
-    await this.validateAmenities(amenities);
-    await this.getProperty(id);
+    await this.getPropertyOrThrow(id);
 
-    const property = await this.prisma.property.update({
-      where: { id },
-      data: {
-        ...partialProperty,
-        amenities: { connect: amenities.map((amenity) => ({ name: amenity })) },
-      },
-    });
+    const property = await this.prisma.property.update({ where: { id }, data });
 
     return property.id;
   }
 
   async deleteProperty(id: string) {
-    await this.getProperty(id);
+    await this.getPropertyOrThrow(id);
     await this.prisma.property.delete({ where: { id } });
 
     return id;
-  }
-
-  async addUnit(data: AddUnitDto) {
-    await this.validateUnit(data);
-
-    const unit = await this.prisma.unit.create({
-      data: {
-        ...data,
-        unitFeatures: { connect: data.unitFeatures.map((name) => ({ name })) },
-      },
-    });
-
-    return unit.id;
-  }
-
-  async validateUnit(data: UpdateUnitDto) {
-    const { propertyId, name, unitFeatures } = data;
-    if (propertyId) {
-      await this.getProperty(propertyId);
-    }
-    if (unitFeatures) {
-      await this.validateUnitFeatures(unitFeatures);
-    }
-    if (name && propertyId) {
-      await this.validateUniqueUnitNameAndPropertyId(name, propertyId);
-    }
-  }
-
-  private async validateUnitFeatures(features: string[]) {
-    const foundFeatures = await this.prisma.unitFeature.findMany({
-      where: { name: { in: features } },
-    });
-
-    if (foundFeatures.length !== features.length) {
-      throw new BadRequestException(`Invalid unit features`);
-    }
-  }
-
-  private async validateUniqueUnitNameAndPropertyId(
-    name: string,
-    propertyId: string,
-  ) {
-    const unit = await this.prisma.unit.findUnique({
-      where: { name_propertyId: { name, propertyId } },
-    });
-
-    if (unit) {
-      throw new BadRequestException(
-        `Unit with name = ${name} and propertyId = ${propertyId}`,
-      );
-    }
   }
 
   private async validateAmenities(amenities: string[]) {
@@ -141,6 +70,32 @@ export class PropertyService {
     if (foundAmenities.length !== amenities.length) {
       throw new BadRequestException(`Invalid amenities`);
     }
+  }
+
+  private async validateEquipment(ids: string[] = []) {
+    if (!ids.length) return;
+
+    const foundEquipments = await this.prisma.equipment.findMany({
+      where: { id: { in: ids } },
+    });
+
+    if (foundEquipments.length !== ids.length) {
+      throw new BadRequestException(`Invalid equipment IDs`);
+    }
+  }
+
+  private async validatePropertyInput(
+    data: CreatePropertyDto | UpdatePropertyDto,
+  ): Promise<Prisma.PropertyCreateInput | Prisma.PropertyUpdateInput> {
+    const { amenities = [], equipments = [], ...partialProperty } = data;
+    await this.validateAmenities(data.amenities);
+    await this.validateEquipment(data.equipments);
+
+    return {
+      ...partialProperty,
+      amenities: { connect: amenities.map((name) => ({ name })) },
+      equipments: { connect: equipments.map((id) => ({ id })) },
+    };
   }
 
   private parseProperty(

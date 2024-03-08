@@ -1,4 +1,4 @@
-import { Type } from 'class-transformer';
+import { PartialType } from '@nestjs/swagger';
 import {
   IsArray,
   IsDecimal,
@@ -8,7 +8,7 @@ import {
   IsUUID,
 } from 'class-validator';
 
-export class AddUnitDto {
+export class CreateUnitDto {
   @IsOptional()
   @IsUUID('4')
   id: string;
@@ -27,6 +27,9 @@ export class AddUnitDto {
 
   @IsDecimal()
   deposit: number;
+
+  @IsNumber()
+  maintainStatus: number;
 
   @IsOptional()
   @IsString()
@@ -54,3 +57,5 @@ export class AddUnitDto {
   @IsUUID('4')
   propertyId: string;
 }
+
+export class UpdateUnitDto extends PartialType(CreateUnitDto) {}

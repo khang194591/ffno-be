@@ -12,6 +12,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "db:push": "npx prisma db push",
     "db:push:test": "dotenv -e .env.test -- npx prisma db push",
     "test": "dotenv -e .env.test -- jest --detectOpenHandles --logHeapUsage --runInBand",
     "test:cov": "dotenv -e .env.test --  jest --coverage --detectOpenHandles --logHeapUsage --runInBand",

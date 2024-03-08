@@ -1,15 +1,16 @@
 import { faker } from '@faker-js/faker';
-import { plainToInstance } from 'class-transformer';
 import Decimal from 'decimal.js';
-import { PropertyType } from 'src/libs/constants';
-import { AddUnitDto } from 'src/libs/dto';
+import { MaintainStatus, PropertyType } from 'src/libs/constants';
+import { CreateUnitDto } from 'src/libs/dto';
+import { v4 } from 'uuid';
 
 export const fakeUnit = (
   propertyId: string,
-  override: Partial<AddUnitDto> = {},
+  override: Partial<CreateUnitDto> = {},
 ) => {
   return {
-    name: faker.color.human(),
+    id: v4(),
+    name: faker.string.alpha(12),
     type: PropertyType.SINGLE_UNIT,
     area: new Decimal(faker.number.int({ min: 10, max: 200 })),
     price: new Decimal(faker.number.int({ min: 1_000_000, max: 20_000_000 })),
@@ -20,8 +21,9 @@ export const fakeUnit = (
     parking: 'FREE',
     laundry: 'NONE',
     airConditioning: 'COLD',
+    maintainStatus: MaintainStatus.GOOD,
     unitFeatures: [],
     ...override,
     propertyId,
-  } as AddUnitDto;
+  } as CreateUnitDto;
 };
