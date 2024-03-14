@@ -6,9 +6,10 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { IdUUIDParams } from 'src/common/dto';
+import { GetListUnitQueryDto, IdUUIDParams } from 'src/libs/dto';
 import { CreateUnitDto, UpdateUnitDto } from 'src/libs/dto';
 import { UnitService } from './unit.service';
 
@@ -18,8 +19,8 @@ export class UnitController {
   constructor(private readonly unitService: UnitService) {}
 
   @Get()
-  async getUnits() {
-    return this.unitService.getUnits();
+  async getUnits(@Query() query: GetListUnitQueryDto) {
+    return this.unitService.getUnits(query);
   }
 
   @Get(':id')
@@ -27,9 +28,9 @@ export class UnitController {
     return this.unitService.getUnitOrThrow(id);
   }
 
-  @Post(':id/units')
-  async addUnit(@Param() { id }: IdUUIDParams, @Body() body: CreateUnitDto) {
-    return this.unitService.createUnit({ ...body, propertyId: id });
+  @Post()
+  async createUnit(@Body() body: CreateUnitDto) {
+    return this.unitService.createUnit(body);
   }
 
   @Patch(':id')

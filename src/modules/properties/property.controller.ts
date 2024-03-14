@@ -6,16 +6,17 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
-import { IdUUIDParams } from 'src/common/dto';
+import { ApiTags } from '@nestjs/swagger';
+import { StaffId } from 'src/libs/decorators';
 import {
   CreatePropertyDto,
   GetListPropertyDto,
+  IdUUIDParams,
   UpdatePropertyDto,
 } from 'src/libs/dto';
-import { StaffId } from '../../common/decorators/staff.decorator';
 import { PropertyService } from './property.service';
-import { ApiTags } from '@nestjs/swagger';
 
 @Controller('properties')
 @ApiTags('Properties')
@@ -23,7 +24,10 @@ export class PropertyController {
   constructor(private readonly propertyService: PropertyService) {}
 
   @Get()
-  async getProperties(@StaffId() staffId: string, query: GetListPropertyDto) {
+  async getProperties(
+    @StaffId() staffId: string,
+    @Query() query: GetListPropertyDto,
+  ) {
     return this.propertyService.getProperties(staffId, query);
   }
 
@@ -51,5 +55,10 @@ export class PropertyController {
   @Delete(':id')
   async deleteProperty(@Param() { id }: IdUUIDParams) {
     return this.propertyService.deleteProperty(id);
+  }
+
+  @Get(':id/tenants')
+  async getTenants(@Param() { id }: IdUUIDParams) {
+    return this.propertyService.getTenants(id);
   }
 }

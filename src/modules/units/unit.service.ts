@@ -1,7 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/config';
-import { CreateUnitDto, UpdateUnitDto } from 'src/libs/dto';
+import {
+  CreateUnitDto,
+  GetListResDto,
+  GetListUnitQueryDto,
+  UpdateUnitDto,
+} from 'src/libs/dto';
 import { PropertyService } from '../properties/property.service';
 
 @Injectable()
@@ -11,14 +16,48 @@ export class UnitService {
     private readonly propertyService: PropertyService,
   ) {}
 
-  async getUnits() {
-    const units = await this.prisma.unit.findMany({
-      include: {
-        unitFeatures: true,
+  async getUnits(query: GetListUnitQueryDto): Promise<GetListResDto> {
+    const {
+      name,
+      type,
+      ward,
+      district,
+      province,
+      amenities,
+      features,
+      minArea,
+      maxArea,
+      minPrice,
+      maxPrice,
+      take,
+      skip,
+    } = query;
+    const where: Prisma.UnitWhereInput = {
+      name,
+      type,
+      unitFeatures: features && { some: { name: { in: features } } },
+      property: {
+        ward,
+        district,
+        province,
+        amenities: amenities && { some: { name: { in: amenities } } },
       },
-    });
+      area: { gte: minArea, lte: maxArea },
+      price: { gte: minPrice, lte: maxPrice },
+    };
+    const [total, units] = await this.prisma.$transaction([
+      this.prisma.unit.count({ where }),
+      this.prisma.unit.findMany({
+        where,
+        take,
+        skip,
+        include: {
+          unitFeatures: true,
+        },
+      }),
+    ]);
 
-    return units.map((unit) => this.parseUnit(unit));
+    return { total, data: units.map((unit) => this.parseUnit(unit)) };
   }
 
   async getUnitOrThrow(id: string) {

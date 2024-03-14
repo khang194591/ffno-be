@@ -3,7 +3,7 @@ import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
 import { TransformArray } from 'src/libs/decorators';
 import { GetListDto } from '../common';
 
-export class GetListPropertyDto extends GetListDto {
+export class GetListUnitQueryDto extends GetListDto {
   @IsOptional()
   @IsString()
   name?: string;
@@ -30,4 +30,30 @@ export class GetListPropertyDto extends GetListDto {
   @IsString({ each: true })
   @TransformArray()
   amenities?: string[];
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  @TransformArray()
+  features?: string[];
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  minArea?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  maxArea?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  minPrice?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  maxPrice?: number;
 }

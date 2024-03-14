@@ -2,8 +2,9 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
-import { version } from '../package.json';
+import { description, name, version } from '../package.json';
 import { AppModule } from './app.module';
+import { AppExceptionFilter } from './libs/exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,7 +12,10 @@ async function bootstrap() {
 
   // App config
   app.use(cookieParser());
-  app.enableCors();
+  app.enableCors({
+    credentials: true,
+    origin: 'http://localhost:5173',
+  });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -19,10 +23,13 @@ async function bootstrap() {
     }),
   );
 
+  // Global exception filter
+  app.useGlobalFilters(new AppExceptionFilter());
+
   // Swagger config
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Infinity backend API')
-    .setDescription('Infinity API documentation')
+    .setTitle(name)
+    .setDescription(description)
     .setVersion(version)
     .addBearerAuth()
     .build();

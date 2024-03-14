@@ -1,39 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import * as util from 'util';
+import { writeFileSync } from 'fs';
 
 function getExtendedClient() {
   const client = () =>
-    new PrismaClient().$extends({
-      query: {
-        $allModels: {
-          async $allOperations({ operation, model, args, query }) {
-            const start = performance.now();
-            const result = await query(args);
-            const end = performance.now();
-            const time = end - start;
-            /* istanbul ignore next */
-            if (process.env.NODE_ENV !== 'test') {
-              console.log(
-                util.inspect(
-                  `${operation} on ${model} table take ${time} milliseconds`,
-                ),
-              );
-            }
-            return result;
-          },
+    new PrismaClient({
+      log: [
+        {
+          emit: 'event',
+          level: 'query',
         },
-      },
-      result: {
-        propertyAmenity: {},
-        member: {},
-      },
+      ],
     });
 
   return class {
     // wrapper with type-safety 🎉
     constructor() {
-      return client();
+      const prisma = client();
+      prisma.$on('query', (e) => {
+        writeFileSync(
+          'query.log',
+          `${e.timestamp.toISOString()}\n${e.query}\n${e.params}\n\n`,
+          {
+            flag: 'a+',
+          },
+        );
+      });
+      return prisma;
     }
   } as new () => ReturnType<typeof client>;
 }

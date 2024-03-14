@@ -1,9 +1,13 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import {
   CreatePropertyDto,
   GetListPropertyDto,
+  GetListResDto,
+  GetMemberResDto,
+  GetPropertyResDto,
   UpdatePropertyDto,
 } from 'src/libs/dto';
 
@@ -11,19 +15,49 @@ import {
 export class PropertyService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getProperties(ownerId: string, query: GetListPropertyDto) {
-    const {} = query;
-    const properties = await this.prisma.property.findMany({
-      where: { ownerId },
-      include: {
-        amenities: true,
-        units: true,
-      },
-    });
-    return properties.map((property) => this.parseProperty(property));
+  async getProperties(
+    ownerId: string,
+    query: GetListPropertyDto,
+  ): Promise<GetListResDto<GetPropertyResDto>> {
+    const { name, type, ward, district, province, amenities, take, skip } =
+      query;
+
+    const where: Prisma.PropertyWhereInput = {
+      ownerId,
+      type,
+      ward,
+      district,
+      province,
+      amenities: amenities && { some: { name: { in: amenities } } },
+    };
+
+    const [total, properties] = await this.prisma.$transaction([
+      this.prisma.property.count({ where }),
+      this.prisma.property.findMany({
+        where,
+        take,
+        skip,
+        include: {
+          amenities: true,
+          units: true,
+        },
+        orderBy: {
+          _relevance: name && {
+            fields: ['name'],
+            search: name.split(' ').join(' | '),
+            sort: 'desc',
+          },
+        },
+      }),
+    ]);
+
+    return {
+      total,
+      data: plainToInstance(GetPropertyResDto, properties),
+    };
   }
 
-  async getPropertyOrThrow(id: string) {
+  async getPropertyOrThrow(id: string): Promise<GetPropertyResDto> {
     const property = await this.prisma.property.findUniqueOrThrow({
       where: { id },
       include: {
@@ -32,7 +66,7 @@ export class PropertyService {
       },
     });
 
-    return this.parseProperty(property);
+    return plainToInstance(GetPropertyResDto, property);
   }
 
   async createProperty(dto: CreatePropertyDto): Promise<string> {
@@ -45,7 +79,7 @@ export class PropertyService {
     return property.id;
   }
 
-  async updateProperty(id: string, dto: UpdatePropertyDto) {
+  async updateProperty(id: string, dto: UpdatePropertyDto): Promise<string> {
     const data = await this.validatePropertyInput(dto);
 
     await this.getPropertyOrThrow(id);
@@ -55,11 +89,41 @@ export class PropertyService {
     return property.id;
   }
 
-  async deleteProperty(id: string) {
+  async deleteProperty(id: string): Promise<string> {
     await this.getPropertyOrThrow(id);
     await this.prisma.property.delete({ where: { id } });
 
     return id;
+  }
+
+  async getTenants(id: string): Promise<GetListResDto<GetMemberResDto>> {
+    const units = await this.prisma.unit.findMany({
+      where: { propertyId: id },
+      select: {
+        name: true,
+        tenants: {
+          select: {
+            id: true,
+            name: true,
+            gender: true,
+            imgUrl: true,
+            address: true,
+            dateOfBirth: true,
+            identityNumber: true,
+            identityImgUrls: true,
+          },
+        },
+      },
+    });
+
+    const tenants = units.flatMap((unit) =>
+      unit.tenants.map((tenant) => ({ ...tenant, unit })),
+    );
+
+    return {
+      total: tenants.length,
+      data: plainToInstance(GetMemberResDto, tenants),
+    };
   }
 
   private async validateAmenities(amenities: string[]) {
@@ -95,15 +159,6 @@ export class PropertyService {
       ...partialProperty,
       amenities: { connect: amenities.map((name) => ({ name })) },
       equipments: { connect: equipments.map((id) => ({ id })) },
-    };
-  }
-
-  private parseProperty(
-    property: Prisma.PropertyGetPayload<{ include: { amenities: true } }>,
-  ) {
-    return {
-      ...property,
-      amenities: property.amenities.map((item) => item.name),
     };
   }
 }

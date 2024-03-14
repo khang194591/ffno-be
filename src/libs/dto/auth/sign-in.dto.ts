@@ -1,14 +1,13 @@
 import { Exclude, Expose } from 'class-transformer';
-import { IsEmail, IsString, IsStrongPassword } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 
 export class SignInDto {
   @IsString()
   @IsEmail()
-  email: string;
+  email: string = 'khang194591@gmail.com';
 
   @IsString()
-  @IsStrongPassword()
-  password: string;
+  password: string = '123456';
 }
 
 @Exclude()

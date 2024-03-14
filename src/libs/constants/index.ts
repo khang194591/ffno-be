@@ -14,4 +14,9 @@ export enum MaintainStatus {
   BAD = 2,
 }
 
+export enum MemberContactType {
+  TENANT = 0,
+  SERVICE = 1,
+}
+
 export const COOKIE_TOKEN = 'token';

@@ -1,1 +1,2 @@
-export * from './create-member-dto';
+export * from './member-query.dto';
+export * from './member-res.dto';

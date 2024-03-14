@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -8,20 +9,38 @@ datasource db {
 }
 
 model Member {
-  id              String     @id @default(uuid())
+  id              String           @id @default(uuid())
   // Auth info
-  email           String     @unique
+  email           String           @unique
+  phone           String?          @unique
   password        String
   // Basic info
   name            String
-  gender          Int        @db.SmallInt // 0 = Male, 1 = Female
+  gender          Int              @db.SmallInt // 0 = Male, 1 = Female
   imgUrl          String?
   address         String?
-  dateOfBirth     DateTime?  @db.Date
+  dateOfBirth     DateTime?        @db.Date
   identityNumber  String
   identityImgUrls String[]
   // Properties
   ownedProperties Property[]
+  // Live at Unit
+  unit            Unit?            @relation(fields: [unitId], references: [id])
+  unitId          String?
+  // Contacts
+  contacts        MemberContacts[] @relation("contact")
+  contactWith     MemberContacts[] @relation("contactWith")
+}
+
+model MemberContacts {
+  type          Int     @db.SmallInt // 0 = tenants, 1 = service pros
+  isConnected   Boolean @default(false)
+  contact       Member  @relation("contact", fields: [contactId], references: [id])
+  contactId     String
+  contactWith   Member  @relation("contactWith", fields: [contactWithId], references: [id])
+  contactWithId String
+
+  @@id([contactId, contactWithId])
 }
 
 model Property {
@@ -34,6 +53,7 @@ model Property {
   district   String
   province   String
   imgUrls    String[]
+  details    String?           @db.Text
   // Amenities
   amenities  PropertyAmenity[]
   // Units
@@ -46,15 +66,15 @@ model Property {
 }
 
 model Unit {
-  id              String        @id @default(uuid())
+  id              String         @id @default(uuid())
   // Basic info
   name            String
-  type            Int           @default(0) @db.SmallInt // 0 = Single Unit, 1 = Multiple Units
+  type            Int            @default(0) @db.SmallInt // 0 = Single Unit, 1 = Multiple Units
   area            Decimal
   price           Decimal
   deposit         Decimal
-  details         String?       @db.Text
-  maintainStatus  Int           @default(0) @db.SmallInt // 0 = GOOD, 1 = MAINTAINING, 2 = BAD 
+  details         String?        @db.Text
+  maintainStatus  Int            @default(0) @db.SmallInt // 0 = GOOD, 1 = MAINTAINING, 2 = BAD 
   // Basic amenities
   beds            String
   baths           String
@@ -63,11 +83,24 @@ model Unit {
   airConditioning String
   // Unit features
   unitFeatures    UnitFeature[]
+  unitPriceLogs   UnitPriceLog[]
   //   Relations
-  property        Property      @relation(fields: [propertyId], references: [id])
+  tenants         Member[]
+  property        Property       @relation(fields: [propertyId], references: [id])
   propertyId      String
 
   @@unique([name, propertyId])
+}
+
+model UnitPriceLog {
+  id            String   @id @default(uuid())
+  value         Decimal
+  price         Decimal
+  confirmStatus Int      @default(1) @db.SmallInt // 0 = Accepted, 1 = Pending, 2 = Rejected
+  unit          Unit?    @relation(fields: [unitId], references: [id])
+  unitId        String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model UnitFeature {
