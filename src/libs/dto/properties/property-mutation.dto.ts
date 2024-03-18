@@ -1,12 +1,14 @@
 import { PartialType } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import {
   IsArray,
-  IsNumber,
+  IsEnum,
   IsOptional,
   IsString,
   IsUrl,
   IsUUID,
 } from 'class-validator';
+import { PropertyType } from 'src/libs/constants';
 
 export class CreatePropertyDto {
   constructor(partial: Partial<CreatePropertyDto>) {
@@ -20,7 +22,8 @@ export class CreatePropertyDto {
   @IsString()
   name: string;
 
-  @IsNumber()
+  @Type(() => Number)
+  @IsEnum(PropertyType)
   type: number;
 
   @IsString()
@@ -35,18 +38,22 @@ export class CreatePropertyDto {
   @IsString()
   province: string;
 
+  @IsOptional()
   @IsArray()
   @IsUrl({}, { each: true })
   imgUrls: string[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   amenities: string[];
 
+  @IsOptional()
   @IsArray()
   @IsUUID('4', { each: true })
   equipments: string[];
 
+  @IsOptional()
   @IsUUID('4')
   ownerId: string;
 }

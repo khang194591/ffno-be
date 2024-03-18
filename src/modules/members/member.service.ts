@@ -3,18 +3,11 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
 import { hashSync } from 'bcrypt';
-import { plainToClass, plainToInstance } from 'class-transformer';
-import { isEmail } from 'class-validator';
+import { plainToInstance } from 'class-transformer';
+import { isEmail, isPhoneNumber } from 'class-validator';
 import { PrismaService } from 'src/config';
-import { MemberContactType } from 'src/libs/constants';
-import {
-  GetListContactDto,
-  GetListResDto,
-  GetMemberResDto,
-  SignUpDto,
-} from 'src/libs/dto';
+import { GetMemberResDto, SignUpDto } from 'src/libs/dto';
 
 @Injectable()
 export class MemberService {
@@ -32,11 +25,14 @@ export class MemberService {
     return this.prisma.member.create({ data });
   }
 
-  async getMember(id: string) {
-    if (isEmail(id)) {
-      return this.prisma.member.findUnique({ where: { email: id } });
+  async getMember(keyword: string) {
+    if (isEmail(keyword)) {
+      return this.prisma.member.findUnique({ where: { email: keyword } });
     }
-    return this.prisma.member.findUnique({ where: { id } });
+    if (isPhoneNumber(keyword)) {
+      return this.prisma.member.findUnique({ where: { phone: keyword } });
+    }
+    return this.prisma.member.findUnique({ where: { id: keyword } });
   }
 
   async getMemberOrThrow(id: string) {
@@ -47,47 +43,5 @@ export class MemberService {
     }
 
     return plainToInstance(GetMemberResDto, member);
-  }
-
-  async getContacts(
-    id: string,
-    query: GetListContactDto,
-  ): Promise<GetListResDto<GetMemberResDto>> {
-    const { type, keyword, skip, take } = query;
-    const where: Prisma.MemberContactsWhereInput = {
-      type,
-      contactId: id,
-      contactWith: keyword && {
-        OR: [
-          { name: { search: keyword, mode: 'insensitive' } },
-          { email: { contains: keyword, mode: 'insensitive' } },
-          { phone: { contains: keyword } },
-        ],
-      },
-    };
-
-    const [total, members] = await this.prisma.$transaction([
-      this.prisma.memberContacts.count({ where }),
-      this.prisma.memberContacts.findMany({
-        skip,
-        take,
-        where,
-        select: {
-          contactWith: {
-            include: {
-              unit: type === MemberContactType.TENANT && {
-                select: { name: true },
-              },
-            },
-          },
-        },
-      }),
-    ]);
-
-    const contacts = members.map((member) =>
-      plainToClass(GetMemberResDto, member.contactWith),
-    );
-
-    return { total, data: contacts };
   }
 }

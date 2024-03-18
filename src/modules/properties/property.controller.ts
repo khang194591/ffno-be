@@ -8,37 +8,55 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
 import { StaffId } from 'src/libs/decorators';
 import {
   CreatePropertyDto,
-  GetListPropertyDto,
+  GetListPropertyQueryDto,
   IdUUIDParams,
   UpdatePropertyDto,
 } from 'src/libs/dto';
-import { PropertyService } from './property.service';
+import {
+  CreatePropertyCommand,
+  DeletePropertyCommand,
+  UpdatePropertyCommand,
+} from './commands';
+import {
+  GetListPropertyQuery,
+  GetListTenantQuery,
+  GetPropertyQuery,
+} from './queries';
 
 @Controller('properties')
 @ApiTags('Properties')
 export class PropertyController {
-  constructor(private readonly propertyService: PropertyService) {}
+  constructor(
+    private readonly queryBus: QueryBus,
+    private readonly commandBus: CommandBus,
+  ) {}
 
   @Get()
   async getProperties(
     @StaffId() staffId: string,
-    @Query() query: GetListPropertyDto,
+    @Query() query: GetListPropertyQueryDto,
   ) {
-    return this.propertyService.getProperties(staffId, query);
+    return this.queryBus.execute(new GetListPropertyQuery(staffId, query));
   }
 
   @Get(':id')
   async getProperty(@Param() { id }: IdUUIDParams) {
-    return this.propertyService.getPropertyOrThrow(id);
+    return this.queryBus.execute(new GetPropertyQuery(id));
+  }
+
+  @Get(':id/tenants')
+  async getTenants(@Param() { id }: IdUUIDParams) {
+    return this.queryBus.execute(new GetListTenantQuery(id));
   }
 
   @Post()
   async createProperty(@Body() body: CreatePropertyDto) {
-    return this.propertyService.createProperty(body);
+    return this.commandBus.execute(new CreatePropertyCommand(body));
   }
 
   @Patch(':id')
@@ -46,19 +64,11 @@ export class PropertyController {
     @Body() body: UpdatePropertyDto,
     @Param() { id }: IdUUIDParams,
   ) {
-    return this.propertyService.updateProperty(id, {
-      ...body,
-      id,
-    });
+    return this.commandBus.execute(new UpdatePropertyCommand(id, body));
   }
 
   @Delete(':id')
   async deleteProperty(@Param() { id }: IdUUIDParams) {
-    return this.propertyService.deleteProperty(id);
-  }
-
-  @Get(':id/tenants')
-  async getTenants(@Param() { id }: IdUUIDParams) {
-    return this.propertyService.getTenants(id);
+    return this.commandBus.execute(new DeletePropertyCommand(id));
   }
 }

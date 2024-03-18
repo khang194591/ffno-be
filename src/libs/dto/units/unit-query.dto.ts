@@ -1,9 +1,9 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
 import { TransformArray } from 'src/libs/decorators';
-import { GetListDto } from '../common';
+import { GetListQueryDto } from '../common';
 
-export class GetListUnitQueryDto extends GetListDto {
+export class GetListUnitQueryDto extends GetListQueryDto {
   @IsOptional()
   @IsString()
   name?: string;

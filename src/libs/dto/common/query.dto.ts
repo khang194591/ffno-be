@@ -7,7 +7,7 @@ export class IdUUIDParams {
   id!: string;
 }
 
-export class GetListDto {
+export class GetListQueryDto {
   @IsOptional()
   @IsNumber()
   @Type(() => Number)

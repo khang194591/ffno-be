@@ -1,21 +1,34 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
 import { StaffId } from 'src/libs/decorators';
-import { GetListContactDto, IdUUIDParams } from 'src/libs/dto';
-import { MemberService } from './member.service';
+import { GetListContactQueryDto, IdUUIDParams } from 'src/libs/dto';
+import { LinkTenantCommand } from './commands';
+import { GetListContactQuery, GetMemberQuery } from './queries';
 
 @Controller('members')
 @ApiTags('Members')
 export class MemberController {
-  constructor(private readonly memberService: MemberService) {}
+  constructor(
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus,
+  ) {}
 
   @Get('contacts')
-  async getContacts(@StaffId() id: string, @Query() query: GetListContactDto) {
-    return this.memberService.getContacts(id, query);
+  async getContacts(
+    @StaffId() staffId: string,
+    @Query() query: GetListContactQueryDto,
+  ) {
+    return this.queryBus.execute(new GetListContactQuery(staffId, query));
   }
 
   @Get(':id')
   async getMember(@Param() { id }: IdUUIDParams) {
-    return this.memberService.getMemberOrThrow(id);
+    return this.queryBus.execute(new GetMemberQuery(id));
+  }
+
+  @Post(':id/link-tenant')
+  async linkTenant(@StaffId() staffId: string, @Param() { id }: IdUUIDParams) {
+    return this.commandBus.execute(new LinkTenantCommand(staffId, id));
   }
 }

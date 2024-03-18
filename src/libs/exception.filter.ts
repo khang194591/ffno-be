@@ -17,11 +17,14 @@ export class AppExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
 
     if (exception instanceof HttpException) {
+      console.log(exception);
+
       const status = exception.getStatus();
       response.status(status).json({
         statusCode: status,
         timestamp: new Date().toISOString(),
         path: request.url,
+        message: exception.getResponse()['message'],
       });
     } else if (exception instanceof Prisma.PrismaClientKnownRequestError) {
       if (exception.code === 'P2025') {

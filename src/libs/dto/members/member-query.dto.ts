@@ -1,9 +1,9 @@
 import { Type } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 import { MemberContactType } from 'src/libs/constants';
-import { GetListDto } from '../common';
+import { GetListQueryDto } from '../common';
 
-export class GetListContactDto extends GetListDto {
+export class GetListContactQueryDto extends GetListQueryDto {
   @IsOptional()
   @IsNotEmpty()
   keyword?: string;
