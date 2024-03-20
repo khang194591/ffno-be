@@ -26,6 +26,7 @@ import {
   GetListPropertyQuery,
   GetListTenantQuery,
   GetPropertyQuery,
+  GetSimpleListPropertyQuery,
 } from './queries';
 
 @Controller('properties')
@@ -42,6 +43,11 @@ export class PropertyController {
     @Query() query: GetListPropertyQueryDto,
   ) {
     return this.queryBus.execute(new GetListPropertyQuery(staffId, query));
+  }
+
+  @Get('simple-list')
+  async getSimpleListProperty(@StaffId() staffId: string) {
+    return this.queryBus.execute(new GetSimpleListPropertyQuery(staffId));
   }
 
   @Get(':id')

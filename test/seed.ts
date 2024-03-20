@@ -38,7 +38,7 @@ const fakeMember = (override = {}) => {
 const fakeProperty = (ownerId: string) => {
   return {
     id: v4(),
-    name: faker.color.human(),
+    name: faker.color.human() + ' ' + faker.internet.password(),
     type: PropertyType.MULTIPLE_UNIT,
     address: faker.location.streetAddress(),
     ward: faker.string.alpha(4),
@@ -80,6 +80,8 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
 const seed = async () => {
   const prisma = new PrismaClient();
   await prisma.$transaction([
+    prisma.invoice.deleteMany(),
+    prisma.invoiceCategory.deleteMany(),
     prisma.unitPriceLog.deleteMany(),
     prisma.unitFeature.deleteMany(),
     prisma.unit.deleteMany(),
@@ -90,6 +92,11 @@ const seed = async () => {
     prisma.memberContacts.deleteMany(),
     prisma.member.deleteMany(),
   ]);
+
+  await prisma.invoiceCategory.createMany({
+    data: ['Unit charge', 'Maintain fee'].map((name) => ({ name })),
+  });
+
   const admin = await prisma.member.create({
     data: fakeMember({
       email: 'khang194591@gmail.com',
@@ -139,7 +146,7 @@ const seed = async () => {
     shuffledMembers.flatMap((member) => [
       prisma.unit.update({
         where: { id: units[randomInt(units.length - 1)].id },
-        data: { tenants: { connect: { id: member.id } } },
+        data: { payerId: member.id, tenants: { connect: { id: member.id } } },
       }),
 
       prisma.member.update({

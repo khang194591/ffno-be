@@ -30,6 +30,9 @@ model Member {
   // Contacts
   contacts        MemberContacts[] @relation("contact")
   contactWith     MemberContacts[] @relation("contactWith")
+  // Invoices
+  invoices        Invoice[]
+  payForUnits     Unit[]           @relation(name: "payer")
 }
 
 model MemberContacts {
@@ -63,6 +66,8 @@ model Property {
   // Owner
   ownerId    String?
   owner      Member?           @relation(fields: [ownerId], references: [id])
+
+  @@unique([name, ownerId])
 }
 
 model Unit {
@@ -84,10 +89,13 @@ model Unit {
   // Unit features
   unitFeatures    UnitFeature[]
   unitPriceLogs   UnitPriceLog[]
-  //   Relations
+  // Relations
+  payer           Member?        @relation(name: "payer", fields: [payerId], references: [id])
+  payerId         String?
   tenants         Member[]
   property        Property       @relation(fields: [propertyId], references: [id])
   propertyId      String
+  invoices        Invoice[]
 
   @@unique([name, propertyId])
 }
@@ -137,4 +145,30 @@ model Equipment {
 model EquipmentCategory {
   name      String      @id @unique
   equiments Equipment[]
+}
+
+model Invoice {
+  id        String          @id @default(uuid())
+  code      String          @unique
+  amount    Decimal
+  status    Int             @default(0) @db.SmallInt // 0 = Pending, 1 = Paid,  2 = Partial, 3 = Overdue
+  paidAt    DateTime?
+  dueDate   DateTime        @db.Date
+  details   String          @db.Text
+  category  String
+  Category  InvoiceCategory @relation(fields: [category], references: [name])
+  // Unit
+  unit      Unit            @relation(fields: [unitId], references: [id])
+  unitId    String
+  // Member
+  member    Member          @relation(fields: [memberId], references: [id])
+  memberId  String
+  // 
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+model InvoiceCategory {
+  name     String    @id @unique
+  invoices Invoice[]
 }
