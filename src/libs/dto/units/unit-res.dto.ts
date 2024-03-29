@@ -2,6 +2,7 @@ import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import { MaintainStatus } from 'src/libs/constants';
 import { DecimalNumber } from 'src/libs/decorators';
 import { Nullable } from '../common';
+import { GetMemberResDto } from '../members';
 
 @Exclude()
 export class GetUnitResDto {
@@ -50,4 +51,10 @@ export class GetUnitResDto {
   @Expose()
   @Transform(({ value }) => value?.map(({ name }) => name))
   unitFeatures: string[];
+
+  @Expose()
+  tenants: GetMemberResDto[];
+
+  @Expose()
+  payer: GetMemberResDto;
 }

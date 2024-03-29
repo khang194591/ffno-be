@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
 import { StaffId } from 'src/libs/decorators';
@@ -27,8 +27,11 @@ export class MemberController {
     return this.queryBus.execute(new GetMemberQuery(id));
   }
 
-  @Post(':id/link-tenant')
-  async linkTenant(@StaffId() staffId: string, @Param() { id }: IdUUIDParams) {
-    return this.commandBus.execute(new LinkTenantCommand(staffId, id));
+  @Post('link-tenant')
+  async linkTenant(
+    @StaffId() staffId: string,
+    @Body() { keyword }: { keyword: string },
+  ) {
+    return this.commandBus.execute(new LinkTenantCommand(staffId, keyword));
   }
 }

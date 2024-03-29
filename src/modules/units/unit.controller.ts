@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
+import { StaffId } from 'src/libs/decorators';
 import {
   CreateUnitDto,
   GetListUnitQueryDto,
@@ -21,7 +22,11 @@ import {
   DeleteUnitCommand,
   UpdateUnitCommand,
 } from './commands';
-import { GetListUnitQuery, GetUnitQuery } from './queries';
+import {
+  GetListUnitQuery,
+  GetSimpleListUnitQuery,
+  GetUnitQuery,
+} from './queries';
 
 @Controller('units')
 @ApiTags('Units', 'Properties')
@@ -34,6 +39,11 @@ export class UnitController {
   @Get()
   async getUnits(@Query() query: GetListUnitQueryDto) {
     return this.queryBus.execute(new GetListUnitQuery(query));
+  }
+
+  @Get('simple-list')
+  async getSimpleListUnit(@StaffId() staffId: string) {
+    return this.queryBus.execute(new GetSimpleListUnitQuery(staffId));
   }
 
   @Get(':id')

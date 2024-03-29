@@ -54,6 +54,12 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
         take,
         skip,
         include: {
+          payer: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
           unitFeatures: true,
         },
       }),

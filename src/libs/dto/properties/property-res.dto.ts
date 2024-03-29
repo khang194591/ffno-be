@@ -35,7 +35,7 @@ export class GetPropertyResDto {
   ownerId: Nullable<string>;
 
   @Expose()
-  @Transform(({ value }) => value.map(({ name }) => name))
+  @Transform(({ value }) => value?.map(({ name }) => name))
   amenities: string[];
 
   @Expose()

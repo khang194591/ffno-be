@@ -19,4 +19,11 @@ export enum MemberContactType {
   SERVICE = 1,
 }
 
+export enum TransactionStatus {
+  OPEN = 0,
+  PAID = 1,
+  PARTIAL = 2,
+  OVERDUE = 3,
+}
+
 export const COOKIE_TOKEN = 'token';

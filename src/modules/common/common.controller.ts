@@ -2,8 +2,9 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/libs/decorators';
 import { CommonService } from './common.service';
-import provinces from 'src/static/provinces.json';
+
 import districts from 'src/static/districts.json';
+import provinces from 'src/static/provinces.json';
 import wards from 'src/static/wards.json';
 
 @Controller('common')
@@ -15,6 +16,11 @@ export class CommonController {
   @Get('amenities')
   async getAmenities() {
     return this.commonService.getAmenities();
+  }
+
+  @Get('invoice-categories')
+  async getInvoiceCategories() {
+    return this.commonService.getInvoiceCategory();
   }
 
   @Get('provinces')
