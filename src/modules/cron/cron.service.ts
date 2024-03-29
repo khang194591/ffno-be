@@ -8,7 +8,7 @@ import { PrismaService } from 'src/config';
 export class CronService {
   constructor(private readonly prisma: PrismaService) {}
 
-  @Cron(CronExpression.EVERY_10_SECONDS)
+  // @Cron(CronExpression.EVERY_10_SECONDS)
   async bulkCreateMonthlyInvoice() {
     console.log('-------------------------------');
     const a = await this.prisma.unit.findMany({

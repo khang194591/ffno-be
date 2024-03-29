@@ -5,6 +5,7 @@ import { EquipmentModule } from './equipments/equipment.module';
 import { InvoiceModule } from './invoices/invoice.module';
 import { MemberModule } from './members/member.module';
 import { PropertyModule } from './properties/property.module';
+import { RequestModule } from './requests/request.module';
 import { UnitModule } from './units/unit.module';
 
 export const modules = [
@@ -16,4 +17,5 @@ export const modules = [
   UnitModule,
   EquipmentModule,
   InvoiceModule,
+  RequestModule,
 ];

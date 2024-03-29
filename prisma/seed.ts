@@ -97,6 +97,10 @@ const seed = async () => {
     data: ['Unit charge', 'Maintain fee'].map((name) => ({ name })),
   });
 
+  await prisma.requestCategory.createMany({
+    data: ['Lease'].map((name) => ({ name })),
+  });
+
   const admin = await prisma.member.create({
     data: fakeMember({
       email: 'khang194591@gmail.com',

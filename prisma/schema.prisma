@@ -8,34 +8,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
 model Member {
-  id              String           @id @default(uuid())
+  id               String           @id @default(uuid())
   // Auth info
-  email           String           @unique
-  phone           String?          @unique
-  password        String
+  email            String           @unique
+  phone            String?          @unique
+  password         String
   // Basic info
-  name            String
-  gender          Int              @db.SmallInt // 0 = Male, 1 = Female
-  imgUrl          String?
-  address         String?
-  dateOfBirth     DateTime?        @db.Date
-  identityNumber  String
-  identityImgUrls String[]
+  name             String
+  gender           Int              @db.SmallInt // 0 = Male, 1 = Female
+  imgUrl           String?
+  address          String?
+  dateOfBirth      DateTime?        @db.Date
+  identityNumber   String
+  identityImgUrls  String[]
   // Properties
-  ownedProperties Property[]
+  ownedProperties  Property[]
   // Live at Unit
-  unit            Unit?            @relation(fields: [unitId], references: [id])
-  unitId          String?
+  unit             Unit?            @relation(fields: [unitId], references: [id])
+  unitId           String?
   // Contacts
-  contacts        MemberContacts[] @relation("contact")
-  contactWith     MemberContacts[] @relation("contactWith")
+  contacts         MemberContacts[] @relation("contact")
+  contactWith      MemberContacts[] @relation("contactWith")
   // Invoices
-  invoices        Invoice[]
-  payForUnits     Unit[]           @relation(name: "payer")
+  invoices         Invoice[]
+  payForUnits      Unit[]           @relation(name: "payer")
+  sentRequest      Request[]        @relation("from")
+  receivedRequest  Request[]        @relation("to")
+  landlordContract Contract[]       @relation(name: "landlord")
+  tenantContract   Contract[]       @relation(name: "tenant")
+  sentReviews      Review[]         @relation(name: "author")
+  reviews          Review[]         @relation(name: "member")
 }
 
 model MemberContacts {
+  id            String  @id @default(uuid())
   type          Int     @db.SmallInt // 0 = tenants, 1 = service pros
   isConnected   Boolean @default(false)
   contact       Member  @relation("contact", fields: [contactId], references: [id])
@@ -43,7 +54,7 @@ model MemberContacts {
   contactWith   Member  @relation("contactWith", fields: [contactWithId], references: [id])
   contactWithId String
 
-  @@id([contactId, contactWithId])
+  @@unique([contactId, contactWithId])
 }
 
 model Property {
@@ -66,6 +77,8 @@ model Property {
   // Owner
   ownerId    String?
   owner      Member?           @relation(fields: [ownerId], references: [id])
+  // Reviews
+  reviews    Review[]
 
   @@unique([name, ownerId])
 }
@@ -96,6 +109,8 @@ model Unit {
   property        Property       @relation(fields: [propertyId], references: [id])
   propertyId      String
   invoices        Invoice[]
+  contracts       Contract[]
+  reviews         Review[]
 
   @@unique([name, propertyId])
 }
@@ -171,4 +186,57 @@ model Invoice {
 model InvoiceCategory {
   name     String    @id @unique
   invoices Invoice[]
+}
+
+model Contract {
+  id        String   @id @default(uuid())
+  template  String
+  startDate DateTime
+  endDate   DateTime
+  imgUrls   String[]
+
+  // Relations
+  landlord   Member @relation(name: "landlord", fields: [landlordId], references: [id])
+  landlordId String
+  tenant     Member @relation(name: "tenant", fields: [tenantId], references: [id])
+  tenantId   String
+  unit       Unit   @relation(fields: [unitId], references: [id])
+  unitId     String
+}
+
+model RequestCategory {
+  name     String    @id @unique
+  requests Request[]
+}
+
+model Request {
+  id         String          @id @default(uuid())
+  name       String
+  details    String
+  category   String
+  Category   RequestCategory @relation(fields: [category], references: [name])
+  // Send by
+  senderId   String
+  sender     Member          @relation(name: "from", fields: [senderId], references: [id])
+  // Receive by
+  receiverId String
+  receiver   Member          @relation(name: "to", fields: [receiverId], references: [id])
+}
+
+model Review {
+  id      String  @id @default(uuid())
+  rating  Float
+  comment String?
+  // Other review details
+
+  // Relations
+  property   Property? @relation(fields: [propertyId], references: [id])
+  propertyId String?
+  unit       Unit?     @relation(fields: [unitId], references: [id])
+  unitId     String?
+  member     Member?   @relation(name: "member", fields: [memberId], references: [id])
+  memberId   String?
+
+  author   Member @relation(name: "author", fields: [authorId], references: [id])
+  authorId String
 }
