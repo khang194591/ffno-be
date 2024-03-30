@@ -21,21 +21,10 @@ export class InvoiceService {
     return plainToInstance(GetInvoiceResDto, invoice);
   }
 
-  private async validateCategories(categories: string[]) {
-    const foundCategories = await this.prisma.invoiceCategory.findMany({
-      where: { name: { in: categories } },
-    });
-
-    if (foundCategories.length !== categories.length) {
-      throw new BadRequestException(`Invalid invoice categories`);
-    }
-  }
-
   async validateInvoiceInput(
     data: CreateInvoiceDto | UpdateInvoiceDto,
   ): Promise<Prisma.InvoiceCreateInput | Prisma.InvoiceUpdateInput> {
-    const { category, unitId, memberId, ...partialInvoice } = data;
-    await this.validateCategories([category]);
+    const { unitId, memberId, ...partialInvoice } = data;
     const { tenants } = await this.prisma.unit.findUniqueOrThrow({
       where: { id: unitId },
       select: { tenants: true },
@@ -52,7 +41,6 @@ export class InvoiceService {
       code: `${faker.string.alphanumeric({ length: 10 })}`,
       unit: { connect: { id: unitId } },
       member: { connect: { id: memberId } },
-      Category: { connect: { name: category } },
     };
   }
 }

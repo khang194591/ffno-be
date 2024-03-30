@@ -23,31 +23,22 @@ export class RequestService {
   async validateRequestInput(
     data: CreateRequestDto | UpdateRequestDto,
   ): Promise<Prisma.RequestCreateInput | Prisma.RequestUpdateInput> {
-    const { category, fromId, toId, ...partialRequest } = data;
-    await this.validateCategories([category]);
+    const { senderId, receiverId, ...partialRequest } = data;
     const members = await this.prisma.member.findMany({
-      where: { id: { in: [fromId, toId] } },
+      where: { id: { in: [senderId, receiverId] } },
     });
 
     if (members.length !== 2) {
-      throw new BadRequestException(`Invalid member's id ${fromId}, ${toId}`);
+      throw new BadRequestException(
+        `Invalid member's id ${senderId}, ${receiverId}`,
+      );
     }
 
     return {
       ...partialRequest,
-      to: { connect: { id: toId } },
-      from: { connect: { id: fromId } },
-      Category: { connect: { name: category } },
+      category: partialRequest.category,
+      receiver: { connect: { id: receiverId } },
+      sender: { connect: { id: senderId } },
     };
-  }
-
-  private async validateCategories(categories: string[]) {
-    const foundCategories = await this.prisma.requestCategory.findMany({
-      where: { name: { in: categories } },
-    });
-
-    if (foundCategories.length !== categories.length) {
-      throw new BadRequestException(`Invalid request categories`);
-    }
   }
 }

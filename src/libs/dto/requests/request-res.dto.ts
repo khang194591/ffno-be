@@ -14,15 +14,15 @@ export class GetRequestResDto {
 
   @Expose()
   @Type(() => GetMemberResDto)
-  from: GetMemberResDto;
+  sender: GetMemberResDto;
 
   @Expose()
-  fromId: string;
+  senderId: string;
 
   @Expose()
   @Type(() => GetMemberResDto)
-  to: GetMemberResDto;
+  receiver: GetMemberResDto;
 
   @Expose()
-  toId: string;
+  receiverId: string;
 }

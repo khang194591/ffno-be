@@ -3,15 +3,17 @@ import { Type } from 'class-transformer';
 import {
   IsDate,
   IsDecimal,
+  IsEnum,
   IsOptional,
   IsString,
   IsUUID,
 } from 'class-validator';
+import { InvoiceCategory } from 'src/libs/constants';
 import { DecimalNumber } from 'src/libs/decorators';
 
 export class CreateInvoiceDto {
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   id: string;
 
   @IsDecimal()
@@ -26,13 +28,13 @@ export class CreateInvoiceDto {
   @IsString()
   details: string;
 
-  @IsString()
-  category: string;
+  @IsEnum(InvoiceCategory)
+  category: InvoiceCategory;
 
-  @IsUUID('4')
+  @IsUUID()
   unitId: string;
 
-  @IsUUID('4')
+  @IsUUID()
   memberId: string;
 }
 

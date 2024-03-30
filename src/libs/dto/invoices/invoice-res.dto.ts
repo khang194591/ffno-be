@@ -1,6 +1,5 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { IsEnum } from 'class-validator';
-import { TransactionStatus } from 'src/libs/constants';
+import { InvoiceStatus } from 'src/libs/constants';
 import { DecimalNumber } from 'src/libs/decorators';
 import { Nullable } from '../common';
 
@@ -10,8 +9,7 @@ export class GetInvoiceResDto {
   id: string;
 
   @Expose()
-  @IsEnum(TransactionStatus)
-  status: TransactionStatus;
+  status: InvoiceStatus;
 
   @Expose()
   @Type(() => DecimalNumber)

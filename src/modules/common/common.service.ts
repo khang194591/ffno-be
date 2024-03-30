@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/config';
+import { InvoiceCategory } from 'src/libs/constants';
 
 @Injectable()
 export class CommonService {
@@ -11,7 +12,6 @@ export class CommonService {
   }
 
   async getInvoiceCategory(): Promise<string[]> {
-    const categories = await this.prisma.invoiceCategory.findMany();
-    return categories.map(({ name }) => name);
+    return Object.keys(InvoiceCategory);
   }
 }

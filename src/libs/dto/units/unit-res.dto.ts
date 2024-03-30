@@ -1,5 +1,5 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { MaintainStatus } from 'src/libs/constants';
+import { UnitStatus } from 'src/libs/constants';
 import { DecimalNumber } from 'src/libs/decorators';
 import { Nullable } from '../common';
 import { GetMemberResDto } from '../members';
@@ -11,9 +11,6 @@ export class GetUnitResDto {
 
   @Expose()
   name: string;
-
-  @Expose()
-  type: number;
 
   @Expose()
   @Type(() => DecimalNumber)
@@ -31,22 +28,7 @@ export class GetUnitResDto {
   details: Nullable<string>;
 
   @Expose()
-  maintainStatus: MaintainStatus;
-
-  @Expose()
-  beds: string;
-
-  @Expose()
-  baths: string;
-
-  @Expose()
-  parking: string;
-
-  @Expose()
-  laundry: string;
-
-  @Expose()
-  airConditioning: string;
+  status: UnitStatus;
 
   @Expose()
   @Transform(({ value }) => value?.map(({ name }) => name))

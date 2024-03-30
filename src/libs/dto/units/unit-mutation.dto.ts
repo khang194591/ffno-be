@@ -2,22 +2,20 @@ import { PartialType } from '@nestjs/swagger';
 import {
   IsArray,
   IsDecimal,
-  IsNumber,
+  IsEnum,
   IsOptional,
   IsString,
   IsUUID,
 } from 'class-validator';
+import { UnitStatus } from 'src/libs/constants';
 
 export class CreateUnitDto {
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   id: string;
 
   @IsString()
   name: string;
-
-  @IsNumber()
-  type: number;
 
   @IsDecimal()
   area: number;
@@ -28,33 +26,18 @@ export class CreateUnitDto {
   @IsDecimal()
   deposit: number;
 
-  @IsNumber()
-  maintainStatus: number;
+  @IsEnum(UnitStatus)
+  status: UnitStatus;
 
   @IsOptional()
   @IsString()
   details: string;
 
-  @IsString()
-  beds: string;
-
-  @IsString()
-  baths: string;
-
-  @IsString()
-  parking: string;
-
-  @IsString()
-  laundry: string;
-
-  @IsString()
-  airConditioning: string;
-
   @IsArray()
   @IsString({ each: true })
   unitFeatures: string[];
 
-  @IsUUID('4')
+  @IsUUID()
   propertyId: string;
 }
 

@@ -3,8 +3,13 @@ import { Prisma, PrismaClient } from '@prisma/client';
 import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import Decimal from 'decimal.js';
-import { Gender, MaintainStatus, PropertyType } from '../src/libs/constants';
 import { v4 } from 'uuid';
+import {
+  Gender,
+  MemberRole,
+  PropertyType,
+  UnitStatus,
+} from '../src/libs/constants';
 
 function getRandomItemsInArray<T = unknown>(array: Array<T>) {
   const shuffled = array.sort(() => 0.5 - Math.random());
@@ -27,6 +32,7 @@ const fakeMember = (override = {}) => {
     phone: faker.phone.number(),
     gender: Gender.MALE,
     password: '@Password.123',
+    role: MemberRole.TENANT,
     address: faker.location.streetAddress(),
     dateOfBirth: faker.date.past(),
     identityNumber: faker.string.alphanumeric(12),
@@ -57,17 +63,11 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
   return {
     id: v4(),
     name: faker.color.human() + ' ' + faker.company.buzzNoun(),
-    type: PropertyType.SINGLE_UNIT,
     area: new Decimal(faker.number.int({ min: 10, max: 200 })),
     price: new Decimal(faker.number.int({ min: 1_000_000, max: 20_000_000 })),
     deposit: new Decimal(faker.number.int({ min: 1_000_000, max: 20_000_000 })),
     details: faker.lorem.sentence(),
-    beds: '1',
-    baths: 'SHARED',
-    parking: 'FREE',
-    laundry: 'NONE',
-    airConditioning: 'COLD',
-    maintainStatus: MaintainStatus.GOOD,
+    status: UnitStatus.GOOD,
     property: { connect: { id: propertyId } },
     unitFeatures: {
       connect: getRandomItemsInArray(mockUnitFeatures).map((name) => ({
@@ -81,7 +81,6 @@ const seed = async () => {
   const prisma = new PrismaClient();
   await prisma.$transaction([
     prisma.invoice.deleteMany(),
-    prisma.invoiceCategory.deleteMany(),
     prisma.unitPriceLog.deleteMany(),
     prisma.unitFeature.deleteMany(),
     prisma.unit.deleteMany(),
@@ -93,18 +92,11 @@ const seed = async () => {
     prisma.member.deleteMany(),
   ]);
 
-  await prisma.invoiceCategory.createMany({
-    data: ['Unit charge', 'Maintain fee'].map((name) => ({ name })),
-  });
-
-  await prisma.requestCategory.createMany({
-    data: ['Lease'].map((name) => ({ name })),
-  });
-
   const admin = await prisma.member.create({
     data: fakeMember({
       email: 'khang194591@gmail.com',
       password: hashSync('123456', 10),
+      role: MemberRole.ADMIN,
     }),
   });
 

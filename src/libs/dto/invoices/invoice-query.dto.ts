@@ -1,7 +1,7 @@
 import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
+import { InvoiceStatus } from 'src/libs/constants';
 import { TransformArray } from 'src/libs/decorators';
 import { GetListQueryDto } from '../common';
-import { TransactionStatus } from 'src/libs/constants';
 
 export class GetListInvoiceQueryDto extends GetListQueryDto {
   @IsOptional()
@@ -19,8 +19,8 @@ export class GetListInvoiceQueryDto extends GetListQueryDto {
   unitId?: string;
 
   @IsOptional()
-  @IsEnum(TransactionStatus)
-  status?: TransactionStatus;
+  @IsEnum(InvoiceStatus)
+  status?: InvoiceStatus;
 
   @IsOptional()
   @IsUUID()

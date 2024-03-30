@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
 import { Prisma } from '@prisma/client';
 import dayjs from 'dayjs';
 import { PrismaService } from 'src/config';
+import { InvoiceCategory, InvoiceStatus } from 'src/libs/constants';
 
 @Injectable()
 export class CronService {
@@ -34,7 +34,8 @@ export class CronService {
       data: b.map((unit) => ({
         code: `${unit.id}#${dayjs().format('MM/YYYY')}`,
         amount: unit.price,
-        category: 'Unit charge',
+        status: InvoiceStatus.PENDING,
+        category: InvoiceCategory.UNIT_CHARGE,
         unitId: unit.id,
         memberId: unit.payerId,
         details: `Unit ${unit.name} of property ${unit.property.name} charge ${dayjs().format('MM/YYYY')}`,

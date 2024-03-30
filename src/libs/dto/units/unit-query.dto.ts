@@ -9,11 +9,6 @@ export class GetListUnitQueryDto extends GetListQueryDto {
   name?: string;
 
   @IsOptional()
-  @IsNumber()
-  @Type(() => Number)
-  type?: number;
-
-  @IsOptional()
   @IsString()
   ward?: string;
 

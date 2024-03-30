@@ -8,51 +8,55 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-generator dbml {
-  provider = "prisma-dbml-generator"
-}
-
 model Member {
-  id               String           @id @default(uuid())
+  id                String           @id @default(uuid())
   // Auth info
-  email            String           @unique
-  phone            String?          @unique
-  password         String
+  email             String           @unique
+  phone             String?          @unique
+  password          String
   // Basic info
-  name             String
-  gender           Int              @db.SmallInt // 0 = Male, 1 = Female
-  imgUrl           String?
-  address          String?
-  dateOfBirth      DateTime?        @db.Date
-  identityNumber   String
-  identityImgUrls  String[]
+  role              Int              @db.SmallInt
+  name              String
+  gender            Int              @db.SmallInt
+  imgUrl            String?
+  address           String?
+  dateOfBirth       DateTime?        @db.Date
+  identityNumber    String
+  identityImgUrls   String[]
   // Properties
-  ownedProperties  Property[]
+  ownedProperties   Property[]
   // Live at Unit
-  unit             Unit?            @relation(fields: [unitId], references: [id])
-  unitId           String?
+  unit              Unit?            @relation(fields: [unitId], references: [id])
+  unitId            String?
   // Contacts
-  contacts         MemberContacts[] @relation("contact")
-  contactWith      MemberContacts[] @relation("contactWith")
+  contacts          MemberContacts[] @relation("contact")
+  contactWith       MemberContacts[] @relation("contactWith")
   // Invoices
-  invoices         Invoice[]
-  payForUnits      Unit[]           @relation(name: "payer")
-  sentRequest      Request[]        @relation("from")
-  receivedRequest  Request[]        @relation("to")
-  landlordContract Contract[]       @relation(name: "landlord")
-  tenantContract   Contract[]       @relation(name: "tenant")
-  sentReviews      Review[]         @relation(name: "author")
-  reviews          Review[]         @relation(name: "member")
+  invoices          Invoice[]
+  payForUnits       Unit[]           @relation(name: "payer")
+  sentRequests      Request[]        @relation(name: "sender")
+  receivedRequests  Request[]        @relation(name: "receiver")
+  landlordContracts Contract[]       @relation(name: "landlord")
+  tenantContracts   Contract[]       @relation(name: "tenant")
+  sentReviews       Review[]         @relation(name: "author")
+  reviews           Review[]         @relation(name: "member")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model MemberContacts {
   id            String  @id @default(uuid())
-  type          Int     @db.SmallInt // 0 = tenants, 1 = service pros
+  type          Int     @db.SmallInt
   isConnected   Boolean @default(false)
+  // Relations
   contact       Member  @relation("contact", fields: [contactId], references: [id])
   contactId     String
   contactWith   Member  @relation("contactWith", fields: [contactWithId], references: [id])
   contactWithId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([contactId, contactWithId])
 }
@@ -68,62 +72,58 @@ model Property {
   province   String
   imgUrls    String[]
   details    String?           @db.Text
-  // Amenities
+  // Relations
+  ownerId    String
+  owner      Member            @relation(fields: [ownerId], references: [id])
   amenities  PropertyAmenity[]
-  // Units
   units      Unit[]
-  // Equipments
   equipments Equipment[]
-  // Owner
-  ownerId    String?
-  owner      Member?           @relation(fields: [ownerId], references: [id])
-  // Reviews
   reviews    Review[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([name, ownerId])
 }
 
 model Unit {
-  id              String         @id @default(uuid())
+  id            String         @id @default(uuid())
   // Basic info
-  name            String
-  type            Int            @default(0) @db.SmallInt // 0 = Single Unit, 1 = Multiple Units
-  area            Decimal
-  price           Decimal
-  deposit         Decimal
-  details         String?        @db.Text
-  maintainStatus  Int            @default(0) @db.SmallInt // 0 = GOOD, 1 = MAINTAINING, 2 = BAD 
-  // Basic amenities
-  beds            String
-  baths           String
-  parking         String
-  laundry         String
-  airConditioning String
-  // Unit features
-  unitFeatures    UnitFeature[]
-  unitPriceLogs   UnitPriceLog[]
+  name          String
+  area          Decimal
+  price         Decimal
+  deposit       Decimal
+  details       String?        @db.Text
+  status        Int            @db.SmallInt
   // Relations
-  payer           Member?        @relation(name: "payer", fields: [payerId], references: [id])
-  payerId         String?
-  tenants         Member[]
-  property        Property       @relation(fields: [propertyId], references: [id])
-  propertyId      String
-  invoices        Invoice[]
-  contracts       Contract[]
-  reviews         Review[]
+  payer         Member?        @relation(name: "payer", fields: [payerId], references: [id])
+  payerId       String?
+  tenants       Member[]
+  property      Property       @relation(fields: [propertyId], references: [id])
+  propertyId    String
+  invoices      Invoice[]
+  contracts     Contract[]
+  reviews       Review[]
+  unitPriceLogs UnitPriceLog[]
+  unitFeatures  UnitFeature[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([name, propertyId])
 }
 
 model UnitPriceLog {
-  id            String   @id @default(uuid())
-  value         Decimal
-  price         Decimal
-  confirmStatus Int      @default(1) @db.SmallInt // 0 = Accepted, 1 = Pending, 2 = Rejected
-  unit          Unit?    @relation(fields: [unitId], references: [id])
-  unitId        String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id     String  @id @default(uuid())
+  value  Decimal
+  price  Decimal
+  status Int     @db.SmallInt
+  // Relations
+  unit   Unit    @relation(fields: [unitId], references: [id])
+  unitId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model UnitFeature {
@@ -163,37 +163,32 @@ model EquipmentCategory {
 }
 
 model Invoice {
-  id        String          @id @default(uuid())
-  code      String          @unique
-  amount    Decimal
-  status    Int             @default(0) @db.SmallInt // 0 = Pending, 1 = Paid,  2 = Partial, 3 = Overdue
-  paidAt    DateTime?
-  dueDate   DateTime        @db.Date
-  details   String          @db.Text
-  category  String
-  Category  InvoiceCategory @relation(fields: [category], references: [name])
-  // Unit
-  unit      Unit            @relation(fields: [unitId], references: [id])
-  unitId    String
-  // Member
-  member    Member          @relation(fields: [memberId], references: [id])
-  memberId  String
-  // 
-  createdAt DateTime        @default(now())
-  updatedAt DateTime        @updatedAt
-}
+  id       String    @id @default(uuid())
+  code     String    @unique
+  amount   Decimal
+  status   Int       @db.SmallInt
+  paidAt   DateTime?
+  dueDate  DateTime  @db.Date
+  details  String    @db.Text
+  category Int       @db.SmallInt
+  // Relations
+  unit     Unit      @relation(fields: [unitId], references: [id])
+  unitId   String
+  member   Member    @relation(fields: [memberId], references: [id])
+  memberId String
 
-model InvoiceCategory {
-  name     String    @id @unique
-  invoices Invoice[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Contract {
-  id        String   @id @default(uuid())
-  template  String
-  startDate DateTime
-  endDate   DateTime
-  imgUrls   String[]
+  id              String    @id @default(uuid())
+  status          Int       @db.SmallInt
+  template        String
+  startDate       DateTime
+  endDate         DateTime
+  terminationDate DateTime?
+  imgUrls         String[]
 
   // Relations
   landlord   Member @relation(name: "landlord", fields: [landlordId], references: [id])
@@ -202,33 +197,31 @@ model Contract {
   tenantId   String
   unit       Unit   @relation(fields: [unitId], references: [id])
   unitId     String
-}
 
-model RequestCategory {
-  name     String    @id @unique
-  requests Request[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Request {
-  id         String          @id @default(uuid())
+  id         String @id @default(uuid())
   name       String
+  status     Int    @db.SmallInt
   details    String
-  category   String
-  Category   RequestCategory @relation(fields: [category], references: [name])
-  // Send by
+  category   Int    @db.SmallInt
+  // Relations
   senderId   String
-  sender     Member          @relation(name: "from", fields: [senderId], references: [id])
-  // Receive by
+  sender     Member @relation(name: "sender", fields: [senderId], references: [id])
   receiverId String
-  receiver   Member          @relation(name: "to", fields: [receiverId], references: [id])
+  receiver   Member @relation(name: "receiver", fields: [receiverId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Review {
-  id      String  @id @default(uuid())
-  rating  Float
-  comment String?
-  // Other review details
-
+  id         String    @id @default(uuid())
+  rating     Float
+  comment    String?
   // Relations
   property   Property? @relation(fields: [propertyId], references: [id])
   propertyId String?
@@ -236,7 +229,9 @@ model Review {
   unitId     String?
   member     Member?   @relation(name: "member", fields: [memberId], references: [id])
   memberId   String?
+  author     Member    @relation(name: "author", fields: [authorId], references: [id])
+  authorId   String
 
-  author   Member @relation(name: "author", fields: [authorId], references: [id])
-  authorId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

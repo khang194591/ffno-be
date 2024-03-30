@@ -16,7 +16,7 @@ export class CreatePropertyDto {
   }
 
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   id: string;
 
   @IsString()
@@ -54,7 +54,7 @@ export class CreatePropertyDto {
   equipments: string[];
 
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   ownerId: string;
 }
 

@@ -9,11 +9,11 @@ import {
   IsString,
   IsUUID,
 } from 'class-validator';
-import { MaintainStatus } from 'src/libs/constants';
+import { UnitStatus } from 'src/libs/constants';
 
 export class CreateEquipmentDto {
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   id?: string;
 
   @IsString()
@@ -40,15 +40,15 @@ export class CreateEquipmentDto {
   @IsOptional()
   details?: string;
 
-  @IsEnum(MaintainStatus)
-  maintainStatus: MaintainStatus = MaintainStatus.GOOD;
+  @IsEnum(UnitStatus)
+  maintainStatus: UnitStatus = UnitStatus.GOOD;
 
   @IsOptional()
   @IsString()
   category: string;
 
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   propertyId?: string;
 
   @IsBoolean()

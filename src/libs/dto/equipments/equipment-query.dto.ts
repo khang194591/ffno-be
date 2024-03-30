@@ -2,6 +2,6 @@ import { IsOptional, IsUUID } from 'class-validator';
 
 export class GetListEquipmentQuery {
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   propertyId: string;
 }
