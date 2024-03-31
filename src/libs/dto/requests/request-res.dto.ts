@@ -1,5 +1,6 @@
 import { Exclude, Expose, Type } from 'class-transformer';
 import { GetMemberResDto } from '../members';
+import { RequestCategory, RequestStatus } from 'src/libs/constants';
 
 @Exclude()
 export class GetRequestResDto {
@@ -7,10 +8,16 @@ export class GetRequestResDto {
   id: string;
 
   @Expose()
-  title: string;
+  name: string;
 
   @Expose()
-  content: number;
+  details: number;
+
+  @Expose()
+  status: RequestStatus;
+
+  @Expose()
+  category: RequestCategory;
 
   @Expose()
   @Type(() => GetMemberResDto)
@@ -21,8 +28,8 @@ export class GetRequestResDto {
 
   @Expose()
   @Type(() => GetMemberResDto)
-  receiver: GetMemberResDto;
+  receivers: GetMemberResDto[];
 
   @Expose()
-  receiverId: string;
+  receiverIds: string[];
 }

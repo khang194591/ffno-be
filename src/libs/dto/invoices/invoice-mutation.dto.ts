@@ -29,6 +29,7 @@ export class CreateInvoiceDto {
   details: string;
 
   @IsEnum(InvoiceCategory)
+  @Type(() => Number)
   category: InvoiceCategory;
 
   @IsUUID()

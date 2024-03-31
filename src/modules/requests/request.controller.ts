@@ -36,8 +36,11 @@ export class RequestController {
   }
 
   @Post()
-  async createRequest(@Body() body: CreateRequestDto) {
-    return this.commandBus.execute(new CreateRequestCommand(body));
+  async createRequest(
+    @StaffId() staffId: string,
+    @Body() body: CreateRequestDto,
+  ) {
+    return this.commandBus.execute(new CreateRequestCommand(staffId, body));
   }
 
   @Patch(':id')

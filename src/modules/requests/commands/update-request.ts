@@ -21,7 +21,7 @@ export class UpdateRequestHandler
 
   async execute(query: UpdateRequestCommand): Promise<string> {
     const { id } = query;
-    const data = await this.requestService.validateRequestInput(query.data);
+    const data = await this.requestService.validateRequestInput('', query.data);
 
     await this.requestService.getRequestOrThrow(id);
 

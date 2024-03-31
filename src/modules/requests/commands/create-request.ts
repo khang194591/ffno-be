@@ -5,7 +5,10 @@ import { CreateRequestDto } from 'src/libs/dto';
 import { RequestService } from '../request.service';
 
 export class CreateRequestCommand {
-  constructor(public readonly data: CreateRequestDto) {}
+  constructor(
+    public readonly staffId: string,
+    public readonly data: CreateRequestDto,
+  ) {}
 }
 
 @CommandHandler(CreateRequestCommand)
@@ -18,7 +21,10 @@ export class CreateRequestHandler
   ) {}
 
   async execute(query: CreateRequestCommand): Promise<string> {
-    const data = await this.requestService.validateRequestInput(query.data);
+    const data = await this.requestService.validateRequestInput(
+      query.staffId,
+      query.data,
+    );
 
     const request = await this.prisma.request.create({
       data: data as Prisma.RequestCreateInput,

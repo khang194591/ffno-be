@@ -5,6 +5,11 @@ export enum MemberRole {
   SERVICE_WORKER,
 }
 
+export enum ContactType {
+  TENANT,
+  SERVICE_WORKER,
+}
+
 export enum Gender {
   MALE,
   FEMALE,

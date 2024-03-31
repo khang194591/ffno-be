@@ -1,15 +1,13 @@
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/vi';
 import { Prisma, PrismaClient } from '@prisma/client';
 import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import Decimal from 'decimal.js';
 import { v4 } from 'uuid';
-import {
-  Gender,
-  MemberRole,
-  PropertyType,
-  UnitStatus,
-} from '../src/libs/constants';
+import { MemberRole, PropertyType, UnitStatus } from '../src/libs/constants';
+import districts from '../src/static/districts.json';
+import provinces from '../src/static/provinces.json';
+import wards from '../src/static/wards.json';
 
 function getRandomItemsInArray<T = unknown>(array: Array<T>) {
   const shuffled = array.sort(() => 0.5 - Math.random());
@@ -25,32 +23,44 @@ const mockUnitFeatures = Array(randomInt(10, 50))
   .map(() => faker.animal.type());
 
 const fakeMember = (override = {}) => {
+  const gender = randomInt(2);
+  const firstName = faker.person.firstName(gender ? 'female' : 'male');
+  const lastName = faker.person.lastName(gender ? 'female' : 'male');
+  const name = `${lastName} ${firstName}`;
   return {
     id: v4(),
-    name: faker.person.fullName(),
-    email: faker.internet.email(),
+    name,
+    email: faker.internet.email({ lastName, firstName }),
     phone: faker.phone.number(),
-    gender: Gender.MALE,
-    password: '@Password.123',
+    gender,
+    password: '$2b$10$rfTZt.T4aWlqfAtl5VPFWeIGGYKzhwIp.Cz8utOghQ0doPN9yW7Vm',
     role: MemberRole.TENANT,
     address: faker.location.streetAddress(),
     dateOfBirth: faker.date.past(),
     identityNumber: faker.string.alphanumeric(12),
-    imgUrl: faker.internet.url(),
+    imgUrl: `https://i.pravatar.cc/150?u=${faker.string.uuid()}`,
     ...override,
   };
 };
 
 const fakeProperty = (ownerId: string) => {
+  const province = provinces[randomInt(provinces.length)];
+  const districtOptions = districts[province];
+  const district = districtOptions[randomInt(districtOptions.length)];
+  const wardOptions = wards[district];
+  const ward = wardOptions[randomInt(wardOptions.length)];
   return {
     id: v4(),
     name: faker.color.human() + ' ' + faker.internet.password(),
     type: PropertyType.MULTIPLE_UNIT,
     address: faker.location.streetAddress(),
-    ward: faker.string.alpha(4),
-    district: faker.string.alpha(4),
-    province: faker.string.alpha(4),
-    imgUrls: [faker.internet.url(), faker.internet.url()],
+    ward,
+    district,
+    province,
+    imgUrls: [
+      `https://picsum.photos/id/${randomInt(200)}/200/200`,
+      `https://picsum.photos/id/${randomInt(200)}/200/200`,
+    ],
     ownerId,
     details: faker.lorem.paragraph(),
     amenities: {
@@ -68,6 +78,10 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
     deposit: new Decimal(faker.number.int({ min: 1_000_000, max: 20_000_000 })),
     details: faker.lorem.sentence(),
     status: UnitStatus.GOOD,
+    imgUrls: [
+      `https://picsum.photos/id/${randomInt(200)}/200/200`,
+      `https://picsum.photos/id/${randomInt(200)}/200/200`,
+    ],
     property: { connect: { id: propertyId } },
     unitFeatures: {
       connect: getRandomItemsInArray(mockUnitFeatures).map((name) => ({
@@ -80,6 +94,7 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
 const seed = async () => {
   const prisma = new PrismaClient();
   await prisma.$transaction([
+    prisma.request.deleteMany(),
     prisma.invoice.deleteMany(),
     prisma.unitPriceLog.deleteMany(),
     prisma.unitFeature.deleteMany(),

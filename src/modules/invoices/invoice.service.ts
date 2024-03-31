@@ -3,6 +3,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
+import { InvoiceStatus } from 'src/libs/constants';
 import {
   CreateInvoiceDto,
   GetInvoiceResDto,
@@ -38,6 +39,7 @@ export class InvoiceService {
 
     return {
       ...partialInvoice,
+      status: InvoiceStatus.PENDING,
       code: `${faker.string.alphanumeric({ length: 10 })}`,
       unit: { connect: { id: unitId } },
       member: { connect: { id: memberId } },

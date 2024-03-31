@@ -95,6 +95,7 @@ model Unit {
   deposit       Decimal
   details       String?        @db.Text
   status        Int            @db.SmallInt
+  imgUrls       String[]
   // Relations
   payer         Member?        @relation(name: "payer", fields: [payerId], references: [id])
   payerId       String?
@@ -203,16 +204,15 @@ model Contract {
 }
 
 model Request {
-  id         String @id @default(uuid())
-  name       String
-  status     Int    @db.SmallInt
-  details    String
-  category   Int    @db.SmallInt
+  id        String   @id @default(uuid())
+  name      String
+  status    Int      @db.SmallInt
+  details   String
+  category  Int      @db.SmallInt
   // Relations
-  senderId   String
-  sender     Member @relation(name: "sender", fields: [senderId], references: [id])
-  receiverId String
-  receiver   Member @relation(name: "receiver", fields: [receiverId], references: [id])
+  senderId  String
+  sender    Member   @relation(name: "sender", fields: [senderId], references: [id])
+  receivers Member[] @relation(name: "receiver")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

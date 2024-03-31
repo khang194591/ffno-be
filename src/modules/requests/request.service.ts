@@ -21,24 +21,25 @@ export class RequestService {
   }
 
   async validateRequestInput(
+    staffId: string,
     data: CreateRequestDto | UpdateRequestDto,
   ): Promise<Prisma.RequestCreateInput | Prisma.RequestUpdateInput> {
-    const { senderId, receiverId, ...partialRequest } = data;
+    const { receiverIds, ...partialRequest } = data;
     const members = await this.prisma.member.findMany({
-      where: { id: { in: [senderId, receiverId] } },
+      where: { id: { in: [staffId, ...receiverIds] } },
     });
 
     if (members.length !== 2) {
       throw new BadRequestException(
-        `Invalid member's id ${senderId}, ${receiverId}`,
+        `Invalid member's id ${staffId}, ${receiverIds}`,
       );
     }
 
     return {
       ...partialRequest,
       category: partialRequest.category,
-      receiver: { connect: { id: receiverId } },
-      sender: { connect: { id: senderId } },
+      sender: { connect: { id: staffId } },
+      receivers: { connect: receiverIds.map((id) => ({ id })) },
     };
   }
 }

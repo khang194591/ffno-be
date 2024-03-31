@@ -31,12 +31,17 @@ export class GetUnitResDto {
   status: UnitStatus;
 
   @Expose()
+  imgUrls: string[];
+
+  @Expose()
   @Transform(({ value }) => value?.map(({ name }) => name))
   unitFeatures: string[];
 
   @Expose()
+  @Type(() => GetMemberResDto)
   tenants: GetMemberResDto[];
 
   @Expose()
+  @Type(() => GetMemberResDto)
   payer: GetMemberResDto;
 }
