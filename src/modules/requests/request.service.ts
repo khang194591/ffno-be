@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
+import { RequestStatus } from 'src/libs/constants';
 import {
   CreateRequestDto,
   GetRequestResDto,
@@ -37,6 +38,7 @@ export class RequestService {
 
     return {
       ...partialRequest,
+      status: RequestStatus.PENDING,
       category: partialRequest.category,
       sender: { connect: { id: staffId } },
       receivers: { connect: receiverIds.map((id) => ({ id })) },

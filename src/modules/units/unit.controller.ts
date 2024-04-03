@@ -30,7 +30,7 @@ import {
 } from './queries';
 
 @Controller('units')
-@ApiTags('Units', 'Properties')
+@ApiTags('Units')
 export class UnitController {
   constructor(
     private readonly commandBus: CommandBus,

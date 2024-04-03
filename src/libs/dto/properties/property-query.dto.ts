@@ -2,6 +2,7 @@ import { Type } from 'class-transformer';
 import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
 import { TransformArray } from 'src/libs/decorators';
 import { GetListQueryDto } from '../common';
+import { PropertyType } from 'src/libs/constants';
 
 export class GetListPropertyQueryDto extends GetListQueryDto {
   @IsOptional()
@@ -11,7 +12,7 @@ export class GetListPropertyQueryDto extends GetListQueryDto {
   @IsOptional()
   @IsNumber()
   @Type(() => Number)
-  type?: number;
+  type?: PropertyType;
 
   @IsOptional()
   @IsString()

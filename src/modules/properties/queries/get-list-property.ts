@@ -51,6 +51,7 @@ export class GetListPropertyHandler
           },
         },
         orderBy: {
+          createdAt: 'desc',
           _relevance: name && {
             fields: ['name'],
             search: name.split(' ').join(' | '),

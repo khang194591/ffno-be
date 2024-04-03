@@ -41,4 +41,16 @@ export class GetPropertyResDto {
   @Expose()
   @Type(() => GetUnitResDto)
   units: GetUnitResDto[];
+
+  @Expose()
+  @Transform(
+    ({ obj }) => obj.units?.filter((unit) => unit.tenants?.length).length,
+  )
+  occupiedCount: number;
+
+  @Expose()
+  @Transform(
+    ({ obj }) => obj.units?.filter((unit) => !unit.tenants?.length).length,
+  )
+  vacantCount: number;
 }
