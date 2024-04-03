@@ -19,6 +19,12 @@ export class PropertyService {
       include: {
         amenities: true,
         units: true,
+        owner: {
+          select: {
+            name: true,
+            phone: true,
+          },
+        },
       },
     });
 

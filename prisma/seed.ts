@@ -4,7 +4,7 @@ import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import Decimal from 'decimal.js';
 import { v4 } from 'uuid';
-import { MemberRole, PropertyType, UnitStatus } from '../src/libs/constants';
+import { MemberRole, UnitStatus } from '../src/libs/constants';
 import districts from '../src/static/districts.json';
 import provinces from '../src/static/provinces.json';
 import wards from '../src/static/wards.json';
@@ -14,13 +14,47 @@ function getRandomItemsInArray<T = unknown>(array: Array<T>) {
   return shuffled.slice(0, randomInt(array.length - 1));
 }
 
-const mockAmenities = Array(randomInt(10, 50))
-  .fill(0)
-  .map(() => faker.animal.type());
+const mockAmenities = [
+  'Hồ bơi',
+  'Phòng tập gym',
+  'Khu vui chơi',
+  'Sân tennis',
+  'Sân thượng hoặc vườn mái',
+  'Quán cà phê',
+  'Dịch vụ giặt là',
+  'Khu vực BBQ',
+  'Khu vực vui chơi cho trẻ em',
+  'Truy cập internet tốc độ cao',
+  'Dịch vụ quản lý tài sản',
+  'Bãi đậu xe',
+  'Quầy bar/lounge',
+  'Phòng họp',
+  'Khu vực tiệc ngoài trời',
+  'Dịch vụ giữ trẻ',
+  'Cho phép vật nuôi',
+  'Dịch vụ giữ trẻ',
+];
 
-const mockUnitFeatures = Array(randomInt(10, 50))
-  .fill(0)
-  .map(() => faker.animal.type());
+const mockUnitFeatures = [
+  'Điều hòa không khí',
+  'Tủ lạnh',
+  'Máy giặt',
+  'Bồn tắm',
+  'Tủ quần áo',
+  'Bàn làm việc',
+  'Internet',
+  'Bàn ăn',
+  'Ban công',
+  'Máy sưởi',
+  'Máy sấy tóc',
+  'Giường',
+  'Bàn và ghế',
+  'Máy hút mùi',
+  'Lò nướng',
+  'Máy phát điện dự phòng',
+  'Máy lọc nước',
+  'Bình nước nóng',
+];
 
 const fakeMember = (override = {}) => {
   const gender = randomInt(2);
@@ -49,17 +83,18 @@ const fakeProperty = (ownerId: string) => {
   const district = districtOptions[randomInt(districtOptions.length)];
   const wardOptions = wards[district];
   const ward = wardOptions[randomInt(wardOptions.length)];
+  const type = randomInt(2);
   return {
     id: v4(),
-    name: faker.color.human() + ' ' + faker.internet.password(),
-    type: PropertyType.MULTIPLE_UNIT,
-    address: faker.location.streetAddress(),
+    name: `Nhà số ${faker.location.buildingNumber()}${faker.string.alpha(1).toUpperCase()}, ${faker.location.street()}`,
+    type,
+    address: faker.location.streetAddress(true),
     ward,
     district,
     province,
     imgUrls: [
-      `https://picsum.photos/id/${randomInt(200)}/200/200`,
-      `https://picsum.photos/id/${randomInt(200)}/200/200`,
+      `https://picsum.photos/id/${randomInt(100)}/200/200`,
+      `https://picsum.photos/id/${randomInt(100)}/200/200`,
     ],
     ownerId,
     details: faker.lorem.paragraph(),
@@ -72,15 +107,20 @@ const fakeProperty = (ownerId: string) => {
 export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
   return {
     id: v4(),
-    name: faker.color.human() + ' ' + faker.company.buzzNoun(),
+    name: `Phòng ${faker.string.numeric(3)}`,
     area: new Decimal(faker.number.int({ min: 10, max: 200 })),
-    price: new Decimal(faker.number.int({ min: 1_000_000, max: 20_000_000 })),
-    deposit: new Decimal(faker.number.int({ min: 1_000_000, max: 20_000_000 })),
+    price: new Decimal(faker.number.int({ min: 10, max: 200 }) * 100_000),
+    deposit: new Decimal(faker.number.int({ min: 10, max: 200 }) * 100_000),
     details: faker.lorem.sentence(),
-    status: UnitStatus.GOOD,
+    status:
+      randomInt(100) < 90
+        ? UnitStatus.GOOD
+        : randomInt(100) < 50
+          ? UnitStatus.MAINTAINING
+          : UnitStatus.BAD,
     imgUrls: [
-      `https://picsum.photos/id/${randomInt(200)}/200/200`,
-      `https://picsum.photos/id/${randomInt(200)}/200/200`,
+      `https://picsum.photos/id/${randomInt(100)}/200/200`,
+      `https://picsum.photos/id/${randomInt(100)}/200/200`,
     ],
     property: { connect: { id: propertyId } },
     unitFeatures: {
@@ -112,6 +152,7 @@ const seed = async () => {
       email: 'khang194591@gmail.com',
       password: hashSync('123456', 10),
       role: MemberRole.ADMIN,
+      name: 'Trịnh Đức Khang',
     }),
   });
 
@@ -138,10 +179,12 @@ const seed = async () => {
     .map(() => fakeProperty(admin.id));
 
   const units = properties
-    .map(({ id }) =>
-      Array(randomInt(5))
-        .fill(0)
-        .map(() => fakeUnit(id)),
+    .map(({ id, type }) =>
+      type
+        ? Array(randomInt(2, 10))
+            .fill(0)
+            .map(() => fakeUnit(id))
+        : fakeUnit(id),
     )
     .flatMap((i) => i);
 

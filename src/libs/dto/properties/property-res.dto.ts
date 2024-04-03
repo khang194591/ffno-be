@@ -1,6 +1,7 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import { Nullable } from '../common';
 import { GetUnitResDto } from '../units/unit-res.dto';
+import { GetMemberResDto } from '../members';
 
 @Exclude()
 export class GetPropertyResDto {
@@ -33,6 +34,10 @@ export class GetPropertyResDto {
 
   @Expose()
   ownerId: Nullable<string>;
+
+  @Expose()
+  @Type(() => GetMemberResDto)
+  owner: GetMemberResDto;
 
   @Expose()
   @Transform(({ value }) => value?.map(({ name }) => name))
