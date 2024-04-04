@@ -38,7 +38,7 @@ export class CreateRequestHandler
         this.notificationService.sendWebPushNotification({
           title: request.name,
           content: request.details,
-          memberId: receiver.id,
+          memberId: receiver.memberId,
         }),
       ),
     );

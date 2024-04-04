@@ -9,37 +9,37 @@ datasource db {
 }
 
 model Member {
-  id                String           @id @default(uuid())
+  id                String                 @id @default(uuid())
   // Auth info
-  email             String           @unique
-  phone             String?          @unique
+  email             String                 @unique
+  phone             String?                @unique
   password          String
   // Basic info
-  role              Int              @db.SmallInt
+  role              Int                    @db.SmallInt
   name              String
-  gender            Int              @db.SmallInt
+  gender            Int                    @db.SmallInt
   imgUrl            String?
   address           String?
-  dateOfBirth       DateTime?        @db.Date
+  dateOfBirth       DateTime?              @db.Date
   identityNumber    String
   identityImgUrls   String[]
   // Properties
   ownedProperties   Property[]
   // Live at Unit
-  unit              Unit?            @relation(fields: [unitId], references: [id])
+  unit              Unit?                  @relation(fields: [unitId], references: [id])
   unitId            String?
   // Contacts
-  contacts          MemberContacts[] @relation("contact")
-  contactWith       MemberContacts[] @relation("contactWith")
+  contacts          MemberContacts[]       @relation("contact")
+  contactWith       MemberContacts[]       @relation("contactWith")
   // Invoices
   invoices          Invoice[]
-  payForUnits       Unit[]           @relation(name: "payer")
-  sentRequests      Request[]        @relation(name: "sender")
-  receivedRequests  Request[]        @relation(name: "receiver")
-  landlordContracts Contract[]       @relation(name: "landlord")
-  tenantContracts   Contract[]       @relation(name: "tenant")
-  sentReviews       Review[]         @relation(name: "author")
-  reviews           Review[]         @relation(name: "member")
+  payForUnits       Unit[]                 @relation(name: "payer")
+  sentRequests      Request[]              @relation(name: "sender")
+  receivedRequests  MemberReceiveRequest[]
+  landlordContracts Contract[]             @relation(name: "landlord")
+  tenantContracts   Contract[]             @relation(name: "tenant")
+  sentReviews       Review[]               @relation(name: "author")
+  reviews           Review[]               @relation(name: "member")
   notifications     Notification[]
 
   createdAt DateTime @default(now())
@@ -108,6 +108,7 @@ model Unit {
   reviews       Review[]
   unitPriceLogs UnitPriceLog[]
   unitFeatures  UnitFeature[]
+  requests      Request[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -205,18 +206,33 @@ model Contract {
 }
 
 model Request {
-  id        String   @id @default(uuid())
+  id        String                 @id @default(uuid())
   name      String
-  status    Int      @db.SmallInt
+  status    Int                    @db.SmallInt
   details   String
-  category  Int      @db.SmallInt
+  category  Int                    @db.SmallInt
   // Relations
+  unitId    String?
+  unit      Unit?                  @relation(fields: [unitId], references: [id])
   senderId  String
-  sender    Member   @relation(name: "sender", fields: [senderId], references: [id])
-  receivers Member[] @relation(name: "receiver")
+  sender    Member                 @relation(name: "sender", fields: [senderId], references: [id])
+  receivers MemberReceiveRequest[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model MemberReceiveRequest {
+  memberId  String
+  member    Member  @relation(fields: [memberId], references: [id])
+  requestId String
+  request   Request @relation(fields: [requestId], references: [id])
+  status    Int     @db.SmallInt
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([requestId, memberId])
 }
 
 model Review {

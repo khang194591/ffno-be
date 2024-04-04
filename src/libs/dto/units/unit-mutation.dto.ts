@@ -1,4 +1,5 @@
 import { PartialType } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import {
   IsArray,
   IsDecimal,
@@ -8,6 +9,7 @@ import {
   IsUUID,
 } from 'class-validator';
 import { UnitStatus } from 'src/libs/constants';
+import { DecimalNumber } from 'src/libs/decorators';
 
 export class CreateUnitDto {
   @IsOptional()
@@ -18,15 +20,19 @@ export class CreateUnitDto {
   name: string;
 
   @IsDecimal()
-  area: number;
+  @Type(() => String)
+  area: DecimalNumber;
 
   @IsDecimal()
-  price: number;
+  @Type(() => String)
+  price: DecimalNumber;
 
   @IsDecimal()
-  deposit: number;
+  @Type(() => String)
+  deposit: DecimalNumber;
 
   @IsEnum(UnitStatus)
+  @Type(() => Number)
   status: UnitStatus;
 
   @IsOptional()

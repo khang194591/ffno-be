@@ -30,7 +30,7 @@ export class GetListRequestHandler
     } = query;
 
     const where: Prisma.RequestWhereInput = {
-      receivers: { some: { id: staffId } },
+      receivers: { some: { memberId: staffId } },
     };
 
     const [total, requests] = await this.prisma.$transaction([
@@ -40,8 +40,14 @@ export class GetListRequestHandler
         take,
         skip,
         include: {
-          receivers: { select: { id: true, name: true } },
-          sender: { select: { id: true, name: true } },
+          unit: { select: { id: true, name: true } },
+          sender: { select: { id: true, name: true, imgUrl: true } },
+          receivers: {
+            select: {
+              status: true,
+              member: { select: { id: true, name: true, imgUrl: true } },
+            },
+          },
         },
         orderBy: {
           createdAt: 'desc',

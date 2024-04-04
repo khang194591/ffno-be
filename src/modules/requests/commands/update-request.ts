@@ -2,10 +2,11 @@ import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
 import { UpdateRequestDto } from 'src/libs/dto';
 import { RequestService } from '../request.service';
+import { RequestStatus } from 'src/libs/constants';
 
 export class UpdateRequestCommand {
   constructor(
-    public readonly id: string,
+    public readonly staffId: string,
     public readonly data: UpdateRequestDto,
   ) {}
 }
@@ -19,14 +20,46 @@ export class UpdateRequestHandler
     private readonly requestService: RequestService,
   ) {}
 
-  async execute(query: UpdateRequestCommand): Promise<string> {
-    const { id } = query;
-    const data = await this.requestService.validateRequestInput('', query.data);
+  async execute({ staffId, data }: UpdateRequestCommand): Promise<string> {
+    const { id, status } = data;
 
     await this.requestService.getRequestOrThrow(id);
 
-    const request = await this.prisma.request.update({ where: { id }, data });
+    await this.prisma.memberReceiveRequest.update({
+      where: {
+        requestId_memberId: {
+          memberId: staffId,
+          requestId: id,
+        },
+      },
+      data: {
+        status,
+      },
+    });
 
-    return request.id;
+    if (status === RequestStatus.REJECTED) {
+      await this.prisma.request.update({
+        where: { id },
+        data: { status: RequestStatus.REJECTED },
+      });
+      return id;
+    }
+
+    const receivedRequests = await this.prisma.memberReceiveRequest.findMany({
+      where: { requestId: id },
+    });
+
+    const isAccepted = receivedRequests.every(
+      (request) => request.status === RequestStatus.ACCEPTED,
+    );
+
+    if (isAccepted) {
+      await this.prisma.request.update({
+        where: { id },
+        data: { status: RequestStatus.ACCEPTED },
+      });
+    }
+
+    return id;
   }
 }

@@ -93,8 +93,8 @@ const fakeProperty = (ownerId: string) => {
     district,
     province,
     imgUrls: [
-      `https://picsum.photos/id/${randomInt(100)}/200/200`,
-      `https://picsum.photos/id/${randomInt(100)}/200/200`,
+      `https://picsum.photos/id/${randomInt(100)}/120/120`,
+      `https://picsum.photos/id/${randomInt(100)}/120/120`,
     ],
     ownerId,
     details: faker.lorem.paragraph(),
@@ -119,8 +119,8 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
           ? UnitStatus.MAINTAINING
           : UnitStatus.BAD,
     imgUrls: [
-      `https://picsum.photos/id/${randomInt(100)}/200/200`,
-      `https://picsum.photos/id/${randomInt(100)}/200/200`,
+      `https://picsum.photos/id/${randomInt(100)}/120/120`,
+      `https://picsum.photos/id/${randomInt(100)}/120/120`,
     ],
     property: { connect: { id: propertyId } },
     unitFeatures: {
@@ -149,6 +149,7 @@ const seed = async () => {
 
   const admin = await prisma.member.create({
     data: fakeMember({
+      id: 'eeb06826-843f-4f4f-a298-b1ce3b9a370b',
       email: 'khang194591@gmail.com',
       password: hashSync('123456', 10),
       role: MemberRole.ADMIN,
