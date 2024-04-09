@@ -3,6 +3,7 @@ import { UnitStatus } from 'src/libs/constants';
 import { DecimalNumber } from 'src/libs/decorators';
 import { Nullable } from '../common';
 import { GetMemberResDto } from '../members';
+import { GetPropertyResDto } from '../properties';
 
 @Exclude()
 export class GetUnitResDto {
@@ -44,4 +45,8 @@ export class GetUnitResDto {
   @Expose()
   @Type(() => GetMemberResDto)
   payer: GetMemberResDto;
+
+  @Expose()
+  @Type(() => GetPropertyResDto)
+  property: GetPropertyResDto;
 }

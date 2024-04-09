@@ -1,4 +1,5 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
+import { MemberRole } from 'src/libs/constants';
 
 @Exclude()
 export class GetMemberResDto {
@@ -16,6 +17,9 @@ export class GetMemberResDto {
 
   @Expose()
   imgUrl: string;
+
+  @Expose()
+  role: MemberRole;
 
   @Expose()
   @Transform(({ value }) => value?.name)

@@ -59,6 +59,16 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
             },
           },
           unitFeatures: true,
+          property: {
+            select: {
+              id: true,
+              name: true,
+              address: true,
+              ward: true,
+              district: true,
+              province: true,
+            },
+          },
         },
       }),
     ]);

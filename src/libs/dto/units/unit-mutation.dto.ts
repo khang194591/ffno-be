@@ -7,6 +7,7 @@ import {
   IsOptional,
   IsString,
   IsUUID,
+  IsUrl,
 } from 'class-validator';
 import { UnitStatus } from 'src/libs/constants';
 import { DecimalNumber } from 'src/libs/decorators';
@@ -34,6 +35,11 @@ export class CreateUnitDto {
   @IsEnum(UnitStatus)
   @Type(() => Number)
   status: UnitStatus;
+
+  @IsOptional()
+  @IsArray()
+  @IsUrl({}, { each: true })
+  imgUrls: string[];
 
   @IsOptional()
   @IsString()
