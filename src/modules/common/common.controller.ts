@@ -15,12 +15,12 @@ export class CommonController {
 
   @Get('amenities')
   async getAmenities() {
-    return this.commonService.getAmenities();
+    return this.commonService.getPropertyAmenities();
   }
 
-  @Get('invoice-categories')
-  async getInvoiceCategories() {
-    return this.commonService.getInvoiceCategory();
+  @Get('unit-features')
+  async getUnitFeatures() {
+    return this.commonService.getUnitFeatures();
   }
 
   @Get('provinces')

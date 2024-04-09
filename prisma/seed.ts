@@ -1,50 +1,101 @@
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/vi';
 import { Prisma, PrismaClient } from '@prisma/client';
 import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import Decimal from 'decimal.js';
-import { Gender, MaintainStatus, PropertyType } from '../src/libs/constants';
 import { v4 } from 'uuid';
+import { MemberRole, UnitStatus } from '../src/libs/constants';
+import districts from '../src/static/districts.json';
+import provinces from '../src/static/provinces.json';
+import wards from '../src/static/wards.json';
 
 function getRandomItemsInArray<T = unknown>(array: Array<T>) {
   const shuffled = array.sort(() => 0.5 - Math.random());
   return shuffled.slice(0, randomInt(array.length - 1));
 }
 
-const mockAmenities = Array(randomInt(10, 50))
-  .fill(0)
-  .map(() => faker.animal.type());
+const mockAmenities = [
+  'Hồ bơi',
+  'Phòng tập gym',
+  'Khu vui chơi',
+  'Sân tennis',
+  'Sân thượng hoặc vườn mái',
+  'Quán cà phê',
+  'Dịch vụ giặt là',
+  'Khu vực BBQ',
+  'Khu vực vui chơi cho trẻ em',
+  'Truy cập internet tốc độ cao',
+  'Dịch vụ quản lý tài sản',
+  'Bãi đậu xe',
+  'Quầy bar/lounge',
+  'Phòng họp',
+  'Khu vực tiệc ngoài trời',
+  'Dịch vụ giữ trẻ',
+  'Cho phép vật nuôi',
+  'Dịch vụ giữ trẻ',
+];
 
-const mockUnitFeatures = Array(randomInt(10, 50))
-  .fill(0)
-  .map(() => faker.animal.type());
+const mockUnitFeatures = [
+  'Điều hòa không khí',
+  'Tủ lạnh',
+  'Máy giặt',
+  'Bồn tắm',
+  'Tủ quần áo',
+  'Bàn làm việc',
+  'Internet',
+  'Bàn ăn',
+  'Ban công',
+  'Máy sưởi',
+  'Máy sấy tóc',
+  'Giường',
+  'Bàn và ghế',
+  'Máy hút mùi',
+  'Lò nướng',
+  'Máy phát điện dự phòng',
+  'Máy lọc nước',
+  'Bình nước nóng',
+];
 
 const fakeMember = (override = {}) => {
+  const gender = randomInt(2);
+  const firstName = faker.person.firstName(gender ? 'female' : 'male');
+  const lastName = faker.person.lastName(gender ? 'female' : 'male');
+  const name = `${lastName} ${firstName}`;
   return {
     id: v4(),
-    name: faker.person.fullName(),
-    email: faker.internet.email(),
+    name,
+    email: faker.internet.email({ lastName, firstName }),
     phone: faker.phone.number(),
-    gender: Gender.MALE,
-    password: '@Password.123',
+    gender,
+    password: '$2b$10$rfTZt.T4aWlqfAtl5VPFWeIGGYKzhwIp.Cz8utOghQ0doPN9yW7Vm',
+    role: MemberRole.TENANT,
     address: faker.location.streetAddress(),
     dateOfBirth: faker.date.past(),
     identityNumber: faker.string.alphanumeric(12),
-    imgUrl: faker.internet.url(),
+    imgUrl: `https://i.pravatar.cc/150?u=${faker.string.uuid()}`,
     ...override,
   };
 };
 
 const fakeProperty = (ownerId: string) => {
+  const province = provinces[randomInt(provinces.length)];
+  const districtOptions = districts[province];
+  const district = districtOptions[randomInt(districtOptions.length)];
+  const wardOptions = wards[district];
+  const ward = wardOptions[randomInt(wardOptions.length)];
+  const type = randomInt(2);
   return {
     id: v4(),
-    name: faker.color.human() + ' ' + faker.internet.password(),
-    type: PropertyType.MULTIPLE_UNIT,
-    address: faker.location.streetAddress(),
-    ward: faker.string.alpha(4),
-    district: faker.string.alpha(4),
-    province: faker.string.alpha(4),
-    imgUrls: [faker.internet.url(), faker.internet.url()],
+    name: `Nhà số ${faker.location.buildingNumber()}${faker.string.alpha(1).toUpperCase()}, ${faker.location.street()}`,
+    type,
+    address: faker.location.streetAddress(true),
+    ward,
+    district,
+    province,
+    imgUrls: [
+      `https://picsum.photos/id/${randomInt(100)}/120/120`,
+      `https://picsum.photos/id/${randomInt(100)}/120/120`,
+    ],
     ownerId,
     details: faker.lorem.paragraph(),
     amenities: {
@@ -56,18 +107,21 @@ const fakeProperty = (ownerId: string) => {
 export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
   return {
     id: v4(),
-    name: faker.color.human() + ' ' + faker.company.buzzNoun(),
-    type: PropertyType.SINGLE_UNIT,
+    name: `Phòng ${faker.string.numeric(3)}`,
     area: new Decimal(faker.number.int({ min: 10, max: 200 })),
-    price: new Decimal(faker.number.int({ min: 1_000_000, max: 20_000_000 })),
-    deposit: new Decimal(faker.number.int({ min: 1_000_000, max: 20_000_000 })),
+    price: new Decimal(faker.number.int({ min: 10, max: 200 }) * 100_000),
+    deposit: new Decimal(faker.number.int({ min: 10, max: 200 }) * 100_000),
     details: faker.lorem.sentence(),
-    beds: '1',
-    baths: 'SHARED',
-    parking: 'FREE',
-    laundry: 'NONE',
-    airConditioning: 'COLD',
-    maintainStatus: MaintainStatus.GOOD,
+    status:
+      randomInt(100) < 90
+        ? UnitStatus.GOOD
+        : randomInt(100) < 50
+          ? UnitStatus.MAINTAINING
+          : UnitStatus.BAD,
+    imgUrls: [
+      `https://picsum.photos/id/${randomInt(100)}/120/120`,
+      `https://picsum.photos/id/${randomInt(100)}/120/120`,
+    ],
     property: { connect: { id: propertyId } },
     unitFeatures: {
       connect: getRandomItemsInArray(mockUnitFeatures).map((name) => ({
@@ -80,8 +134,8 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
 const seed = async () => {
   const prisma = new PrismaClient();
   await prisma.$transaction([
+    prisma.request.deleteMany(),
     prisma.invoice.deleteMany(),
-    prisma.invoiceCategory.deleteMany(),
     prisma.unitPriceLog.deleteMany(),
     prisma.unitFeature.deleteMany(),
     prisma.unit.deleteMany(),
@@ -93,18 +147,13 @@ const seed = async () => {
     prisma.member.deleteMany(),
   ]);
 
-  await prisma.invoiceCategory.createMany({
-    data: ['Unit charge', 'Maintain fee'].map((name) => ({ name })),
-  });
-
-  await prisma.requestCategory.createMany({
-    data: ['Lease'].map((name) => ({ name })),
-  });
-
   const admin = await prisma.member.create({
     data: fakeMember({
+      id: 'eeb06826-843f-4f4f-a298-b1ce3b9a370b',
       email: 'khang194591@gmail.com',
       password: hashSync('123456', 10),
+      role: MemberRole.ADMIN,
+      name: 'Trịnh Đức Khang',
     }),
   });
 
@@ -131,10 +180,12 @@ const seed = async () => {
     .map(() => fakeProperty(admin.id));
 
   const units = properties
-    .map(({ id }) =>
-      Array(randomInt(5))
-        .fill(0)
-        .map(() => fakeUnit(id)),
+    .map(({ id, type }) =>
+      type
+        ? Array(randomInt(2, 10))
+            .fill(0)
+            .map(() => fakeUnit(id))
+        : fakeUnit(id),
     )
     .flatMap((i) => i);
 

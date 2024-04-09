@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
+import { UnitStatus } from 'src/libs/constants';
 import {
   CreatePropertyDto,
   GetPropertyResDto,
@@ -18,6 +19,12 @@ export class PropertyService {
       include: {
         amenities: true,
         units: true,
+        owner: {
+          select: {
+            name: true,
+            phone: true,
+          },
+        },
       },
     });
 
@@ -49,7 +56,12 @@ export class PropertyService {
   async validatePropertyInput(
     data: CreatePropertyDto | UpdatePropertyDto,
   ): Promise<Prisma.PropertyCreateInput | Prisma.PropertyUpdateInput> {
-    const { amenities = [], equipments = [], ...partialProperty } = data;
+    const {
+      amenities = [],
+      equipments = [],
+      units = [],
+      ...partialProperty
+    } = data;
     await this.validateAmenities(data.amenities);
     await this.validateEquipment(data.equipments);
 
@@ -57,6 +69,11 @@ export class PropertyService {
       ...partialProperty,
       amenities: { connect: amenities.map((name) => ({ name })) },
       equipments: { connect: equipments.map((id) => ({ id })) },
+      units: {
+        createMany: {
+          data: units.map((unit) => ({ ...unit, status: UnitStatus.GOOD })),
+        },
+      },
     };
   }
 }

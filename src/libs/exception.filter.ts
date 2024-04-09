@@ -33,9 +33,21 @@ export class AppExceptionFilter implements ExceptionFilter {
         });
       } else {
         console.error(exception);
+        response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          timestamp: new Date().toISOString(),
+          path: request.url,
+          message: JSON.stringify(exception),
+        });
       }
     } else {
       console.error(exception);
+      response.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        timestamp: new Date().toISOString(),
+        path: request.url,
+        message: JSON.stringify(exception),
+      });
     }
   }
 }

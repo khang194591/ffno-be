@@ -3,9 +3,9 @@ import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import {
-  GetRequestResDto,
   GetListRequestQueryDto,
   GetListResDto,
+  GetRequestResDto,
 } from 'src/libs/dto';
 
 export class GetListRequestQuery {
@@ -30,7 +30,7 @@ export class GetListRequestHandler
     } = query;
 
     const where: Prisma.RequestWhereInput = {
-      toId: staffId,
+      receivers: { some: { memberId: staffId } },
     };
 
     const [total, requests] = await this.prisma.$transaction([
@@ -40,8 +40,17 @@ export class GetListRequestHandler
         take,
         skip,
         include: {
-          to: { select: { id: true, name: true } },
-          from: { select: { id: true, name: true } },
+          unit: { select: { id: true, name: true } },
+          sender: { select: { id: true, name: true, imgUrl: true } },
+          receivers: {
+            select: {
+              status: true,
+              member: { select: { id: true, name: true, imgUrl: true } },
+            },
+          },
+        },
+        orderBy: {
+          createdAt: 'desc',
         },
       }),
     ]);

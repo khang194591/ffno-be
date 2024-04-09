@@ -1,5 +1,6 @@
-import { PartialType } from '@nestjs/swagger';
-import { IsOptional, IsString, IsUUID } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
+import { InvoiceCategory, RequestStatus } from 'src/libs/constants';
 
 export class CreateRequestDto {
   constructor(partial: Partial<CreateRequestDto>) {
@@ -11,19 +12,25 @@ export class CreateRequestDto {
   id: string;
 
   @IsString()
-  title: string;
+  name: string;
 
   @IsString()
-  content: string;
+  details: string;
 
-  @IsString()
-  category: string;
+  @IsEnum(InvoiceCategory)
+  @Type(() => Number)
+  category: InvoiceCategory;
 
-  @IsUUID()
-  fromId: string;
-
-  @IsUUID()
-  toId: string;
+  @IsArray()
+  @IsUUID('4', { each: true })
+  receiverIds: string[];
 }
 
-export class UpdateRequestDto extends PartialType(CreateRequestDto) {}
+export class UpdateRequestDto {
+  @IsOptional()
+  @IsUUID()
+  id: string;
+
+  @IsEnum(RequestStatus)
+  status: RequestStatus;
+}

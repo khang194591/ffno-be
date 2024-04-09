@@ -61,8 +61,13 @@ export class PropertyController {
   }
 
   @Post()
-  async createProperty(@Body() body: CreatePropertyDto) {
-    return this.commandBus.execute(new CreatePropertyCommand(body));
+  async createProperty(
+    @StaffId() staffId: string,
+    @Body() body: CreatePropertyDto,
+  ) {
+    return this.commandBus.execute(
+      new CreatePropertyCommand({ ...body, ownerId: staffId }),
+    );
   }
 
   @Patch(':id')

@@ -2,11 +2,8 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import {
-  CreateRequestDto,
-  GetRequestResDto,
-  UpdateRequestDto,
-} from 'src/libs/dto';
+import { RequestStatus } from 'src/libs/constants';
+import { CreateRequestDto, GetRequestResDto } from 'src/libs/dto';
 
 @Injectable()
 export class RequestService {
@@ -21,33 +18,33 @@ export class RequestService {
   }
 
   async validateRequestInput(
-    data: CreateRequestDto | UpdateRequestDto,
-  ): Promise<Prisma.RequestCreateInput | Prisma.RequestUpdateInput> {
-    const { category, fromId, toId, ...partialRequest } = data;
-    await this.validateCategories([category]);
+    staffId: string,
+    data: CreateRequestDto,
+  ): Promise<Prisma.RequestCreateInput> {
+    const { receiverIds, ...partialRequest } = data;
     const members = await this.prisma.member.findMany({
-      where: { id: { in: [fromId, toId] } },
+      where: { id: { in: [staffId, ...receiverIds] } },
     });
 
     if (members.length !== 2) {
-      throw new BadRequestException(`Invalid member's id ${fromId}, ${toId}`);
+      throw new BadRequestException(
+        `Invalid member's id ${staffId}, ${receiverIds}`,
+      );
     }
 
     return {
       ...partialRequest,
-      to: { connect: { id: toId } },
-      from: { connect: { id: fromId } },
-      Category: { connect: { name: category } },
+      status: RequestStatus.PENDING,
+      category: partialRequest.category,
+      sender: { connect: { id: staffId } },
+      receivers: {
+        createMany: {
+          data: receiverIds.map((receiverId) => ({
+            memberId: receiverId,
+            status: RequestStatus.PENDING,
+          })),
+        },
+      },
     };
-  }
-
-  private async validateCategories(categories: string[]) {
-    const foundCategories = await this.prisma.requestCategory.findMany({
-      where: { name: { in: categories } },
-    });
-
-    if (foundCategories.length !== categories.length) {
-      throw new BadRequestException(`Invalid request categories`);
-    }
   }
 }

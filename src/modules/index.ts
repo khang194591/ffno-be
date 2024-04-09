@@ -6,6 +6,7 @@ import { InvoiceModule } from './invoices/invoice.module';
 import { MemberModule } from './members/member.module';
 import { PropertyModule } from './properties/property.module';
 import { RequestModule } from './requests/request.module';
+import { microServiceModules } from './services';
 import { UnitModule } from './units/unit.module';
 
 export const modules = [
@@ -18,4 +19,5 @@ export const modules = [
   EquipmentModule,
   InvoiceModule,
   RequestModule,
+  ...microServiceModules,
 ];

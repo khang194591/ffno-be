@@ -21,7 +21,6 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
   ): Promise<GetListResDto<GetUnitResDto>> {
     const {
       name,
-      type,
       ward,
       district,
       province,
@@ -36,7 +35,6 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
     } = query.data;
     const where: Prisma.UnitWhereInput = {
       name,
-      type,
       unitFeatures: features && { some: { name: { in: features } } },
       property: {
         ward,

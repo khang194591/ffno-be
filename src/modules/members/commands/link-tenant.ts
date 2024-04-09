@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { MemberContactType } from 'src/libs/constants';
+import { MemberRole } from 'src/libs/constants';
 import { MemberService } from '../member.service';
 
 export class LinkTenantCommand {
@@ -24,7 +24,7 @@ export class LinkTenantHandler implements ICommandHandler<LinkTenantCommand> {
     // TODO: Handle send email or OTP
     await this.prisma.memberContacts.create({
       data: {
-        type: MemberContactType.TENANT,
+        type: MemberRole.TENANT,
         contactId: staffId,
         contactWithId: member.id,
       },

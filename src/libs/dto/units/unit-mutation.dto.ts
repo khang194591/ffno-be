@@ -1,60 +1,49 @@
 import { PartialType } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import {
   IsArray,
   IsDecimal,
-  IsNumber,
+  IsEnum,
   IsOptional,
   IsString,
   IsUUID,
 } from 'class-validator';
+import { UnitStatus } from 'src/libs/constants';
+import { DecimalNumber } from 'src/libs/decorators';
 
 export class CreateUnitDto {
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   id: string;
 
   @IsString()
   name: string;
 
-  @IsNumber()
-  type: number;
+  @IsDecimal()
+  @Type(() => String)
+  area: DecimalNumber;
 
   @IsDecimal()
-  area: number;
+  @Type(() => String)
+  price: DecimalNumber;
 
   @IsDecimal()
-  price: number;
+  @Type(() => String)
+  deposit: DecimalNumber;
 
-  @IsDecimal()
-  deposit: number;
-
-  @IsNumber()
-  maintainStatus: number;
+  @IsEnum(UnitStatus)
+  @Type(() => Number)
+  status: UnitStatus;
 
   @IsOptional()
   @IsString()
   details: string;
 
-  @IsString()
-  beds: string;
-
-  @IsString()
-  baths: string;
-
-  @IsString()
-  parking: string;
-
-  @IsString()
-  laundry: string;
-
-  @IsString()
-  airConditioning: string;
-
   @IsArray()
   @IsString({ each: true })
   unitFeatures: string[];
 
-  @IsUUID('4')
+  @IsUUID()
   propertyId: string;
 }
 

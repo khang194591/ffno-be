@@ -2,6 +2,7 @@ import { PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
+  IsDecimal,
   IsEnum,
   IsOptional,
   IsString,
@@ -10,13 +11,30 @@ import {
 } from 'class-validator';
 import { PropertyType } from 'src/libs/constants';
 
+class CreateSimpleUnitDto {
+  @IsString()
+  name: string;
+
+  @IsDecimal()
+  @Type(() => String)
+  area: number;
+
+  @IsDecimal()
+  @Type(() => String)
+  price: number;
+
+  @IsDecimal()
+  @Type(() => String)
+  deposit: number;
+}
+
 export class CreatePropertyDto {
   constructor(partial: Partial<CreatePropertyDto>) {
     Object.assign(this, partial);
   }
 
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   id: string;
 
   @IsString()
@@ -54,8 +72,12 @@ export class CreatePropertyDto {
   equipments: string[];
 
   @IsOptional()
-  @IsUUID('4')
+  @IsUUID()
   ownerId: string;
+
+  @IsArray()
+  @Type(() => CreateSimpleUnitDto)
+  units: CreateSimpleUnitDto[];
 }
 
 export class UpdatePropertyDto extends PartialType(CreatePropertyDto) {}

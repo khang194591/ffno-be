@@ -5,7 +5,10 @@ import { PrismaService } from 'src/config';
 import { GetListResDto, GetUnitResDto } from 'src/libs/dto';
 
 export class GetSimpleListUnitQuery {
-  constructor(public readonly staffId: string) {}
+  constructor(
+    public readonly staffId: string,
+    public readonly propertyId?: string,
+  ) {}
 }
 
 @QueryHandler(GetSimpleListUnitQuery)
@@ -17,8 +20,10 @@ export class GetSimpleListUnitHandler
   async execute(
     query: GetSimpleListUnitQuery,
   ): Promise<GetListResDto<GetUnitResDto>> {
-    const { staffId } = query;
-    const where: Prisma.UnitWhereInput = { property: { ownerId: staffId } };
+    const { staffId, propertyId } = query;
+    const where: Prisma.UnitWhereInput = {
+      property: { id: propertyId, ownerId: staffId },
+    };
     const [total, units] = await this.prisma.$transaction([
       this.prisma.unit.count({ where }),
       this.prisma.unit.findMany({

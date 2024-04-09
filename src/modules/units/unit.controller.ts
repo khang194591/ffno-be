@@ -14,6 +14,7 @@ import { StaffId } from 'src/libs/decorators';
 import {
   CreateUnitDto,
   GetListUnitQueryDto,
+  GetSimpleListUnitQueryDto,
   IdUUIDParams,
   UpdateUnitDto,
 } from 'src/libs/dto';
@@ -29,7 +30,7 @@ import {
 } from './queries';
 
 @Controller('units')
-@ApiTags('Units', 'Properties')
+@ApiTags('Units')
 export class UnitController {
   constructor(
     private readonly commandBus: CommandBus,
@@ -42,8 +43,13 @@ export class UnitController {
   }
 
   @Get('simple-list')
-  async getSimpleListUnit(@StaffId() staffId: string) {
-    return this.queryBus.execute(new GetSimpleListUnitQuery(staffId));
+  async getSimpleListUnit(
+    @StaffId() staffId: string,
+    @Query() query: GetSimpleListUnitQueryDto,
+  ) {
+    return this.queryBus.execute(
+      new GetSimpleListUnitQuery(staffId, query.propertyId),
+    );
   }
 
   @Get(':id')

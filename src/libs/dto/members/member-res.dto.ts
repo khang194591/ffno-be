@@ -15,6 +15,9 @@ export class GetMemberResDto {
   phone: string;
 
   @Expose()
+  imgUrl: string;
+
+  @Expose()
   @Transform(({ value }) => value?.name)
   unit: string;
 }

@@ -1,16 +1,20 @@
 import { Type } from 'class-transformer';
 import {
   IsDate,
+  IsEnum,
   IsNumber,
   IsOptional,
   IsString,
   IsUrl,
   Length,
 } from 'class-validator';
-import { Gender } from 'src/libs/constants';
+import { Gender, MemberRole } from 'src/libs/constants';
 import { SignInDto } from './sign-in.dto';
 
 export class SignUpDto extends SignInDto {
+  @IsEnum(MemberRole)
+  role: MemberRole;
+
   @IsString()
   name: string;
 

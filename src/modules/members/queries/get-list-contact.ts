@@ -2,7 +2,7 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { Prisma } from '@prisma/client';
 import { plainToClass } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { MemberContactType } from 'src/libs/constants';
+import { MemberRole } from 'src/libs/constants';
 import {
   GetListContactQueryDto,
   GetListResDto,
@@ -51,7 +51,7 @@ export class GetListContactHandler
         select: {
           contactWith: {
             include: {
-              unit: type === MemberContactType.TENANT && {
+              unit: type === MemberRole.TENANT && {
                 select: { name: true },
               },
             },

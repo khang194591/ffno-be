@@ -1,5 +1,11 @@
 import { Type } from 'class-transformer';
-import { IsArray, IsNumber, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 import { TransformArray } from 'src/libs/decorators';
 import { GetListQueryDto } from '../common';
 
@@ -7,11 +13,6 @@ export class GetListUnitQueryDto extends GetListQueryDto {
   @IsOptional()
   @IsString()
   name?: string;
-
-  @IsOptional()
-  @IsNumber()
-  @Type(() => Number)
-  type?: number;
 
   @IsOptional()
   @IsString()
@@ -56,4 +57,10 @@ export class GetListUnitQueryDto extends GetListQueryDto {
   @IsNumber()
   @Type(() => Number)
   maxPrice?: number;
+}
+
+export class GetSimpleListUnitQueryDto {
+  @IsOptional()
+  @IsUUID()
+  propertyId?: string;
 }

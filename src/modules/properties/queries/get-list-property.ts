@@ -46,9 +46,12 @@ export class GetListPropertyHandler
         skip,
         include: {
           amenities: true,
-          units: true,
+          units: {
+            include: { tenants: { select: { id: true } } },
+          },
         },
         orderBy: {
+          createdAt: 'desc',
           _relevance: name && {
             fields: ['name'],
             search: name.split(' ').join(' | '),
