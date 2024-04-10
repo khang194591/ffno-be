@@ -97,6 +97,7 @@ model Unit {
   details       String?        @db.Text
   status        Int            @db.SmallInt
   imgUrls       String[]
+  isListing     Boolean        @default(false)
   // Relations
   payer         Member?        @relation(name: "payer", fields: [payerId], references: [id])
   payerId       String?

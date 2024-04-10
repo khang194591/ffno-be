@@ -54,3 +54,10 @@ export class CreateUnitDto {
 }
 
 export class UpdateUnitDto extends PartialType(CreateUnitDto) {}
+
+export class OpenUnitDto {
+  @IsOptional()
+  @IsArray()
+  @IsUUID('4', { each: true })
+  unitIds: string[];
+}

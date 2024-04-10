@@ -16,11 +16,14 @@ import {
   GetListUnitQueryDto,
   GetSimpleListUnitQueryDto,
   IdUUIDParams,
+  OpenUnitDto,
   UpdateUnitDto,
 } from 'src/libs/dto';
 import {
+  CloseUnitCommand,
   CreateUnitCommand,
   DeleteUnitCommand,
+  OpenUnitCommand,
   UpdateUnitCommand,
 } from './commands';
 import {
@@ -60,6 +63,16 @@ export class UnitController {
   @Post()
   async createUnit(@Body() body: CreateUnitDto) {
     return this.commandBus.execute(new CreateUnitCommand(body));
+  }
+
+  @Patch('open')
+  async openUnit(@Body() { unitIds }: OpenUnitDto) {
+    return this.commandBus.execute(new OpenUnitCommand(unitIds));
+  }
+
+  @Patch('close')
+  async closeUnit(@Body() { unitIds }: OpenUnitDto) {
+    return this.commandBus.execute(new CloseUnitCommand(unitIds));
   }
 
   @Patch(':id')

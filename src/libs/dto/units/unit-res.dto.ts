@@ -14,6 +14,9 @@ export class GetUnitResDto {
   name: string;
 
   @Expose()
+  isListing: boolean;
+
+  @Expose()
   @Type(() => DecimalNumber)
   area: DecimalNumber;
 

@@ -5,7 +5,7 @@ import { PrismaService } from 'src/config';
 import {
   GetListResDto,
   GetListUnitQueryDto,
-  GetUnitResDto,
+  GetPropertyResDto,
 } from 'src/libs/dto';
 
 export class GetListUnitQuery {
@@ -18,7 +18,7 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
 
   async execute(
     query: GetListUnitQuery,
-  ): Promise<GetListResDto<GetUnitResDto>> {
+  ): Promise<GetListResDto<GetPropertyResDto>> {
     const {
       name,
       ward,
@@ -33,46 +33,47 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
       take,
       skip,
     } = query.data;
-    const where: Prisma.UnitWhereInput = {
+    const whereUnit: Prisma.UnitWhereInput = {
       name,
+      isListing: true,
       unitFeatures: features && { some: { name: { in: features } } },
-      property: {
-        ward,
-        district,
-        province,
-        amenities: amenities && { some: { name: { in: amenities } } },
-      },
       area: { gte: minArea, lte: maxArea },
       price: { gte: minPrice, lte: maxPrice },
     };
+
+    const whereProperty: Prisma.PropertyWhereInput = {
+      ward,
+      district,
+      province,
+      amenities: amenities && { some: { name: { in: amenities } } },
+    };
+
     const [total, units] = await this.prisma.$transaction([
-      this.prisma.unit.count({ where }),
-      this.prisma.unit.findMany({
-        where,
+      this.prisma.property.count({
+        where: {
+          ...whereProperty,
+          units: {
+            some: whereUnit,
+          },
+        },
+      }),
+      this.prisma.property.findMany({
         take,
         skip,
-        include: {
-          payer: {
-            select: {
-              id: true,
-              name: true,
-            },
+        where: {
+          ...whereProperty,
+          units: {
+            some: whereUnit,
           },
-          unitFeatures: true,
-          property: {
-            select: {
-              id: true,
-              name: true,
-              address: true,
-              ward: true,
-              district: true,
-              province: true,
-            },
+        },
+        include: {
+          units: {
+            where: whereUnit,
           },
         },
       }),
     ]);
 
-    return { total, data: plainToInstance(GetUnitResDto, units) };
+    return { total, data: plainToInstance(GetPropertyResDto, units) };
   }
 }
