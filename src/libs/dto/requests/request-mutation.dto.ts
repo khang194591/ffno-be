@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
-import { InvoiceCategory, RequestStatus } from 'src/libs/constants';
+import { RequestCategory, RequestStatus } from 'src/libs/constants';
 
 export class CreateRequestDto {
   constructor(partial: Partial<CreateRequestDto>) {
@@ -17,13 +17,22 @@ export class CreateRequestDto {
   @IsString()
   details: string;
 
-  @IsEnum(InvoiceCategory)
+  @IsEnum(RequestCategory)
   @Type(() => Number)
-  category: InvoiceCategory;
+  category: RequestCategory;
 
+  @IsOptional()
   @IsArray()
   @IsUUID('4', { each: true })
   receiverIds: string[];
+
+  @IsOptional()
+  @IsUUID()
+  propertyId: string;
+
+  @IsOptional()
+  @IsUUID()
+  unitId: string;
 }
 
 export class UpdateRequestDto {

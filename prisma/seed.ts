@@ -143,7 +143,7 @@ const fakeProperty = (ownerId: string) => {
   };
 };
 
-export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
+const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
   return {
     id: v4(),
     name: `Phòng ${faker.string.numeric(3)}`,
@@ -193,6 +193,8 @@ const seed = async () => {
       password: hashSync('123456', 10),
       role: MemberRole.ADMIN,
       name: 'Trịnh Đức Khang',
+      imgUrl:
+        'https://lh3.googleusercontent.com/a/ACg8ocJ-wyEURnuJjTv_eY9Fgf_KPd4QA75b_A5D06wJ63IB7gKjOUUv=s288-c-no',
     }),
   });
 

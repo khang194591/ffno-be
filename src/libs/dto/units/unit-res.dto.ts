@@ -52,4 +52,7 @@ export class GetUnitResDto {
   @Expose()
   @Type(() => GetPropertyResDto)
   property: GetPropertyResDto;
+
+  @Expose()
+  propertyId: string;
 }

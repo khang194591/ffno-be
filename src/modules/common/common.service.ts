@@ -14,4 +14,27 @@ export class CommonService {
     const items = await this.prisma.unitFeature.findMany();
     return items.map(({ name }) => name);
   }
+
+  async getProperties() {
+    const items = await this.prisma.property.findMany({
+      select: { id: true, name: true },
+    });
+
+    return items.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+  }
+
+  async getUnits(propertyId?: string) {
+    const items = await this.prisma.unit.findMany({
+      where: { propertyId },
+      select: { id: true, name: true },
+    });
+
+    return items.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+  }
 }

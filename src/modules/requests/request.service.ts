@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
@@ -21,21 +21,26 @@ export class RequestService {
     staffId: string,
     data: CreateRequestDto,
   ): Promise<Prisma.RequestCreateInput> {
-    const { receiverIds, ...partialRequest } = data;
-    const members = await this.prisma.member.findMany({
-      where: { id: { in: [staffId, ...receiverIds] } },
-    });
+    const { unitId, propertyId, receiverIds = [], ...partialRequest } = data;
 
-    if (members.length !== 2) {
-      throw new BadRequestException(
-        `Invalid member's id ${staffId}, ${receiverIds}`,
-      );
+    if (unitId && propertyId && !receiverIds.length) {
+      const { property, tenants } = await this.prisma.unit.findUnique({
+        where: { id: unitId },
+        select: {
+          property: { select: { ownerId: true } },
+          tenants: { select: { id: true } },
+        },
+      });
+
+      receiverIds.push(property.ownerId);
+      receiverIds.push(...tenants.map(({ id }) => id));
     }
 
     return {
       ...partialRequest,
       status: RequestStatus.PENDING,
       category: partialRequest.category,
+      unit: { connect: { id: unitId } },
       sender: { connect: { id: staffId } },
       receivers: {
         createMany: {

@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { StaffId } from 'src/libs/decorators';
+import { CurrentMemberId } from 'src/libs/decorators';
 import {
   CreateUnitDto,
   GetListUnitQueryDto,
@@ -47,7 +47,7 @@ export class UnitController {
 
   @Get('simple-list')
   async getSimpleListUnit(
-    @StaffId() staffId: string,
+    @CurrentMemberId() staffId: string,
     @Query() query: GetSimpleListUnitQueryDto,
   ) {
     return this.queryBus.execute(

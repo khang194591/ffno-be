@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
+import { CurrentMemberId } from 'src/libs/decorators';
 import {
   CreateRequestDto,
   GetListRequestQueryDto,
@@ -16,8 +17,7 @@ import {
   UpdateRequestDto,
 } from 'src/libs/dto';
 import { CreateRequestCommand, UpdateRequestCommand } from './commands';
-import { GetListRequestQuery } from './queries';
-import { StaffId } from 'src/libs/decorators';
+import { GetListRequestQuery, GetRequestQuery } from './queries';
 
 @Controller('requests')
 @ApiTags('Requests')
@@ -29,15 +29,20 @@ export class RequestController {
 
   @Get()
   async getListRequest(
-    @StaffId() staffId: string,
+    @CurrentMemberId() staffId: string,
     @Query() query: GetListRequestQueryDto,
   ) {
     return this.queryBus.execute(new GetListRequestQuery(staffId, query));
   }
 
+  @Get(':id')
+  async getRequest(@Param() { id }: IdUUIDParams) {
+    return this.queryBus.execute(new GetRequestQuery(id));
+  }
+
   @Post()
   async createRequest(
-    @StaffId() staffId: string,
+    @CurrentMemberId() staffId: string,
     @Body() body: CreateRequestDto,
   ) {
     return this.commandBus.execute(new CreateRequestCommand(staffId, body));

@@ -39,4 +39,14 @@ export class CommonController {
     if (!district) return [];
     return wards[district] ?? [];
   }
+
+  @Get('properties')
+  async getProperties() {
+    return this.commonService.getProperties();
+  }
+
+  @Get('units')
+  async getUnits(@Query('propertyId') propertyId: string) {
+    return this.commonService.getUnits(propertyId);
+  }
 }

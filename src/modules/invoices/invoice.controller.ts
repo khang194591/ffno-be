@@ -17,7 +17,7 @@ import {
 } from 'src/libs/dto';
 import { CreateInvoiceCommand, UpdateInvoiceCommand } from './commands';
 import { GetListInvoiceQuery } from './queries';
-import { StaffId } from 'src/libs/decorators';
+import { CurrentMemberId } from 'src/libs/decorators';
 
 @Controller('invoices')
 @ApiTags('Invoices')
@@ -29,7 +29,7 @@ export class InvoiceController {
 
   @Get()
   async getListInvoice(
-    @StaffId() staffId: string,
+    @CurrentMemberId() staffId: string,
     @Query() query: GetListInvoiceQueryDto,
   ) {
     return this.queryBus.execute(new GetListInvoiceQuery(staffId, query));

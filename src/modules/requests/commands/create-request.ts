@@ -1,5 +1,4 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/config';
 import { CreateRequestDto } from 'src/libs/dto';
 import { NotificationService } from 'src/modules/services/notification.service';
@@ -29,19 +28,24 @@ export class CreateRequestHandler
     );
 
     const request = await this.prisma.request.create({
-      data: data as Prisma.RequestCreateInput,
+      data,
       include: { receivers: true },
     });
 
-    await Promise.all(
-      request.receivers.map((receiver) =>
-        this.notificationService.sendWebPushNotification({
-          title: request.name,
-          content: request.details,
-          memberId: receiver.memberId,
-        }),
-      ),
-    );
+    try {
+      await Promise.all(
+        request.receivers.map((receiver) =>
+          this.notificationService.sendWebPushNotification({
+            title: request.name,
+            content: request.details,
+            memberId: receiver.memberId,
+          }),
+        ),
+      );
+    } catch (error) {
+      console.log('Error when send notification');
+      console.error(error);
+    }
 
     return request.id;
   }
