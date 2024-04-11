@@ -167,22 +167,30 @@ model EquipmentCategory {
 }
 
 model Invoice {
-  id       String    @id @default(uuid())
-  code     String    @unique
-  amount   Decimal
-  status   Int       @db.SmallInt
+  id       Int           @id @default(autoincrement())
+  total    Decimal
+  status   Int           @db.SmallInt
   paidAt   DateTime?
-  dueDate  DateTime  @db.Date
-  details  String    @db.Text
-  category Int       @db.SmallInt
+  dueDate  DateTime      @db.Date
+  category Int           @db.SmallInt
   // Relations
-  unit     Unit      @relation(fields: [unitId], references: [id])
+  unit     Unit          @relation(fields: [unitId], references: [id])
   unitId   String
-  member   Member    @relation(fields: [memberId], references: [id])
+  member   Member        @relation(fields: [memberId], references: [id])
   memberId String
+  items    InvoiceItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model InvoiceItem {
+  id          String  @id @default(uuid())
+  description String
+  price       Decimal
+  amount      Decimal
+  invoiceId   Int
+  invoice     Invoice @relation(fields: [invoiceId], references: [id])
 }
 
 model Contract {

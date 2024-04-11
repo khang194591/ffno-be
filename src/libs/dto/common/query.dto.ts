@@ -3,8 +3,12 @@ import { IsNumber, IsOptional, IsUUID } from 'class-validator';
 
 export class IdUUIDParams {
   @IsUUID()
-  @IsOptional()
-  id!: string;
+  id: string;
+}
+
+export class IdNumberParams {
+  @IsNumber()
+  id: number;
 }
 
 export class GetListQueryDto {

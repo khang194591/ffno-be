@@ -1,20 +1,15 @@
-import { faker } from '@faker-js/faker';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import { InvoiceStatus } from 'src/libs/constants';
-import {
-  CreateInvoiceDto,
-  GetInvoiceResDto,
-  UpdateInvoiceDto,
-} from 'src/libs/dto';
+import { CreateInvoiceDto, GetInvoiceResDto } from 'src/libs/dto';
 
 @Injectable()
 export class InvoiceService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getInvoiceOrThrow(id: string): Promise<GetInvoiceResDto> {
+  async getInvoiceOrThrow(id: number): Promise<GetInvoiceResDto> {
     const invoice = await this.prisma.invoice.findUniqueOrThrow({
       where: { id },
     });
@@ -23,12 +18,13 @@ export class InvoiceService {
   }
 
   async validateInvoiceInput(
-    data: CreateInvoiceDto | UpdateInvoiceDto,
-  ): Promise<Prisma.InvoiceCreateInput | Prisma.InvoiceUpdateInput> {
-    const { unitId, memberId, ...partialInvoice } = data;
+    data: CreateInvoiceDto,
+  ): Promise<Prisma.InvoiceCreateInput> {
+    const { isPaid, unitId, memberId, items, ...partialInvoice } = data;
+
     const { tenants } = await this.prisma.unit.findUniqueOrThrow({
       where: { id: unitId },
-      select: { tenants: true },
+      select: { tenants: { select: { id: true } } },
     });
 
     if (!tenants.find((tenant) => tenant.id === memberId)) {
@@ -39,10 +35,11 @@ export class InvoiceService {
 
     return {
       ...partialInvoice,
+      paidAt: isPaid ? new Date() : null,
       status: InvoiceStatus.PENDING,
-      code: `${faker.string.alphanumeric({ length: 10 })}`,
       unit: { connect: { id: unitId } },
       member: { connect: { id: memberId } },
+      items: { createMany: { data: items } },
     };
   }
 }

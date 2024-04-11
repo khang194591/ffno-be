@@ -5,7 +5,7 @@ import { InvoiceService } from '../invoice.service';
 
 export class UpdateInvoiceCommand {
   constructor(
-    public readonly id: string,
+    public readonly id: number,
     public readonly data: UpdateInvoiceDto,
   ) {}
 }
@@ -19,14 +19,13 @@ export class UpdateInvoiceHandler
     private readonly invoiceService: InvoiceService,
   ) {}
 
-  async execute(query: UpdateInvoiceCommand): Promise<string> {
-    const { id } = query;
-    const data = await this.invoiceService.validateInvoiceInput(query.data);
+  async execute({ id }: UpdateInvoiceCommand): Promise<number> {
+    // const data = await this.invoiceService.validateInvoiceInput(query.data);
 
-    await this.invoiceService.getInvoiceOrThrow(id);
+    // await this.invoiceService.getInvoiceOrThrow(id);
 
-    const invoice = await this.prisma.invoice.update({ where: { id }, data });
+    // const invoice = await this.prisma.invoice.update({ where: { id }, data });
 
-    return invoice.id;
+    return id;
   }
 }
