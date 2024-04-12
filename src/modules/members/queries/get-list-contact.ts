@@ -6,7 +6,7 @@ import { MemberRole } from 'src/libs/constants';
 import {
   GetListContactQueryDto,
   GetListResDto,
-  GetMemberResDto,
+  MemberResDto,
 } from 'src/libs/dto';
 
 export class GetListContactQuery {
@@ -24,7 +24,7 @@ export class GetListContactHandler
 
   async execute(
     query: GetListContactQuery,
-  ): Promise<GetListResDto<GetMemberResDto>> {
+  ): Promise<GetListResDto<MemberResDto>> {
     const {
       staffId,
       data: { type, keyword, skip, take },
@@ -61,7 +61,7 @@ export class GetListContactHandler
     ]);
 
     const contacts = members.map((member) =>
-      plainToClass(GetMemberResDto, member.contactWith),
+      plainToClass(MemberResDto, member.contactWith),
     );
 
     return { total, data: contacts };

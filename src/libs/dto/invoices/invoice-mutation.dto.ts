@@ -27,14 +27,6 @@ class InvoiceItemDto {
 }
 
 export class CreateInvoiceDto {
-  @IsOptional()
-  @IsUUID()
-  id?: string;
-
-  @IsDecimal()
-  @Type(() => String)
-  total: DecimalNumber;
-
   @IsDate()
   @Type(() => Date)
   dueDate: Date;

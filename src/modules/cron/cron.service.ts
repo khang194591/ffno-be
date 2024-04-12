@@ -17,7 +17,7 @@ import {
 export class CronService {
   constructor(private readonly prisma: PrismaService) {}
 
-  @Cron(CronExpression.EVERY_HOUR)
+  // @Cron(CronExpression.EVERY_HOUR)
   async bulkCreateMonthlyInvoice() {
     console.log('-------------------------------');
     const a = await this.prisma.unit.findMany({
@@ -41,8 +41,7 @@ export class CronService {
     const c: Prisma.InvoiceCreateManyArgs = {
       skipDuplicates: true,
       data: b.map((unit) => ({
-        code: `${unit.id}#${dayjs().format('MM/YYYY')}`,
-        amount: unit.price,
+        total: unit.price,
         status: InvoiceStatus.PENDING,
         category: InvoiceCategory.UNIT_CHARGE,
         unitId: unit.id,

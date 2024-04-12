@@ -2,7 +2,7 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { GetListResDto, GetUnitResDto } from 'src/libs/dto';
+import { GetListResDto, UnitResDto } from 'src/libs/dto';
 
 export class GetSimpleListUnitQuery {
   constructor(
@@ -19,7 +19,7 @@ export class GetSimpleListUnitHandler
 
   async execute(
     query: GetSimpleListUnitQuery,
-  ): Promise<GetListResDto<GetUnitResDto>> {
+  ): Promise<GetListResDto<UnitResDto>> {
     const { staffId, propertyId } = query;
     const where: Prisma.UnitWhereInput = {
       property: { id: propertyId, ownerId: staffId },
@@ -38,6 +38,6 @@ export class GetSimpleListUnitHandler
       }),
     ]);
 
-    return { total, data: plainToInstance(GetUnitResDto, units) };
+    return { total, data: plainToInstance(UnitResDto, units) };
   }
 }

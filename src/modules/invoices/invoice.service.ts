@@ -1,20 +1,21 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
+import Decimal from 'decimal.js';
 import { PrismaService } from 'src/config';
 import { InvoiceStatus } from 'src/libs/constants';
-import { CreateInvoiceDto, GetInvoiceResDto } from 'src/libs/dto';
+import { CreateInvoiceDto, InvoiceResDto } from 'src/libs/dto';
 
 @Injectable()
 export class InvoiceService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getInvoiceOrThrow(id: number): Promise<GetInvoiceResDto> {
+  async getInvoiceOrThrow(id: number): Promise<InvoiceResDto> {
     const invoice = await this.prisma.invoice.findUniqueOrThrow({
       where: { id },
     });
 
-    return plainToInstance(GetInvoiceResDto, invoice);
+    return plainToInstance(InvoiceResDto, invoice);
   }
 
   async validateInvoiceInput(
@@ -33,8 +34,13 @@ export class InvoiceService {
       );
     }
 
+    const total = items.reduce((prev, { price, amount }) => {
+      return Decimal.add(prev, Decimal.mul(price, amount));
+    }, new Decimal(0));
+
     return {
       ...partialInvoice,
+      total,
       paidAt: isPaid ? new Date() : null,
       status: InvoiceStatus.PENDING,
       unit: { connect: { id: unitId } },

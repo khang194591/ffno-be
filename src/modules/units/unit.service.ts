@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { GetUnitResDto, UpdateUnitDto } from 'src/libs/dto';
+import { UnitResDto, UpdateUnitDto } from 'src/libs/dto';
 import { PropertyService } from '../properties/property.service';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class UnitService {
       },
     });
 
-    return plainToInstance(GetUnitResDto, unit);
+    return plainToInstance(UnitResDto, unit);
   }
 
   async validateUnit(data: UpdateUnitDto) {

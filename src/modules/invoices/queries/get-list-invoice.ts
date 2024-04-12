@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import {
-  GetInvoiceResDto,
+  InvoiceResDto,
   GetListInvoiceQueryDto,
   GetListResDto,
 } from 'src/libs/dto';
@@ -23,7 +23,7 @@ export class GetListInvoiceHandler
 
   async execute(
     query: GetListInvoiceQuery,
-  ): Promise<GetListResDto<GetInvoiceResDto>> {
+  ): Promise<GetListResDto<InvoiceResDto>> {
     const {
       staffId,
       data: { take, skip, propertyId, unitId, status, memberId },
@@ -53,7 +53,7 @@ export class GetListInvoiceHandler
 
     return {
       total,
-      data: plainToInstance(GetInvoiceResDto, properties),
+      data: plainToInstance(InvoiceResDto, properties),
     };
   }
 }

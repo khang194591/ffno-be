@@ -8,6 +8,7 @@ export class IdUUIDParams {
 
 export class IdNumberParams {
   @IsNumber()
+  @Type(() => Number)
   id: number;
 }
 

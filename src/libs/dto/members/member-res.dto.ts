@@ -2,7 +2,7 @@ import { Exclude, Expose, Transform } from 'class-transformer';
 import { MemberRole } from 'src/libs/constants';
 
 @Exclude()
-export class GetMemberResDto {
+export class MemberResDto {
   @Expose()
   id: string;
 

@@ -1,5 +1,5 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { GetUnitResDto } from 'src/libs/dto';
+import { UnitResDto } from 'src/libs/dto';
 import { UnitService } from '../unit.service';
 import { PrismaService } from 'src/config';
 import { plainToInstance } from 'class-transformer';
@@ -15,7 +15,7 @@ export class GetUnitHandler implements IQueryHandler<GetUnitQuery> {
     private readonly unitService: UnitService,
   ) {}
 
-  async execute(query: GetUnitQuery): Promise<GetUnitResDto> {
+  async execute(query: GetUnitQuery): Promise<UnitResDto> {
     const { data } = query;
 
     const unit = await this.prisma.unit.findUniqueOrThrow({
@@ -27,6 +27,6 @@ export class GetUnitHandler implements IQueryHandler<GetUnitQuery> {
       },
     });
 
-    return plainToInstance(GetUnitResDto, unit);
+    return plainToInstance(UnitResDto, unit);
   }
 }
