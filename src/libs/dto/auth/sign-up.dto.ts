@@ -36,6 +36,7 @@ export class SignUpDto extends SignInDto {
   dateOfBirth: Date;
 
   @IsString()
+  @IsOptional()
   @Length(12, 12, { message: 'Identity number must be exactly 12 digits' })
   identityNumber: string;
 }

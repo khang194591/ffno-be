@@ -24,4 +24,7 @@ export class SignInResDto {
 
   @Expose()
   role: MemberRole;
+
+  @Expose()
+  imgUrl: string;
 }

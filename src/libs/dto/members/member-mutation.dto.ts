@@ -46,3 +46,5 @@ export class AddTenantDto {
   @IsUrl({}, { each: true })
   identityImgUrls?: string[] = [];
 }
+
+export class UpdateMemberProfileDto {}

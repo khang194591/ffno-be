@@ -16,6 +16,15 @@ export class MemberResDto {
   phone: string;
 
   @Expose()
+  gender: string;
+
+  @Expose()
+  address: string;
+
+  @Expose()
+  dateOfBirth: Date;
+
+  @Expose()
   imgUrl: string;
 
   @Expose()
@@ -24,4 +33,13 @@ export class MemberResDto {
   @Expose()
   @Transform(({ value }) => value?.name)
   unit: string;
+}
+
+@Exclude()
+export class CurrentMemberResDto extends MemberResDto {
+  @Expose()
+  identityNumber: string;
+
+  @Expose()
+  identityImgUrls: string;
 }

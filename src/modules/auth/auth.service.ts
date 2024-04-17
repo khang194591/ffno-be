@@ -23,7 +23,7 @@ export class AuthService {
     const member = await this.memberService.getMember(dto.email);
 
     if (!member || !compareSync(dto.password, member.password)) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException('Thông tin đăng nhập không đúng');
     }
 
     return this.signToken(member);
@@ -32,7 +32,9 @@ export class AuthService {
   private signToken(member: Member) {
     const payload = {
       id: member.id,
+      name: member.name,
       role: member.role,
+      imgUrl: member.imgUrl,
     };
 
     const token = this.jwtService.sign(payload);

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
-import { writeFileSync } from 'fs';
+// import { writeFileSync } from 'fs';
 
 function getExtendedClient() {
   const client = () =>
@@ -17,15 +17,15 @@ function getExtendedClient() {
     // wrapper with type-safety 🎉
     constructor() {
       const prisma = client();
-      prisma.$on('query', (e) => {
-        writeFileSync(
-          'query.log',
-          `${e.timestamp.toISOString()}\n${e.query}\n${e.params}\n\n`,
-          {
-            flag: 'a+',
-          },
-        );
-      });
+      // prisma.$on('query', (e) => {
+      //   writeFileSync(
+      //     'query.log',
+      //     `${e.timestamp.toISOString()}\n${e.query}\n${e.params}\n\n`,
+      //     {
+      //       flag: 'a+',
+      //     },
+      //   );
+      // });
       return prisma;
     }
   } as new () => ReturnType<typeof client>;

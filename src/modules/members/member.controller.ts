@@ -4,7 +4,11 @@ import { ApiTags } from '@nestjs/swagger';
 import { CurrentMemberId } from 'src/libs/decorators';
 import { GetListContactQueryDto, IdUUIDParams } from 'src/libs/dto';
 import { LinkTenantCommand } from './commands';
-import { GetListContactQuery, GetMemberQuery } from './queries';
+import {
+  GetCurrentMemberQuery,
+  GetListContactQuery,
+  GetMemberQuery,
+} from './queries';
 
 @Controller('members')
 @ApiTags('Members')
@@ -20,6 +24,11 @@ export class MemberController {
     @Query() query: GetListContactQueryDto,
   ) {
     return this.queryBus.execute(new GetListContactQuery(staffId, query));
+  }
+
+  @Get('me')
+  async getCurrentMember(@CurrentMemberId() memberId: string) {
+    return this.queryBus.execute(new GetCurrentMemberQuery(memberId));
   }
 
   @Get(':id')
