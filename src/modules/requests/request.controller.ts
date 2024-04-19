@@ -50,9 +50,12 @@ export class RequestController {
 
   @Patch(':id')
   async updateRequest(
+    @CurrentMemberId() memberId: string,
     @Body() body: UpdateRequestDto,
     @Param() { id }: IdUUIDParams,
   ) {
-    return this.commandBus.execute(new UpdateRequestCommand(id, body));
+    return this.commandBus.execute(
+      new UpdateRequestCommand(memberId, { id, status: body.status }),
+    );
   }
 }

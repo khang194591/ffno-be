@@ -14,6 +14,17 @@ export class GetRequestHandler implements IQueryHandler<GetRequestQuery> {
   async execute({ id }: GetRequestQuery): Promise<GetRequestResDto> {
     const request = await this.prisma.request.findUnique({
       where: { id },
+      include: {
+        unit: { select: { id: true, name: true } },
+        sender: { select: { id: true, name: true, imgUrl: true } },
+        receivers: {
+          select: {
+            status: true,
+            member: { select: { id: true, name: true, imgUrl: true } },
+            updatedAt: true,
+          },
+        },
+      },
     });
 
     return plainToInstance(GetRequestResDto, request);

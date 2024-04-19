@@ -1,8 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { UpdateRequestDto } from 'src/libs/dto';
-import { RequestService } from '../request.service';
 import { RequestStatus } from 'src/libs/constants';
+import { UpdateRequestDto } from 'src/libs/dto';
 
 export class UpdateRequestCommand {
   constructor(
@@ -15,15 +14,12 @@ export class UpdateRequestCommand {
 export class UpdateRequestHandler
   implements ICommandHandler<UpdateRequestCommand>
 {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly requestService: RequestService,
-  ) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async execute({ staffId, data }: UpdateRequestCommand): Promise<string> {
     const { id, status } = data;
 
-    await this.requestService.getRequestOrThrow(id);
+    await this.prisma.request.findUniqueOrThrow({ where: { id } });
 
     await this.prisma.memberReceiveRequest.update({
       where: {
