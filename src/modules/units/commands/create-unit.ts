@@ -14,8 +14,7 @@ export class CreateUnitHandler implements ICommandHandler<CreateUnitCommand> {
     private readonly unitService: UnitService,
   ) {}
 
-  async execute(query: CreateUnitCommand): Promise<string> {
-    const { data } = query;
+  async execute({ data }: CreateUnitCommand): Promise<string> {
     await this.unitService.validateUnit(data);
 
     const unit = await this.prisma.unit.create({

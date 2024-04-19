@@ -1,6 +1,8 @@
 import { PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
+  IsArray,
+  IsBoolean,
   IsDate,
   IsDecimal,
   IsEnum,
@@ -11,22 +13,23 @@ import {
 import { InvoiceCategory } from 'src/libs/constants';
 import { DecimalNumber } from 'src/libs/decorators';
 
-export class CreateInvoiceDto {
-  @IsOptional()
-  @IsUUID()
-  id: string;
+class InvoiceItemDto {
+  @IsString()
+  description: string;
+
+  @IsDecimal()
+  @Type(() => String)
+  price: DecimalNumber;
 
   @IsDecimal()
   @Type(() => String)
   amount: DecimalNumber;
+}
 
+export class CreateInvoiceDto {
   @IsDate()
   @Type(() => Date)
   dueDate: Date;
-
-  @IsOptional()
-  @IsString()
-  details: string;
 
   @IsEnum(InvoiceCategory)
   @Type(() => Number)
@@ -37,6 +40,14 @@ export class CreateInvoiceDto {
 
   @IsUUID()
   memberId: string;
+
+  @IsArray()
+  @Type(() => InvoiceItemDto)
+  items: InvoiceItemDto[];
+
+  @IsOptional()
+  @IsBoolean()
+  isPaid?: boolean;
 }
 
 export class UpdateInvoiceDto extends PartialType(CreateInvoiceDto) {}

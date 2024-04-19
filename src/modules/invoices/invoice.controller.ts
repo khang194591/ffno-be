@@ -9,15 +9,15 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
+import { CurrentMemberId, Public } from 'src/libs/decorators';
 import {
   CreateInvoiceDto,
   GetListInvoiceQueryDto,
-  IdUUIDParams,
+  IdNumberParams,
   UpdateInvoiceDto,
 } from 'src/libs/dto';
 import { CreateInvoiceCommand, UpdateInvoiceCommand } from './commands';
-import { GetListInvoiceQuery } from './queries';
-import { StaffId } from 'src/libs/decorators';
+import { GetInvoiceQuery, GetListInvoiceQuery } from './queries';
 
 @Controller('invoices')
 @ApiTags('Invoices')
@@ -29,10 +29,16 @@ export class InvoiceController {
 
   @Get()
   async getListInvoice(
-    @StaffId() staffId: string,
+    @CurrentMemberId() staffId: string,
     @Query() query: GetListInvoiceQueryDto,
   ) {
     return this.queryBus.execute(new GetListInvoiceQuery(staffId, query));
+  }
+
+  @Public()
+  @Get(':id')
+  async getInvoice(@Param() { id }: IdNumberParams) {
+    return this.queryBus.execute(new GetInvoiceQuery(id));
   }
 
   @Post()
@@ -43,7 +49,7 @@ export class InvoiceController {
   @Patch(':id')
   async updateInvoice(
     @Body() body: UpdateInvoiceDto,
-    @Param() { id }: IdUUIDParams,
+    @Param() { id }: IdNumberParams,
   ) {
     return this.commandBus.execute(new UpdateInvoiceCommand(id, body));
   }

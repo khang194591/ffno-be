@@ -2,9 +2,33 @@ import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import { InvoiceStatus } from 'src/libs/constants';
 import { DecimalNumber } from 'src/libs/decorators';
 import { Nullable } from '../common';
+import { MemberResDto } from '../members';
+import { UnitResDto } from '../units';
+import Decimal from 'decimal.js';
 
 @Exclude()
-export class GetInvoiceResDto {
+class InvoiceItemResDto {
+  @Expose()
+  id: string;
+
+  @Expose()
+  @Type(() => DecimalNumber)
+  price: DecimalNumber;
+
+  @Expose()
+  @Type(() => DecimalNumber)
+  amount: DecimalNumber;
+
+  @Expose()
+  description: string;
+
+  @Expose()
+  @Transform(({ obj }) => Decimal.mul(obj.price, obj.amount))
+  total: DecimalNumber;
+}
+
+@Exclude()
+export class InvoiceResDto {
   @Expose()
   id: string;
 
@@ -13,7 +37,7 @@ export class GetInvoiceResDto {
 
   @Expose()
   @Type(() => DecimalNumber)
-  amount: DecimalNumber;
+  total: DecimalNumber;
 
   @Expose()
   paidAt: Nullable<Date>;
@@ -31,13 +55,17 @@ export class GetInvoiceResDto {
   unitId: string;
 
   @Expose()
-  @Transform(({ value }) => value.name)
-  unit: string;
+  @Type(() => UnitResDto)
+  unit: UnitResDto;
 
   @Expose()
   memberId: string;
 
   @Expose()
-  @Transform(({ value }) => value.name)
-  member: string;
+  @Type(() => MemberResDto)
+  member: MemberResDto;
+
+  @Expose()
+  @Type(() => InvoiceItemResDto)
+  items: InvoiceItemResDto[];
 }

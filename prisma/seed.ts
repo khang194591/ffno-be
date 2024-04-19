@@ -56,6 +56,45 @@ const mockUnitFeatures = [
   'Bình nước nóng',
 ];
 
+const fakePropertyImgUrls = [
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-binyamin-mellish-106399.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-binyamin-mellish-1396132.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-curtis-adams-3555615.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-jens-mahnke-1105754.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-164522.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-209315.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-210538.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-210617.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-221540.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-259588.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-276593.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-277667.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-280222.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-280229.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-460695.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-thgusstavo-santana-2102587.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vlad-bagacian-1212053.jpg',
+];
+
+const fakeUnitImgUrls = [
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-atbo-245208.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-colour-creation-112811.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-emma-pollard-1534924.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-jean-van-der-meulen-1457842.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-medhat-ayad-439227.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-210265.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-259962.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-265004.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-271624.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-271816.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-tom-swinnen-2249959.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vecislavas-popa-1571453.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vecislavas-popa-1571459.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vecislavas-popa-1571468.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vecislavas-popa-1643383.jpg',
+  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vika-glitter-1648768.jpg',
+];
+
 const fakeMember = (override = {}) => {
   const gender = randomInt(2);
   const firstName = faker.person.firstName(gender ? 'female' : 'male');
@@ -93,8 +132,8 @@ const fakeProperty = (ownerId: string) => {
     district,
     province,
     imgUrls: [
-      `https://picsum.photos/id/${randomInt(100)}/120/120`,
-      `https://picsum.photos/id/${randomInt(100)}/120/120`,
+      fakePropertyImgUrls[randomInt(fakePropertyImgUrls.length)],
+      fakePropertyImgUrls[randomInt(fakePropertyImgUrls.length)],
     ],
     ownerId,
     details: faker.lorem.paragraph(),
@@ -104,7 +143,7 @@ const fakeProperty = (ownerId: string) => {
   };
 };
 
-export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
+const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
   return {
     id: v4(),
     name: `Phòng ${faker.string.numeric(3)}`,
@@ -119,8 +158,8 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
           ? UnitStatus.MAINTAINING
           : UnitStatus.BAD,
     imgUrls: [
-      `https://picsum.photos/id/${randomInt(100)}/120/120`,
-      `https://picsum.photos/id/${randomInt(100)}/120/120`,
+      fakeUnitImgUrls[randomInt(fakeUnitImgUrls.length)],
+      fakeUnitImgUrls[randomInt(fakeUnitImgUrls.length)],
     ],
     property: { connect: { id: propertyId } },
     unitFeatures: {
@@ -154,12 +193,24 @@ const seed = async () => {
       password: hashSync('123456', 10),
       role: MemberRole.ADMIN,
       name: 'Trịnh Đức Khang',
+      imgUrl:
+        'https://lh3.googleusercontent.com/a/ACg8ocJ-wyEURnuJjTv_eY9Fgf_KPd4QA75b_A5D06wJ63IB7gKjOUUv=s288-c-no',
     }),
   });
 
   const members = Array(randomInt(50, 100))
     .fill(0)
     .map(() => fakeMember());
+
+  members.push(
+    fakeMember({
+      id: '3c8f96f8-57c8-4846-9826-59b1277e9b63',
+      email: 'khang.td194591@sis.hust.edu.vn',
+      password: hashSync('123456', 10),
+      role: MemberRole.TENANT,
+      name: 'Trịnh Khang',
+    }),
+  );
 
   await prisma.member.createMany({
     data: members,

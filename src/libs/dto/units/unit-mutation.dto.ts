@@ -7,6 +7,7 @@ import {
   IsOptional,
   IsString,
   IsUUID,
+  IsUrl,
 } from 'class-validator';
 import { UnitStatus } from 'src/libs/constants';
 import { DecimalNumber } from 'src/libs/decorators';
@@ -36,6 +37,11 @@ export class CreateUnitDto {
   status: UnitStatus;
 
   @IsOptional()
+  @IsArray()
+  @IsUrl({}, { each: true })
+  imgUrls: string[];
+
+  @IsOptional()
   @IsString()
   details: string;
 
@@ -48,3 +54,10 @@ export class CreateUnitDto {
 }
 
 export class UpdateUnitDto extends PartialType(CreateUnitDto) {}
+
+export class OpenUnitDto {
+  @IsOptional()
+  @IsArray()
+  @IsUUID('4', { each: true })
+  unitIds: string[];
+}

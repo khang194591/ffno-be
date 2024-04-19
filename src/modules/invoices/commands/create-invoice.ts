@@ -1,5 +1,4 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/config';
 import { CreateInvoiceDto } from 'src/libs/dto';
 import { InvoiceService } from '../invoice.service';
@@ -17,12 +16,10 @@ export class CreateInvoiceHandler
     private readonly invoiceService: InvoiceService,
   ) {}
 
-  async execute(query: CreateInvoiceCommand): Promise<string> {
+  async execute(query: CreateInvoiceCommand): Promise<number> {
     const data = await this.invoiceService.validateInvoiceInput(query.data);
 
-    const invoice = await this.prisma.invoice.create({
-      data: data as Prisma.InvoiceCreateInput,
-    });
+    const invoice = await this.prisma.invoice.create({ data });
 
     return invoice.id;
   }

@@ -7,7 +7,7 @@ import { hashSync } from 'bcrypt';
 import { plainToInstance } from 'class-transformer';
 import { isEmail, isPhoneNumber } from 'class-validator';
 import { PrismaService } from 'src/config';
-import { GetMemberResDto, SignUpDto } from 'src/libs/dto';
+import { MemberResDto, SignUpDto } from 'src/libs/dto';
 
 @Injectable()
 export class MemberService {
@@ -42,6 +42,6 @@ export class MemberService {
       throw new NotFoundException(`Member with identity = ${id} not found`);
     }
 
-    return plainToInstance(GetMemberResDto, member);
+    return plainToInstance(MemberResDto, member);
   }
 }

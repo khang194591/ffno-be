@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { StaffId } from 'src/libs/decorators';
+import { CurrentMemberId } from 'src/libs/decorators';
 import {
   CreatePropertyDto,
   GetListPropertyQueryDto,
@@ -39,14 +39,14 @@ export class PropertyController {
 
   @Get()
   async getProperties(
-    @StaffId() staffId: string,
+    @CurrentMemberId() staffId: string,
     @Query() query: GetListPropertyQueryDto,
   ) {
     return this.queryBus.execute(new GetListPropertyQuery(staffId, query));
   }
 
   @Get('simple-list')
-  async getSimpleListProperty(@StaffId() staffId: string) {
+  async getSimpleListProperty(@CurrentMemberId() staffId: string) {
     return this.queryBus.execute(new GetSimpleListPropertyQuery(staffId));
   }
 
@@ -62,7 +62,7 @@ export class PropertyController {
 
   @Post()
   async createProperty(
-    @StaffId() staffId: string,
+    @CurrentMemberId() staffId: string,
     @Body() body: CreatePropertyDto,
   ) {
     return this.commandBus.execute(

@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { GetListResDto, GetMemberResDto } from 'src/libs/dto';
+import { GetListResDto, MemberResDto } from 'src/libs/dto';
 
 export class GetListTenantQuery {
   constructor(public readonly id: string) {}
@@ -13,7 +13,7 @@ export class GetListTenantHandler implements IQueryHandler<GetListTenantQuery> {
 
   async execute(
     query: GetListTenantQuery,
-  ): Promise<GetListResDto<GetMemberResDto>> {
+  ): Promise<GetListResDto<MemberResDto>> {
     const { id } = query;
     const units = await this.prisma.unit.findMany({
       where: { propertyId: id },
@@ -37,7 +37,7 @@ export class GetListTenantHandler implements IQueryHandler<GetListTenantQuery> {
 
     return {
       total: tenants.length,
-      data: plainToInstance(GetMemberResDto, tenants),
+      data: plainToInstance(MemberResDto, tenants),
     };
   }
 }

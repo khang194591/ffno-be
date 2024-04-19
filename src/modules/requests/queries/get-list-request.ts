@@ -26,12 +26,13 @@ export class GetListRequestHandler
   ): Promise<GetListResDto<GetRequestResDto>> {
     const {
       staffId,
-      data: { take, skip },
+      data: { type = 'received', take, skip },
     } = query;
 
-    const where: Prisma.RequestWhereInput = {
-      receivers: { some: { memberId: staffId } },
-    };
+    const where: Prisma.RequestWhereInput =
+      type === 'received'
+        ? { receivers: { some: { memberId: staffId } } }
+        : { senderId: staffId };
 
     const [total, requests] = await this.prisma.$transaction([
       this.prisma.request.count({ where }),
