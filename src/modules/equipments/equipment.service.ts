@@ -5,7 +5,7 @@ import {
   CreateEquipmentDto,
   GetListEquipmentQuery,
   UpdateEquipmentDto,
-} from 'src/libs/dto';
+} from 'src/libssss/dto';
 import { PropertyService } from '../properties/property.service';
 
 @Injectable()

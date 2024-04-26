@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { CreateEquipmentDto } from 'src/libs/dto';
+import { CreateEquipmentDto } from 'src/libssss/dto';
 import { fakeEquipment } from 'test/factory';
 
 export class EquipmentHelper {

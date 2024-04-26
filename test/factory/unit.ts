@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import Decimal from 'decimal.js';
-import { MaintainStatus, PropertyType } from 'src/libs/constants';
-import { CreateUnitDto } from 'src/libs/dto';
+import { MaintainStatus, PropertyType } from 'src/libssss/constants';
+import { CreateUnitDto } from 'src/libssss/dto';
 import { v4 } from 'uuid';
 
 export const fakeUnit = (

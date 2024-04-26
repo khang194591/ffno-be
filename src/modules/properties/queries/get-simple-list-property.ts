@@ -2,7 +2,7 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { GetListResDto, GetPropertyResDto } from 'src/libs/dto';
+import { GetListResDto, GetPropertyResDto } from 'src/libssss/dto';
 
 export class GetSimpleListPropertyQuery {
   constructor(public readonly staffId: string) {}

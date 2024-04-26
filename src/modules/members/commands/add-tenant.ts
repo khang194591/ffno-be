@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { AddTenantDto } from 'src/libs/dto';
+import { AddTenantDto } from 'src/libssss/dto';
 import { MemberService } from '../member.service';
 
 export class AddTenantCommand {

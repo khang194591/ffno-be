@@ -9,13 +9,13 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId } from 'src/libs/decorators';
+import { CurrentMemberId } from 'src/libssss/decorators';
 import {
   CreateRequestDto,
   GetListRequestQueryDto,
   IdUUIDParams,
   UpdateRequestDto,
-} from 'src/libs/dto';
+} from 'src/libssss/dto';
 import { CreateRequestCommand, UpdateRequestCommand } from './commands';
 import { GetListRequestQuery, GetRequestQuery } from './queries';
 

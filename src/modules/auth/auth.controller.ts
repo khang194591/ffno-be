@@ -1,8 +1,9 @@
 import { Body, Controller, Delete, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { Public } from 'src/libs/decorators';
-import { COOKIE_TOKEN } from 'src/libs/constants';
-import { SignInDto, SignUpDto } from 'src/libs/dto';
+import { SignInDto, SignUpDto, signInSchema, signUpSchema } from 'src/libs';
+import { ZodValidationPipe } from 'src/libs/pipes';
+import { COOKIE_TOKEN } from 'src/libssss/constants';
+import { Public } from 'src/libssss/decorators';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
@@ -13,7 +14,7 @@ export class AuthController {
   @Post('sign-up')
   async signUp(
     @Res({ passthrough: true }) res: Response,
-    @Body() dto: SignUpDto,
+    @Body(new ZodValidationPipe(signUpSchema)) dto: SignUpDto,
   ) {
     const { member, token } = await this.authService.signUp(dto);
 
@@ -26,7 +27,7 @@ export class AuthController {
   @Post('sign-in')
   async signIn(
     @Res({ passthrough: true }) res: Response,
-    @Body() dto: SignInDto,
+    @Body(new ZodValidationPipe(signInSchema)) dto: SignInDto,
   ) {
     const { member, token } = await this.authService.signIn(dto);
 

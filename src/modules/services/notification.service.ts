@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
-import { EmailPayload, NotificationPayload } from 'src/libs/dto';
+import { EmailPayload, NotificationPayload } from 'src/libssss/dto';
 import { NOTIFICATION_PATTERNS, NOTIFICATION_SERVICE } from './const';
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/libs/decorators';
+import { Public } from 'src/libssss/decorators';
 import { CommonService } from './common.service';
 
 import districts from 'src/static/districts.json';

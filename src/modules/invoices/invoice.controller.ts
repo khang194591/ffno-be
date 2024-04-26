@@ -9,13 +9,13 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId, Public } from 'src/libs/decorators';
+import { CurrentMemberId, Public } from 'src/libssss/decorators';
 import {
   CreateInvoiceDto,
   GetListInvoiceQueryDto,
   IdNumberParams,
   UpdateInvoiceDto,
-} from 'src/libs/dto';
+} from 'src/libssss/dto';
 import { CreateInvoiceCommand, UpdateInvoiceCommand } from './commands';
 import { GetInvoiceQuery, GetListInvoiceQuery } from './queries';
 

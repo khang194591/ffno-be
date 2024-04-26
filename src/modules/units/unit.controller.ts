@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId } from 'src/libs/decorators';
+import { CurrentMemberId } from 'src/libssss/decorators';
 import {
   CreateUnitDto,
   GetListUnitQueryDto,
@@ -18,7 +18,7 @@ import {
   IdUUIDParams,
   OpenUnitDto,
   UpdateUnitDto,
-} from 'src/libs/dto';
+} from 'src/libssss/dto';
 import {
   CloseUnitCommand,
   CreateUnitCommand,

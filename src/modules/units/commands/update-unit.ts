@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { UpdateUnitDto } from 'src/libs/dto';
+import { UpdateUnitDto } from 'src/libssss/dto';
 import { UnitService } from '../unit.service';
 
 export class UpdateUnitCommand {

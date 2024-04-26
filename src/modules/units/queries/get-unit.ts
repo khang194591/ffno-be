@@ -1,5 +1,5 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { UnitResDto } from 'src/libs/dto';
+import { UnitResDto } from 'src/libssss/dto';
 import { UnitService } from '../unit.service';
 import { PrismaService } from 'src/config';
 import { plainToInstance } from 'class-transformer';

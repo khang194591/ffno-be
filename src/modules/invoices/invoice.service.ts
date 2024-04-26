@@ -3,8 +3,8 @@ import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import Decimal from 'decimal.js';
 import { PrismaService } from 'src/config';
-import { InvoiceStatus } from 'src/libs/constants';
-import { CreateInvoiceDto, InvoiceResDto } from 'src/libs/dto';
+import { InvoiceStatus } from 'src/libssss/constants';
+import { CreateInvoiceDto, InvoiceResDto } from 'src/libssss/dto';
 
 @Injectable()
 export class InvoiceService {

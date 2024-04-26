@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from '@prisma/client';
-import { CreateUnitDto, CreatePropertyDto } from 'src/libs/dto';
+import { CreateUnitDto, CreatePropertyDto } from 'src/libssss/dto';
 import { fakeProperty } from 'test/factory/property';
 
 export class PropertyHelper {
