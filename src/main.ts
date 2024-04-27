@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
 import { description, name, version } from '../package.json';
 import { AppModule } from './app.module';
-import { AppExceptionFilter } from './libssss/exception.filter';
+import { AppExceptionFilter } from './libs/exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,6 +20,12 @@ async function bootstrap() {
       'http://localhost:8080',
     ],
   });
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+    }),
+  );
 
   // Global exception filter
   app.useGlobalFilters(new AppExceptionFilter());

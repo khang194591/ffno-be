@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { UpdatePropertyDto } from 'src/libssss/dto';
+import { UpdatePropertyDto } from 'src/libs/dto';
 import { PropertyService } from '../property.service';
 
 export class UpdatePropertyCommand {

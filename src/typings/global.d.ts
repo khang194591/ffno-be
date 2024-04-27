@@ -1,4 +1,4 @@
-import { MemberRole } from 'src/libssss/constants';
+import { MemberRole } from 'src/libs/constants';
 
 declare module 'express' {
   interface Request {

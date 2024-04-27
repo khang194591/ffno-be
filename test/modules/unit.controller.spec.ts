@@ -1,6 +1,6 @@
 import { HttpStatus, INestApplication } from '@nestjs/common';
 import Decimal from 'decimal.js';
-import { UpdatePropertyDto } from 'src/libssss/dto';
+import { UpdatePropertyDto } from 'src/libs/dto';
 import request from 'supertest';
 import { fakeUnit } from 'test/factory/unit';
 import { v4 } from 'uuid';

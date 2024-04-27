@@ -1,6 +1,6 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { MemberService } from '../member.service';
-import { MemberResDto } from 'src/libssss/dto';
+import { MemberResDto } from 'src/libs/dto';
 
 export class GetMemberQuery {
   constructor(public readonly data: string) {}

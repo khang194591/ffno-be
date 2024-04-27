@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { UpdateInvoiceDto } from 'src/libssss/dto';
+import { UpdateInvoiceDto } from 'src/libs/dto';
 import { InvoiceService } from '../invoice.service';
 
 export class UpdateInvoiceCommand {

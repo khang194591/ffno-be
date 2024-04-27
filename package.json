@@ -17,8 +17,7 @@
     "db:push:test": "dotenv -e .env.test -- npx prisma db push",
     "test": "dotenv -e .env.test -- jest --detectOpenHandles --logHeapUsage --runInBand",
     "test:cov": "dotenv -e .env.test --  jest --coverage --detectOpenHandles --logHeapUsage --runInBand",
-    "test:watch": "dotenv -e .env.test --  jest --watch --detectOpenHandles --logHeapUsage --runInBand",
-    "libs:build": "meta git update && meta git checkout master --include-only libs"
+    "test:watch": "dotenv -e .env.test --  jest --watch --detectOpenHandles --logHeapUsage --runInBand"
   },
   "dependencies": {
     "@nestjs/common": "^10.3.3",
@@ -40,8 +39,7 @@
     "exceljs": "^4.4.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "uuid": "^9.0.1",
-    "zod": "^3.23.4"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",

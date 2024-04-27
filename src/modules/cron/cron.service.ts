@@ -11,7 +11,7 @@ import {
   MemberRole,
   RequestCategory,
   RequestStatus,
-} from 'src/libssss/constants';
+} from 'src/libs/constants';
 
 @Injectable()
 export class CronService {

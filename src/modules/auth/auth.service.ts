@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Member } from '@prisma/client';
 import { compareSync } from 'bcrypt';
 import { plainToInstance } from 'class-transformer';
-import { SignInDto, SignInResDto, SignUpDto } from 'src/libssss/dto';
+import { SignInDto, SignInResDto, SignUpDto } from 'src/libs/dto';
 import { MemberService } from '../members/member.service';
 
 @Injectable()

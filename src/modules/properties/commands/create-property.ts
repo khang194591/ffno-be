@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/config';
-import { CreatePropertyDto } from 'src/libssss/dto';
+import { CreatePropertyDto } from 'src/libs/dto';
 import { PropertyService } from '../property.service';
 
 export class CreatePropertyCommand {
