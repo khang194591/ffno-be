@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { plainToInstance } from 'class-transformer';
-import { PropertyType } from 'src/libs/constants';
+import { PropertyType } from 'src/shared';
 import { CreatePropertyDto } from 'src/libs/dto';
 
 export const fakeProperty = (

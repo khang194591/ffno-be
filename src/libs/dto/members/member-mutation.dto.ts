@@ -10,7 +10,7 @@ import {
   IsString,
   IsUrl,
 } from 'class-validator';
-import { Gender } from 'src/libs/constants';
+import { Gender } from 'src/shared';
 
 export class AddTenantDto {
   @IsEmail()

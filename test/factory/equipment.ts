@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import Decimal from 'decimal.js';
-import { MaintainStatus } from 'src/libs/constants';
+import { MaintainStatus } from 'src/shared';
 import { CreateEquipmentDto } from 'src/libs/dto';
 import { v4 } from 'uuid';
 

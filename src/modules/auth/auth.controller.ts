@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import { Public } from 'src/libs/decorators';
-import { COOKIE_TOKEN } from 'src/libs/constants';
 import { SignInDto, SignUpDto } from 'src/libs/dto';
+import { COOKIE_TOKEN } from 'src/shared';
 import { AuthService } from './auth.service';
 
 @Controller('auth')

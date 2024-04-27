@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { RequestCategory, RequestStatus } from 'src/libs/constants';
+import { RequestCategory, RequestStatus } from 'src/shared';
 import { UpdateRequestDto } from 'src/libs/dto';
 
 export class UpdateRequestCommand {

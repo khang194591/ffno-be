@@ -9,7 +9,7 @@ import {
   IsUUID,
   IsUrl,
 } from 'class-validator';
-import { UnitStatus } from 'src/libs/constants';
+import { UnitStatus } from 'src/shared';
 import { DecimalNumber } from 'src/libs/decorators';
 
 export class CreateUnitDto {

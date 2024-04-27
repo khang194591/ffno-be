@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { UnitStatus } from 'src/libs/constants';
+import { UnitStatus } from 'src/shared';
 import {
   CreatePropertyDto,
   GetPropertyResDto,

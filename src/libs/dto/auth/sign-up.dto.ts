@@ -8,7 +8,7 @@ import {
   IsUrl,
   Length,
 } from 'class-validator';
-import { Gender, MemberRole } from 'src/libs/constants';
+import { Gender, MemberRole } from 'src/shared';
 import { SignInDto } from './sign-in.dto';
 
 export class SignUpDto extends SignInDto {

@@ -10,7 +10,7 @@ import {
   IsString,
   IsUUID,
 } from 'class-validator';
-import { InvoiceCategory } from 'src/libs/constants';
+import { InvoiceCategory } from 'src/shared';
 import { DecimalNumber } from 'src/libs/decorators';
 
 class InvoiceItemDto {

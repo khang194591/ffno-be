@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import Decimal from 'decimal.js';
-import { MaintainStatus, PropertyType } from 'src/libs/constants';
+import { MaintainStatus, PropertyType } from 'src/shared';
 import { CreateUnitDto } from 'src/libs/dto';
 import { v4 } from 'uuid';
 

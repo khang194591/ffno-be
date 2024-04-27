@@ -1,5 +1,5 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
-import { MemberRole } from 'src/libs/constants';
+import { MemberRole } from 'src/shared';
 
 @Exclude()
 export class MemberResDto {

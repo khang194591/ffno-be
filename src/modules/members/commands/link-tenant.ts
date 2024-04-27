@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { MemberRole } from 'src/libs/constants';
+import { MemberRole } from 'src/shared';
 import { MemberResDto } from 'src/libs/dto';
 import { NotificationService } from 'src/modules/services/notification.service';
 import { MemberService } from '../member.service';
