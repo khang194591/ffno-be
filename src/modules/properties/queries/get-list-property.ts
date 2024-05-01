@@ -1,12 +1,12 @@
+import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { Prisma } from '@prisma/client';
+import { plainToInstance } from 'class-transformer';
+import { PrismaService } from 'src/config';
 import {
   GetListPropertyQueryDto,
   GetListResDto,
   GetPropertyResDto,
 } from 'src/libs/dto';
-import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { PrismaService } from 'src/config';
-import { plainToInstance } from 'class-transformer';
-import { Prisma } from '@prisma/client';
 
 export class GetListPropertyQuery {
   constructor(
@@ -36,6 +36,7 @@ export class GetListPropertyHandler
       district,
       province,
       amenities: amenities && { some: { name: { in: amenities } } },
+      name: name && { search: name.split(' ').join(' | ') },
     };
 
     const [total, properties] = await this.prisma.$transaction([
@@ -46,18 +47,9 @@ export class GetListPropertyHandler
         skip,
         include: {
           amenities: true,
-          units: {
-            include: { tenants: { select: { id: true } } },
-          },
+          units: { include: { tenants: { select: { id: true } } } },
         },
-        orderBy: {
-          createdAt: 'desc',
-          _relevance: name && {
-            fields: ['name'],
-            search: name.split(' ').join(' | '),
-            sort: 'desc',
-          },
-        },
+        orderBy: { createdAt: 'desc' },
       }),
     ]);
 

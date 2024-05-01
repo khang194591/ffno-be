@@ -34,7 +34,9 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
       skip,
     } = query.data;
     const whereUnit: Prisma.UnitWhereInput = {
-      name,
+      name: {
+        search: name,
+      },
       isListing: true,
       unitFeatures: features && { some: { name: { in: features } } },
       area: { gte: minArea, lte: maxArea },
@@ -42,6 +44,9 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
     };
 
     const whereProperty: Prisma.PropertyWhereInput = {
+      name: {
+        search: name,
+      },
       ward,
       district,
       province,

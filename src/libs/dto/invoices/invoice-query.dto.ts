@@ -1,5 +1,5 @@
 import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
-import { InvoiceStatus } from 'src/libs/constants';
+import { InvoiceStatus } from 'src/shared';
 import { TransformArray } from 'src/libs/decorators';
 import { GetListQueryDto } from '../common';
 

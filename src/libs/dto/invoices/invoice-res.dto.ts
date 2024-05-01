@@ -1,5 +1,5 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { InvoiceStatus } from 'src/libs/constants';
+import { InvoiceStatus } from 'src/shared';
 import { DecimalNumber } from 'src/libs/decorators';
 import { Nullable } from '../common';
 import { MemberResDto } from '../members';

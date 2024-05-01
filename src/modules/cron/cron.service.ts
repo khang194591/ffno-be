@@ -11,7 +11,7 @@ import {
   MemberRole,
   RequestCategory,
   RequestStatus,
-} from 'src/libs/constants';
+} from 'src/shared';
 
 @Injectable()
 export class CronService {
@@ -55,13 +55,14 @@ export class CronService {
     console.log(invoices);
   }
 
-  @Cron(CronExpression.EVERY_HOUR)
+  // @Cron(CronExpression.EVERY_MINUTE)
   async fakeRequest() {
     const members = await this.prisma.member.findMany({
       where: { role: MemberRole.TENANT },
     });
 
     const units = await this.prisma.unit.findMany({
+      where: { isListing: true },
       include: { property: true, tenants: { select: { id: true } } },
     });
 

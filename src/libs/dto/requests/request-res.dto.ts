@@ -1,5 +1,5 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { RequestCategory, RequestStatus } from 'src/libs/constants';
+import { RequestCategory, RequestStatus } from 'src/shared';
 import { MemberResDto } from '../members';
 import { UnitResDto } from '../units';
 

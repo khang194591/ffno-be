@@ -1,11 +1,11 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { RequestStatus } from 'src/libs/constants';
+import { RequestCategory, RequestStatus } from 'src/shared';
 import { UpdateRequestDto } from 'src/libs/dto';
 
 export class UpdateRequestCommand {
   constructor(
-    public readonly staffId: string,
+    public readonly memberId: string,
     public readonly data: UpdateRequestDto,
   ) {}
 }
@@ -16,21 +16,18 @@ export class UpdateRequestHandler
 {
   constructor(private readonly prisma: PrismaService) {}
 
-  async execute({ staffId, data }: UpdateRequestCommand): Promise<string> {
+  async execute({ memberId, data }: UpdateRequestCommand): Promise<string> {
     const { id, status } = data;
 
-    await this.prisma.request.findUniqueOrThrow({ where: { id } });
+    const request = await this.prisma.request.findUniqueOrThrow({
+      where: { id },
+    });
 
     await this.prisma.memberReceiveRequest.update({
       where: {
-        requestId_memberId: {
-          memberId: staffId,
-          requestId: id,
-        },
+        requestId_memberId: { memberId: memberId, requestId: id },
       },
-      data: {
-        status,
-      },
+      data: { status },
     });
 
     if (status === RequestStatus.REJECTED) {
@@ -54,6 +51,13 @@ export class UpdateRequestHandler
         where: { id },
         data: { status: RequestStatus.ACCEPTED },
       });
+
+      if (request.unitId && request.category === RequestCategory.UNIT_LEASE) {
+        await this.prisma.unit.update({
+          where: { id: request.unitId },
+          data: { tenants: { connect: { id: request.senderId } } },
+        });
+      }
     }
 
     return id;

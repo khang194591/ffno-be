@@ -1,16 +1,31 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { plainToInstance } from 'class-transformer';
+import { PrismaService } from 'src/config';
 import { GetPropertyResDto } from 'src/libs/dto';
-import { PropertyService } from '../property.service';
 
 export class GetPropertyQuery {
-  constructor(public readonly data: string) {}
+  constructor(public readonly id: string) {}
 }
 
 @QueryHandler(GetPropertyQuery)
 export class GetPropertyHandler implements IQueryHandler<GetPropertyQuery> {
-  constructor(private readonly propertyService: PropertyService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  async execute(query: GetPropertyQuery): Promise<GetPropertyResDto> {
-    return this.propertyService.getPropertyOrThrow(query.data);
+  async execute({ id }: GetPropertyQuery): Promise<GetPropertyResDto> {
+    const property = await this.prisma.property.findUniqueOrThrow({
+      where: { id },
+      include: {
+        amenities: true,
+        units: { include: { tenants: true } },
+        owner: {
+          select: {
+            name: true,
+            phone: true,
+          },
+        },
+      },
+    });
+
+    return plainToInstance(GetPropertyResDto, property);
   }
 }

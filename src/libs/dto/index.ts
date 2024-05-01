@@ -12,3 +12,10 @@ export interface NotificationPayload {
   content: string;
   memberId: string;
 }
+
+export interface EmailPayload<T = any> {
+  to: string;
+  subject: string;
+  template: string;
+  context: T;
+}
