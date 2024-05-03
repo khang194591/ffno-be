@@ -24,6 +24,15 @@ export class GetUnitHandler implements IQueryHandler<GetUnitQuery> {
         payer: true,
         tenants: true,
         unitFeatures: true,
+        property: {
+          select: {
+            name: true,
+            address: true,
+            ward: true,
+            district: true,
+            province: true,
+          },
+        },
       },
     });
 

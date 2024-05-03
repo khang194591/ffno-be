@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId } from 'src/libs/decorators';
+import { CurrentMemberId, Public } from 'src/libs/decorators';
 import {
   CreateUnitDto,
   GetListUnitQueryDto,
@@ -40,6 +40,7 @@ export class UnitController {
     private readonly queryBus: QueryBus,
   ) {}
 
+  @Public()
   @Get()
   async getUnits(@Query() query: GetListUnitQueryDto) {
     return this.queryBus.execute(new GetListUnitQuery(query));
@@ -55,6 +56,7 @@ export class UnitController {
     );
   }
 
+  @Public()
   @Get(':id')
   async getUnit(@Param() { id }: IdUUIDParams) {
     return this.queryBus.execute(new GetUnitQuery(id));

@@ -266,6 +266,11 @@ const seed = async () => {
       }),
     ]),
   );
+
+  await prisma.unit.updateMany({
+    data: { isListing: true },
+    where: { payerId: null },
+  });
 };
 
 void seed();
