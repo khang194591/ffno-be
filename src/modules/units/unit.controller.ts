@@ -10,12 +10,13 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId, Public } from 'src/libs/decorators';
+import { CurrentMember, CurrentMemberId, Public } from 'src/libs/decorators';
 import {
   CreateUnitDto,
   GetListUnitQueryDto,
   GetSimpleListUnitQueryDto,
   IdUUIDParams,
+  MemberResDto,
   OpenUnitDto,
   UpdateUnitDto,
 } from 'src/libs/dto';
@@ -58,8 +59,11 @@ export class UnitController {
 
   @Public()
   @Get(':id')
-  async getUnit(@Param() { id }: IdUUIDParams) {
-    return this.queryBus.execute(new GetUnitQuery(id));
+  async getUnit(
+    @CurrentMember() member: MemberResDto,
+    @Param() { id }: IdUUIDParams,
+  ) {
+    return this.queryBus.execute(new GetUnitQuery(member, id));
   }
 
   @Post()

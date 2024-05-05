@@ -55,4 +55,7 @@ export class UnitResDto {
 
   @Expose()
   propertyId: string;
+
+  @Expose()
+  requested: boolean;
 }
