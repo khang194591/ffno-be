@@ -7,7 +7,7 @@ import { hashSync } from 'bcrypt';
 import { plainToInstance } from 'class-transformer';
 import { isEmail, isPhoneNumber } from 'class-validator';
 import { PrismaService } from 'src/config';
-import { MemberResDto, SignUpDto } from 'src/libs/dto';
+import { MemberResDto, SignUpDto } from 'src/shared/dto';
 
 @Injectable()
 export class MemberService {

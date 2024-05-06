@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMember, CurrentMemberId } from 'src/libs/decorators';
+import { CurrentMember, CurrentMemberId } from 'src/shared/decorators';
 import {
   GetListContactQueryDto,
   IdUUIDParams,
   MemberResDto,
-} from 'src/libs/dto';
+} from 'src/shared/dto';
 import { LinkTenantCommand } from './commands';
 import {
   GetCurrentMemberQuery,

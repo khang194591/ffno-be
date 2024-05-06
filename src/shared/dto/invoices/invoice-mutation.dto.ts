@@ -10,8 +10,8 @@ import {
   IsString,
   IsUUID,
 } from 'class-validator';
-import { InvoiceCategory } from 'src/shared';
-import { DecimalNumber } from 'src/libs/decorators';
+import { InvoiceCategory } from 'src/libs';
+import { DecimalNumber } from '../../decorators';
 
 class InvoiceItemDto {
   @IsString()

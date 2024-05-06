@@ -1,8 +1,8 @@
 import { Exclude, Expose, Transform } from 'class-transformer';
-import { MemberRole } from 'src/shared';
+import { ICurrentMemberResDto, IMemberResDto, MemberRole } from 'src/libs';
 
 @Exclude()
-export class MemberResDto {
+export class MemberResDto implements IMemberResDto {
   @Expose()
   id: string;
 
@@ -36,7 +36,10 @@ export class MemberResDto {
 }
 
 @Exclude()
-export class CurrentMemberResDto extends MemberResDto {
+export class CurrentMemberResDto
+  extends MemberResDto
+  implements ICurrentMemberResDto
+{
   @Expose()
   identityNumber: string;
 

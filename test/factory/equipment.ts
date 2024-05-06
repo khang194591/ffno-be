@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import Decimal from 'decimal.js';
 import { MaintainStatus } from 'src/shared';
-import { CreateEquipmentDto } from 'src/libs/dto';
+import { CreateEquipmentDto } from 'src/shared/decorators';
 import { v4 } from 'uuid';
 
 export const fakeEquipment = (override: Partial<CreateEquipmentDto> = {}) => {

@@ -1,12 +1,12 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { UnitStatus } from 'src/shared';
-import { DecimalNumber } from 'src/libs/decorators';
+import { IUnitResDto, UnitStatus } from 'src/libs';
+import { DecimalNumber } from 'src/shared/decorators';
 import { Nullable } from '../common';
 import { MemberResDto } from '../members';
 import { GetPropertyResDto } from '../properties';
 
 @Exclude()
-export class UnitResDto {
+export class UnitResDto implements IUnitResDto {
   @Expose()
   id: string;
 

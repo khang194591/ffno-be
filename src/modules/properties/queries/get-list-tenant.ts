@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { GetListResDto, MemberResDto } from 'src/libs/dto';
+import { GetListResDto, MemberResDto } from 'src/shared/dto';
 
 export class GetListTenantQuery {
   constructor(public readonly id: string) {}

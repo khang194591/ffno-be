@@ -1,5 +1,5 @@
 {
   "projects": {
-    "src/shared": "https://github.com/FFNO/ffno-libs.git"
+    "src/libs": "https://github.com/FFNO/ffno-libs.git"
   }
 }

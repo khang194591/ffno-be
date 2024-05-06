@@ -1,6 +1,6 @@
 import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
-import { InvoiceStatus } from 'src/shared';
-import { TransformArray } from 'src/libs/decorators';
+import { InvoiceStatus } from 'src/libs';
+import { TransformArray } from 'src/shared/decorators';
 import { GetListQueryDto } from '../common';
 
 export class GetListInvoiceQueryDto extends GetListQueryDto {

@@ -9,8 +9,8 @@ import {
   IsUUID,
   IsUrl,
 } from 'class-validator';
-import { UnitStatus } from 'src/shared';
-import { DecimalNumber } from 'src/libs/decorators';
+import { UnitStatus } from 'src/libs';
+import { DecimalNumber } from 'src/shared/decorators';
 
 export class CreateUnitDto {
   @IsOptional()

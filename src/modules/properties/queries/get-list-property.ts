@@ -6,7 +6,7 @@ import {
   GetListPropertyQueryDto,
   GetListResDto,
   GetPropertyResDto,
-} from 'src/libs/dto';
+} from 'src/shared/dto';
 
 export class GetListPropertyQuery {
   constructor(

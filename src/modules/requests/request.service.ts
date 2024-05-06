@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { CreateRequestDto, GetRequestResDto } from 'src/libs/dto';
-import { RequestStatus } from 'src/shared';
+import { RequestStatus } from 'src/libs';
+import { CreateRequestDto, GetRequestResDto } from 'src/shared/dto';
 
 @Injectable()
 export class RequestService {

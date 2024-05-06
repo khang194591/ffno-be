@@ -9,7 +9,7 @@ import {
   IsString,
   IsUUID,
 } from 'class-validator';
-import { UnitStatus } from 'src/shared';
+import { UnitStatus } from 'src/libs';
 
 export class CreateEquipmentDto {
   @IsOptional()

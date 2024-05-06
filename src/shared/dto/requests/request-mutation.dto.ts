@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
-import { RequestCategory, RequestStatus } from 'src/shared';
+import { RequestCategory, RequestStatus } from 'src/libs';
 
 export class CreateRequestDto {
   constructor(partial: Partial<CreateRequestDto>) {

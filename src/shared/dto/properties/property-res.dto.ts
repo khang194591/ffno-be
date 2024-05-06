@@ -1,10 +1,11 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
+import { IPropertyResDto } from 'src/libs';
 import { Nullable } from '../common';
-import { UnitResDto } from '../units/unit-res.dto';
 import { MemberResDto } from '../members';
+import { UnitResDto } from '../units/unit-res.dto';
 
 @Exclude()
-export class GetPropertyResDto {
+export class GetPropertyResDto implements IPropertyResDto {
   @Expose()
   id: string;
 

@@ -9,7 +9,7 @@ import {
   IsUrl,
   IsUUID,
 } from 'class-validator';
-import { PropertyType } from 'src/shared';
+import { PropertyType } from 'src/libs';
 
 class CreateSimpleUnitDto {
   @IsString()

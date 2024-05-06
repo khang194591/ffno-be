@@ -1,6 +1,6 @@
 import { Exclude, Expose } from 'class-transformer';
 import { IsEmail, IsString } from 'class-validator';
-import { MemberRole } from 'src/shared';
+import { MemberRole } from 'src/libs';
 
 export class SignInDto {
   @IsString()

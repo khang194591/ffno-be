@@ -6,7 +6,7 @@ import {
   IsString,
   IsUUID,
 } from 'class-validator';
-import { TransformArray } from 'src/libs/decorators';
+import { TransformArray } from 'src/shared/decorators';
 import { GetListQueryDto } from '../common';
 
 export class GetListUnitQueryDto extends GetListQueryDto {

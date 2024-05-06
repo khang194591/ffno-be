@@ -4,7 +4,7 @@ import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import Decimal from 'decimal.js';
 import { v4 } from 'uuid';
-import { MemberRole, UnitStatus } from '../src/shared';
+import { MemberRole, UnitStatus } from '../src/libs';
 import districts from '../src/static/districts.json';
 import provinces from '../src/static/provinces.json';
 import wards from '../src/static/wards.json';

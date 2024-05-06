@@ -6,7 +6,7 @@ import {
   GetListRequestQueryDto,
   GetListResDto,
   GetRequestResDto,
-} from 'src/libs/dto';
+} from 'src/shared/dto';
 
 export class GetListRequestQuery {
   constructor(

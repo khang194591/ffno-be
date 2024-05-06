@@ -10,13 +10,13 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId, Public } from 'src/libs/decorators';
+import { CurrentMemberId, Public } from 'src/shared/decorators';
 import {
   CreatePropertyDto,
   GetListPropertyQueryDto,
   IdUUIDParams,
   UpdatePropertyDto,
-} from 'src/libs/dto';
+} from 'src/shared/dto';
 import {
   CreatePropertyCommand,
   DeletePropertyCommand,
