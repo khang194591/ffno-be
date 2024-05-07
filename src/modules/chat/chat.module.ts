@@ -1,18 +1,20 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
-import { NOTIFICATION_SERVICE } from 'src/libs';
-import { NotificationService } from './notification.service';
+import { CHAT_SERVICE } from 'src/libs';
+import { ChatController } from './chat.controller';
+import { ChatService } from './chat.service';
 
 @Module({
+  controllers: [ChatController],
   providers: [
-    NotificationService,
+    ChatService,
     {
-      provide: NOTIFICATION_SERVICE,
+      provide: CHAT_SERVICE,
       useFactory: (configService: ConfigService) => {
         return ClientProxyFactory.create({
           options: {
-            port: configService.get('NOTIFICATION_SERVICE_PORT') ?? 3010,
+            port: configService.get('CHAT_SERVICE_PORT') ?? 3020,
           },
           transport: Transport.TCP,
         });
@@ -20,6 +22,6 @@ import { NotificationService } from './notification.service';
       inject: [ConfigService],
     },
   ],
-  exports: [NotificationService],
+  exports: [ChatService],
 })
-export class NotificationModule {}
+export class ChatModule {}
