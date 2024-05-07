@@ -4,7 +4,7 @@ import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import Decimal from 'decimal.js';
 import { v4 } from 'uuid';
-import { MemberRole, UnitStatus } from '../src/libs';
+import { ContactType, MemberRole, UnitStatus } from '../src/libs';
 import districts from '../src/static/districts.json';
 import provinces from '../src/static/provinces.json';
 import wards from '../src/static/wards.json';
@@ -262,7 +262,11 @@ const seed = async () => {
               ? admin.id
               : members[randomInt(members.length - 1)].id,
         },
-        data: { contacts: { create: { type: 0, contactWithId: member.id } } },
+        data: {
+          contacts: {
+            create: { type: ContactType.TENANT, contactWithId: member.id },
+          },
+        },
       }),
     ]),
   );
