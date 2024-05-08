@@ -209,6 +209,7 @@ const seed = async () => {
       password: hashSync('123456', 10),
       role: MemberRole.TENANT,
       name: 'Trịnh Khang',
+      imgUrl: 'https://avatars.githubusercontent.com/u/65625612?s=200&v=4',
     }),
   );
 
@@ -270,6 +271,17 @@ const seed = async () => {
       }),
     ]),
   );
+
+  const contacts = await prisma.memberContacts.findMany({});
+
+  await prisma.memberContacts.createMany({
+    skipDuplicates: true,
+    data: contacts.map((contact) => ({
+      type: ContactType.TENANT,
+      contactId: contact.contactWithId,
+      contactWithId: contact.contactId,
+    })),
+  });
 
   await prisma.unit.updateMany({
     data: { isListing: true },
