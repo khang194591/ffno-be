@@ -13,7 +13,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { CurrentMemberId, Public } from 'src/shared/decorators';
 import {
   CreatePropertyDto,
-  GetListPropertyQueryDto,
+  GetListPropertyDto,
   IdUUIDParams,
   UpdatePropertyDto,
 } from 'src/shared/dto';
@@ -40,7 +40,7 @@ export class PropertyController {
   @Get()
   async getProperties(
     @CurrentMemberId() staffId: string,
-    @Query() query: GetListPropertyQueryDto,
+    @Query() query: GetListPropertyDto,
   ) {
     return this.queryBus.execute(new GetListPropertyQuery(staffId, query));
   }

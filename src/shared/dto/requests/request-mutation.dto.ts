@@ -1,12 +1,13 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
-import { RequestCategory, RequestStatus } from 'src/libs';
+import {
+  ICreateRequestDto,
+  IUpdateRequestDto,
+  RequestCategory,
+  RequestStatus,
+} from 'src/libs';
 
-export class CreateRequestDto {
-  constructor(partial: Partial<CreateRequestDto>) {
-    Object.assign(this, partial);
-  }
-
+export class CreateRequestDto implements ICreateRequestDto {
   @IsOptional()
   @IsUUID()
   id: string;
@@ -35,7 +36,7 @@ export class CreateRequestDto {
   unitId: string;
 }
 
-export class UpdateRequestDto {
+export class UpdateRequestDto implements IUpdateRequestDto {
   @IsOptional()
   @IsUUID()
   id: string;

@@ -1,10 +1,15 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { IRequestResDto, RequestCategory, RequestStatus } from 'src/libs';
+import {
+  IMemberWithStatus,
+  IRequestResDto,
+  RequestCategory,
+  RequestStatus,
+} from 'src/libs';
 import { MemberResDto } from '../members';
 import { UnitResDto } from '../units';
 
 @Exclude()
-class MemberWithStatus {
+class MemberWithStatus implements IMemberWithStatus {
   @Expose()
   status: RequestStatus;
 
@@ -16,7 +21,7 @@ class MemberWithStatus {
 }
 
 @Exclude()
-export class GetRequestResDto implements IRequestResDto {
+export class RequestResDto implements IRequestResDto {
   @Expose()
   id: string;
 

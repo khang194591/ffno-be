@@ -1,13 +1,13 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import Decimal from 'decimal.js';
-import { InvoiceStatus } from 'src/libs';
+import { IInvoiceItemResDto, IInvoiceResDto, InvoiceStatus } from 'src/libs';
 import { DecimalNumber } from 'src/shared/decorators';
 import { Nullable } from '../common';
 import { MemberResDto } from '../members';
 import { UnitResDto } from '../units';
 
 @Exclude()
-class InvoiceItemResDto {
+class InvoiceItemResDto implements IInvoiceItemResDto {
   @Expose()
   id: string;
 
@@ -28,7 +28,7 @@ class InvoiceItemResDto {
 }
 
 @Exclude()
-export class InvoiceResDto {
+export class InvoiceResDto implements IInvoiceResDto {
   @Expose()
   id: string;
 

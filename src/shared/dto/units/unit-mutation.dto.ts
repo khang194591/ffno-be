@@ -9,10 +9,15 @@ import {
   IsUUID,
   IsUrl,
 } from 'class-validator';
-import { UnitStatus } from 'src/libs';
+import {
+  ICreateUnitDto,
+  IOpenUnitDto,
+  IUpdateUnitDto,
+  UnitStatus,
+} from 'src/libs';
 import { DecimalNumber } from 'src/shared/decorators';
 
-export class CreateUnitDto {
+export class CreateUnitDto implements ICreateUnitDto {
   @IsOptional()
   @IsUUID()
   id: string;
@@ -53,9 +58,11 @@ export class CreateUnitDto {
   propertyId: string;
 }
 
-export class UpdateUnitDto extends PartialType(CreateUnitDto) {}
+export class UpdateUnitDto
+  extends PartialType(CreateUnitDto)
+  implements IUpdateUnitDto {}
 
-export class OpenUnitDto {
+export class OpenUnitDto implements IOpenUnitDto {
   @IsOptional()
   @IsArray()
   @IsUUID('4', { each: true })

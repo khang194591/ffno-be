@@ -1,7 +1,11 @@
 import { IsOptional, IsString } from 'class-validator';
-import { GetListQueryDto } from '../common';
+import { IGetListRequestDto } from 'src/libs';
+import { GetListDto } from '../common';
 
-export class GetListRequestQueryDto extends GetListQueryDto {
+export class GetListRequestDto
+  extends GetListDto
+  implements IGetListRequestDto
+{
   @IsOptional()
   @IsString()
   type?: string;

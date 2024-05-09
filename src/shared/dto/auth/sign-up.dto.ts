@@ -8,10 +8,10 @@ import {
   IsUrl,
   Length,
 } from 'class-validator';
-import { Gender, MemberRole } from 'src/libs';
+import { Gender, ISignUpDto, MemberRole } from 'src/libs';
 import { SignInDto } from './sign-in.dto';
 
-export class SignUpDto extends SignInDto {
+export class SignUpDto extends SignInDto implements ISignUpDto {
   @IsEnum(MemberRole)
   role: MemberRole;
 

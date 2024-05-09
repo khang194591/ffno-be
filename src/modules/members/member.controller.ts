@@ -2,11 +2,7 @@ import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
 import { CurrentMember, CurrentMemberId } from 'src/shared/decorators';
-import {
-  GetListContactQueryDto,
-  IdUUIDParams,
-  MemberResDto,
-} from 'src/shared/dto';
+import { GetListContactDto, IdUUIDParams, MemberResDto } from 'src/shared/dto';
 import { LinkTenantCommand } from './commands';
 import {
   GetCurrentMemberQuery,
@@ -25,7 +21,7 @@ export class MemberController {
   @Get('contacts')
   async getContacts(
     @CurrentMemberId() staffId: string,
-    @Query() query: GetListContactQueryDto,
+    @Query() query: GetListContactDto,
   ) {
     return this.queryBus.execute(new GetListContactQuery(staffId, query));
   }

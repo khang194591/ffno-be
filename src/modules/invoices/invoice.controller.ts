@@ -12,7 +12,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { CurrentMemberId, Public } from 'src/shared/decorators';
 import {
   CreateInvoiceDto,
-  GetListInvoiceQueryDto,
+  GetListInvoiceDto,
   IdNumberParams,
   UpdateInvoiceDto,
 } from 'src/shared/dto';
@@ -30,7 +30,7 @@ export class InvoiceController {
   @Get()
   async getListInvoice(
     @CurrentMemberId() staffId: string,
-    @Query() query: GetListInvoiceQueryDto,
+    @Query() query: GetListInvoiceDto,
   ) {
     return this.queryBus.execute(new GetListInvoiceQuery(staffId, query));
   }

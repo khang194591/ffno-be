@@ -1,9 +1,12 @@
 import { Type } from 'class-transformer';
 import { IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
-import { ContactType } from 'src/libs';
-import { GetListQueryDto } from '../common';
+import { ContactType, IGetListContactDto } from 'src/libs';
+import { GetListDto } from '../common';
 
-export class GetListContactQueryDto extends GetListQueryDto {
+export class GetListContactDto
+  extends GetListDto
+  implements IGetListContactDto
+{
   @IsOptional()
   @IsNotEmpty()
   keyword?: string;

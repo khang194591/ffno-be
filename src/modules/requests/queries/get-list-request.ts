@@ -3,15 +3,15 @@ import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import {
-  GetListRequestQueryDto,
+  GetListRequestDto,
   GetListResDto,
-  GetRequestResDto,
+  RequestResDto,
 } from 'src/shared/dto';
 
 export class GetListRequestQuery {
   constructor(
     public readonly staffId: string,
-    public readonly data: GetListRequestQueryDto,
+    public readonly data: GetListRequestDto,
   ) {}
 }
 
@@ -23,7 +23,7 @@ export class GetListRequestHandler
 
   async execute(
     query: GetListRequestQuery,
-  ): Promise<GetListResDto<GetRequestResDto>> {
+  ): Promise<GetListResDto<RequestResDto>> {
     const {
       staffId,
       data: { type = 'received', take, skip },
@@ -58,7 +58,7 @@ export class GetListRequestHandler
 
     return {
       total,
-      data: plainToInstance(GetRequestResDto, requests),
+      data: plainToInstance(RequestResDto, requests),
     };
   }
 }

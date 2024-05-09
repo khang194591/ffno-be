@@ -13,8 +13,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { CurrentMember, CurrentMemberId, Public } from 'src/shared/decorators';
 import {
   CreateUnitDto,
-  GetListUnitQueryDto,
-  GetSimpleListUnitQueryDto,
+  GetListUnitDto,
+  GetSimpleListUnitDto,
   IdUUIDParams,
   MemberResDto,
   OpenUnitDto,
@@ -43,14 +43,14 @@ export class UnitController {
 
   @Public()
   @Get()
-  async getUnits(@Query() query: GetListUnitQueryDto) {
+  async getUnits(@Query() query: GetListUnitDto) {
     return this.queryBus.execute(new GetListUnitQuery(query));
   }
 
   @Get('simple-list')
   async getSimpleListUnit(
     @CurrentMemberId() staffId: string,
-    @Query() query: GetSimpleListUnitQueryDto,
+    @Query() query: GetSimpleListUnitDto,
   ) {
     return this.queryBus.execute(
       new GetSimpleListUnitQuery(staffId, query.propertyId),
