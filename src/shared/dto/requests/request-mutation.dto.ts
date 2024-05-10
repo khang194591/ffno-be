@@ -1,4 +1,3 @@
-import { Type } from 'class-transformer';
 import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import {
   ICreateRequestDto,
@@ -19,7 +18,6 @@ export class CreateRequestDto implements ICreateRequestDto {
   details: string;
 
   @IsEnum(RequestCategory)
-  @Type(() => Number)
   category: RequestCategory;
 
   @IsOptional()

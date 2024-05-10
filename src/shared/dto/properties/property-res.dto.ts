@@ -1,5 +1,5 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { IPropertyResDto } from 'src/libs';
+import { IPropertyResDto, PropertyType } from 'src/libs';
 import { Nullable } from '../common';
 import { MemberResDto } from '../members';
 import { UnitResDto } from '../units/unit-res.dto';
@@ -13,7 +13,7 @@ export class GetPropertyResDto implements IPropertyResDto {
   name: string;
 
   @Expose()
-  type: number;
+  type: PropertyType;
 
   @Expose()
   address: string;

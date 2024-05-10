@@ -38,7 +38,6 @@ export class CreateUnitDto implements ICreateUnitDto {
   deposit: DecimalNumber;
 
   @IsEnum(UnitStatus)
-  @Type(() => Number)
   status: UnitStatus;
 
   @IsOptional()

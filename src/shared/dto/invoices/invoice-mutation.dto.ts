@@ -37,7 +37,6 @@ export class CreateInvoiceDto implements ICreateInvoiceDto {
   dueDate: Date;
 
   @IsEnum(InvoiceCategory)
-  @Type(() => Number)
   category: InvoiceCategory;
 
   @IsUUID()

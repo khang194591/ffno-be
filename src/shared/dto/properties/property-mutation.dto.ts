@@ -41,9 +41,8 @@ export class CreatePropertyDto implements ICreatePropertyDto {
   @IsString()
   name: string;
 
-  @Type(() => Number)
   @IsEnum(PropertyType)
-  type: number;
+  type: PropertyType;
 
   @IsString()
   address: string;

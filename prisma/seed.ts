@@ -4,7 +4,13 @@ import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import Decimal from 'decimal.js';
 import { v4 } from 'uuid';
-import { ContactType, MemberRole, UnitStatus } from '../src/libs';
+import {
+  ContactType,
+  Gender,
+  MemberRole,
+  PropertyType,
+  UnitStatus,
+} from '../src/libs';
 import districts from '../src/static/districts.json';
 import provinces from '../src/static/provinces.json';
 import wards from '../src/static/wards.json';
@@ -96,7 +102,7 @@ const fakeUnitImgUrls = [
 ];
 
 const fakeMember = (override = {}) => {
-  const gender = randomInt(2);
+  const gender = randomInt(2) === 0 ? Gender.MALE : Gender.FEMALE;
   const firstName = faker.person.firstName(gender ? 'female' : 'male');
   const lastName = faker.person.lastName(gender ? 'female' : 'male');
   const name = `${lastName} ${firstName}`;
@@ -122,7 +128,8 @@ const fakeProperty = (ownerId: string) => {
   const district = districtOptions[randomInt(districtOptions.length)];
   const wardOptions = wards[district];
   const ward = wardOptions[randomInt(wardOptions.length)];
-  const type = randomInt(2);
+  const type =
+    randomInt(2) === 0 ? PropertyType.SINGLE_UNIT : PropertyType.MULTIPLE_UNIT;
   return {
     id: v4(),
     name: `Nhà số ${faker.location.buildingNumber()}${faker.string.alpha(1).toUpperCase()}, ${faker.location.street()}`,

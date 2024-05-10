@@ -15,13 +15,13 @@ model Member {
   phone             String?                @unique
   password          String
   // Basic info
-  role              Int                    @db.SmallInt
+  role              Role
   name              String
-  gender            Int                    @db.SmallInt
+  gender            Gender
   imgUrl            String?
   address           String?
   dateOfBirth       DateTime?              @db.Date
-  identityNumber    String
+  identityNumber    String?
   identityImgUrls   String[]
   // Properties
   ownedProperties   Property[]
@@ -47,13 +47,13 @@ model Member {
 }
 
 model MemberContacts {
-  id            String  @id @default(uuid())
-  type          Int     @db.SmallInt
-  isConnected   Boolean @default(false)
+  id            String      @id @default(uuid())
+  type          ContactType
+  isConnected   Boolean     @default(false)
   // Relations
-  contact       Member  @relation("contact", fields: [contactId], references: [id])
+  contact       Member      @relation("contact", fields: [contactId], references: [id])
   contactId     String
-  contactWith   Member  @relation("contactWith", fields: [contactWithId], references: [id])
+  contactWith   Member      @relation("contactWith", fields: [contactWithId], references: [id])
   contactWithId String
 
   createdAt DateTime @default(now())
@@ -66,7 +66,7 @@ model Property {
   id         String            @id @default(uuid())
   // Basic info
   name       String
-  type       Int               @default(0) @db.SmallInt // 0 = Single Unit, 1 = Multiple Units
+  type       PropertyType      @default(SINGLE_UNIT)
   address    String
   ward       String
   district   String
@@ -95,7 +95,7 @@ model Unit {
   price         Decimal
   deposit       Decimal
   details       String?        @db.Text
-  status        Int            @db.SmallInt
+  status        UnitStatus     @default(GOOD)
   imgUrls       String[]
   isListing     Boolean        @default(false)
   // Relations
@@ -150,7 +150,7 @@ model Equipment {
   serial                  String?
   dateOfInstallation      DateTime?
   details                 String?            @db.Text
-  maintainStatus          Int                @default(0) @db.SmallInt // 0 = GOOD, 1 = MAINTAINING, 2 = BAD 
+  maintainStatus          UnitStatus
   // Relations
   category                String?
   Category                EquipmentCategory? @relation(fields: [category], references: [name])
@@ -167,16 +167,16 @@ model EquipmentCategory {
 }
 
 model Invoice {
-  id       Int           @id @default(autoincrement())
+  id       Int             @id @default(autoincrement())
   total    Decimal
-  status   Int           @db.SmallInt
+  status   InvoiceStatus
   paidAt   DateTime?
-  dueDate  DateTime      @db.Date
-  category Int           @db.SmallInt
+  dueDate  DateTime        @db.Date
+  category InvoiceCategory
   // Relations
-  unit     Unit          @relation(fields: [unitId], references: [id])
+  unit     Unit            @relation(fields: [unitId], references: [id])
   unitId   String
-  member   Member        @relation(fields: [memberId], references: [id])
+  member   Member          @relation(fields: [memberId], references: [id])
   memberId String
   items    InvoiceItem[]
 
@@ -217,9 +217,9 @@ model Contract {
 model Request {
   id        String                 @id @default(uuid())
   name      String
-  status    Int                    @db.SmallInt
+  status    RequestStatus
   details   String
-  category  Int                    @db.SmallInt
+  category  RequestCategory
   // Relations
   unitId    String?
   unit      Unit?                  @relation(fields: [unitId], references: [id])
@@ -233,10 +233,10 @@ model Request {
 
 model MemberReceiveRequest {
   memberId  String
-  member    Member  @relation(fields: [memberId], references: [id])
+  member    Member        @relation(fields: [memberId], references: [id])
   requestId String
-  request   Request @relation(fields: [requestId], references: [id])
-  status    Int     @db.SmallInt
+  request   Request       @relation(fields: [requestId], references: [id])
+  status    RequestStatus
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -271,4 +271,54 @@ model Notification {
   receiver   Member    @relation(fields: [receiverId], references: [id])
   createdAt  DateTime  @default(now())
   deletedAt  DateTime?
+}
+
+// ################################ ENUMS ################################
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum Role {
+  ADMIN
+  LANDLORD
+  TENANT
+  SERVICE_WORKER
+}
+
+enum ContactType {
+  TENANT
+  SERVICE_WORKER
+}
+
+enum PropertyType {
+  SINGLE_UNIT
+  MULTIPLE_UNIT
+}
+
+enum UnitStatus {
+  GOOD
+  MAINTAINING
+  BAD
+}
+
+enum InvoiceStatus {
+  PENDING
+  PAID
+  PARTIAL
+  OVERDUE
+}
+
+enum InvoiceCategory {
+  UNIT_CHARGE
+}
+
+enum RequestCategory {
+  UNIT_LEASE
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
 }
