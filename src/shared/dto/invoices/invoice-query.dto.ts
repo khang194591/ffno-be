@@ -1,9 +1,12 @@
 import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
-import { InvoiceStatus } from 'src/libs';
+import { IGetListInvoiceDto, InvoiceStatus } from 'src/libs';
 import { TransformArray } from 'src/shared/decorators';
-import { GetListQueryDto } from '../common';
+import { GetListDto } from '../common';
 
-export class GetListInvoiceQueryDto extends GetListQueryDto {
+export class GetListInvoiceDto
+  extends GetListDto
+  implements IGetListInvoiceDto
+{
   @IsOptional()
   @IsArray()
   @IsString({ each: true })

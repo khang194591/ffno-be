@@ -4,14 +4,14 @@ import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import {
   InvoiceResDto,
-  GetListInvoiceQueryDto,
+  GetListInvoiceDto,
   GetListResDto,
 } from 'src/shared/dto';
 
 export class GetListInvoiceQuery {
   constructor(
     public readonly staffId: string,
-    public readonly data: GetListInvoiceQueryDto,
+    public readonly data: GetListInvoiceDto,
   ) {}
 }
 

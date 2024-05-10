@@ -6,10 +6,11 @@ import {
   IsString,
   IsUUID,
 } from 'class-validator';
+import { IGetListUnitDto, IGetSimpleListUnitDto } from 'src/libs';
 import { TransformArray } from 'src/shared/decorators';
-import { GetListQueryDto } from '../common';
+import { GetListDto } from '../common';
 
-export class GetListUnitQueryDto extends GetListQueryDto {
+export class GetListUnitDto extends GetListDto implements IGetListUnitDto {
   @IsOptional()
   @IsString()
   name?: string;
@@ -59,7 +60,7 @@ export class GetListUnitQueryDto extends GetListQueryDto {
   maxPrice?: number;
 }
 
-export class GetSimpleListUnitQueryDto {
+export class GetSimpleListUnitDto implements IGetSimpleListUnitDto {
   @IsOptional()
   @IsUUID()
   propertyId?: string;

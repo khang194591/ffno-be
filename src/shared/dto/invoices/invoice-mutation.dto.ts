@@ -10,10 +10,15 @@ import {
   IsString,
   IsUUID,
 } from 'class-validator';
-import { InvoiceCategory } from 'src/libs';
+import {
+  ICreateInvoiceDto,
+  IInvoiceItemDto,
+  IUpdateInvoiceDto,
+  InvoiceCategory,
+} from 'src/libs';
 import { DecimalNumber } from '../../decorators';
 
-class InvoiceItemDto {
+class InvoiceItemDto implements IInvoiceItemDto {
   @IsString()
   description: string;
 
@@ -26,7 +31,7 @@ class InvoiceItemDto {
   amount: DecimalNumber;
 }
 
-export class CreateInvoiceDto {
+export class CreateInvoiceDto implements ICreateInvoiceDto {
   @IsDate()
   @Type(() => Date)
   dueDate: Date;
@@ -50,4 +55,6 @@ export class CreateInvoiceDto {
   isPaid?: boolean;
 }
 
-export class UpdateInvoiceDto extends PartialType(CreateInvoiceDto) {}
+export class UpdateInvoiceDto
+  extends PartialType(CreateInvoiceDto)
+  implements IUpdateInvoiceDto {}

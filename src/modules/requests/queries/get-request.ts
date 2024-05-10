@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { GetRequestResDto } from 'src/shared/dto';
+import { RequestResDto } from 'src/shared/dto';
 
 export class GetRequestQuery {
   constructor(public readonly id: string) {}
@@ -11,7 +11,7 @@ export class GetRequestQuery {
 export class GetRequestHandler implements IQueryHandler<GetRequestQuery> {
   constructor(private readonly prisma: PrismaService) {}
 
-  async execute({ id }: GetRequestQuery): Promise<GetRequestResDto> {
+  async execute({ id }: GetRequestQuery): Promise<RequestResDto> {
     const request = await this.prisma.request.findUnique({
       where: { id },
       include: {
@@ -27,6 +27,6 @@ export class GetRequestHandler implements IQueryHandler<GetRequestQuery> {
       },
     });
 
-    return plainToInstance(GetRequestResDto, request);
+    return plainToInstance(RequestResDto, request);
   }
 }

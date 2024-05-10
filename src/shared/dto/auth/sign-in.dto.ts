@@ -1,8 +1,8 @@
 import { Exclude, Expose } from 'class-transformer';
 import { IsEmail, IsString } from 'class-validator';
-import { MemberRole } from 'src/libs';
+import { ISignInDto, ISignInResDto, MemberRole } from 'src/libs';
 
-export class SignInDto {
+export class SignInDto implements ISignInDto {
   @IsString()
   @IsEmail()
   email: string = 'khang194591@gmail.com';
@@ -12,7 +12,7 @@ export class SignInDto {
 }
 
 @Exclude()
-export class SignInResDto {
+export class SignInResDto implements ISignInResDto {
   @Expose()
   id: string;
 

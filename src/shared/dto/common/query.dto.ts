@@ -1,5 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsNumber, IsOptional, IsUUID } from 'class-validator';
+import { IGetListDto } from 'src/libs';
 
 export class IdUUIDParams {
   @IsUUID()
@@ -12,7 +13,7 @@ export class IdNumberParams {
   id: number;
 }
 
-export class GetListQueryDto {
+export class GetListDto implements IGetListDto {
   @IsOptional()
   @IsNumber()
   @Type(() => Number)

@@ -3,16 +3,12 @@ import { Prisma } from '@prisma/client';
 import { plainToClass } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import { ContactType } from 'src/libs';
-import {
-  GetListContactQueryDto,
-  GetListResDto,
-  MemberResDto,
-} from 'src/shared/dto';
+import { GetListContactDto, GetListResDto, MemberResDto } from 'src/shared/dto';
 
 export class GetListContactQuery {
   constructor(
     public readonly staffId: string,
-    public readonly data: GetListContactQueryDto,
+    public readonly data: GetListContactDto,
   ) {}
 }
 

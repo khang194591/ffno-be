@@ -82,7 +82,10 @@ export class CronService {
             data: [
               unit.property.ownerId,
               ...unit.tenants.map(({ id }) => id),
-            ].map((memberId) => ({ memberId, status: RequestStatus.PENDING })),
+            ].map((memberId) => ({
+              memberId,
+              status: RequestStatus.PENDING,
+            })),
           },
         },
         details: faker.lorem.paragraph(),

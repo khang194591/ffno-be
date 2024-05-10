@@ -9,9 +9,14 @@ import {
   IsUrl,
   IsUUID,
 } from 'class-validator';
-import { PropertyType } from 'src/libs';
+import {
+  ICreatePropertyDto,
+  ICreateSimpleUnitDto,
+  IUpdatePropertyDto,
+  PropertyType,
+} from 'src/libs';
 
-class CreateSimpleUnitDto {
+class CreateSimpleUnitDto implements ICreateSimpleUnitDto {
   @IsString()
   name: string;
 
@@ -28,11 +33,7 @@ class CreateSimpleUnitDto {
   deposit: number;
 }
 
-export class CreatePropertyDto {
-  constructor(partial: Partial<CreatePropertyDto>) {
-    Object.assign(this, partial);
-  }
-
+export class CreatePropertyDto implements ICreatePropertyDto {
   @IsOptional()
   @IsUUID()
   id: string;
@@ -80,4 +81,6 @@ export class CreatePropertyDto {
   units: CreateSimpleUnitDto[];
 }
 
-export class UpdatePropertyDto extends PartialType(CreatePropertyDto) {}
+export class UpdatePropertyDto
+  extends PartialType(CreatePropertyDto)
+  implements IUpdatePropertyDto {}

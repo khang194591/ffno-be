@@ -3,7 +3,7 @@ import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import {
-  GetListPropertyQueryDto,
+  GetListPropertyDto,
   GetListResDto,
   GetPropertyResDto,
 } from 'src/shared/dto';
@@ -11,7 +11,7 @@ import {
 export class GetListPropertyQuery {
   constructor(
     public readonly staffId: string,
-    public readonly data: GetListPropertyQueryDto,
+    public readonly data: GetListPropertyDto,
   ) {}
 }
 

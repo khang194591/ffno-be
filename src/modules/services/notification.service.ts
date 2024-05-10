@@ -1,8 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { lastValueFrom } from 'rxjs';
-import { NOTIFICATION_PATTERNS, NOTIFICATION_SERVICE } from 'src/libs';
-import { EmailPayload, NotificationPayload } from 'src/shared/dto';
+import {
+  EmailPayload,
+  NOTIFICATION_PATTERNS,
+  NOTIFICATION_SERVICE,
+  NotificationPayload,
+} from 'src/libs';
 
 @Injectable()
 export class NotificationService {
