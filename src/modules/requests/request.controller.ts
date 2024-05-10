@@ -9,13 +9,13 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId } from 'src/libs/decorators';
+import { CurrentMemberId } from 'src/shared/decorators';
 import {
   CreateRequestDto,
-  GetListRequestQueryDto,
+  GetListRequestDto,
   IdUUIDParams,
   UpdateRequestDto,
-} from 'src/libs/dto';
+} from 'src/shared/dto';
 import { CreateRequestCommand, UpdateRequestCommand } from './commands';
 import { GetListRequestQuery, GetRequestQuery } from './queries';
 
@@ -30,7 +30,7 @@ export class RequestController {
   @Get()
   async getListRequest(
     @CurrentMemberId() staffId: string,
-    @Query() query: GetListRequestQueryDto,
+    @Query() query: GetListRequestDto,
   ) {
     return this.queryBus.execute(new GetListRequestQuery(staffId, query));
   }

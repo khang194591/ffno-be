@@ -1,11 +1,10 @@
-/*
-https://docs.nestjs.com/controllers#controllers
-*/
-
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  CreateEquipmentDto,
+  GetListEquipmentQuery,
+  IdUUIDParams,
+} from 'src/shared/dto';
 import { EquipmentService } from './equipment.service';
-import { CreateEquipmentDto, GetListEquipmentQuery } from 'src/libs/dto';
-import { IdUUIDParams } from 'src/libs/dto';
 
 @Controller('equipments')
 export class EquipmentController {

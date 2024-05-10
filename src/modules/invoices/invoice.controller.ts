@@ -9,13 +9,13 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId, Public } from 'src/libs/decorators';
+import { CurrentMemberId, Public } from 'src/shared/decorators';
 import {
   CreateInvoiceDto,
-  GetListInvoiceQueryDto,
+  GetListInvoiceDto,
   IdNumberParams,
   UpdateInvoiceDto,
-} from 'src/libs/dto';
+} from 'src/shared/dto';
 import { CreateInvoiceCommand, UpdateInvoiceCommand } from './commands';
 import { GetInvoiceQuery, GetListInvoiceQuery } from './queries';
 
@@ -30,7 +30,7 @@ export class InvoiceController {
   @Get()
   async getListInvoice(
     @CurrentMemberId() staffId: string,
-    @Query() query: GetListInvoiceQueryDto,
+    @Query() query: GetListInvoiceDto,
   ) {
     return this.queryBus.execute(new GetListInvoiceQuery(staffId, query));
   }

@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { plainToInstance } from 'class-transformer';
 import { Gender } from 'src/shared';
-import { SignUpDto } from 'src/libs/dto';
+import { SignUpDto } from 'src/shared/decorators';
 
 export const fakeMember = (override: Partial<SignUpDto> = {}) => {
   return plainToInstance(SignUpDto, {

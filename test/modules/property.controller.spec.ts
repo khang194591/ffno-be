@@ -1,5 +1,5 @@
 import { HttpStatus, INestApplication } from '@nestjs/common';
-import { UpdatePropertyDto } from 'src/libs/dto';
+import { UpdatePropertyDto } from 'src/shared/decorators';
 import request from 'supertest';
 import { fakeProperty } from 'test/factory';
 import { v4 } from 'uuid';

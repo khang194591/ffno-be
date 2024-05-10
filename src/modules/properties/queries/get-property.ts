@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { GetPropertyResDto } from 'src/libs/dto';
+import { GetPropertyResDto } from 'src/shared/dto';
 
 export class GetPropertyQuery {
   constructor(public readonly id: string) {}
@@ -19,8 +19,12 @@ export class GetPropertyHandler implements IQueryHandler<GetPropertyQuery> {
         units: { include: { tenants: true } },
         owner: {
           select: {
+            id: true,
             name: true,
+            role: true,
+            email: true,
             phone: true,
+            imgUrl: true,
           },
         },
       },

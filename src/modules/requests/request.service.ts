@@ -2,19 +2,19 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { CreateRequestDto, GetRequestResDto } from 'src/libs/dto';
-import { RequestStatus } from 'src/shared';
+import { RequestStatus } from 'src/libs';
+import { CreateRequestDto, RequestResDto } from 'src/shared/dto';
 
 @Injectable()
 export class RequestService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getRequestOrThrow(id: string): Promise<GetRequestResDto> {
+  async getRequestOrThrow(id: string): Promise<RequestResDto> {
     const request = await this.prisma.request.findUniqueOrThrow({
       where: { id },
     });
 
-    return plainToInstance(GetRequestResDto, request);
+    return plainToInstance(RequestResDto, request);
   }
 
   async validateRequestInput(

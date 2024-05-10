@@ -4,12 +4,12 @@ import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import {
   GetListResDto,
-  GetListUnitQueryDto,
+  GetListUnitDto,
   GetPropertyResDto,
-} from 'src/libs/dto';
+} from 'src/shared/dto';
 
 export class GetListUnitQuery {
-  constructor(public readonly data: GetListUnitQueryDto) {}
+  constructor(public readonly data: GetListUnitDto) {}
 }
 
 @QueryHandler(GetListUnitQuery)

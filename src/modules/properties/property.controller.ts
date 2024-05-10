@@ -10,13 +10,13 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId } from 'src/libs/decorators';
+import { CurrentMemberId, Public } from 'src/shared/decorators';
 import {
   CreatePropertyDto,
-  GetListPropertyQueryDto,
+  GetListPropertyDto,
   IdUUIDParams,
   UpdatePropertyDto,
-} from 'src/libs/dto';
+} from 'src/shared/dto';
 import {
   CreatePropertyCommand,
   DeletePropertyCommand,
@@ -40,7 +40,7 @@ export class PropertyController {
   @Get()
   async getProperties(
     @CurrentMemberId() staffId: string,
-    @Query() query: GetListPropertyQueryDto,
+    @Query() query: GetListPropertyDto,
   ) {
     return this.queryBus.execute(new GetListPropertyQuery(staffId, query));
   }
@@ -50,6 +50,7 @@ export class PropertyController {
     return this.queryBus.execute(new GetSimpleListPropertyQuery(staffId));
   }
 
+  @Public()
   @Get(':id')
   async getProperty(@Param() { id }: IdUUIDParams) {
     return this.queryBus.execute(new GetPropertyQuery(id));

@@ -1,7 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { CreateRequestDto } from 'src/libs/dto';
 import { NotificationService } from 'src/modules/services/notification.service';
+import { CreateRequestDto } from 'src/shared/dto';
 import { RequestService } from '../request.service';
 
 export class CreateRequestCommand {

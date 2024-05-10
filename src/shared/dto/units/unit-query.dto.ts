@@ -1,0 +1,67 @@
+import { Type } from 'class-transformer';
+import {
+  IsArray,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
+import { IGetListUnitDto, IGetSimpleListUnitDto } from 'src/libs';
+import { TransformArray } from 'src/shared/decorators';
+import { GetListDto } from '../common';
+
+export class GetListUnitDto extends GetListDto implements IGetListUnitDto {
+  @IsOptional()
+  @IsString()
+  name?: string;
+
+  @IsOptional()
+  @IsString()
+  ward?: string;
+
+  @IsOptional()
+  @IsString()
+  district?: string;
+
+  @IsOptional()
+  @IsString()
+  province?: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  @TransformArray()
+  amenities?: string[];
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  @TransformArray()
+  features?: string[];
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  minArea?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  maxArea?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  minPrice?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  maxPrice?: number;
+}
+
+export class GetSimpleListUnitDto implements IGetSimpleListUnitDto {
+  @IsOptional()
+  @IsUUID()
+  propertyId?: string;
+}

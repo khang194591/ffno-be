@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { UnitResDto, UpdateUnitDto } from 'src/libs/dto';
+import { UnitResDto, UpdateUnitDto } from 'src/shared/dto';
 import { PropertyService } from '../properties/property.service';
 
 @Injectable()

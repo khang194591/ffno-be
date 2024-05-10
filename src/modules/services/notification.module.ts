@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
+import { NOTIFICATION_SERVICE } from 'src/libs';
 import { NotificationService } from './notification.service';
-import { NOTIFICATION_SERVICE } from './const';
 
 @Module({
   providers: [

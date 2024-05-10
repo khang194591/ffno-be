@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { InvoiceResDto } from 'src/libs/dto';
+import { InvoiceResDto } from 'src/shared/dto';
 
 export class GetInvoiceQuery {
   constructor(public readonly id: number) {}

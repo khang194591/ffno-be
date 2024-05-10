@@ -4,7 +4,7 @@ import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import Decimal from 'decimal.js';
 import { v4 } from 'uuid';
-import { MemberRole, UnitStatus } from '../src/shared';
+import { ContactType, MemberRole, UnitStatus } from '../src/libs';
 import districts from '../src/static/districts.json';
 import provinces from '../src/static/provinces.json';
 import wards from '../src/static/wards.json';
@@ -209,6 +209,7 @@ const seed = async () => {
       password: hashSync('123456', 10),
       role: MemberRole.TENANT,
       name: 'Trịnh Khang',
+      imgUrl: 'https://avatars.githubusercontent.com/u/65625612?s=200&v=4',
     }),
   );
 
@@ -262,10 +263,30 @@ const seed = async () => {
               ? admin.id
               : members[randomInt(members.length - 1)].id,
         },
-        data: { contacts: { create: { type: 0, contactWithId: member.id } } },
+        data: {
+          contacts: {
+            create: { type: ContactType.TENANT, contactWithId: member.id },
+          },
+        },
       }),
     ]),
   );
+
+  const contacts = await prisma.memberContacts.findMany({});
+
+  await prisma.memberContacts.createMany({
+    skipDuplicates: true,
+    data: contacts.map((contact) => ({
+      type: ContactType.TENANT,
+      contactId: contact.contactWithId,
+      contactWithId: contact.contactId,
+    })),
+  });
+
+  await prisma.unit.updateMany({
+    data: { isListing: true },
+    where: { payerId: null },
+  });
 };
 
 void seed();

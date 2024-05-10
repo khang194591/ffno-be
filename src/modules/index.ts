@@ -1,4 +1,5 @@
 import { AuthModule } from './auth/auth.module';
+import { ChatModule } from './chat/chat.module';
 import { CommonModule } from './common/common.module';
 import { CronModule } from './cron/cron.module';
 import { EquipmentModule } from './equipments/equipment.module';
@@ -19,5 +20,6 @@ export const modules = [
   EquipmentModule,
   InvoiceModule,
   RequestModule,
+  ChatModule,
   ...microServiceModules,
 ];

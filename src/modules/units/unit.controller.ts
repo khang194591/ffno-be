@@ -10,15 +10,16 @@ import {
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId } from 'src/libs/decorators';
+import { CurrentMember, CurrentMemberId, Public } from 'src/shared/decorators';
 import {
   CreateUnitDto,
-  GetListUnitQueryDto,
-  GetSimpleListUnitQueryDto,
+  GetListUnitDto,
+  GetSimpleListUnitDto,
   IdUUIDParams,
+  MemberResDto,
   OpenUnitDto,
   UpdateUnitDto,
-} from 'src/libs/dto';
+} from 'src/shared/dto';
 import {
   CloseUnitCommand,
   CreateUnitCommand,
@@ -40,24 +41,29 @@ export class UnitController {
     private readonly queryBus: QueryBus,
   ) {}
 
+  @Public()
   @Get()
-  async getUnits(@Query() query: GetListUnitQueryDto) {
+  async getUnits(@Query() query: GetListUnitDto) {
     return this.queryBus.execute(new GetListUnitQuery(query));
   }
 
   @Get('simple-list')
   async getSimpleListUnit(
     @CurrentMemberId() staffId: string,
-    @Query() query: GetSimpleListUnitQueryDto,
+    @Query() query: GetSimpleListUnitDto,
   ) {
     return this.queryBus.execute(
       new GetSimpleListUnitQuery(staffId, query.propertyId),
     );
   }
 
+  @Public()
   @Get(':id')
-  async getUnit(@Param() { id }: IdUUIDParams) {
-    return this.queryBus.execute(new GetUnitQuery(id));
+  async getUnit(
+    @CurrentMember() member: MemberResDto,
+    @Param() { id }: IdUUIDParams,
+  ) {
+    return this.queryBus.execute(new GetUnitQuery(member, id));
   }
 
   @Post()
