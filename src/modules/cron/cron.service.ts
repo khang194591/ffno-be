@@ -55,7 +55,7 @@ export class CronService {
     console.log(invoices);
   }
 
-  // @Cron(CronExpression.EVERY_MINUTE)
+  @Cron(CronExpression.EVERY_30_MINUTES)
   async fakeRequest() {
     const members = await this.prisma.member.findMany({
       where: { role: MemberRole.TENANT },

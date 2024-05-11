@@ -43,8 +43,11 @@ export class UnitController {
 
   @Public()
   @Get()
-  async getUnits(@Query() query: GetListUnitDto) {
-    return this.queryBus.execute(new GetListUnitQuery(query));
+  async getUnits(
+    @CurrentMember() currentMember: MemberResDto,
+    @Query() query: GetListUnitDto,
+  ) {
+    return this.queryBus.execute(new GetListUnitQuery(currentMember, query));
   }
 
   @Get('simple-list')

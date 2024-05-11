@@ -53,20 +53,23 @@ export class PropertyService {
     }
   }
 
-  async validatePropertyInput(
-    data: CreatePropertyDto | UpdatePropertyDto,
-  ): Promise<Prisma.PropertyCreateInput | Prisma.PropertyUpdateInput> {
+  async validateCreatePropertyInput(
+    data: CreatePropertyDto,
+  ): Promise<Prisma.PropertyCreateInput> {
     const {
+      ownerId,
       amenities = [],
       equipments = [],
       units = [],
       ...partialProperty
     } = data;
+
     await this.validateAmenities(data.amenities);
     await this.validateEquipment(data.equipments);
 
     return {
       ...partialProperty,
+      owner: { connect: { id: ownerId } },
       amenities: { connect: amenities.map((name) => ({ name })) },
       equipments: { connect: equipments.map((id) => ({ id })) },
       units: {
@@ -74,6 +77,21 @@ export class PropertyService {
           data: units.map((unit) => ({ ...unit, status: UnitStatus.GOOD })),
         },
       },
+    };
+  }
+
+  async validateUpdatePropertyInput(
+    data: UpdatePropertyDto,
+  ): Promise<Prisma.PropertyUpdateInput> {
+    const { amenities = [], equipments = [], ...partialProperty } = data;
+
+    await this.validateAmenities(data.amenities);
+    await this.validateEquipment(data.equipments);
+
+    return {
+      ...partialProperty,
+      amenities: { set: amenities.map((name) => ({ name })) },
+      equipments: { connect: equipments.map((id) => ({ id })) },
     };
   }
 }
