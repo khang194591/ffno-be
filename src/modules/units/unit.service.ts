@@ -31,7 +31,7 @@ export class UnitService {
       await this.validateUnitFeatures(unitFeatures);
     }
     if (name && propertyId) {
-      await this.validateUniqueUnitNameAndPropertyId(name, propertyId);
+      await this.validateUniqueUnitNameAndPropertyId(data.id, name, propertyId);
     }
   }
 
@@ -46,6 +46,7 @@ export class UnitService {
   }
 
   private async validateUniqueUnitNameAndPropertyId(
+    id: string,
     name: string,
     propertyId: string,
   ) {
@@ -53,7 +54,7 @@ export class UnitService {
       where: { name_propertyId: { name, propertyId } },
     });
 
-    if (unit) {
+    if (unit && id && unit.id !== id) {
       throw new BadRequestException(
         `Unit with name = ${name} and propertyId = ${propertyId}`,
       );

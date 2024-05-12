@@ -17,10 +17,10 @@ import {
 export class CronService {
   constructor(private readonly prisma: PrismaService) {}
 
-  // @Cron(CronExpression.EVERY_HOUR)
+  @Cron(CronExpression.EVERY_MINUTE)
   async bulkCreateMonthlyInvoice() {
     console.log('-------------------------------');
-    const a = await this.prisma.unit.findMany({
+    const allUnits = await this.prisma.unit.findMany({
       //   where: {},
       include: {
         property: {
@@ -36,23 +36,35 @@ export class CronService {
       },
     });
 
-    const b = a.filter((unit) => unit.tenants.length);
+    const chargableUnits = allUnits.filter(
+      (unit) => unit.tenants.length && unit.payerId,
+    );
 
-    const c: Prisma.InvoiceCreateManyArgs = {
-      skipDuplicates: true,
-      data: b.map((unit) => ({
-        total: unit.price,
-        status: InvoiceStatus.PENDING,
-        category: InvoiceCategory.UNIT_CHARGE,
-        unitId: unit.id,
-        memberId: unit.payerId,
-        details: `Unit ${unit.name} of property ${unit.property.name} charge ${dayjs().format('MM/YYYY')}`,
-        dueDate: dayjs().endOf('month').toDate(),
-      })),
-    };
+    const result = await this.prisma.$transaction(async (tx) =>
+      Promise.all(
+        chargableUnits.map((unit) =>
+          tx.invoice.create({
+            data: {
+              total: unit.price,
+              status: InvoiceStatus.PENDING,
+              category: InvoiceCategory.UNIT_CHARGE,
+              unitId: unit.id,
+              memberId: unit.payerId,
+              dueDate: dayjs().endOf('month').toDate(),
+              items: {
+                create: {
+                  amount: 1,
+                  price: unit.price,
+                  description: `Unit ${unit.name} of property ${unit.property.name} charge ${dayjs().format('MM/YYYY')}`,
+                },
+              },
+            },
+          }),
+        ),
+      ),
+    );
 
-    const invoices = await this.prisma.invoice.createMany(c);
-    console.log(invoices);
+    console.log(result.length);
   }
 
   @Cron(CronExpression.EVERY_30_MINUTES)
