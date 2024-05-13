@@ -6,6 +6,7 @@ import {
   fakeMember,
   fakeProperty,
   fakeUnit,
+  getRandomItemInArray,
   mockAmenities,
   mockUnitFeatures,
 } from './helper';
@@ -14,7 +15,9 @@ const prisma = new PrismaClient();
 
 const seed = async () => {
   await prisma.$transaction([
+    prisma.memberReceiveRequest.deleteMany(),
     prisma.request.deleteMany(),
+    prisma.invoiceItem.deleteMany(),
     prisma.invoice.deleteMany(),
     prisma.unitPriceLog.deleteMany(),
     prisma.unitFeature.deleteMany(),
@@ -27,35 +30,51 @@ const seed = async () => {
     prisma.member.deleteMany(),
   ]);
 
-  const admin = await prisma.member.create({
+  await prisma.member.create({
     data: fakeMember({
       id: 'eeb06826-843f-4f4f-a298-b1ce3b9a370b',
-      email: 'khang194591@gmail.com',
+      email: 'admin@gmail.com',
       password: hashSync('123456', 10),
       role: MemberRole.ADMIN,
-      name: 'Trịnh Đức Khang',
-      imgUrl:
-        'https://lh3.googleusercontent.com/a/ACg8ocJ-wyEURnuJjTv_eY9Fgf_KPd4QA75b_A5D06wJ63IB7gKjOUUv=s288-c-no',
+      name: 'Admin',
+      imgUrl: 'https://avatar.iran.liara.run/public/02',
     }),
   });
 
-  const members = Array(randomInt(50, 100))
-    .fill(0)
-    .map(() => fakeMember());
+  const landlords = Array.from({ length: randomInt(5, 10) }).map(() =>
+    fakeMember({ role: MemberRole.LANDLORD }),
+  );
 
-  members.push(
+  const tenants = Array.from({ length: randomInt(100, 400) }).map(() =>
+    fakeMember(),
+  );
+
+  landlords.push(
+    fakeMember({
+      id: 'c7be62dd-4e32-42a3-b37d-0e9103339668',
+      email: 'khang194591@gmail.com',
+      password: hashSync('123456', 10),
+      role: MemberRole.LANDLORD,
+      name: 'Kyle Trịnh',
+      imgUrl:
+        'https://lh3.googleusercontent.com/a/ACg8ocJ-wyEURnuJjTv_eY9Fgf_KPd4QA75b_A5D06wJ63IB7gKjOUUv=s288-c-no',
+    }),
+  );
+
+  tenants.push(
     fakeMember({
       id: '3c8f96f8-57c8-4846-9826-59b1277e9b63',
       email: 'khang.td194591@sis.hust.edu.vn',
       password: hashSync('123456', 10),
       role: MemberRole.TENANT,
       name: 'Trịnh Khang',
-      imgUrl: 'https://avatars.githubusercontent.com/u/65625612?s=200&v=4',
+      imgUrl: 'https://avatar.iran.liara.run/public/03',
     }),
   );
 
   await prisma.member.createMany({
-    data: members,
+    skipDuplicates: true,
+    data: [...tenants, ...landlords],
   });
 
   await prisma.propertyAmenity.createMany({
@@ -68,16 +87,19 @@ const seed = async () => {
     data: mockUnitFeatures.map((name) => ({ name })),
   });
 
-  const properties = Array(randomInt(20, 50))
-    .fill(0)
-    .map(() => fakeProperty(admin.id));
+  const properties = Array.from({ length: randomInt(20, 50) }).map(() =>
+    fakeProperty(getRandomItemInArray(landlords).id),
+  );
+
+  properties.push(
+    fakeProperty('c7be62dd-4e32-42a3-b37d-0e9103339668'),
+    fakeProperty('c7be62dd-4e32-42a3-b37d-0e9103339668'),
+  );
 
   const units = properties
     .map(({ id, type }) =>
       type === PropertyType.MULTIPLE_UNIT
-        ? Array(randomInt(2, 10))
-            .fill(0)
-            .map(() => fakeUnit(id))
+        ? Array.from({ length: randomInt(2, 20) }).map(() => fakeUnit(id))
         : fakeUnit(id),
     )
     .flatMap((i) => i);
@@ -89,28 +111,29 @@ const seed = async () => {
     units.map((unit) => prisma.unit.create({ data: unit })),
   );
 
-  const shuffledMembers = members.sort(() => 0.5 - Math.random());
-  await prisma.$transaction(
-    shuffledMembers.flatMap((member) => [
-      prisma.unit.update({
-        where: { id: units[randomInt(units.length - 1)].id },
-        data: { payerId: member.id, tenants: { connect: { id: member.id } } },
-      }),
+  const shuffledMembers = tenants.sort(() => 0.5 - Math.random());
 
-      prisma.member.update({
-        where: {
-          id:
-            randomInt(10) < 3
-              ? admin.id
-              : members[randomInt(members.length - 1)].id,
-        },
-        data: {
-          contacts: {
-            create: { type: ContactType.TENANT, contactWithId: member.id },
+  await prisma.$transaction(
+    shuffledMembers.flatMap((member) => {
+      const unit = getRandomItemInArray(units);
+      return [
+        prisma.unit.update({
+          where: { id: unit.id },
+          data: { payerId: member.id, tenants: { connect: { id: member.id } } },
+        }),
+
+        prisma.member.update({
+          where: {
+            // id: unit.,
           },
-        },
-      }),
-    ]),
+          data: {
+            contacts: {
+              create: { type: ContactType.TENANT, contactWithId: member.id },
+            },
+          },
+        }),
+      ];
+    }),
   );
 
   const contacts = await prisma.memberContacts.findMany({});

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { faker } from '@faker-js/faker/locale/vi';
+import { faker } from '@faker-js/faker';
 import { Prisma } from '@prisma/client';
 import Decimal from 'decimal.js';
 import { randomInt } from 'node:crypto';
@@ -20,46 +20,54 @@ export function getRandomItemsInArray<T = unknown>(array: Array<T>) {
   return shuffled.slice(0, randomInt(array.length - 1));
 }
 
+export function getRandomItemInArray<T = unknown>(array: T[]): T {
+  if (array.length === 0) {
+    return undefined;
+  }
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+}
+
 export const mockAmenities = [
-  'Hồ bơi',
-  'Phòng tập gym',
-  'Khu vui chơi',
-  'Sân tennis',
-  'Sân thượng hoặc vườn mái',
-  'Quán cà phê',
-  'Dịch vụ giặt là',
-  'Khu vực BBQ',
-  'Khu vực vui chơi cho trẻ em',
-  'Truy cập internet tốc độ cao',
-  'Dịch vụ quản lý tài sản',
-  'Bãi đậu xe',
-  'Quầy bar/lounge',
-  'Phòng họp',
-  'Khu vực tiệc ngoài trời',
-  'Dịch vụ giữ trẻ',
-  'Cho phép vật nuôi',
-  'Dịch vụ giữ trẻ',
+  'Swimming pool',
+  'Gym',
+  'Playground',
+  'Tennis court',
+  'Roof terrace or garden',
+  'Coffee shop',
+  'Laundry service',
+  'BBQ area',
+  "Children's play area",
+  'High-speed internet access',
+  'Property management service',
+  'Parking lot',
+  'Bar/lounge',
+  'Meeting room',
+  'Outdoor party area',
+  'Babysitting service',
+  'Pet-friendly',
+  'Babysitting service',
 ];
 
 export const mockUnitFeatures = [
-  'Điều hòa không khí',
-  'Tủ lạnh',
-  'Máy giặt',
-  'Bồn tắm',
-  'Tủ quần áo',
-  'Bàn làm việc',
+  'Air conditioning',
+  'Refrigerator',
+  'Washing machine',
+  'Bathtub',
+  'Wardrobe',
+  'Desk',
   'Internet',
-  'Bàn ăn',
-  'Ban công',
-  'Máy sưởi',
-  'Máy sấy tóc',
-  'Giường',
-  'Bàn và ghế',
-  'Máy hút mùi',
-  'Lò nướng',
-  'Máy phát điện dự phòng',
-  'Máy lọc nước',
-  'Bình nước nóng',
+  'Dining table',
+  'Balcony',
+  'Heater',
+  'Hair dryer',
+  'Bed',
+  'Table and chairs',
+  'Extractor hood',
+  'Oven',
+  'Backup generator',
+  'Water purifier',
+  'Water heater',
 ];
 
 const fakePropertyImgUrls = [
@@ -125,23 +133,23 @@ export const fakeMember = (override = {}) => {
 };
 
 export const fakeProperty = (ownerId: string) => {
-  const province = provinces[randomInt(provinces.length)];
+  const province = getRandomItemInArray(provinces);
   const districtOptions = districts[province];
-  const district = districtOptions[randomInt(districtOptions.length)];
+  const district = getRandomItemInArray<string>(districtOptions);
   const wardOptions = wards[district];
-  const ward = wardOptions[randomInt(wardOptions.length)];
+  const ward = getRandomItemInArray<string>(wardOptions);
   const type = getRandomEnumValue(PropertyType);
   return {
     id: v4(),
-    name: `Nhà số ${faker.location.buildingNumber()}${faker.string.alpha(1).toUpperCase()}, ${faker.location.street()}`,
+    name: `${faker.location.buildingNumber()}${faker.string.alpha(1).toUpperCase()}, ${faker.location.street()}`,
     type,
     address: faker.location.streetAddress(true),
     ward,
     district,
     province,
-    imgUrls: Array(randomInt(2, 6))
-      .fill(0)
-      .map(() => fakePropertyImgUrls[randomInt(fakePropertyImgUrls.length)]),
+    imgUrls: Array.from({ length: randomInt(2, 6) }).map(() =>
+      getRandomItemInArray(fakePropertyImgUrls),
+    ),
     ownerId,
     details: faker.lorem.paragraph(),
     amenities: {
@@ -164,9 +172,9 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
         : randomInt(100) < 50
           ? UnitStatus.MAINTAINING
           : UnitStatus.BAD,
-    imgUrls: Array(randomInt(2, 6))
-      .fill(0)
-      .map(() => fakeUnitImgUrls[randomInt(fakeUnitImgUrls.length)]),
+    imgUrls: Array.from({ length: randomInt(2, 6) }).map(() =>
+      getRandomItemInArray(fakeUnitImgUrls),
+    ),
     property: { connect: { id: propertyId } },
     unitFeatures: {
       connect: getRandomItemsInArray(mockUnitFeatures).map((name) => ({
