@@ -107,15 +107,18 @@ const seed = async () => {
   await prisma.$transaction(
     properties.map((property) => prisma.property.create({ data: property })),
   );
-  await prisma.$transaction(
-    units.map((unit) => prisma.unit.create({ data: unit })),
+
+  const createdUnits = await prisma.$transaction(
+    units.map((unit) =>
+      prisma.unit.create({ data: unit, include: { property: true } }),
+    ),
   );
 
   const shuffledMembers = tenants.sort(() => 0.5 - Math.random());
 
   await prisma.$transaction(
     shuffledMembers.flatMap((member) => {
-      const unit = getRandomItemInArray(units);
+      const unit = getRandomItemInArray(createdUnits);
       return [
         prisma.unit.update({
           where: { id: unit.id },
@@ -123,9 +126,7 @@ const seed = async () => {
         }),
 
         prisma.member.update({
-          where: {
-            // id: unit.,
-          },
+          where: { id: unit.property.ownerId },
           data: {
             contacts: {
               create: { type: ContactType.TENANT, contactWithId: member.id },
