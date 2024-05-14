@@ -42,8 +42,10 @@ export class GetListInvoiceHandler
         take,
         skip,
         include: {
-          unit: { select: { name: true } },
-          member: { select: { name: true } },
+          unit: {
+            select: { name: true, property: { select: { name: true } } },
+          },
+          member: { select: { name: true, imgUrl: true } },
         },
         orderBy: {
           createdAt: 'desc',

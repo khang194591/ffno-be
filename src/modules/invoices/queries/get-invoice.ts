@@ -16,8 +16,8 @@ export class GetInvoiceHandler implements IQueryHandler<GetInvoiceQuery> {
       where: { id },
       include: {
         items: true,
-        unit: { select: { name: true } },
-        member: { select: { name: true } },
+        unit: { select: { name: true, property: { select: { name: true } } } },
+        member: { select: { name: true, email: true, address: true } },
       },
     });
 
