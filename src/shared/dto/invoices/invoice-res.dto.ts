@@ -1,6 +1,11 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import Decimal from 'decimal.js';
-import { IInvoiceItemResDto, IInvoiceResDto, InvoiceStatus } from 'src/libs';
+import {
+  IInvoiceItemResDto,
+  IInvoiceResDto,
+  InvoiceCategory,
+  InvoiceStatus,
+} from 'src/libs';
 import { DecimalNumber } from 'src/shared/decorators';
 import { Nullable } from '../common';
 import { MemberResDto } from '../members';
@@ -49,7 +54,7 @@ export class InvoiceResDto implements IInvoiceResDto {
   details: string;
 
   @Expose()
-  category: string;
+  category: InvoiceCategory;
 
   @Expose()
   unitId: string;

@@ -41,8 +41,9 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
       skip,
     } = query;
 
-    const { id: currentMemberId, role } = currentMember;
-    const isTenant = role === MemberRole.TENANT;
+    const currentMemberId = currentMember?.id;
+
+    const isTenant = !currentMember || currentMember.role === MemberRole.TENANT;
 
     const whereUnit: Prisma.UnitWhereInput = {
       name: { search: handleSearchQuery(name) },

@@ -31,6 +31,8 @@ export class ChatService {
     });
 
     if (!contact) {
+      console.log(memberId, contactWithId);
+
       contact = await this.prismaService.memberContacts.create({
         data: { type: ContactType.TENANT, contactId: memberId, contactWithId },
         include: { contactWith: { select: { name: true, imgUrl: true } } },
