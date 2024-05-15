@@ -47,13 +47,13 @@ model Member {
 }
 
 model MemberContacts {
-  id            String      @id @default(uuid())
-  type          ContactType
-  isConnected   Boolean     @default(false)
+  id            String  @id @default(uuid())
+  type          Role
+  isConnected   Boolean @default(false)
   // Relations
-  contact       Member      @relation("contact", fields: [contactId], references: [id])
+  contact       Member  @relation("contact", fields: [contactId], references: [id])
   contactId     String
-  contactWith   Member      @relation("contactWith", fields: [contactWithId], references: [id])
+  contactWith   Member  @relation("contactWith", fields: [contactWithId], references: [id])
   contactWithId String
 
   createdAt DateTime @default(now())
@@ -94,7 +94,7 @@ model Unit {
   area          Decimal
   price         Decimal
   deposit       Decimal
-  details       String?        @db.Text
+  description   String?
   status        UnitStatus     @default(GOOD)
   imgUrls       String[]
   isListing     Boolean        @default(false)
@@ -149,7 +149,7 @@ model Equipment {
   model                   String?
   serial                  String?
   dateOfInstallation      DateTime?
-  details                 String?            @db.Text
+  description             String?
   maintainStatus          UnitStatus
   // Relations
   category                String?
@@ -168,6 +168,7 @@ model EquipmentCategory {
 
 model Invoice {
   id       Int             @id @default(autoincrement())
+  paid     Decimal?        @default(0)
   total    Decimal
   status   InvoiceStatus
   paidAt   DateTime?
@@ -215,17 +216,17 @@ model Contract {
 }
 
 model Request {
-  id        String                 @id @default(uuid())
-  name      String
-  status    RequestStatus
-  details   String
-  category  RequestCategory
+  id          String                 @id @default(uuid())
+  name        String
+  status      RequestStatus
+  description String
+  category    RequestCategory
   // Relations
-  unitId    String?
-  unit      Unit?                  @relation(fields: [unitId], references: [id])
-  senderId  String
-  sender    Member                 @relation(name: "sender", fields: [senderId], references: [id])
-  receivers MemberReceiveRequest[]
+  unitId      String?
+  unit        Unit?                  @relation(fields: [unitId], references: [id])
+  senderId    String
+  sender      Member                 @relation(name: "sender", fields: [senderId], references: [id])
+  receivers   MemberReceiveRequest[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -307,10 +308,13 @@ enum InvoiceStatus {
   PAID
   PARTIAL
   OVERDUE
+  MERGED
 }
 
 enum InvoiceCategory {
+  MERGED
   UNIT_CHARGE
+  UNIT_PRICE_LOG
 }
 
 enum RequestCategory {
