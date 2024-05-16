@@ -17,8 +17,6 @@ export class AppExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
 
     if (exception instanceof HttpException) {
-      console.log(exception);
-
       const status = exception.getStatus();
       response.status(status).json({
         statusCode: status,

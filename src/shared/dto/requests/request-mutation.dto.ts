@@ -15,7 +15,7 @@ export class CreateRequestDto implements ICreateRequestDto {
   name: string;
 
   @IsString()
-  details: string;
+  description: string;
 
   @IsEnum(RequestCategory)
   category: RequestCategory;

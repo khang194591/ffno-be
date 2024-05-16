@@ -31,7 +31,7 @@ export class GetPropertyResDto implements IPropertyResDto {
   imgUrls: string[];
 
   @Expose()
-  details: Nullable<string>;
+  description: Nullable<string>;
 
   @Expose()
   ownerId: Nullable<string>;

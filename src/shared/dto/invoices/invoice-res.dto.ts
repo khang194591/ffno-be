@@ -51,7 +51,7 @@ export class InvoiceResDto implements IInvoiceResDto {
   dueDate: Date;
 
   @Expose()
-  details: string;
+  description: string;
 
   @Expose()
   category: InvoiceCategory;

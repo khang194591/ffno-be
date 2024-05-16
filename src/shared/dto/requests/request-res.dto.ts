@@ -29,7 +29,7 @@ export class RequestResDto implements IRequestResDto {
   name: string;
 
   @Expose()
-  details: string;
+  description: string;
 
   @Expose()
   status: RequestStatus;

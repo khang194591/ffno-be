@@ -4,10 +4,17 @@ import { Prisma } from '@prisma/client';
 import Decimal from 'decimal.js';
 import { randomInt } from 'node:crypto';
 import { v4 } from 'uuid';
-import { Gender, MemberRole, PropertyType, UnitStatus } from '../../src/libs';
+import {
+  ContractStatus,
+  Gender,
+  MemberRole,
+  PropertyType,
+  UnitStatus,
+} from '../../src/libs';
 import districts from '../../src/static/districts.json';
 import provinces from '../../src/static/provinces.json';
 import wards from '../../src/static/wards.json';
+import dayjs from 'dayjs';
 
 export function getRandomEnumValue<T>(enumeration: T): T[keyof T] {
   const values = Object.values(enumeration);
@@ -151,7 +158,7 @@ export const fakeProperty = (ownerId: string) => {
       getRandomItemInArray(fakePropertyImgUrls),
     ),
     ownerId,
-    details: faker.lorem.paragraph(),
+    description: faker.lorem.paragraph(),
     amenities: {
       connect: getRandomItemsInArray(mockAmenities).map((name) => ({ name })),
     },
@@ -165,7 +172,7 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
     area: new Decimal(faker.number.int({ min: 10, max: 200 })),
     price: new Decimal(faker.number.int({ min: 10, max: 200 }) * 100_000),
     deposit: new Decimal(faker.number.int({ min: 10, max: 200 }) * 100_000),
-    details: faker.lorem.sentence(),
+    description: faker.lorem.sentence(),
     status:
       randomInt(100) < 90
         ? UnitStatus.GOOD
@@ -181,5 +188,39 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
         name,
       })),
     },
+  };
+};
+
+export const fakeContract = (
+  landlordId: string,
+  tenantId: string,
+  unitId: string,
+): Prisma.ContractCreateInput => {
+  const startDate =
+    randomInt(10) < 8
+      ? dayjs(faker.date.past())
+      : dayjs().add(1, 'month').startOf('month');
+  const endDate = startDate.add(randomInt(6, 36), 'months');
+  const terminationDate =
+    randomInt(10) < 4
+      ? endDate.subtract(randomInt(1, 180), 'days').toDate()
+      : endDate.isBefore(dayjs())
+        ? endDate.toDate()
+        : null;
+
+  return {
+    status: endDate.isBefore(dayjs())
+      ? ContractStatus.EXPIRED
+      : startDate.isBefore(dayjs())
+        ? ContractStatus.ACTIVE
+        : ContractStatus.PENDING,
+    unit: { connect: { id: unitId } },
+    tenant: { connect: { id: tenantId } },
+    landlord: { connect: { id: landlordId } },
+    template: 'basic',
+    startDate: startDate.toDate(),
+    endDate: endDate.toDate(),
+    imgUrls: [],
+    terminationDate,
   };
 };

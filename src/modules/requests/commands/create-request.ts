@@ -37,7 +37,7 @@ export class CreateRequestHandler
         request.receivers.map((receiver) =>
           this.notificationService.sendWebPushNotification({
             title: request.name,
-            content: request.details,
+            content: request.description,
             memberId: receiver.memberId,
           }),
         ),

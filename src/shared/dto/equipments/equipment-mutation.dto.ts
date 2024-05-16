@@ -38,7 +38,7 @@ export class CreateEquipmentDto {
   dateOfInstallation?: string;
 
   @IsOptional()
-  details?: string;
+  description?: string;
 
   @IsEnum(UnitStatus)
   maintainStatus: UnitStatus = UnitStatus.GOOD;

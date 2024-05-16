@@ -63,23 +63,23 @@ model MemberContacts {
 }
 
 model Property {
-  id         String            @id @default(uuid())
+  id          String            @id @default(uuid())
   // Basic info
-  name       String
-  type       PropertyType      @default(SINGLE_UNIT)
-  address    String
-  ward       String
-  district   String
-  province   String
-  imgUrls    String[]
-  details    String?           @db.Text
+  name        String
+  type        PropertyType      @default(SINGLE_UNIT)
+  address     String
+  ward        String
+  district    String
+  province    String
+  imgUrls     String[]
+  description String?           @db.Text
   // Relations
-  ownerId    String
-  owner      Member            @relation(fields: [ownerId], references: [id])
-  amenities  PropertyAmenity[]
-  units      Unit[]
-  equipments Equipment[]
-  reviews    Review[]
+  ownerId     String
+  owner       Member            @relation(fields: [ownerId], references: [id])
+  amenities   PropertyAmenity[]
+  units       Unit[]
+  equipments  Equipment[]
+  reviews     Review[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -195,8 +195,8 @@ model InvoiceItem {
 }
 
 model Contract {
-  id              String    @id @default(uuid())
-  status          Int       @db.SmallInt
+  id              String         @id @default(uuid())
+  status          ContractStatus @default(PENDING)
   template        String
   startDate       DateTime
   endDate         DateTime
@@ -324,5 +324,12 @@ enum RequestCategory {
 enum RequestStatus {
   PENDING
   ACCEPTED
+  REJECTED
+}
+
+enum ContractStatus {
+  ACTIVE
+  PENDING
+  EXPIRED
   REJECTED
 }

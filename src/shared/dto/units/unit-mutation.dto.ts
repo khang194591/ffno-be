@@ -47,7 +47,7 @@ export class CreateUnitDto implements ICreateUnitDto {
 
   @IsOptional()
   @IsString()
-  details: string;
+  description: string;
 
   @IsArray()
   @IsString({ each: true })

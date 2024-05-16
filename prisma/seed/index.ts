@@ -3,6 +3,7 @@ import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import { ContactType, MemberRole, PropertyType } from '../../src/libs';
 import {
+  fakeContract,
   fakeMember,
   fakeProperty,
   fakeUnit,
@@ -15,6 +16,7 @@ const prisma = new PrismaClient();
 
 const seed = async () => {
   await prisma.$transaction([
+    prisma.contract.deleteMany(),
     prisma.memberReceiveRequest.deleteMany(),
     prisma.request.deleteMany(),
     prisma.invoiceItem.deleteMany(),
@@ -132,6 +134,10 @@ const seed = async () => {
               create: { type: ContactType.TENANT, contactWithId: member.id },
             },
           },
+        }),
+
+        prisma.contract.create({
+          data: fakeContract(unit.property.ownerId, member.id, unit.id),
         }),
       ];
     }),

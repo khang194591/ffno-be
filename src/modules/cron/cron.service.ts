@@ -100,7 +100,7 @@ export class CronService {
             })),
           },
         },
-        details: faker.lorem.paragraph(),
+        description: faker.lorem.paragraph(),
       },
     });
     console.log(result);
