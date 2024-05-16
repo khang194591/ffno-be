@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { faker } from '@faker-js/faker';
 import { Prisma } from '@prisma/client';
+import dayjs from 'dayjs';
 import Decimal from 'decimal.js';
 import { randomInt } from 'node:crypto';
 import { v4 } from 'uuid';
@@ -14,7 +15,6 @@ import {
 import districts from '../../src/static/districts.json';
 import provinces from '../../src/static/provinces.json';
 import wards from '../../src/static/wards.json';
-import dayjs from 'dayjs';
 
 export function getRandomEnumValue<T>(enumeration: T): T[keyof T] {
   const values = Object.values(enumeration);
@@ -203,15 +203,15 @@ export const fakeContract = (
   const endDate = startDate.add(randomInt(6, 36), 'months');
   const terminationDate =
     randomInt(10) < 4
-      ? endDate.subtract(randomInt(1, 180), 'days').toDate()
+      ? endDate.subtract(randomInt(1, 180), 'days')
       : endDate.isBefore(dayjs())
-        ? endDate.toDate()
+        ? dayjs(endDate)
         : null;
 
   return {
-    status: endDate.isBefore(dayjs())
+    status: (terminationDate || endDate).isBefore(new Date())
       ? ContractStatus.EXPIRED
-      : startDate.isBefore(dayjs())
+      : startDate.isBefore(new Date())
         ? ContractStatus.ACTIVE
         : ContractStatus.PENDING,
     unit: { connect: { id: unitId } },
@@ -220,7 +220,10 @@ export const fakeContract = (
     template: 'basic',
     startDate: startDate.toDate(),
     endDate: endDate.toDate(),
+    terminationDate:
+      terminationDate && terminationDate.isBefore()
+        ? terminationDate.toDate()
+        : null,
     imgUrls: [],
-    terminationDate,
   };
 };

@@ -11,7 +11,7 @@ import { UnitResDto } from '../units';
 @Exclude()
 export class ContractResDto implements IContractResDto {
   @Expose()
-  id: string;
+  id: number;
 
   @Expose()
   status: ContractStatus;

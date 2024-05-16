@@ -5,7 +5,7 @@ import { CurrentMember } from 'src/shared/decorators';
 import {
   CreateContractDto,
   GetListContractDto,
-  IdUUIDParams,
+  IdNumberParams,
   MemberResDto,
 } from 'src/shared/dto';
 import { CreateContractCommand } from './commands';
@@ -30,7 +30,7 @@ export class ContractController {
   }
 
   @Get(':id')
-  async getContract(@Param() { id }: IdUUIDParams) {
+  async getContract(@Param() { id }: IdNumberParams) {
     return this.queryBus.execute(new GetContractQuery(id));
   }
 

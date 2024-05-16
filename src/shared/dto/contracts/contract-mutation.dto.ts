@@ -2,6 +2,7 @@ import { Type } from 'class-transformer';
 import {
   IsArray,
   IsDate,
+  IsOptional,
   IsString,
   IsUUID,
   IsUrl,
@@ -27,8 +28,9 @@ export class CreateContractDto implements ICreateContractDto {
   @IsUrl({}, { each: true })
   imgUrls: string[];
 
+  @IsOptional()
   @IsUUID()
-  landlordId: string;
+  landlordId?: string;
 
   @IsUUID()
   tenantId: string;

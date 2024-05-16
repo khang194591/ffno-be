@@ -4,7 +4,7 @@ import { PrismaService } from 'src/config';
 import { ContractResDto } from 'src/shared/dto';
 
 export class GetContractQuery {
-  constructor(public readonly id: string) {}
+  constructor(public readonly id: number) {}
 }
 
 @QueryHandler(GetContractQuery)

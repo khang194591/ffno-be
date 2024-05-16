@@ -54,7 +54,13 @@ export class GetListContractHandler
         take,
         skip,
         include: {
-          unit: { select: { id: true, name: true } },
+          unit: {
+            select: {
+              id: true,
+              name: true,
+              property: { select: { name: true } },
+            },
+          },
           landlord: { select: { id: true, name: true, imgUrl: true } },
           tenant: { select: { id: true, name: true, imgUrl: true } },
         },
