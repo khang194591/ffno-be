@@ -204,12 +204,14 @@ model Contract {
   imgUrls         String[]
 
   // Relations
-  landlord   Member @relation(name: "landlord", fields: [landlordId], references: [id])
-  landlordId String
-  tenant     Member @relation(name: "tenant", fields: [tenantId], references: [id])
-  tenantId   String
-  unit       Unit   @relation(fields: [unitId], references: [id])
-  unitId     String
+  landlord       Member        @relation(name: "landlord", fields: [landlordId], references: [id])
+  landlordId     String
+  landlordStatus RequestStatus @default(PENDING)
+  tenant         Member        @relation(name: "tenant", fields: [tenantId], references: [id])
+  tenantId       String
+  tenantStatus   RequestStatus @default(PENDING)
+  unit           Unit          @relation(fields: [unitId], references: [id])
+  unitId         String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

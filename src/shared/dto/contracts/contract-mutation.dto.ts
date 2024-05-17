@@ -2,13 +2,18 @@ import { Type } from 'class-transformer';
 import {
   IsArray,
   IsDate,
+  IsEnum,
   IsOptional,
   IsString,
   IsUUID,
   IsUrl,
   Validate,
 } from 'class-validator';
-import { ICreateContractDto } from 'src/libs';
+import {
+  ICreateContractDto,
+  IUpdateContractDto,
+  RequestStatus,
+} from 'src/libs';
 import { IsAfterNowConstraint } from 'src/shared/decorators/is-after-now.decorator';
 
 export class CreateContractDto implements ICreateContractDto {
@@ -37,4 +42,27 @@ export class CreateContractDto implements ICreateContractDto {
 
   @IsUUID()
   unitId: string;
+}
+
+export class UpdateContractDto implements IUpdateContractDto {
+  @IsOptional()
+  @IsArray()
+  @IsUrl({}, { each: true })
+  imgUrls?: string[];
+
+  @IsOptional()
+  @IsEnum(RequestStatus)
+  status?: RequestStatus;
+
+  @IsOptional()
+  @IsDate()
+  startDate?: Date;
+
+  @IsOptional()
+  @IsDate()
+  endDate?: Date;
+
+  @IsOptional()
+  @IsDate()
+  terminationDate?: Date;
 }

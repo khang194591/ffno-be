@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
 import { CurrentMember } from 'src/shared/decorators';
@@ -7,8 +15,9 @@ import {
   GetListContractDto,
   IdNumberParams,
   MemberResDto,
+  UpdateContractDto,
 } from 'src/shared/dto';
-import { CreateContractCommand } from './commands';
+import { CreateContractCommand, UpdateContractCommand } from './commands';
 import { GetContractQuery, GetListContractQuery } from './queries';
 
 @Controller('contracts')
@@ -35,7 +44,23 @@ export class ContractController {
   }
 
   @Post()
-  async createContract(@Body() body: CreateContractDto) {
-    return this.commandBus.execute(new CreateContractCommand(body));
+  async createContract(
+    @CurrentMember() currentMember: MemberResDto,
+    @Body() body: CreateContractDto,
+  ) {
+    return this.commandBus.execute(
+      new CreateContractCommand(currentMember, body),
+    );
+  }
+
+  @Patch(':id')
+  async updateContract(
+    @CurrentMember() currentMember: MemberResDto,
+    @Body() body: UpdateContractDto,
+    @Param() { id }: IdNumberParams,
+  ) {
+    return this.commandBus.execute(
+      new UpdateContractCommand(currentMember, id, body),
+    );
   }
 }

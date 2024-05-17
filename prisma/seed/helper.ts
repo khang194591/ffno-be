@@ -208,15 +208,27 @@ export const fakeContract = (
         ? dayjs(endDate)
         : null;
 
+  const status = (terminationDate || endDate).isBefore(new Date())
+    ? ContractStatus.EXPIRED
+    : startDate.isBefore(new Date())
+      ? ContractStatus.ACTIVE
+      : ContractStatus.PENDING;
+
   return {
-    status: (terminationDate || endDate).isBefore(new Date())
-      ? ContractStatus.EXPIRED
-      : startDate.isBefore(new Date())
-        ? ContractStatus.ACTIVE
-        : ContractStatus.PENDING,
+    status,
     unit: { connect: { id: unitId } },
     tenant: { connect: { id: tenantId } },
+    tenantStatus: [ContractStatus.ACTIVE, ContractStatus.EXPIRED].includes(
+      status,
+    )
+      ? 'ACCEPTED'
+      : 'PENDING',
     landlord: { connect: { id: landlordId } },
+    landlordStatus: [ContractStatus.ACTIVE, ContractStatus.EXPIRED].includes(
+      status,
+    )
+      ? 'ACCEPTED'
+      : 'PENDING',
     template: 'basic',
     startDate: startDate.toDate(),
     endDate: endDate.toDate(),
