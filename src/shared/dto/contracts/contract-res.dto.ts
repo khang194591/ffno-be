@@ -4,6 +4,7 @@ import {
   IContractResDto,
   IMemberResDto,
   IUnitResDto,
+  RequestStatus,
 } from 'src/libs';
 import { MemberResDto } from '../members';
 import { UnitResDto } from '../units';
@@ -39,6 +40,9 @@ export class ContractResDto implements IContractResDto {
   landlord: IMemberResDto;
 
   @Expose()
+  landlordStatus: RequestStatus;
+
+  @Expose()
   tenantId: string;
 
   @Expose()
@@ -46,9 +50,12 @@ export class ContractResDto implements IContractResDto {
   tenant: IMemberResDto;
 
   @Expose()
-  @Type(() => UnitResDto)
+  tenantStatus: RequestStatus;
+
+  @Expose()
   unitId: string;
 
   @Expose()
+  @Type(() => UnitResDto)
   unit: IUnitResDto;
 }

@@ -15,7 +15,24 @@ export class GetContractHandler implements IQueryHandler<GetContractQuery> {
     const contract = await this.prisma.contract.findUnique({
       where: { id },
       include: {
-        unit: { select: { id: true, name: true } },
+        unit: {
+          select: {
+            id: true,
+            name: true,
+            price: true,
+            deposit: true,
+            property: {
+              select: {
+                id: true,
+                name: true,
+                address: true,
+                ward: true,
+                district: true,
+                province: true,
+              },
+            },
+          },
+        },
         landlord: { select: { id: true, name: true, imgUrl: true } },
         tenant: { select: { id: true, name: true, imgUrl: true } },
       },
