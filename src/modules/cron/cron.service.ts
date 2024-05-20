@@ -67,7 +67,7 @@ export class CronService {
     console.log(result.length);
   }
 
-  @Cron(CronExpression.EVERY_30_MINUTES)
+  @Cron(CronExpression.EVERY_5_SECONDS)
   async fakeRequest() {
     const members = await this.prisma.member.findMany({
       where: { role: MemberRole.TENANT },
@@ -103,6 +103,5 @@ export class CronService {
         description: faker.lorem.paragraph(),
       },
     });
-    console.log(result);
   }
 }
