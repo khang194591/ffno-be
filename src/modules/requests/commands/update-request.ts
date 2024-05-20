@@ -54,13 +54,16 @@ export class UpdateRequestHandler
     });
 
     try {
+      console.log(
+        `Sending notification to ${receivedRequests.map((i) => `${i.memberId} - ${i.requestId}`)}`,
+      );
       await Promise.all(
         receivedRequests.map(({ memberId, requestId }) =>
           this.notificationService.sendWebPushNotification({
             title: 'Contract status updated',
             content: 'Contract status updated',
             memberId,
-            link: `/${requestId}`,
+            link: `/requests/${requestId}`,
           }),
         ),
       );
