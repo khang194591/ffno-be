@@ -1,6 +1,7 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
 import { RequestStatus } from 'src/libs';
+import { NotificationService } from 'src/modules/services/notification.service';
 import { UpdateRequestDto } from 'src/shared/dto';
 
 export class UpdateRequestCommand {
@@ -14,7 +15,10 @@ export class UpdateRequestCommand {
 export class UpdateRequestHandler
   implements ICommandHandler<UpdateRequestCommand>
 {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly notificationService: NotificationService,
+  ) {}
 
   async execute({ memberId, data }: UpdateRequestCommand): Promise<string> {
     const { id, status } = data;
@@ -25,14 +29,6 @@ export class UpdateRequestHandler
       },
       data: { status },
     });
-
-    if (status === RequestStatus.REJECTED) {
-      await this.prisma.request.update({
-        where: { id },
-        data: { status: RequestStatus.REJECTED },
-      });
-      return id;
-    }
 
     const receivedRequests = await this.prisma.memberReceiveRequest.findMany({
       where: { requestId: id },
@@ -48,11 +44,29 @@ export class UpdateRequestHandler
         ? RequestStatus.REJECTED
         : undefined;
 
-    if (requestStatus) {
-      await this.prisma.request.update({
-        where: { id },
-        data: { status: requestStatus },
-      });
+    if (!requestStatus) {
+      return id;
+    }
+
+    await this.prisma.request.update({
+      where: { id },
+      data: { status: requestStatus },
+    });
+
+    try {
+      await Promise.all(
+        receivedRequests.map(({ memberId, requestId }) =>
+          this.notificationService.sendWebPushNotification({
+            title: 'Contract status updated',
+            content: 'Contract status updated',
+            memberId,
+            link: `/${requestId}`,
+          }),
+        ),
+      );
+    } catch (error) {
+      console.log('Error when send notification');
+      console.error(error);
     }
 
     return id;
