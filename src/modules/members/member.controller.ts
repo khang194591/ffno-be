@@ -1,8 +1,8 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { CurrentMemberId } from 'src/shared/decorators';
-import { GetListContactDto, IdUUIDParams } from 'src/shared/dto';
+import { CurrentMember, CurrentMemberId } from 'src/shared/decorators';
+import { GetListContactDto, IdUUIDParams, MemberResDto } from 'src/shared/dto';
 import {
   GetCurrentMemberQuery,
   GetListContactQuery,
@@ -31,7 +31,10 @@ export class MemberController {
   }
 
   @Get(':id')
-  async getMember(@Param() { id }: IdUUIDParams) {
-    return this.queryBus.execute(new GetMemberQuery(id));
+  async getMember(
+    @CurrentMember() currentMember: MemberResDto,
+    @Param() { id }: IdUUIDParams,
+  ) {
+    return this.queryBus.execute(new GetMemberQuery(id, currentMember));
   }
 }

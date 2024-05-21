@@ -57,7 +57,7 @@ const seed = async () => {
       email: 'khang194591@gmail.com',
       password: hashSync('123456', 10),
       role: MemberRole.LANDLORD,
-      name: 'Kyle Trịnh',
+      name: 'Khang Trịnh',
       imgUrl:
         'https://lh3.googleusercontent.com/a/ACg8ocJ-wyEURnuJjTv_eY9Fgf_KPd4QA75b_A5D06wJ63IB7gKjOUUv=s288-c-no',
     }),
@@ -137,7 +137,13 @@ const seed = async () => {
         }),
 
         prisma.contract.create({
-          data: fakeContract(unit.property.ownerId, member.id, unit.id),
+          data: fakeContract(
+            unit.property.ownerId,
+            member.id,
+            unit.id,
+            unit.price,
+            unit.deposit,
+          ),
         }),
       ];
     }),

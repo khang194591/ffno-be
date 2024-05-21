@@ -43,6 +43,8 @@ export class ContractService {
       landlord: { connect: { id: landlordId } },
       tenant: { connect: { id: tenantId } },
       unit: { connect: { id: unitId } },
+      price: unit.price,
+      deposit: unit.deposit,
     };
   }
 }

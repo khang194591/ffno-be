@@ -6,6 +6,7 @@ import {
   IUnitResDto,
   RequestStatus,
 } from 'src/libs';
+import { DecimalNumber } from 'src/shared/decorators';
 import { MemberResDto } from '../members';
 import { UnitResDto } from '../units';
 
@@ -16,6 +17,14 @@ export class ContractResDto implements IContractResDto {
 
   @Expose()
   status: ContractStatus;
+
+  @Expose()
+  @Type(() => DecimalNumber)
+  price: DecimalNumber;
+
+  @Expose()
+  @Type(() => DecimalNumber)
+  deposit: DecimalNumber;
 
   @Expose()
   template: string;

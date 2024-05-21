@@ -197,6 +197,8 @@ model InvoiceItem {
 model Contract {
   id              Int            @id @default(autoincrement())
   status          ContractStatus @default(PENDING)
+  price           Decimal
+  deposit         Decimal
   template        String
   startDate       DateTime
   endDate         DateTime

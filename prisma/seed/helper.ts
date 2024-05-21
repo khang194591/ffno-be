@@ -195,6 +195,8 @@ export const fakeContract = (
   landlordId: string,
   tenantId: string,
   unitId: string,
+  price: Decimal,
+  deposit: Decimal,
 ): Prisma.ContractCreateInput => {
   const startDate =
     randomInt(10) < 8
@@ -216,6 +218,8 @@ export const fakeContract = (
 
   return {
     status,
+    price,
+    deposit,
     unit: { connect: { id: unitId } },
     tenant: { connect: { id: tenantId } },
     tenantStatus: [ContractStatus.ACTIVE, ContractStatus.EXPIRED].includes(

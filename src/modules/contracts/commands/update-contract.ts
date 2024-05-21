@@ -2,9 +2,14 @@ import { ForbiddenException } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/config';
-import { ContractStatus, MemberRole, RequestStatus } from 'src/libs';
+import {
+  ContractStatus,
+  MemberRole,
+  RequestStatus,
+  contractStatusRecord,
+} from 'src/libs';
+import { NotificationService } from 'src/modules/services/notification.service';
 import { MemberResDto, UpdateContractDto } from 'src/shared/dto';
-import { ContractService } from '../contract.service';
 
 export class UpdateContractCommand {
   constructor(
@@ -20,7 +25,7 @@ export class UpdateContractHandler
 {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly contractService: ContractService,
+    private readonly notificationService: NotificationService,
   ) {}
 
   async execute(query: UpdateContractCommand): Promise<number> {
@@ -96,8 +101,19 @@ export class UpdateContractHandler
         where: { id },
         data: { status: contractStatus },
       });
+      await Promise.all(
+        [updatedContract.landlordId, updatedContract.tenantId].map((memberId) =>
+          this.notificationService.sendWebPushNotification({
+            title: `Contract has been ${contractStatusRecord[contractStatus]}`,
+            content: 'Review it now',
+            memberId,
+            link: `/contracts/${updatedContract.id}`,
+          }),
+        ),
+      );
     }
 
+    // Move in tenant
     if (contractStatus === ContractStatus.ACTIVE) {
       await this.prisma.unit.update({
         where: { id: updatedContract.unitId },
