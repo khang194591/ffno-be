@@ -1,9 +1,8 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { plainToClass, plainToInstance } from 'class-transformer';
+import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import { MemberResDto } from 'src/shared/dto';
 import { MemberService } from '../member.service';
-import { validate } from 'class-validator';
 
 export class GetMemberQuery {
   constructor(
@@ -20,10 +19,10 @@ export class GetMemberHandler implements IQueryHandler<GetMemberQuery> {
   ) {}
 
   async execute({ id, currentMember }: GetMemberQuery): Promise<MemberResDto> {
-    const member = await this.prismaService.member.findUnique({
+    const member = await this.prismaService.member.findUniqueOrThrow({
       where: { id },
       include: {
-        unit: { select: { name: true } },
+        unit: { select: { name: true, property: { select: { name: true } } } },
         tenantContracts: {
           include: {
             unit: { include: { property: { select: { name: true } } } },

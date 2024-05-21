@@ -214,6 +214,7 @@ model Contract {
   tenantStatus   RequestStatus @default(PENDING)
   unit           Unit          @relation(fields: [unitId], references: [id])
   unitId         String
+  requests       Request[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -228,6 +229,8 @@ model Request {
   // Relations
   unitId      String?
   unit        Unit?                  @relation(fields: [unitId], references: [id])
+  contractId  Int?
+  contract    Contract?              @relation(fields: [contractId], references: [id])
   senderId    String
   sender      Member                 @relation(name: "sender", fields: [senderId], references: [id])
   receivers   MemberReceiveRequest[]
@@ -323,6 +326,7 @@ enum InvoiceCategory {
 
 enum RequestCategory {
   UNIT_LEASE
+  TERMINATE_CONTRACT
 }
 
 enum RequestStatus {

@@ -3,12 +3,14 @@ import {
   ContractStatus,
   IContractResDto,
   IMemberResDto,
+  IRequestResDto,
   IUnitResDto,
   RequestStatus,
 } from 'src/libs';
 import { DecimalNumber } from 'src/shared/decorators';
 import { MemberResDto } from '../members';
 import { UnitResDto } from '../units';
+import { RequestResDto } from '../requests';
 
 @Exclude()
 export class ContractResDto implements IContractResDto {
@@ -67,4 +69,8 @@ export class ContractResDto implements IContractResDto {
   @Expose()
   @Type(() => UnitResDto)
   unit: IUnitResDto;
+
+  @Expose()
+  @Type(() => RequestResDto)
+  requests: IRequestResDto[];
 }

@@ -16,6 +16,7 @@ export class GetRequestHandler implements IQueryHandler<GetRequestQuery> {
       where: { id },
       include: {
         unit: { select: { id: true, name: true } },
+        contract: true,
         sender: { select: { id: true, name: true, imgUrl: true } },
         receivers: {
           select: {

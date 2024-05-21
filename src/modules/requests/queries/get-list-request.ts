@@ -49,6 +49,9 @@ export class GetListRequestHandler
               property: { select: { name: true } },
             },
           },
+          contract: {
+            select: { id: true },
+          },
           sender: { select: { id: true, name: true, imgUrl: true } },
           receivers: {
             select: {

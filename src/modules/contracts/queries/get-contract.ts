@@ -33,6 +33,7 @@ export class GetContractHandler implements IQueryHandler<GetContractQuery> {
             },
           },
         },
+        requests: true,
         landlord: { select: { id: true, name: true, imgUrl: true } },
         tenant: { select: { id: true, name: true, imgUrl: true } },
       },

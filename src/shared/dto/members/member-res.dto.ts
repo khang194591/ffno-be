@@ -1,5 +1,6 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import {
+  Gender,
   IContractResDto,
   ICurrentMemberResDto,
   IMemberResDto,
@@ -23,7 +24,7 @@ export class MemberResDto implements IMemberResDto {
   phone: string;
 
   @Expose()
-  gender: string;
+  gender: Gender;
 
   @Expose()
   address: string;
@@ -38,7 +39,10 @@ export class MemberResDto implements IMemberResDto {
   role: MemberRole;
 
   @Expose()
-  @Transform(({ value }) => value?.name)
+  @Transform(
+    ({ value }) =>
+      value?.name + (value?.property?.name ? ` - ${value.property.name}` : ''),
+  )
   unit: string;
 
   @Expose()

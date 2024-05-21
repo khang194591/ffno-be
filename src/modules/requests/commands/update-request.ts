@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { RequestStatus } from 'src/libs';
+import { ContractStatus, RequestCategory, RequestStatus } from 'src/libs';
 import { NotificationService } from 'src/modules/services/notification.service';
 import { UpdateRequestDto } from 'src/shared/dto';
 
@@ -48,10 +48,27 @@ export class UpdateRequestHandler
       return id;
     }
 
-    await this.prisma.request.update({
+    const updatedRequest = await this.prisma.request.update({
       where: { id },
       data: { status: requestStatus },
     });
+
+    if (requestStatus === RequestStatus.ACCEPTED) {
+      switch (updatedRequest.category) {
+        case RequestCategory.TERMINATE_CONTRACT:
+          await this.prisma.contract.update({
+            where: { id: updatedRequest.contractId },
+            data: {
+              terminationDate: new Date(),
+              status: ContractStatus.EXPIRED,
+            },
+          });
+          break;
+
+        default:
+          break;
+      }
+    }
 
     try {
       console.log(

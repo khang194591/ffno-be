@@ -1,7 +1,6 @@
 import { faker } from '@faker-js/faker/locale/vi';
 import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { Prisma } from '@prisma/client';
 import { randomInt } from 'crypto';
 import dayjs from 'dayjs';
 import { PrismaService } from 'src/config';
@@ -82,7 +81,7 @@ export class CronService {
 
     const unit = units[randomInt(units.length)];
 
-    const result = await this.prisma.request.create({
+    await this.prisma.request.create({
       data: {
         name: `Yêu cầu thuê phòng ${unit.name} tòa nhà ${unit.property.name}`,
         unitId: unit.id,
