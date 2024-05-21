@@ -25,6 +25,10 @@ export class GetMemberHandler implements IQueryHandler<GetMemberQuery> {
       include: {
         unit: { select: { name: true } },
         tenantContracts: {
+          include: {
+            unit: { include: { property: { select: { name: true } } } },
+            tenant: true,
+          },
           where: {
             landlordId: currentMember.id,
           },
