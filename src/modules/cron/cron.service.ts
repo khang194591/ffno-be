@@ -20,7 +20,6 @@ export class CronService {
   async bulkCreateMonthlyInvoice() {
     console.log('-------------------------------');
     const allUnits = await this.prisma.unit.findMany({
-      //   where: {},
       include: {
         property: {
           select: {
@@ -35,13 +34,13 @@ export class CronService {
       },
     });
 
-    const chargableUnits = allUnits.filter(
+    const chargeableUnits = allUnits.filter(
       (unit) => unit.tenants.length && unit.payerId,
     );
 
     const result = await this.prisma.$transaction(async (tx) =>
       Promise.all(
-        chargableUnits.map((unit) =>
+        chargeableUnits.map((unit) =>
           tx.invoice.create({
             data: {
               total: unit.price,

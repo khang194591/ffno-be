@@ -1,12 +1,17 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { ContractStatus, RequestCategory, RequestStatus } from 'src/libs';
+import {
+  ContactType,
+  ContractStatus,
+  RequestCategory,
+  RequestStatus,
+} from 'src/libs';
 import { NotificationService } from 'src/modules/services/notification.service';
 import { UpdateRequestDto } from 'src/shared/dto';
 
 export class UpdateRequestCommand {
   constructor(
-    public readonly memberId: string,
+    public readonly currentMemberId: string,
     public readonly data: UpdateRequestDto,
   ) {}
 }
@@ -20,12 +25,15 @@ export class UpdateRequestHandler
     private readonly notificationService: NotificationService,
   ) {}
 
-  async execute({ memberId, data }: UpdateRequestCommand): Promise<string> {
+  async execute({
+    data,
+    currentMemberId,
+  }: UpdateRequestCommand): Promise<string> {
     const { id, status } = data;
 
     await this.prisma.memberReceiveRequest.update({
       where: {
-        requestId_memberId: { memberId: memberId, requestId: id },
+        requestId_memberId: { memberId: currentMemberId, requestId: id },
       },
       data: { status },
     });
@@ -44,6 +52,7 @@ export class UpdateRequestHandler
         ? RequestStatus.REJECTED
         : undefined;
 
+    // Return when not change request status
     if (!requestStatus) {
       return id;
     }
@@ -54,6 +63,13 @@ export class UpdateRequestHandler
     });
 
     if (requestStatus === RequestStatus.ACCEPTED) {
+      await this.prisma.memberContacts.create({
+        data: {
+          type: ContactType.TENANT,
+          contactId: currentMemberId,
+          contactWithId: updatedRequest.senderId,
+        },
+      });
       switch (updatedRequest.category) {
         case RequestCategory.TERMINATE_CONTRACT:
           await this.prisma.contract.update({
@@ -70,6 +86,7 @@ export class UpdateRequestHandler
       }
     }
 
+    // Send notifications
     try {
       console.log(
         `Sending notification to ${receivedRequests.map((i) => `${i.memberId} - ${i.requestId}`)}`,

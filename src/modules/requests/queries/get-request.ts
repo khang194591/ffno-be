@@ -15,7 +15,7 @@ export class GetRequestHandler implements IQueryHandler<GetRequestQuery> {
     const request = await this.prisma.request.findUnique({
       where: { id },
       include: {
-        unit: { select: { id: true, name: true } },
+        unit: { select: { id: true, name: true, propertyId: true } },
         contract: true,
         sender: { select: { id: true, name: true, imgUrl: true } },
         receivers: {
