@@ -10,7 +10,6 @@ import {
   IsOptional,
   IsString,
   IsUUID,
-  ValidateNested,
 } from 'class-validator';
 import {
   ICreateInvoiceDto,
@@ -63,7 +62,6 @@ export class UpdateInvoiceDto
 export class MergeInvoicesDto {
   @IsArray()
   @ArrayNotEmpty()
-  @ValidateNested({ each: true })
   @Type(() => Number)
   ids: number[];
 }

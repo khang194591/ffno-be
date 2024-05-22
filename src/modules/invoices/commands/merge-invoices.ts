@@ -37,20 +37,35 @@ export class MergeInvoicesHandler
       );
     }
 
-    const partialPaid = invoices.find((invoice) => !!invoice.paid);
+    const fullyPaid = invoices.every((i) => i.status === InvoiceStatus.PAID);
+    const partialPaid = !!invoices.find((invoice) => !!invoice.paid);
 
     const mergedInvoice = await this.prisma.invoice.create({
       data: {
         memberId: memberIds[0],
-        unitId: '',
+        unitId: invoices[0].unitId,
         category: InvoiceCategory.MERGED,
-        status: !!partialPaid ? InvoiceStatus.PARTIAL : InvoiceStatus.PENDING,
+        status: fullyPaid
+          ? InvoiceStatus.PAID
+          : partialPaid
+            ? InvoiceStatus.PARTIAL
+            : InvoiceStatus.PENDING,
         dueDate: new Date(),
         total: invoices.reduce(
           (acc, invoice) => Decimal.add(acc, invoice.total),
           new Decimal(0),
         ),
+        items: {
+          connect: invoices
+            .flatMap(({ items }) => items)
+            .map(({ id }) => ({ id })),
+        },
       },
+    });
+
+    await this.prisma.invoice.updateMany({
+      where: { id: { in: ids } },
+      data: { status: InvoiceStatus.MERGED, mergedId: mergedInvoice.id },
     });
 
     return mergedInvoice.id;
