@@ -48,7 +48,7 @@ export class GetListInvoiceHandler
           member: { select: { name: true, imgUrl: true } },
         },
         orderBy: {
-          createdAt: 'desc',
+          id: 'desc',
         },
       }),
     ]);

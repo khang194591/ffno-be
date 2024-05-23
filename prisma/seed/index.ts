@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import { PrismaClient } from '@prisma/client';
 import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
@@ -17,6 +18,7 @@ const prisma = new PrismaClient();
 
 const seed = async () => {
   await prisma.$transaction([
+    prisma.review.deleteMany(),
     prisma.contract.deleteMany(),
     prisma.memberReceiveRequest.deleteMany(),
     prisma.request.deleteMany(),
@@ -125,15 +127,42 @@ const seed = async () => {
       return [
         prisma.unit.update({
           where: { id: unit.id },
-          data: { payerId: member.id, tenants: { connect: { id: member.id } } },
+          data: {
+            payerId: member.id,
+            tenants: { connect: { id: member.id } },
+            reviews: {
+              create: {
+                rating: randomInt(1, 6),
+                comment: faker.lorem.sentence(),
+                authorId: member.id,
+              },
+            },
+          },
         }),
-
         prisma.member.update({
           where: { id: unit.property.ownerId },
           data: {
             contacts: {
               create: { type: ContactType.TENANT, contactWithId: member.id },
             },
+          },
+        }),
+        prisma.member.update({
+          where: { id: member.id },
+          data: {
+            sentReviews:
+              randomInt(10) < 8
+                ? {
+                    createMany: {
+                      data: {
+                        rating: randomInt(1, 6),
+                        comment: faker.lorem.sentence(),
+                        propertyId: unit.propertyId,
+                      },
+                      skipDuplicates: true,
+                    },
+                  }
+                : undefined,
           },
         }),
         prisma.contract.create({

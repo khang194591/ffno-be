@@ -2,6 +2,7 @@ import { Exclude, Expose, Type } from 'class-transformer';
 import {
   IMemberResDto,
   IPropertyResDto,
+  IReviewRatingResDto,
   IReviewResDto,
   IUnitResDto,
 } from 'src/libs';
@@ -45,4 +46,14 @@ export class ReviewResDto implements IReviewResDto {
   @Expose()
   @Type(() => Date)
   createdAt: Date;
+}
+
+@Exclude()
+export class ReviewRatingResDto implements IReviewRatingResDto {
+  @Expose()
+  @Type(() => Number)
+  rating: number;
+
+  @Expose()
+  ratingMap: Record<number, number>;
 }

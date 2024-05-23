@@ -1,8 +1,8 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { IPropertyResDto, PropertyType } from 'src/libs';
+import { IPropertyResDto, IReviewRatingResDto, PropertyType } from 'src/libs';
 import { Nullable } from '../common';
 import { MemberResDto } from '../members';
-import { ReviewResDto } from '../reviews';
+import { ReviewRatingResDto, ReviewResDto } from '../reviews';
 import { UnitResDto } from '../units/unit-res.dto';
 
 @Exclude()
@@ -36,6 +36,10 @@ export class GetPropertyResDto implements IPropertyResDto {
 
   @Expose()
   ownerId: Nullable<string>;
+
+  @Expose()
+  @Type(() => ReviewRatingResDto)
+  rating: IReviewRatingResDto;
 
   @Expose()
   @Type(() => MemberResDto)

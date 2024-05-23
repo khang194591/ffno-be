@@ -58,14 +58,14 @@ export class GetListContractHandler
             select: {
               id: true,
               name: true,
-              property: { select: { name: true } },
+              property: { select: { id: true, name: true } },
             },
           },
           landlord: { select: { id: true, name: true, imgUrl: true } },
           tenant: { select: { id: true, name: true, imgUrl: true } },
         },
         orderBy: {
-          createdAt: 'desc',
+          id: 'desc',
         },
       }),
     ]);
