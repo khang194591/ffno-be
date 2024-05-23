@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
+import dayjs from 'dayjs';
 import { ContactType, MemberRole, PropertyType } from '../../src/libs';
 import {
   fakeContract,
@@ -135,7 +136,6 @@ const seed = async () => {
             },
           },
         }),
-
         prisma.contract.create({
           data: fakeContract(
             unit.property.ownerId,
@@ -164,6 +164,98 @@ const seed = async () => {
     data: { isListing: true },
     where: { payerId: null },
   });
+
+  const activeContracts = await prisma.contract.findMany({
+    where: { status: 'ACTIVE' },
+    include: {
+      unit: true,
+    },
+  });
+
+  await Promise.all(
+    activeContracts.map(async (contract) => {
+      const startOfMonth = dayjs().startOf('month');
+      // eslint-disable-next-line prefer-const
+      let { startDate, unit } = contract;
+      let prevWater = 0;
+      let prevElectric = 0;
+      let currentWater = randomInt(1, 5);
+      let currentElectric = randomInt(50, 150);
+      await prisma.unitPriceLog.updateMany({
+        where: {
+          unitId: unit.id,
+        },
+        data: {
+          createdAt: contract.startDate,
+          updatedAt: contract.startDate,
+        },
+      });
+      while (dayjs(startDate).startOf('month').isBefore(startOfMonth)) {
+        const month = dayjs(startDate).format('MM/YYYY');
+        await prisma.unitPriceLog.createMany({
+          data: [
+            {
+              category: 'WATER',
+              price: 40000,
+              status: 0,
+              value: +currentWater,
+              unitId: unit.id,
+              createdAt: dayjs(startDate).endOf('month').toDate(),
+              updatedAt: dayjs(startDate).endOf('month').toDate(),
+            },
+            {
+              category: 'ELECTRICITY',
+              price: 4000,
+              status: 0,
+              value: +currentElectric,
+              unitId: unit.id,
+              createdAt: dayjs(startDate).endOf('month').toDate(),
+              updatedAt: dayjs(startDate).endOf('month').toDate(),
+            },
+          ],
+        });
+        await prisma.invoice.create({
+          data: {
+            category: 'MERGED',
+            dueDate: dayjs(startDate).endOf('month').add(2, 'week').toDate(),
+            status: 'PAID',
+            total: unit.price.add(
+              (currentElectric - prevElectric) * 4000 +
+                (currentWater - prevWater) * 40000,
+            ),
+            unitId: unit.id,
+            memberId: unit.payerId,
+            items: {
+              createMany: {
+                data: [
+                  {
+                    amount: 1,
+                    price: unit.price,
+                    description: `Unit lease charge ${month}`,
+                  },
+                  {
+                    amount: currentWater - prevWater,
+                    price: 40000,
+                    description: `Water fee ${month}`,
+                  },
+                  {
+                    amount: currentElectric - prevElectric,
+                    price: 4000,
+                    description: `Electric fee ${month}`,
+                  },
+                ],
+              },
+            },
+          },
+        });
+        startDate = dayjs(startDate).startOf('month').add(1, 'month').toDate();
+        prevWater = currentWater;
+        prevElectric = currentElectric;
+        currentWater += randomInt(1, 5);
+        currentElectric += randomInt(50, 150);
+      }
+    }),
+  );
 };
 
 const runSeed = async () => {

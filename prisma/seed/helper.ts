@@ -188,6 +188,24 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
         name,
       })),
     },
+    unitPriceLogs: {
+      createMany: {
+        data: [
+          {
+            category: 'WATER',
+            price: 40000,
+            status: 0,
+            value: 0,
+          },
+          {
+            category: 'ELECTRICITY',
+            price: 4000,
+            status: 0,
+            value: 0,
+          },
+        ],
+      },
+    },
   };
 };
 

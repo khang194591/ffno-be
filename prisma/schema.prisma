@@ -118,13 +118,14 @@ model Unit {
 }
 
 model UnitPriceLog {
-  id     String  @id @default(uuid())
-  value  Decimal
-  price  Decimal
-  status Int     @db.SmallInt
+  id       String            @id @default(uuid())
+  value    Decimal
+  price    Decimal
+  category UnitPriceCategory
+  status   Int               @db.SmallInt
   // Relations
-  unit   Unit    @relation(fields: [unitId], references: [id])
-  unitId String
+  unit     Unit              @relation(fields: [unitId], references: [id])
+  unitId   String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -341,4 +342,9 @@ enum ContractStatus {
   PENDING
   EXPIRED
   REJECTED
+}
+
+enum UnitPriceCategory {
+  WATER
+  ELECTRICITY
 }

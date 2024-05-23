@@ -17,6 +17,11 @@ export class GetPropertyHandler implements IQueryHandler<GetPropertyQuery> {
       include: {
         amenities: true,
         units: { include: { tenants: true } },
+        reviews: {
+          include: {
+            author: { select: { id: true, name: true, imgUrl: true } },
+          },
+        },
         owner: {
           select: {
             id: true,

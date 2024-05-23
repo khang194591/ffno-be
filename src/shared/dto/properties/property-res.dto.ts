@@ -2,6 +2,7 @@ import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import { IPropertyResDto, PropertyType } from 'src/libs';
 import { Nullable } from '../common';
 import { MemberResDto } from '../members';
+import { ReviewResDto } from '../reviews';
 import { UnitResDto } from '../units/unit-res.dto';
 
 @Exclude()
@@ -47,6 +48,10 @@ export class GetPropertyResDto implements IPropertyResDto {
   @Expose()
   @Type(() => UnitResDto)
   units: UnitResDto[];
+
+  @Expose()
+  @Type(() => ReviewResDto)
+  reviews: ReviewResDto[];
 
   @Expose()
   @Transform(
