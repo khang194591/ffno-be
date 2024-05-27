@@ -21,7 +21,9 @@ export class UpdatePropertyHandler
 
   async execute(query: UpdatePropertyCommand): Promise<string> {
     const { id } = query;
-    const data = await this.propertyService.validatePropertyInput(query.data);
+    const data = await this.propertyService.validateUpdatePropertyInput(
+      query.data,
+    );
 
     await this.propertyService.getPropertyOrThrow(id);
 

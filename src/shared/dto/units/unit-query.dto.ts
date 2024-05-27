@@ -1,13 +1,13 @@
 import { Type } from 'class-transformer';
 import {
   IsArray,
-  IsNumber,
+  IsDecimal,
   IsOptional,
   IsString,
   IsUUID,
 } from 'class-validator';
 import { IGetListUnitDto, IGetSimpleListUnitDto } from 'src/libs';
-import { TransformArray } from 'src/shared/decorators';
+import { DecimalNumber, TransformArray } from 'src/shared/decorators';
 import { GetListDto } from '../common';
 
 export class GetListUnitDto extends GetListDto implements IGetListUnitDto {
@@ -40,24 +40,24 @@ export class GetListUnitDto extends GetListDto implements IGetListUnitDto {
   features?: string[];
 
   @IsOptional()
-  @IsNumber()
-  @Type(() => Number)
-  minArea?: number;
+  @IsDecimal()
+  @Type(() => String)
+  minArea?: DecimalNumber;
 
   @IsOptional()
-  @IsNumber()
-  @Type(() => Number)
-  maxArea?: number;
+  @IsDecimal()
+  @Type(() => String)
+  maxArea?: DecimalNumber;
 
   @IsOptional()
-  @IsNumber()
-  @Type(() => Number)
-  minPrice?: number;
+  @IsDecimal()
+  @Type(() => String)
+  minPrice?: DecimalNumber;
 
   @IsOptional()
-  @IsNumber()
-  @Type(() => Number)
-  maxPrice?: number;
+  @IsDecimal()
+  @Type(() => String)
+  maxPrice?: DecimalNumber;
 }
 
 export class GetSimpleListUnitDto implements IGetSimpleListUnitDto {

@@ -29,7 +29,7 @@ export class UnitResDto implements IUnitResDto {
   deposit: DecimalNumber;
 
   @Expose()
-  details: Nullable<string>;
+  description: Nullable<string>;
 
   @Expose()
   status: UnitStatus;

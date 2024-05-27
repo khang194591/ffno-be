@@ -2,7 +2,6 @@ import { Type } from 'class-transformer';
 import {
   IsDate,
   IsEnum,
-  IsNumber,
   IsOptional,
   IsString,
   IsUrl,
@@ -18,8 +17,7 @@ export class SignUpDto extends SignInDto implements ISignUpDto {
   @IsString()
   name: string;
 
-  @IsNumber()
-  @Type(() => Number)
+  @IsEnum(Gender)
   gender: Gender;
 
   @IsOptional()

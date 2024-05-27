@@ -1,4 +1,3 @@
-import { PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
@@ -41,9 +40,8 @@ export class CreatePropertyDto implements ICreatePropertyDto {
   @IsString()
   name: string;
 
-  @Type(() => Number)
   @IsEnum(PropertyType)
-  type: number;
+  type: PropertyType;
 
   @IsString()
   address: string;
@@ -81,6 +79,27 @@ export class CreatePropertyDto implements ICreatePropertyDto {
   units: CreateSimpleUnitDto[];
 }
 
-export class UpdatePropertyDto
-  extends PartialType(CreatePropertyDto)
-  implements IUpdatePropertyDto {}
+export class UpdatePropertyDto implements IUpdatePropertyDto {
+  @IsOptional()
+  @IsString()
+  name: string;
+
+  @IsOptional()
+  @IsString()
+  address: string;
+
+  @IsOptional()
+  @IsArray()
+  @IsUrl({}, { each: true })
+  imgUrls: string[];
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  amenities: string[];
+
+  @IsOptional()
+  @IsArray()
+  @IsUUID('4', { each: true })
+  equipments: string[];
+}

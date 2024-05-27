@@ -21,7 +21,13 @@ export class RequestService {
     staffId: string,
     data: CreateRequestDto,
   ): Promise<Prisma.RequestCreateInput> {
-    const { unitId, propertyId, receiverIds = [], ...partialRequest } = data;
+    const {
+      unitId,
+      propertyId,
+      contractId,
+      receiverIds = [],
+      ...partialRequest
+    } = data;
 
     if (unitId && propertyId && !receiverIds.length) {
       const { property, tenants } = await this.prisma.unit.findUnique({
@@ -36,11 +42,21 @@ export class RequestService {
       receiverIds.push(...tenants.map(({ id }) => id));
     }
 
+    if (contractId) {
+      const { tenantId, landlordId } =
+        await this.prisma.contract.findUniqueOrThrow({
+          where: { id: contractId },
+        });
+
+      receiverIds.push(tenantId === staffId ? landlordId : tenantId);
+    }
+
     return {
       ...partialRequest,
       status: RequestStatus.PENDING,
       category: partialRequest.category,
-      unit: { connect: { id: unitId } },
+      unit: unitId && { connect: { id: unitId } },
+      contract: contractId && { connect: { id: contractId } },
       sender: { connect: { id: staffId } },
       receivers: {
         createMany: {

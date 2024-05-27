@@ -1,6 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
+import { calculateRating } from 'src/libs/helpers';
 import { GetPropertyResDto } from 'src/shared/dto';
 
 export class GetPropertyQuery {
@@ -17,6 +18,11 @@ export class GetPropertyHandler implements IQueryHandler<GetPropertyQuery> {
       include: {
         amenities: true,
         units: { include: { tenants: true } },
+        reviews: {
+          include: {
+            author: { select: { id: true, name: true, imgUrl: true } },
+          },
+        },
         owner: {
           select: {
             id: true,
@@ -30,6 +36,11 @@ export class GetPropertyHandler implements IQueryHandler<GetPropertyQuery> {
       },
     });
 
-    return plainToInstance(GetPropertyResDto, property);
+    const { reviews } = property;
+
+    return plainToInstance(GetPropertyResDto, {
+      ...property,
+      rating: calculateRating(reviews),
+    });
   }
 }

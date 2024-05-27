@@ -18,7 +18,9 @@ export class CreatePropertyHandler
   ) {}
 
   async execute(query: CreatePropertyCommand): Promise<string> {
-    const data = await this.propertyService.validatePropertyInput(query.data);
+    const data = await this.propertyService.validateCreatePropertyInput(
+      query.data,
+    );
 
     const property = await this.prisma.property.create({
       data: data as Prisma.PropertyCreateInput,

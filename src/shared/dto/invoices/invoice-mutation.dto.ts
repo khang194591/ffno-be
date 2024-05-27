@@ -1,6 +1,7 @@
 import { PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
+  ArrayNotEmpty,
   IsArray,
   IsBoolean,
   IsDate,
@@ -37,7 +38,6 @@ export class CreateInvoiceDto implements ICreateInvoiceDto {
   dueDate: Date;
 
   @IsEnum(InvoiceCategory)
-  @Type(() => Number)
   category: InvoiceCategory;
 
   @IsUUID()
@@ -58,3 +58,10 @@ export class CreateInvoiceDto implements ICreateInvoiceDto {
 export class UpdateInvoiceDto
   extends PartialType(CreateInvoiceDto)
   implements IUpdateInvoiceDto {}
+
+export class MergeInvoicesDto {
+  @IsArray()
+  @ArrayNotEmpty()
+  @Type(() => Number)
+  ids: number[];
+}

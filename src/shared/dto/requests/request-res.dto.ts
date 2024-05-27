@@ -1,10 +1,13 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
 import {
+  IContractResDto,
   IMemberWithStatus,
   IRequestResDto,
+  IUnitResDto,
   RequestCategory,
   RequestStatus,
 } from 'src/libs';
+import { ContractResDto } from '../contracts';
 import { MemberResDto } from '../members';
 import { UnitResDto } from '../units';
 
@@ -29,7 +32,7 @@ export class RequestResDto implements IRequestResDto {
   name: string;
 
   @Expose()
-  details: string;
+  description: string;
 
   @Expose()
   status: RequestStatus;
@@ -39,7 +42,11 @@ export class RequestResDto implements IRequestResDto {
 
   @Expose()
   @Type(() => UnitResDto)
-  unit: UnitResDto;
+  unit: IUnitResDto;
+
+  @Expose()
+  @Type(() => ContractResDto)
+  contract: IContractResDto;
 
   @Expose()
   @Type(() => MemberResDto)
@@ -58,7 +65,7 @@ export class RequestResDto implements IRequestResDto {
   @Expose()
   @Transform(({ obj }) =>
     obj.receivers
-      .filter((i) => i.status === RequestStatus.ACCEPTED)
+      ?.filter((i) => i.status === RequestStatus.ACCEPTED)
       .map((receiver) => receiver.member),
   )
   approvers: MemberResDto[];
@@ -66,7 +73,7 @@ export class RequestResDto implements IRequestResDto {
   @Expose()
   @Transform(({ obj }) =>
     obj.receivers
-      .filter((i) => i.status === RequestStatus.ACCEPTED)
+      ?.filter((i) => i.status === RequestStatus.ACCEPTED)
       .map((receiver) => receiver.member.id),
   )
   approverIds: string[];

@@ -15,13 +15,13 @@ model Member {
   phone             String?                @unique
   password          String
   // Basic info
-  role              Int                    @db.SmallInt
+  role              Role
   name              String
-  gender            Int                    @db.SmallInt
+  gender            Gender
   imgUrl            String?
   address           String?
   dateOfBirth       DateTime?              @db.Date
-  identityNumber    String
+  identityNumber    String?
   identityImgUrls   String[]
   // Properties
   ownedProperties   Property[]
@@ -48,7 +48,7 @@ model Member {
 
 model MemberContacts {
   id            String  @id @default(uuid())
-  type          Int     @db.SmallInt
+  type          Role
   isConnected   Boolean @default(false)
   // Relations
   contact       Member  @relation("contact", fields: [contactId], references: [id])
@@ -63,23 +63,23 @@ model MemberContacts {
 }
 
 model Property {
-  id         String            @id @default(uuid())
+  id          String            @id @default(uuid())
   // Basic info
-  name       String
-  type       Int               @default(0) @db.SmallInt // 0 = Single Unit, 1 = Multiple Units
-  address    String
-  ward       String
-  district   String
-  province   String
-  imgUrls    String[]
-  details    String?           @db.Text
+  name        String
+  type        PropertyType      @default(SINGLE_UNIT)
+  address     String
+  ward        String
+  district    String
+  province    String
+  imgUrls     String[]
+  description String?           @db.Text
   // Relations
-  ownerId    String
-  owner      Member            @relation(fields: [ownerId], references: [id])
-  amenities  PropertyAmenity[]
-  units      Unit[]
-  equipments Equipment[]
-  reviews    Review[]
+  ownerId     String
+  owner       Member            @relation(fields: [ownerId], references: [id])
+  amenities   PropertyAmenity[]
+  units       Unit[]
+  equipments  Equipment[]
+  reviews     Review[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -94,8 +94,8 @@ model Unit {
   area          Decimal
   price         Decimal
   deposit       Decimal
-  details       String?        @db.Text
-  status        Int            @db.SmallInt
+  description   String?
+  status        UnitStatus     @default(GOOD)
   imgUrls       String[]
   isListing     Boolean        @default(false)
   // Relations
@@ -118,13 +118,14 @@ model Unit {
 }
 
 model UnitPriceLog {
-  id     String  @id @default(uuid())
-  value  Decimal
-  price  Decimal
-  status Int     @db.SmallInt
+  id       String            @id @default(uuid())
+  value    Decimal
+  price    Decimal
+  category UnitPriceCategory
+  status   Int               @db.SmallInt
   // Relations
-  unit   Unit    @relation(fields: [unitId], references: [id])
-  unitId String
+  unit     Unit              @relation(fields: [unitId], references: [id])
+  unitId   String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -149,8 +150,8 @@ model Equipment {
   model                   String?
   serial                  String?
   dateOfInstallation      DateTime?
-  details                 String?            @db.Text
-  maintainStatus          Int                @default(0) @db.SmallInt // 0 = GOOD, 1 = MAINTAINING, 2 = BAD 
+  description             String?
+  maintainStatus          UnitStatus
   // Relations
   category                String?
   Category                EquipmentCategory? @relation(fields: [category], references: [name])
@@ -167,16 +168,18 @@ model EquipmentCategory {
 }
 
 model Invoice {
-  id       Int           @id @default(autoincrement())
+  id       Int             @id @default(autoincrement())
+  paid     Decimal?        @default(0)
   total    Decimal
-  status   Int           @db.SmallInt
+  status   InvoiceStatus
   paidAt   DateTime?
-  dueDate  DateTime      @db.Date
-  category Int           @db.SmallInt
+  dueDate  DateTime        @db.Date
+  category InvoiceCategory
+  mergedId Int?
   // Relations
-  unit     Unit          @relation(fields: [unitId], references: [id])
+  unit     Unit            @relation(fields: [unitId], references: [id])
   unitId   String
-  member   Member        @relation(fields: [memberId], references: [id])
+  member   Member          @relation(fields: [memberId], references: [id])
   memberId String
   items    InvoiceItem[]
 
@@ -194,8 +197,10 @@ model InvoiceItem {
 }
 
 model Contract {
-  id              String    @id @default(uuid())
-  status          Int       @db.SmallInt
+  id              Int            @id @default(autoincrement())
+  status          ContractStatus @default(PENDING)
+  price           Decimal
+  deposit         Decimal
   template        String
   startDate       DateTime
   endDate         DateTime
@@ -203,29 +208,34 @@ model Contract {
   imgUrls         String[]
 
   // Relations
-  landlord   Member @relation(name: "landlord", fields: [landlordId], references: [id])
-  landlordId String
-  tenant     Member @relation(name: "tenant", fields: [tenantId], references: [id])
-  tenantId   String
-  unit       Unit   @relation(fields: [unitId], references: [id])
-  unitId     String
+  landlord       Member        @relation(name: "landlord", fields: [landlordId], references: [id])
+  landlordId     String
+  landlordStatus RequestStatus @default(PENDING)
+  tenant         Member        @relation(name: "tenant", fields: [tenantId], references: [id])
+  tenantId       String
+  tenantStatus   RequestStatus @default(PENDING)
+  unit           Unit          @relation(fields: [unitId], references: [id])
+  unitId         String
+  requests       Request[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Request {
-  id        String                 @id @default(uuid())
-  name      String
-  status    Int                    @db.SmallInt
-  details   String
-  category  Int                    @db.SmallInt
+  id          String                 @id @default(uuid())
+  name        String
+  status      RequestStatus
+  description String
+  category    RequestCategory
   // Relations
-  unitId    String?
-  unit      Unit?                  @relation(fields: [unitId], references: [id])
-  senderId  String
-  sender    Member                 @relation(name: "sender", fields: [senderId], references: [id])
-  receivers MemberReceiveRequest[]
+  unitId      String?
+  unit        Unit?                  @relation(fields: [unitId], references: [id])
+  contractId  Int?
+  contract    Contract?              @relation(fields: [contractId], references: [id])
+  senderId    String
+  sender      Member                 @relation(name: "sender", fields: [senderId], references: [id])
+  receivers   MemberReceiveRequest[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -233,10 +243,10 @@ model Request {
 
 model MemberReceiveRequest {
   memberId  String
-  member    Member  @relation(fields: [memberId], references: [id])
+  member    Member        @relation(fields: [memberId], references: [id])
   requestId String
-  request   Request @relation(fields: [requestId], references: [id])
-  status    Int     @db.SmallInt
+  request   Request       @relation(fields: [requestId], references: [id])
+  status    RequestStatus
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -271,4 +281,70 @@ model Notification {
   receiver   Member    @relation(fields: [receiverId], references: [id])
   createdAt  DateTime  @default(now())
   deletedAt  DateTime?
+}
+
+// ################################ ENUMS ################################
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum Role {
+  ADMIN
+  LANDLORD
+  TENANT
+  SERVICE_WORKER
+}
+
+enum ContactType {
+  TENANT
+  SERVICE_WORKER
+}
+
+enum PropertyType {
+  SINGLE_UNIT
+  MULTIPLE_UNIT
+}
+
+enum UnitStatus {
+  GOOD
+  MAINTAINING
+  BAD
+}
+
+enum InvoiceStatus {
+  PENDING
+  PAID
+  PARTIAL
+  OVERDUE
+  MERGED
+}
+
+enum InvoiceCategory {
+  MERGED
+  UNIT_CHARGE
+  UNIT_PRICE_LOG
+}
+
+enum RequestCategory {
+  UNIT_LEASE
+  TERMINATE_CONTRACT
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+enum ContractStatus {
+  ACTIVE
+  PENDING
+  EXPIRED
+  REJECTED
+}
+
+enum UnitPriceCategory {
+  WATER
+  ELECTRICITY
 }

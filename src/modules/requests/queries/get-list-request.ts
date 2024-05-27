@@ -41,7 +41,17 @@ export class GetListRequestHandler
         take,
         skip,
         include: {
-          unit: { select: { id: true, name: true } },
+          unit: {
+            select: {
+              id: true,
+              name: true,
+              propertyId: true,
+              property: { select: { name: true } },
+            },
+          },
+          contract: {
+            select: { id: true },
+          },
           sender: { select: { id: true, name: true, imgUrl: true } },
           receivers: {
             select: {

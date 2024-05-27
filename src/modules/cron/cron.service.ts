@@ -1,7 +1,6 @@
-import { faker } from '@faker-js/faker/locale/vi';
+import { faker } from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { Prisma } from '@prisma/client';
 import { randomInt } from 'crypto';
 import dayjs from 'dayjs';
 import { PrismaService } from 'src/config';
@@ -17,11 +16,10 @@ import {
 export class CronService {
   constructor(private readonly prisma: PrismaService) {}
 
-  // @Cron(CronExpression.EVERY_HOUR)
+  // @Cron(CronExpression.EVERY_MINUTE)
   async bulkCreateMonthlyInvoice() {
     console.log('-------------------------------');
-    const a = await this.prisma.unit.findMany({
-      //   where: {},
+    const allUnits = await this.prisma.unit.findMany({
       include: {
         property: {
           select: {
@@ -36,26 +34,38 @@ export class CronService {
       },
     });
 
-    const b = a.filter((unit) => unit.tenants.length);
+    const chargeableUnits = allUnits.filter(
+      (unit) => unit.tenants.length && unit.payerId,
+    );
 
-    const c: Prisma.InvoiceCreateManyArgs = {
-      skipDuplicates: true,
-      data: b.map((unit) => ({
-        total: unit.price,
-        status: InvoiceStatus.PENDING,
-        category: InvoiceCategory.UNIT_CHARGE,
-        unitId: unit.id,
-        memberId: unit.payerId,
-        details: `Unit ${unit.name} of property ${unit.property.name} charge ${dayjs().format('MM/YYYY')}`,
-        dueDate: dayjs().endOf('month').toDate(),
-      })),
-    };
+    const result = await this.prisma.$transaction(async (tx) =>
+      Promise.all(
+        chargeableUnits.map((unit) =>
+          tx.invoice.create({
+            data: {
+              total: unit.price,
+              status: InvoiceStatus.PENDING,
+              category: InvoiceCategory.UNIT_CHARGE,
+              unitId: unit.id,
+              memberId: unit.payerId,
+              dueDate: dayjs().endOf('month').toDate(),
+              items: {
+                create: {
+                  amount: 1,
+                  price: unit.price,
+                  description: `Unit ${unit.name} of property ${unit.property.name} charge ${dayjs().format('MM/YYYY')}`,
+                },
+              },
+            },
+          }),
+        ),
+      ),
+    );
 
-    const invoices = await this.prisma.invoice.createMany(c);
-    console.log(invoices);
+    console.log(result.length);
   }
 
-  // @Cron(CronExpression.EVERY_MINUTE)
+  @Cron(CronExpression.EVERY_HOUR)
   async fakeRequest() {
     const members = await this.prisma.member.findMany({
       where: { role: MemberRole.TENANT },
@@ -70,9 +80,9 @@ export class CronService {
 
     const unit = units[randomInt(units.length)];
 
-    const result = await this.prisma.request.create({
+    await this.prisma.request.create({
       data: {
-        name: `Yêu cầu thuê phòng ${unit.name} tòa nhà ${unit.property.name}`,
+        name: `Request least ${unit.name} - ${unit.property.name}`,
         unitId: unit.id,
         senderId: sender.id,
         status: RequestStatus.PENDING,
@@ -88,9 +98,8 @@ export class CronService {
             })),
           },
         },
-        details: faker.lorem.paragraph(),
+        description: faker.lorem.paragraph(),
       },
     });
-    console.log(result);
   }
 }

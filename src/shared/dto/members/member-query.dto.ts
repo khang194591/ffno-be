@@ -1,5 +1,4 @@
-import { Type } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
 import { ContactType, IGetListContactDto } from 'src/libs';
 import { GetListDto } from '../common';
 
@@ -12,7 +11,6 @@ export class GetListContactDto
   keyword?: string;
 
   @IsOptional()
-  @IsNumber()
-  @Type(() => Number)
+  @IsEnum(ContactType)
   type?: ContactType;
 }

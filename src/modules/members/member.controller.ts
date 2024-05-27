@@ -1,9 +1,8 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
 import { CurrentMember, CurrentMemberId } from 'src/shared/decorators';
 import { GetListContactDto, IdUUIDParams, MemberResDto } from 'src/shared/dto';
-import { LinkTenantCommand } from './commands';
 import {
   GetCurrentMemberQuery,
   GetListContactQuery,
@@ -32,17 +31,10 @@ export class MemberController {
   }
 
   @Get(':id')
-  async getMember(@Param() { id }: IdUUIDParams) {
-    return this.queryBus.execute(new GetMemberQuery(id));
-  }
-
-  @Post('link-tenant')
-  async linkTenant(
+  async getMember(
     @CurrentMember() currentMember: MemberResDto,
-    @Body() { keyword }: { keyword: string },
+    @Param() { id }: IdUUIDParams,
   ) {
-    return this.commandBus.execute(
-      new LinkTenantCommand(currentMember, keyword),
-    );
+    return this.queryBus.execute(new GetMemberQuery(id, currentMember));
   }
 }

@@ -1,5 +1,11 @@
-import { Type } from 'class-transformer';
-import { IsArray, IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
+import {
+  IsArray,
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUUID,
+} from 'class-validator';
 import {
   ICreateRequestDto,
   IUpdateRequestDto,
@@ -16,10 +22,9 @@ export class CreateRequestDto implements ICreateRequestDto {
   name: string;
 
   @IsString()
-  details: string;
+  description: string;
 
   @IsEnum(RequestCategory)
-  @Type(() => Number)
   category: RequestCategory;
 
   @IsOptional()
@@ -29,11 +34,15 @@ export class CreateRequestDto implements ICreateRequestDto {
 
   @IsOptional()
   @IsUUID()
-  propertyId: string;
+  propertyId?: string;
 
   @IsOptional()
   @IsUUID()
-  unitId: string;
+  unitId?: string;
+
+  @IsOptional()
+  @IsNumber()
+  contractId?: number;
 }
 
 export class UpdateRequestDto implements IUpdateRequestDto {

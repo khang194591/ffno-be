@@ -1,5 +1,13 @@
-import { Exclude, Expose, Transform } from 'class-transformer';
-import { ICurrentMemberResDto, IMemberResDto, MemberRole } from 'src/libs';
+import { Exclude, Expose, Transform, Type } from 'class-transformer';
+import {
+  Gender,
+  IContractResDto,
+  ICurrentMemberResDto,
+  IMemberResDto,
+  MemberRole,
+} from 'src/libs';
+import { ContractResDto } from '../contracts';
+import { TransformArray } from 'src/shared/decorators';
 
 @Exclude()
 export class MemberResDto implements IMemberResDto {
@@ -16,7 +24,7 @@ export class MemberResDto implements IMemberResDto {
   phone: string;
 
   @Expose()
-  gender: string;
+  gender: Gender;
 
   @Expose()
   address: string;
@@ -31,8 +39,16 @@ export class MemberResDto implements IMemberResDto {
   role: MemberRole;
 
   @Expose()
-  @Transform(({ value }) => value?.name)
+  @Transform(
+    ({ value }) =>
+      value?.name + (value?.property?.name ? ` - ${value.property.name}` : ''),
+  )
   unit: string;
+
+  @Expose()
+  @TransformArray()
+  @Type(() => ContractResDto)
+  tenantContracts: IContractResDto[];
 }
 
 @Exclude()

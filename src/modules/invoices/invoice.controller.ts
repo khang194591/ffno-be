@@ -14,9 +14,11 @@ import {
   CreateInvoiceDto,
   GetListInvoiceDto,
   IdNumberParams,
+  MergeInvoicesDto,
   UpdateInvoiceDto,
 } from 'src/shared/dto';
 import { CreateInvoiceCommand, UpdateInvoiceCommand } from './commands';
+import { MergeInvoicesCommand } from './commands/merge-invoices';
 import { GetInvoiceQuery, GetListInvoiceQuery } from './queries';
 
 @Controller('invoices')
@@ -44,6 +46,11 @@ export class InvoiceController {
   @Post()
   async createInvoice(@Body() body: CreateInvoiceDto) {
     return this.commandBus.execute(new CreateInvoiceCommand(body));
+  }
+
+  @Patch('merge')
+  async mergeInvoice(@Body() body: MergeInvoicesDto) {
+    return this.commandBus.execute(new MergeInvoicesCommand(body));
   }
 
   @Patch(':id')
