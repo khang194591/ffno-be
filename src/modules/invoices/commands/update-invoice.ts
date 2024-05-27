@@ -19,12 +19,17 @@ export class UpdateInvoiceHandler
     private readonly invoiceService: InvoiceService,
   ) {}
 
-  async execute({ id }: UpdateInvoiceCommand): Promise<number> {
+  async execute({ id, data }: UpdateInvoiceCommand): Promise<number> {
     // const data = await this.invoiceService.validateInvoiceInput(query.data);
 
     // await this.invoiceService.getInvoiceOrThrow(id);
 
-    // const invoice = await this.prisma.invoice.update({ where: { id }, data });
+    const invoice = await this.prisma.invoice.update({
+      where: { id },
+      data: {
+        status: 'PAID',
+      },
+    });
 
     return id;
   }

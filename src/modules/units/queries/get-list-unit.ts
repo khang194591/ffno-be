@@ -46,7 +46,7 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
     const isTenant = !currentMember || currentMember.role === MemberRole.TENANT;
 
     const whereUnit: Prisma.UnitWhereInput = {
-      name: { search: handleSearchQuery(name) },
+      // name: { search: handleSearchQuery(name) },
       isListing: isTenant ? true : undefined,
       unitFeatures: features && { some: { name: { in: features } } },
       area: { gte: minArea, lte: maxArea },

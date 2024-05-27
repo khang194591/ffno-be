@@ -42,8 +42,18 @@ export class MergeInvoicesHandler
 
     const mergedInvoice = await this.prisma.invoice.create({
       data: {
-        memberId: memberIds[0],
-        unitId: invoices[0].unitId,
+        // memberId: memberIds[0],
+        // unitId: invoices[0].unitId,
+        unit: {
+          connect: {
+            id: invoices[0].unitId,
+          },
+        },
+        member: {
+          connect: {
+            id: memberIds.values().next().value,
+          },
+        },
         category: InvoiceCategory.MERGED,
         status: fullyPaid
           ? InvoiceStatus.PAID

@@ -1,5 +1,5 @@
-import { IsOptional, IsString } from 'class-validator';
-import { IGetListRequestDto } from 'src/libs';
+import { IsEnum, IsOptional, IsString } from 'class-validator';
+import { IGetListRequestDto, RequestCategory, RequestStatus } from 'src/libs';
 import { GetListDto } from '../common';
 
 export class GetListRequestDto
@@ -9,4 +9,12 @@ export class GetListRequestDto
   @IsOptional()
   @IsString()
   type?: string;
+
+  @IsOptional()
+  @IsEnum(RequestCategory)
+  category?: RequestCategory;
+
+  @IsOptional()
+  @IsEnum(RequestStatus)
+  status?: RequestStatus;
 }

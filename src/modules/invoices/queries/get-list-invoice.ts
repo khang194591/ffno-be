@@ -32,7 +32,14 @@ export class GetListInvoiceHandler
     const where: Prisma.InvoiceWhereInput = {
       status,
       memberId,
-      unit: { id: unitId, property: { id: propertyId, ownerId: staffId } },
+      OR: [
+        {
+          unit: { id: unitId, property: { id: propertyId, ownerId: staffId } },
+        },
+        {
+          memberId: staffId,
+        },
+      ],
     };
 
     const [total, properties] = await this.prisma.$transaction([

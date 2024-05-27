@@ -4,6 +4,7 @@ import { PrismaService } from 'src/config';
 import { RequestCategory } from 'src/libs';
 import { MemberResDto, UnitResDto } from 'src/shared/dto';
 import { UnitService } from '../unit.service';
+import { calculateRating } from 'src/libs/helpers';
 
 export class GetUnitQuery {
   constructor(
@@ -28,6 +29,11 @@ export class GetUnitHandler implements IQueryHandler<GetUnitQuery> {
         payer: true,
         tenants: true,
         unitFeatures: true,
+        reviews: {
+          include: {
+            author: { select: { id: true, name: true, imgUrl: true } },
+          },
+        },
         property: {
           select: {
             name: true,
@@ -52,6 +58,12 @@ export class GetUnitHandler implements IQueryHandler<GetUnitQuery> {
       }));
     }
 
-    return plainToInstance(UnitResDto, { ...unit, requested });
+    const { reviews } = unit;
+
+    return plainToInstance(UnitResDto, {
+      ...unit,
+      requested,
+      rating: calculateRating(reviews),
+    });
   }
 }

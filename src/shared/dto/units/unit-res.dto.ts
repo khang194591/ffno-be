@@ -1,9 +1,10 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { IUnitResDto, UnitStatus } from 'src/libs';
+import { IReviewRatingResDto, IUnitResDto, UnitStatus } from 'src/libs';
 import { DecimalNumber } from 'src/shared/decorators';
 import { Nullable } from '../common';
 import { MemberResDto } from '../members';
 import { GetPropertyResDto } from '../properties';
+import { ReviewRatingResDto, ReviewResDto } from '../reviews';
 
 @Exclude()
 export class UnitResDto implements IUnitResDto {
@@ -58,4 +59,12 @@ export class UnitResDto implements IUnitResDto {
 
   @Expose()
   requested: boolean;
+
+  @Expose()
+  @Type(() => ReviewResDto)
+  reviews: ReviewResDto[];
+
+  @Expose()
+  @Type(() => ReviewRatingResDto)
+  rating: IReviewRatingResDto;
 }
