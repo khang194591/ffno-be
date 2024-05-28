@@ -9,9 +9,9 @@ import {
   IsString,
   IsUUID,
 } from 'class-validator';
-import { UnitStatus } from 'src/libs';
+import { ICreateEquipmentDto, UnitStatus } from 'src/libs';
 
-export class CreateEquipmentDto {
+export class CreateEquipmentDto implements ICreateEquipmentDto {
   @IsOptional()
   @IsUUID()
   id?: string;
@@ -35,7 +35,7 @@ export class CreateEquipmentDto {
   @IsOptional()
   @IsDate()
   @Type(() => Date)
-  dateOfInstallation?: string;
+  dateOfInstallation?: Date;
 
   @IsOptional()
   description?: string;
@@ -50,6 +50,10 @@ export class CreateEquipmentDto {
   @IsOptional()
   @IsUUID()
   propertyId?: string;
+
+  @IsOptional()
+  @IsUUID()
+  unitId?: string;
 
   @IsBoolean()
   enableWarranty: boolean = false;

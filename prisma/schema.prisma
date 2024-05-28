@@ -110,6 +110,7 @@ model Unit {
   unitPriceLogs UnitPriceLog[]
   unitFeatures  UnitFeature[]
   requests      Request[]
+  equipments    Equipment[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -142,29 +143,31 @@ model PropertyAmenity {
 }
 
 model Equipment {
-  id                      String             @id @default(uuid())
+  id                     String             @id @default(uuid())
   // Basic info
-  name                    String
-  brand                   String?
-  price                   Decimal?           @default(0)
-  model                   String?
-  serial                  String?
-  dateOfInstallation      DateTime?
-  description             String?
-  maintainStatus          UnitStatus
+  name                   String
+  brand                  String?
+  price                  Decimal?           @default(0)
+  model                  String?
+  serial                 String?
+  dateOfInstallation     DateTime?
+  description            String?
+  maintainStatus         UnitStatus
   // Relations
-  category                String?
-  Category                EquipmentCategory? @relation(fields: [category], references: [name])
-  propertyId              String?
-  property                Property?          @relation(fields: [propertyId], references: [id])
+  category               String?
+  Category               EquipmentCategory? @relation(fields: [category], references: [name])
+  propertyId             String?
+  property               Property?          @relation(fields: [propertyId], references: [id])
+  unitId                 String?
+  unit                   Unit?              @relation(fields: [unitId], references: [id])
   // Warranty info
-  enableWarranty          Boolean            @default(false)
-  warrantyExprirationDate DateTime? // If enableWarranty and is null -> Lifetime warranty
+  enableWarranty         Boolean            @default(false)
+  warrantyExpirationDate DateTime? // If enableWarranty and is null -> Lifetime warranty
 }
 
 model EquipmentCategory {
-  name      String      @id @unique
-  equiments Equipment[]
+  name       String      @id @unique
+  equipments Equipment[]
 }
 
 model Invoice {
