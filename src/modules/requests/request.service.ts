@@ -25,6 +25,7 @@ export class RequestService {
       unitId,
       propertyId,
       contractId,
+      equipmentId,
       receiverIds = [],
       ...partialRequest
     } = data;
@@ -56,6 +57,7 @@ export class RequestService {
       status: RequestStatus.PENDING,
       category: partialRequest.category,
       unit: unitId && { connect: { id: unitId } },
+      equipment: equipmentId && { connect: { id: equipmentId } },
       contract: contractId && { connect: { id: contractId } },
       sender: { connect: { id: staffId } },
       receivers: {

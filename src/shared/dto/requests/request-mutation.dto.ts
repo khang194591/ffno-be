@@ -43,6 +43,10 @@ export class CreateRequestDto implements ICreateRequestDto {
   @IsOptional()
   @IsNumber()
   contractId?: number;
+
+  @IsOptional()
+  @IsUUID()
+  equipmentId?: string;
 }
 
 export class UpdateRequestDto implements IUpdateRequestDto {

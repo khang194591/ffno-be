@@ -15,6 +15,11 @@ export class CommonService {
     return items.map(({ name }) => name);
   }
 
+  async getEquipmentCategories(): Promise<string[]> {
+    const items = await this.prisma.equipmentCategory.findMany();
+    return items.map(({ name }) => name);
+  }
+
   async getProperties() {
     const items = await this.prisma.property.findMany({
       select: { id: true, name: true },

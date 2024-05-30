@@ -39,6 +39,7 @@ export class CreateRequestHandler
             title: request.name,
             content: request.description,
             memberId: receiver.memberId,
+            link: `/requests/${request.id}`,
           }),
         ),
       );

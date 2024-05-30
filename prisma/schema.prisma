@@ -153,6 +153,7 @@ model Equipment {
   dateOfInstallation     DateTime?
   description            String?
   maintainStatus         UnitStatus
+  imgUrls                String[]
   // Relations
   category               String?
   Category               EquipmentCategory? @relation(fields: [category], references: [name])
@@ -163,6 +164,7 @@ model Equipment {
   // Warranty info
   enableWarranty         Boolean            @default(false)
   warrantyExpirationDate DateTime? // If enableWarranty and is null -> Lifetime warranty
+  Request                Request[]
 }
 
 model EquipmentCategory {
@@ -236,6 +238,8 @@ model Request {
   unit        Unit?                  @relation(fields: [unitId], references: [id])
   contractId  Int?
   contract    Contract?              @relation(fields: [contractId], references: [id])
+  equipmentId String?
+  equipment   Equipment?             @relation(fields: [equipmentId], references: [id])
   senderId    String
   sender      Member                 @relation(name: "sender", fields: [senderId], references: [id])
   receivers   MemberReceiveRequest[]
@@ -331,6 +335,8 @@ enum InvoiceCategory {
 
 enum RequestCategory {
   UNIT_LEASE
+  REPORT_ISSUE
+  EQUIPMENT_WARRANTY
   TERMINATE_CONTRACT
 }
 

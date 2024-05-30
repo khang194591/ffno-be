@@ -1,7 +1,8 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { IReviewRatingResDto, IUnitResDto, UnitStatus } from 'src/libs';
+import { IUnitResDto, UnitStatus } from 'src/libs';
 import { DecimalNumber } from 'src/shared/decorators';
 import { Nullable } from '../common';
+import { EquipmentResDto } from '../equipments';
 import { MemberResDto } from '../members';
 import { GetPropertyResDto } from '../properties';
 import { ReviewRatingResDto, ReviewResDto } from '../reviews';
@@ -66,5 +67,9 @@ export class UnitResDto implements IUnitResDto {
 
   @Expose()
   @Type(() => ReviewRatingResDto)
-  rating: IReviewRatingResDto;
+  rating: ReviewRatingResDto;
+
+  @Expose()
+  @Type(() => EquipmentResDto)
+  equipments: EquipmentResDto[];
 }

@@ -33,6 +33,7 @@ export class GetPropertyHandler implements IQueryHandler<GetPropertyQuery> {
             imgUrl: true,
           },
         },
+        equipments: true,
       },
     });
 

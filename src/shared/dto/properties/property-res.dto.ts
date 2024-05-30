@@ -1,6 +1,12 @@
 import { Exclude, Expose, Transform, Type } from 'class-transformer';
-import { IPropertyResDto, IReviewRatingResDto, PropertyType } from 'src/libs';
+import {
+  IEquipmentResDto,
+  IPropertyResDto,
+  IReviewRatingResDto,
+  PropertyType,
+} from 'src/libs';
 import { Nullable } from '../common';
+import { EquipmentResDto } from '../equipments';
 import { MemberResDto } from '../members';
 import { ReviewRatingResDto, ReviewResDto } from '../reviews';
 import { UnitResDto } from '../units/unit-res.dto';
@@ -56,6 +62,10 @@ export class GetPropertyResDto implements IPropertyResDto {
   @Expose()
   @Type(() => ReviewResDto)
   reviews: ReviewResDto[];
+
+  @Expose()
+  @Type(() => EquipmentResDto)
+  equipments: IEquipmentResDto[];
 
   @Expose()
   @Transform(

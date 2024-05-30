@@ -5,6 +5,7 @@ import {
   ContractStatus,
   RequestCategory,
   RequestStatus,
+  UnitStatus,
 } from 'src/libs';
 import { NotificationService } from 'src/modules/services/notification.service';
 import { UpdateRequestDto } from 'src/shared/dto';
@@ -80,7 +81,33 @@ export class UpdateRequestHandler
             },
           });
           break;
-
+        case RequestCategory.REPORT_ISSUE:
+          if (updatedRequest.unitId) {
+            await this.prisma.unit.update({
+              where: { id: updatedRequest.unitId },
+              data: { status: UnitStatus.BAD },
+            });
+          }
+          if (updatedRequest.equipmentId) {
+            await this.prisma.equipment.update({
+              where: { id: updatedRequest.equipmentId },
+              data: { maintainStatus: UnitStatus.BAD },
+            });
+          }
+        case RequestCategory.EQUIPMENT_WARRANTY:
+          if (updatedRequest.unitId) {
+            await this.prisma.unit.update({
+              where: { id: updatedRequest.unitId },
+              data: { status: UnitStatus.MAINTAINING },
+            });
+            break;
+          }
+          if (updatedRequest.equipmentId) {
+            await this.prisma.equipment.update({
+              where: { id: updatedRequest.equipmentId },
+              data: { maintainStatus: UnitStatus.MAINTAINING },
+            });
+          }
         default:
           break;
       }
@@ -94,8 +121,8 @@ export class UpdateRequestHandler
       await Promise.all(
         receivedRequests.map(({ memberId, requestId }) =>
           this.notificationService.sendWebPushNotification({
-            title: 'Contract status updated',
-            content: 'Contract status updated',
+            title: 'Request status updated',
+            content: 'Request status updated',
             memberId,
             link: `/requests/${requestId}`,
           }),

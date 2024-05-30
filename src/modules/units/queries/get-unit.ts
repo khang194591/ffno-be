@@ -2,9 +2,9 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import { RequestCategory } from 'src/libs';
+import { calculateRating } from 'src/libs/helpers';
 import { MemberResDto, UnitResDto } from 'src/shared/dto';
 import { UnitService } from '../unit.service';
-import { calculateRating } from 'src/libs/helpers';
 
 export class GetUnitQuery {
   constructor(
@@ -29,6 +29,7 @@ export class GetUnitHandler implements IQueryHandler<GetUnitQuery> {
         payer: true,
         tenants: true,
         unitFeatures: true,
+        equipments: true,
         reviews: {
           include: {
             author: { select: { id: true, name: true, imgUrl: true } },

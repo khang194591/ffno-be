@@ -23,6 +23,11 @@ export class CommonController {
     return this.commonService.getUnitFeatures();
   }
 
+  @Get('equipment-categories')
+  async getEquipmentCategories() {
+    return this.commonService.getEquipmentCategories();
+  }
+
   @Get('provinces')
   async getProvinces() {
     return provinces;
