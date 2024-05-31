@@ -4,14 +4,17 @@ import { PrismaService } from 'src/config';
 import { RequestResDto } from 'src/shared/dto';
 
 export class GetRequestQuery {
-  constructor(public readonly id: string) {}
+  constructor(
+    public readonly id: string,
+    public readonly memberId: string,
+  ) {}
 }
 
 @QueryHandler(GetRequestQuery)
 export class GetRequestHandler implements IQueryHandler<GetRequestQuery> {
   constructor(private readonly prisma: PrismaService) {}
 
-  async execute({ id }: GetRequestQuery): Promise<RequestResDto> {
+  async execute({ id, memberId }: GetRequestQuery): Promise<RequestResDto> {
     const request = await this.prisma.request.findUnique({
       where: { id },
       include: {
@@ -26,6 +29,11 @@ export class GetRequestHandler implements IQueryHandler<GetRequestQuery> {
           },
         },
       },
+    });
+
+    await this.prisma.notification.updateMany({
+      where: { receiverId: memberId, requestId: id },
+      data: { isRead: true },
     });
 
     return plainToInstance(RequestResDto, request);

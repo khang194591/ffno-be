@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/vi';
 import { Prisma } from '@prisma/client';
 import dayjs from 'dayjs';
 import Decimal from 'decimal.js';
@@ -13,7 +13,6 @@ import {
   UnitStatus,
 } from '../../src/libs';
 import districts from '../../src/static/districts.json';
-import provinces from '../../src/static/provinces.json';
 import wards from '../../src/static/wards.json';
 
 export function getRandomEnumValue<T>(enumeration: T): T[keyof T] {
@@ -140,7 +139,7 @@ export const fakeMember = (override = {}) => {
 };
 
 export const fakeProperty = (ownerId: string) => {
-  const province = getRandomItemInArray(provinces);
+  const province = 'Thành phố Hà Nội';
   const districtOptions = districts[province];
   const district = getRandomItemInArray<string>(districtOptions);
   const wardOptions = wards[district];
@@ -206,6 +205,20 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
         ],
       },
     },
+    equipments: {
+      createMany: {
+        data: [
+          {
+            name: ``,
+            maintainStatus: 'GOOD',
+            brand: faker.company.name(),
+            model: faker.commerce.productName(),
+            serial: faker.string.hexadecimal({ length: 8 }),
+            price: 1000 * randomInt(500, 10000),
+          },
+        ],
+      },
+    },
   };
 };
 
@@ -261,3 +274,17 @@ export const fakeContract = (
     imgUrls: [],
   };
 };
+
+// export const fakeEquipment = (
+//   override?: Partial<Prisma.EquipmentCreateInput>,
+// ): Prisma.EquipmentCreateInput => {
+//   return {
+//     name: ``,
+//     maintainStatus: 'GOOD',
+//     brand: faker.company.name(),
+//     model: faker.commerce.productName(),
+//     serial: faker.string.hexadecimal({ length: 8 }),
+//     price: 1000 * randomInt(500, 10000),
+//     ...override,
+//   };
+// };

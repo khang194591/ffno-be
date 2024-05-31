@@ -1,6 +1,6 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { PrismaService } from 'src/config';
-import { NotificationService } from 'src/modules/services/notification.service';
+import { NotificationService } from 'src/modules/notifications/notification.service';
 import { CreateRequestDto } from 'src/shared/dto';
 import { RequestService } from '../request.service';
 

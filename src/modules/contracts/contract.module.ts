@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { NotificationModule } from '../services/notification.module';
+import { NotificationModule } from '../notifications/notification.module';
 import { CommandHandlers } from './commands';
 import { ContractController } from './contract.controller';
 import { ContractService } from './contract.service';

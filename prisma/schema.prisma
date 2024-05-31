@@ -288,6 +288,10 @@ model Notification {
   receiver   Member    @relation(fields: [receiverId], references: [id])
   createdAt  DateTime  @default(now())
   deletedAt  DateTime?
+  requestId  String?
+  contractId String?
+
+  @@index([requestId, contractId])
 }
 
 // ################################ ENUMS ################################

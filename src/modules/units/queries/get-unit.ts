@@ -64,6 +64,7 @@ export class GetUnitHandler implements IQueryHandler<GetUnitQuery> {
     return plainToInstance(UnitResDto, {
       ...unit,
       requested,
+      selfOccupied: Boolean(unit.tenants.find((i) => i.id === member.id)),
       rating: calculateRating(reviews),
     });
   }

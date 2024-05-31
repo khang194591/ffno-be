@@ -8,7 +8,7 @@ import {
   RequestStatus,
   contractStatusRecord,
 } from 'src/libs';
-import { NotificationService } from 'src/modules/services/notification.service';
+import { NotificationService } from 'src/modules/notifications/notification.service';
 import { MemberResDto, UpdateContractDto } from 'src/shared/dto';
 
 export class UpdateContractCommand {

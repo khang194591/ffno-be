@@ -48,4 +48,10 @@ export class EquipmentResDto implements IEquipmentResDto {
 
   @Expose()
   unit: IUnitResDto;
+
+  @Expose()
+  imgUrls: string[];
+
+  @Expose()
+  category: string;
 }

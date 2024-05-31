@@ -1,3 +1,3 @@
-import { NotificationModule } from './notification.module';
+import { NotificationModule } from '../notifications/notification.module';
 
 export const microServiceModules = [NotificationModule];

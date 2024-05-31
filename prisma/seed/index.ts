@@ -4,6 +4,7 @@ import { hashSync } from 'bcrypt';
 import { randomInt } from 'crypto';
 import dayjs from 'dayjs';
 import { ContactType, MemberRole, PropertyType } from '../../src/libs';
+import equipmentCategories from './data/equipment-category.json';
 import {
   fakeContract,
   fakeMember,
@@ -80,6 +81,11 @@ const seed = async () => {
   await prisma.member.createMany({
     skipDuplicates: true,
     data: [...tenants, ...landlords],
+  });
+
+  await prisma.equipmentCategory.createMany({
+    skipDuplicates: true,
+    data: equipmentCategories.map((name) => ({ name })),
   });
 
   await prisma.propertyAmenity.createMany({

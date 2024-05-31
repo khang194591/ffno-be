@@ -4,6 +4,7 @@ export * from './contracts';
 export * from './equipments';
 export * from './invoices';
 export * from './members';
+export * from './notifications';
 export * from './properties';
 export * from './requests';
 export * from './reviews';
