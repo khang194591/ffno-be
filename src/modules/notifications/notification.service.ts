@@ -29,13 +29,16 @@ export class NotificationService {
   }
 
   async getAllNotification(memberId: string) {
-    const notifications = this.prisma.notification.findMany({
+    const notifications = await this.prisma.notification.findMany({
       where: {
         receiverId: memberId,
       },
     });
 
-    return plainToInstance(NotificationResDto, notifications);
+    return {
+      total: notifications.length,
+      data: plainToInstance(NotificationResDto, notifications),
+    };
   }
 
   async markAllAsRead(memberId: string) {
