@@ -1,6 +1,7 @@
-import { Controller, Get, Put } from '@nestjs/common';
+import { Controller, Get, Param, Put } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CurrentMemberId } from 'src/shared/decorators';
+import { IdUUIDParams } from 'src/shared/dto';
 import { NotificationService } from './notification.service';
 
 @Controller('notifications')
@@ -16,5 +17,13 @@ export class NotificationController {
   @Put('mask-as-read')
   async markAllAsRead(@CurrentMemberId() memberId: string) {
     return this.notificationService.markAllAsRead(memberId);
+  }
+
+  @Put('mark-as-read/:id')
+  async markAsRead(
+    @CurrentMemberId() memberId: string,
+    @Param() { id }: IdUUIDParams,
+  ) {
+    return this.notificationService.markAsRead(id, memberId);
   }
 }

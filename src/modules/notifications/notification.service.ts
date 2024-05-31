@@ -41,6 +41,13 @@ export class NotificationService {
     };
   }
 
+  async markAsRead(memberId: string, notificationId: string) {
+    return this.prisma.notification.update({
+      where: { id: notificationId, receiverId: memberId },
+      data: { isRead: true },
+    });
+  }
+
   async markAllAsRead(memberId: string) {
     return this.prisma.notification.updateMany({
       where: { receiverId: memberId },
