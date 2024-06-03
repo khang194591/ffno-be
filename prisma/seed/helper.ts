@@ -14,6 +14,9 @@ import {
 } from '../../src/libs';
 import districts from '../../src/static/districts.json';
 import wards from '../../src/static/wards.json';
+import equipmentCategories from './data/equipment-category.json';
+import propertyAmenities from './data/property-amenities.json';
+import unitFeatures from './data/unit-features.json';
 
 export function getRandomEnumValue<T>(enumeration: T): T[keyof T] {
   const values = Object.values(enumeration);
@@ -34,47 +37,7 @@ export function getRandomItemInArray<T = unknown>(array: T[]): T {
   return array[randomIndex];
 }
 
-export const mockAmenities = [
-  'Swimming pool',
-  'Gym',
-  'Playground',
-  'Tennis court',
-  'Roof terrace or garden',
-  'Coffee shop',
-  'Laundry service',
-  'BBQ area',
-  "Children's play area",
-  'High-speed internet access',
-  'Property management service',
-  'Parking lot',
-  'Bar/lounge',
-  'Meeting room',
-  'Outdoor party area',
-  'Babysitting service',
-  'Pet-friendly',
-  'Babysitting service',
-];
-
-export const mockUnitFeatures = [
-  'Air conditioning',
-  'Refrigerator',
-  'Washing machine',
-  'Bathtub',
-  'Wardrobe',
-  'Desk',
-  'Internet',
-  'Dining table',
-  'Balcony',
-  'Heater',
-  'Hair dryer',
-  'Bed',
-  'Table and chairs',
-  'Extractor hood',
-  'Oven',
-  'Backup generator',
-  'Water purifier',
-  'Water heater',
-];
+export { equipmentCategories, propertyAmenities, unitFeatures };
 
 const fakePropertyImgUrls = [
   'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-binyamin-mellish-106399.jpg',
@@ -138,7 +101,7 @@ export const fakeMember = (override = {}) => {
   };
 };
 
-export const fakeProperty = (ownerId: string) => {
+export const fakeProperty = (ownerId: string, override?: any) => {
   const province = 'Thành phố Hà Nội';
   const districtOptions = districts[province];
   const district = getRandomItemInArray<string>(districtOptions);
@@ -159,12 +122,18 @@ export const fakeProperty = (ownerId: string) => {
     ownerId,
     description: faker.lorem.paragraph(),
     amenities: {
-      connect: getRandomItemsInArray(mockAmenities).map((name) => ({ name })),
+      connect: getRandomItemsInArray(propertyAmenities).map((name) => ({
+        name,
+      })),
     },
+    ...override,
   };
 };
 
-export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
+export const fakeUnit = (
+  propertyId: string,
+  override?: any,
+): Prisma.UnitCreateInput => {
   return {
     id: v4(),
     name: `${faker.string.numeric(3)}`,
@@ -183,7 +152,7 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
     ),
     property: { connect: { id: propertyId } },
     unitFeatures: {
-      connect: getRandomItemsInArray(mockUnitFeatures).map((name) => ({
+      connect: getRandomItemsInArray(unitFeatures).map((name) => ({
         name,
       })),
     },
@@ -219,6 +188,7 @@ export const fakeUnit = (propertyId: string): Prisma.UnitCreateInput => {
         ],
       },
     },
+    ...override,
   };
 };
 

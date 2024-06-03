@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { NOTIFICATION_SERVICE } from 'src/libs';
 import { NotificationService } from './notification.service';
+import { NotificationController } from './notification.controller';
 
 @Module({
   providers: [
@@ -20,6 +21,7 @@ import { NotificationService } from './notification.service';
       inject: [ConfigService],
     },
   ],
+  controllers: [NotificationController],
   exports: [NotificationService],
 })
 export class NotificationModule {}

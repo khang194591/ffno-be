@@ -54,4 +54,12 @@ export class CommonController {
   async getUnits(@Query('propertyId') propertyId: string) {
     return this.commonService.getUnits(propertyId);
   }
+
+  @Get('equipments')
+  async getEquipments(
+    @Query('propertyId') propertyId: string,
+    @Query('unitId') unitId: string,
+  ) {
+    return this.commonService.getEquipments({ propertyId, unitId });
+  }
 }

@@ -42,4 +42,22 @@ export class CommonService {
       label: item.name,
     }));
   }
+
+  async getEquipments({
+    propertyId,
+    unitId,
+  }: {
+    propertyId?: string;
+    unitId?: string;
+  }) {
+    const items = await this.prisma.equipment.findMany({
+      where: { propertyId, unitId },
+      select: { id: true, name: true },
+    });
+
+    return items.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+  }
 }

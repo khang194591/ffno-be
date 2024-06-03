@@ -36,8 +36,11 @@ export class RequestController {
   }
 
   @Get(':id')
-  async getRequest(@Param() { id }: IdUUIDParams) {
-    return this.queryBus.execute(new GetRequestQuery(id));
+  async getRequest(
+    @CurrentMemberId() staffId: string,
+    @Param() { id }: IdUUIDParams,
+  ) {
+    return this.queryBus.execute(new GetRequestQuery(id, staffId));
   }
 
   @Post()
