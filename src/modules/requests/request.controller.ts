@@ -37,10 +37,10 @@ export class RequestController {
 
   @Get(':id')
   async getRequest(
-    @CurrentMemberId() staffId: string,
+    @CurrentMemberId() memberId: string,
     @Param() { id }: IdUUIDParams,
   ) {
-    return this.queryBus.execute(new GetRequestQuery(id, staffId));
+    return this.queryBus.execute(new GetRequestQuery(id, memberId));
   }
 
   @Post()

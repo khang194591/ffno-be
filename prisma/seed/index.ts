@@ -122,265 +122,527 @@ const seed = async () => {
     fakeProperty(landlordIds[0], {
       id: propertyIds[0],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
+      district: 'Quận Ba Đình',
+      ward: 'Phường Ngọc Hà',
       type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      name: 'Ngõ 151 Hoàng Hoa Thám',
+      address: 'Ngõ 151 Hoàng Hoa Thám',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/4.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/5.jpg',
+      ],
+      description: `Ngõ 151 Hoàng Hoa Thám, trống 1 phòng Ở LUÔN
+      Full điều hoà, nóng lạnh, giường tủ quần áo
+      Cổng khoá vân tay, thoải mái giờ giấc, đảm bảo pccc
+      Giá chỉ: 2tr5 vệ sinh chung cùng tầng
+      Lh: 0353.935.788
+      `,
     }),
     fakeProperty(landlordIds[0], {
       id: propertyIds[1],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
-      type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      district: 'Quận Thanh Xuân',
+      ward: 'Phường Thanh Xuân Nam',
+      type: PropertyType.MULTIPLE_UNIT,
+      name: 'Phòng trọ sinh viên',
+      address: 'Ngõ 68/45 Triều Khúc',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/100.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/101.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/102.jpg',
+      ],
+      description: `Cho Thuê Phòng Trọ Sinh Viên
+      🏠 Địa chỉ : Ngõ 68/45 Triều Khúc
+      Giá cực tốt  :  3tr3
+      ✨Phòng 25m2 Không chung chủ , giờ giấc tự do. Có ban công siêu thoáng
+      ✨Thang máy , chỗ để xe siêu rộng , camera an ninh , máy giặt chung
+      Hệ thống pccc đạt chuẩn
+      ❣Nội thất : Full đồ như ảnh, điều hòa, nóng lạnh, Wc khép kín ,giường, tủ quần áo
+      Điện 4k nước 100k 
+      Liên hệ chủ nhà   0385785252 có zalo (không môi giới)
+      `,
     }),
     fakeProperty(landlordIds[0], {
       id: propertyIds[2],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
+      district: 'Quận Thanh Xuân',
+      ward: 'Phường Khương Đình',
       type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      name: 'Khương đình hạ đình nguyễn trãi Thanh xuân',
+      address: 'ngõ 236/28 khương đình',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/103.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/104.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/105.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/106.jpg',
+      ],
+      description: `-KHƯƠNG ĐINH__Hạ ĐINH_ Nguyễn trãi_ THANH XUÂN
+      -ĐC ngõ 236/28 khương đình
+      -Phòng có DT ,22m2
+      -Điều hòa, nóng lạnh,. kệ bếp tủ bếp. t Giường tủ>quat trần
+      -Giá  -3x
+      => LH:    0982670385   Zalo a hu`,
     }),
     fakeProperty(landlordIds[1], {
       id: propertyIds[3],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
+      district: 'Quận Ba Đình',
+      ward: 'Phường Liễu Giai',
       type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      name: '2N1K ngõ 285 ĐỘI CẤN',
+      address: '2N1K ngõ 285 ĐỘI CẤN',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/200.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/201.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/202.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/203.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/204.jpg',
+      ],
+      description: `✔️Cho thuê 2N1K ngõ 285 ĐỘI CẤN
+➖ Diện tích/ Thiết kế: 60/2n1k
+➖Nội thất : full đồ
+➖Giá : 8tr/tháng
+𝑳𝒊𝒆̂𝒏 𝒉𝒆̣̂: 0365008686`,
     }),
     fakeProperty(landlordIds[1], {
       id: propertyIds[4],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
-      type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      district: 'Quận Hai Bà Trưng',
+      ward: 'Phường Minh Khai',
+      type: PropertyType.MULTIPLE_UNIT,
+      name: '15/10 Gốc Đề Minh Khai',
+      address: '15/10 Gốc Đề Minh Khai',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/300.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/301.jpg',
+      ],
+      description: `Nhà 6 tầng còn phòng ở luôn tại 15/10 Gốc Đề Minh Khai 
+      👉phòng nhỏ 1,1tr- 1,5tr vệ sinh khép kín 
+      👉phòng 2tr- 2,7tr -3,5tr -4,3tr  vệ sinh khép kín, nóng lạnh, điều hoà, giường tủ , kệ bếp , cửa sổ 
+      điện: 3,5k/so 
+      nước: 25k/so 
+      lh: 0949454083 - 0968112640 Bác Toàn
+      `,
     }),
     fakeProperty(landlordIds[2], {
       id: propertyIds[5],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
+      district: 'Quận Hoàng Mai',
+      ward: 'Phường Thanh Trì',
       type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      name: 'ngõ 279 Hoàng Mai',
+      address: 'ngõ 279 Hoàng Mai',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/501.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/502.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/503.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/504.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/505.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/506.jpg',
+      ],
+      description: `🎯M có  phòng cho thuê ở ngõ 279 Hoàng Mai giá 3tr 
+      +Điện 4k/ số, nước 35k/ khối, wifi+ vệ sinh: 150k/1p
+      +Đầy đủ đh nl, máy giặt chung, giường tủ, vskk, chỉ việc đến ở . 
+      + Giờ giấc tự do .Vào luôn được luôn. 
+      + Gần time city, Hust, neu, hunt, uneti
+      Ib để biết rõ tt hơn.
+      Liên hệ c Dung 0936085718.`,
     }),
     fakeProperty(landlordIds[2], {
       id: propertyIds[6],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
+      district: 'Quận Cầu Giấy',
+      ward: 'Phường Nghĩa Đô',
       type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      name: 'Ngõ 71 Võ Chí Công -Cầu Giấy',
+      address: 'Ngõ 71 Võ Chí Công -Cầu Giấy',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/601.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/602.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/603.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/604.jpg',
+      ],
+      description: `Ngõ 71 Võ Chí Công -Cầu Giấy
+      Studio khép kín - full đồ - #4tr
+      K chung chủ - ở luôn 
+      Call/zalo:0349213298❤️
+      `,
     }),
     fakeProperty(landlordIds[2], {
       id: propertyIds[7],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
+      district: 'Quận Hai Bà Trưng',
+      ward: 'Phường Đồng Tâm',
       type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      name: '128C Đại La,',
+      address: '128C Đại La,',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/700.jpg',
+      ],
+      description: `Cho thuê nhà tập thể 128C Đại La, tầng 2
+      Dt 60m, 1 phòng khách, 2 phòng ngủ, 1 phòng tắm, 1 bếp, có điều hòa, nóng lạnh, tủ giường, giờ giấc tự do không chung chủ, cho ở nhóm sinh viên, hộ gia đình. Gần đại học Bách Khoa, Kinh Tế, Xây Dựng....
+      Giá 5,5 triệu/tháng. Đóng 3 tháng, cọc 1 tháng.
+      Liên hệ 0932491982 ( Ko tiếp môi giới)
+      `,
     }),
     fakeProperty(landlordIds[2], {
       id: propertyIds[8],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
+      district: 'Quận Hai Bà Trưng',
+      ward: 'Phường Đồng Tâm',
       type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      name: 'CCMN Hà Nội',
+      address: 'ngõ 51 tương mai',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg',
+      ],
+      description: `Cho Thuê Ccmn hà nội 
+      Địa chỉ ngõ 51 tương mai gần neu
+      👉Phòng đầy đủ nội thất như hình 
+      👉Tài chính 3tr8
+      🍀Xem phòng freee 
+      🌟Ib ngay cho e để biết thêm tt ạ 
+       ☎️ Liên hệ :  Za.lo 0971537189
+      `,
     }),
     fakeProperty(landlordIds[2], {
       id: propertyIds[9],
       province: 'Thành phố Hà Nội',
-      district: '',
-      ward: '',
+      district: 'Quận Hai Bà Trưng',
+      ward: 'Phường Minh Khai',
       type: PropertyType.SINGLE_UNIT,
-      name: '',
-      address: '',
-      imgUrls: [],
-      description: '',
+      name: 'Minh Khai, Quận Hai Bà Trưng, Hà Nội',
+      address: 'Phường Minh Khai, Quận Hai Bà Trưng, Hà Nội',
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/901.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/902.jpg',
+      ],
+      description: `CÒN 1 PHÒNG DUY NHẤT CHO NỮ THUÊ - PHƯỜNG MINH KHAI, QUẬN HAI BÀ TRƯNG, HÀ NỘI
+      - Địa chỉ: Phường Minh Khai, Quận Hai Bà Trưng, Hà Nội
+      - Diện tích: 20m2
+      - Có chỗ nấu ăn, có thang thoát hiểm, có ban công thoáng mát.
+      - Phòng có đủ đồ như hình.
+      - phòng có vị trí đẹp. Nhà xây mới đét. Nhà cách phố 50m.
+      - Khu ở dân cư đông, an ninh tốt, hàng xóm thân thiện dễ gần, văn minh lịch sự.
+      - Xung quanh đầy đủ các tiện ích khác nhau: gần trường Bách Kinh Xây, Công Nghệ, gần chợ, siêu thị, trung tâm,...
+      - Rất phù hợp để an cư sinh sống (cho nữ thuê) chỉ việc xách valy vào ở.
+      + Giá Thuê: 4tr/tháng
+      => Liên Hệ Xem Phòng: 0973258928 (cô Hồng Thanh)`,
     }),
   ];
 
   const units = [
-    fakeUnit(properties[0], {
+    fakeUnit(propertyIds[0], {
       id: unitIds[0],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'Ngõ 151 Hoàng Hoa Thám',
+      area: 25,
+      price: 2_500_000,
+      deposit: 2_500_000,
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/4.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/5.jpg',
+      ],
+      description: `Ngõ 151 Hoàng Hoa Thám, trống 1 phòng Ở LUÔN
+      Full điều hoà, nóng lạnh, giường tủ quần áo
+      Cổng khoá vân tay, thoải mái giờ giấc, đảm bảo pccc
+      Giá chỉ: 2tr5 vệ sinh chung cùng tầng
+      Lh: 0353.935.788
+      `,
       status: UnitStatus.GOOD,
-      imgUrls: [],
     }),
-    fakeUnit(properties[1], {
+    fakeUnit(propertyIds[1], {
       id: unitIds[1],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'Phòng 402',
+      area: 25,
+      price: 3_330_000,
+      deposit: 3_330_000,
+      description: `Cho Thuê Phòng Trọ Sinh Viên
+      🏠 Địa chỉ : Ngõ 68/45 Triều Khúc
+      Giá cực tốt  :  3tr3
+      ✨Phòng 25m2 Không chung chủ , giờ giấc tự do. Có ban công siêu thoáng
+      ✨Thang máy , chỗ để xe siêu rộng , camera an ninh , máy giặt chung
+      Hệ thống pccc đạt chuẩn
+      ❣Nội thất : Full đồ như ảnh, điều hòa, nóng lạnh, Wc khép kín ,giường, tủ quần áo
+      Điện 4k nước 100k 
+      Liên hệ chủ nhà   0385785252 có zalo (không môi giới)
+      `,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/100.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/101.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/102.jpg',
+      ],
     }),
-    fakeUnit(properties[1], {
+    fakeUnit(propertyIds[1], {
       id: unitIds[2],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'Phòng 401',
+      area: 25,
+      price: 3_330_000,
+      deposit: 3_330_000,
+      description: `Cho Thuê Phòng Trọ Sinh Viên
+      🏠 Địa chỉ : Ngõ 68/45 Triều Khúc
+      Giá cực tốt  :  3tr3
+      ✨Phòng 25m2 Không chung chủ , giờ giấc tự do. Có ban công siêu thoáng
+      ✨Thang máy , chỗ để xe siêu rộng , camera an ninh , máy giặt chung
+      Hệ thống pccc đạt chuẩn
+      ❣Nội thất : Full đồ như ảnh, điều hòa, nóng lạnh, Wc khép kín ,giường, tủ quần áo
+      Điện 4k nước 100k 
+      Liên hệ chủ nhà   0385785252 có zalo (không môi giới)
+      `,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/100.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/101.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/102.jpg',
+      ],
     }),
-    fakeUnit(properties[2], {
+    fakeUnit(propertyIds[2], {
       id: unitIds[3],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'Phòng 101',
+      area: 22,
+      price: 3_100_000,
+      deposit: 3_100_000,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/103.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/104.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/105.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/106.jpg',
+      ],
+      description: `-KHƯƠNG ĐINH__Hạ ĐINH_ Nguyễn trãi_ THANH XUÂN
+      -ĐC ngõ 236/28 khương đình
+      -Phòng có DT ,22m2
+      -Điều hòa, nóng lạnh,. kệ bếp tủ bếp. t Giường tủ>quat trần
+      -Giá  -3x
+      => LH:    0982670385   Zalo a hu`,
     }),
-    fakeUnit(properties[2], {
+    fakeUnit(propertyIds[2], {
       id: unitIds[4],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'Phòng 102',
+      area: 22,
+      price: 3_100_000,
+      deposit: 3_100_000,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/103.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/104.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/105.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/106.jpg',
+      ],
+      description: `-KHƯƠNG ĐINH__Hạ ĐINH_ Nguyễn trãi_ THANH XUÂN
+      -ĐC ngõ 236/28 khương đình
+      -Phòng có DT ,22m2
+      -Điều hòa, nóng lạnh,. kệ bếp tủ bếp. t Giường tủ>quat trần
+      -Giá  -3x
+      => LH:    0982670385   Zalo a hu`,
     }),
-    fakeUnit(properties[3], {
+    fakeUnit(propertyIds[3], {
       id: unitIds[5],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: '2N1K ngõ 285 ĐỘI CẤN',
+      area: 60,
+      price: 8_000_000,
+      deposit: 8_000_000,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/200.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/201.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/202.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/203.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/204.jpg',
+      ],
+      description: `✔️Cho thuê 2N1K ngõ 285 ĐỘI CẤN
+➖ Diện tích/ Thiết kế: 60/2n1k
+➖Nội thất : full đồ
+➖Giá : 8tr/tháng
+𝑳𝒊𝒆̂𝒏 𝒉𝒆̣̂: 0365008686`,
     }),
-    fakeUnit(properties[4], {
+    fakeUnit(propertyIds[4], {
       id: unitIds[6],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'Phòng 601',
+      area: 15,
+      price: 1_500_000,
+      deposit: 1_500_000,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/300.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/301.jpg',
+      ],
+      description: `Nhà 6 tầng còn phòng ở luôn tại 15/10 Gốc Đề Minh Khai 
+      👉phòng nhỏ 1,1tr- 1,5tr vệ sinh khép kín 
+      👉phòng 2tr- 2,7tr -3,5tr -4,3tr  vệ sinh khép kín, nóng lạnh, điều hoà, giường tủ , kệ bếp , cửa sổ 
+      điện: 3,5k/so 
+      nước: 25k/so 
+      lh: 0949454083 - 0968112640 Bác Toàn
+      `,
     }),
-    fakeUnit(properties[4], {
+    fakeUnit(propertyIds[4], {
       id: unitIds[7],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'Phòng 501',
+      area: 25,
+      price: 2_500_000,
+      deposit: 2_500_000,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/300.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/301.jpg',
+      ],
+      description: `Nhà 6 tầng còn phòng ở luôn tại 15/10 Gốc Đề Minh Khai 
+      👉phòng nhỏ 1,1tr- 1,5tr vệ sinh khép kín 
+      👉phòng 2tr- 2,7tr -3,5tr -4,3tr  vệ sinh khép kín, nóng lạnh, điều hoà, giường tủ , kệ bếp , cửa sổ 
+      điện: 3,5k/so 
+      nước: 25k/so 
+      lh: 0949454083 - 0968112640 Bác Toàn
+      `,
     }),
-    fakeUnit(properties[5], {
+    fakeUnit(propertyIds[5], {
       id: unitIds[8],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'ngõ 279 Hoàng Mai',
+      area: 25,
+      price: 3_000_000,
+      deposit: 3_000_000,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/501.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/502.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/503.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/504.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/505.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/506.jpg',
+      ],
+      description: `🎯M có  phòng cho thuê ở ngõ 279 Hoàng Mai giá 3tr 
+      +Điện 4k/ số, nước 35k/ khối, wifi+ vệ sinh: 150k/1p
+      +Đầy đủ đh nl, máy giặt chung, giường tủ, vskk, chỉ việc đến ở . 
+      + Giờ giấc tự do .Vào luôn được luôn. 
+      + Gần time city, Hust, neu, hunt, uneti
+      Ib để biết rõ tt hơn.
+      Liên hệ c Dung 0936085718.`,
     }),
-    fakeUnit(properties[6], {
+    fakeUnit(propertyIds[6], {
       id: unitIds[9],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'Ngõ 71 Võ Chí Công -Cầu Giấy',
+      area: 30,
+      price: 4_000_000,
+      deposit: 4_000_000,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/601.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/602.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/603.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/604.jpg',
+      ],
+      description: `Ngõ 71 Võ Chí Công -Cầu Giấy
+      Studio khép kín - full đồ - #4tr
+      K chung chủ - ở luôn 
+      Call/zalo:0349213298❤️
+      `,
     }),
-    fakeUnit(properties[7], {
+    fakeUnit(propertyIds[7], {
       id: unitIds[10],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: '128C Đại La',
+      area: 60,
+      price: 5_500_000,
+      deposit: 5_500_000,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/700.jpg',
+      ],
+      description: `Cho thuê nhà tập thể 128C Đại La, tầng 2
+      Dt 60m, 1 phòng khách, 2 phòng ngủ, 1 phòng tắm, 1 bếp, có điều hòa, nóng lạnh, tủ giường, giờ giấc tự do không chung chủ, cho ở nhóm sinh viên, hộ gia đình. Gần đại học Bách Khoa, Kinh Tế, Xây Dựng....
+      Giá 5,5 triệu/tháng. Đóng 3 tháng, cọc 1 tháng.
+      Liên hệ 0932491982 ( Ko tiếp môi giới)
+      `,
     }),
-    fakeUnit(properties[8], {
+    fakeUnit(propertyIds[8], {
       id: unitIds[11],
-      name: '',
-      area: 0,
-      price: 0,
+      name: 'Tầng 2',
+      area: 30,
+      price: 3_800_000,
       deposit: 0,
-      description: '',
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg',
+      ],
+      description: `Cho Thuê Ccmn hà nội 
+      Địa chỉ ngõ 51 tương mai gần neu
+      👉Phòng đầy đủ nội thất như hình 
+      👉Tài chính 3tr8
+      🍀Xem phòng freee 
+      🌟Ib ngay cho e để biết thêm tt ạ 
+       ☎️ Liên hệ :  Za.lo 0971537189
+      `,
     }),
-    fakeUnit(properties[8], {
+    fakeUnit(propertyIds[8], {
       id: unitIds[12],
-      name: '',
-      area: 0,
-      price: 0,
+      name: 'Tầng 3',
+      area: 30,
+      price: 3_800_000,
       deposit: 0,
-      description: '',
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg',
+      ],
+      description: `Cho Thuê Ccmn hà nội 
+      Địa chỉ ngõ 51 tương mai gần neu
+      👉Phòng đầy đủ nội thất như hình 
+      👉Tài chính 3tr8
+      🍀Xem phòng freee 
+      🌟Ib ngay cho e để biết thêm tt ạ 
+       ☎️ Liên hệ :  Za.lo 0971537189
+      `,
     }),
-    fakeUnit(properties[8], {
+    fakeUnit(propertyIds[8], {
       id: unitIds[13],
-      name: '',
-      area: 0,
-      price: 0,
+      name: 'Tầng 4',
+      area: 30,
+      price: 3_800_000,
       deposit: 0,
-      description: '',
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg',
+      ],
+      description: `Cho Thuê Ccmn hà nội 
+      Địa chỉ ngõ 51 tương mai gần neu
+      👉Phòng đầy đủ nội thất như hình 
+      👉Tài chính 3tr8
+      🍀Xem phòng freee 
+      🌟Ib ngay cho e để biết thêm tt ạ 
+       ☎️ Liên hệ :  Za.lo 0971537189
+      `,
     }),
-    fakeUnit(properties[9], {
+    fakeUnit(propertyIds[9], {
       id: unitIds[14],
-      name: '',
-      area: 0,
-      price: 0,
-      deposit: 0,
-      description: '',
+      name: 'Phòng cho nữ thuê',
+      area: 20,
+      price: 4_000_000,
+      deposit: 4_000_000,
       status: UnitStatus.GOOD,
-      imgUrls: [],
+      imgUrls: [
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/901.jpg',
+        'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/902.jpg',
+      ],
+      description: `CÒN 1 PHÒNG DUY NHẤT CHO NỮ THUÊ - PHƯỜNG MINH KHAI, QUẬN HAI BÀ TRƯNG, HÀ NỘI
+      - Địa chỉ: Phường Minh Khai, Quận Hai Bà Trưng, Hà Nội
+      - Diện tích: 20m2
+      - Có chỗ nấu ăn, có thang thoát hiểm, có ban công thoáng mát.
+      - Phòng có đủ đồ như hình.
+      - phòng có vị trí đẹp. Nhà xây mới đét. Nhà cách phố 50m.
+      - Khu ở dân cư đông, an ninh tốt, hàng xóm thân thiện dễ gần, văn minh lịch sự.
+      - Xung quanh đầy đủ các tiện ích khác nhau: gần trường Bách Kinh Xây, Công Nghệ, gần chợ, siêu thị, trung tâm,...
+      - Rất phù hợp để an cư sinh sống (cho nữ thuê) chỉ việc xách valy vào ở.
+      + Giá Thuê: 4tr/tháng
+      => Liên Hệ Xem Phòng: 0973258928 (cô Hồng Thanh)`,
     }),
   ];
 

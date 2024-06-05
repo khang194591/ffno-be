@@ -56,7 +56,7 @@ export class EquipmentService {
   async getEquipmentOrThrow(id: string) {
     const equipment = await this.prisma.equipment.findUniqueOrThrow({
       where: { id },
-      include: { property: true },
+      include: { property: true, unit: true },
     });
 
     return this.parseEquipment(equipment);

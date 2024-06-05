@@ -58,9 +58,10 @@ export class CreateEquipmentDto implements ICreateEquipmentDto {
   @IsBoolean()
   enableWarranty: boolean = false;
 
+  @IsOptional()
   @IsDate()
   @Type(() => Date)
-  warrantyExpirationDate: Date;
+  warrantyExpirationDate?: Date;
 }
 
 export class UpdateEquipmentDto extends PartialType(CreateEquipmentDto) {}
