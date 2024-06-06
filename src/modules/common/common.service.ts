@@ -1,5 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/config';
+import { MemberRole } from 'src/libs';
+import { MemberResDto } from 'src/shared/dto';
 
 @Injectable()
 export class CommonService {
@@ -20,8 +23,15 @@ export class CommonService {
     return items.map(({ name }) => name);
   }
 
-  async getProperties() {
+  async getProperties({ member }: { member?: MemberResDto }) {
+    const where: Prisma.PropertyWhereInput = {};
+
+    if (member && member.role === MemberRole.LANDLORD) {
+      where.ownerId = member.id;
+    }
+
     const items = await this.prisma.property.findMany({
+      where,
       select: { id: true, name: true },
     });
 
@@ -31,9 +41,25 @@ export class CommonService {
     }));
   }
 
-  async getUnits(propertyId?: string) {
+  async getUnits({
+    propertyId,
+    member,
+  }: {
+    member?: MemberResDto;
+    propertyId?: string;
+  }) {
+    const where: Prisma.UnitWhereInput = {};
+
+    if (propertyId) {
+      where.propertyId = propertyId;
+    }
+
+    if (member && member.role === MemberRole.LANDLORD) {
+      where.property = { ownerId: member.id };
+    }
+
     const items = await this.prisma.unit.findMany({
-      where: { propertyId },
+      where,
       select: { id: true, name: true },
     });
 

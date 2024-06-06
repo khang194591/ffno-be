@@ -19,10 +19,7 @@
     "unitFeatures": {
       "connect": [
         {
-          "name": "Máy sấy tóc"
-        },
-        {
-          "name": "Máy điều hòa"
+          "name": "Bồn tắm"
         },
         {
           "name": "Ban công"
@@ -31,7 +28,13 @@
           "name": "Máy sưởi"
         },
         {
-          "name": "Tủ lạnh"
+          "name": "Máy lọc nước"
+        },
+        {
+          "name": "Bình nóng lạnh"
+        },
+        {
+          "name": "Máy giặt"
         }
       ]
     },
@@ -59,38 +62,52 @@
           {
             "name": "Chìa khóa phòng",
             "maintainStatus": "GOOD",
-            "serial": "0x0B996C9a",
+            "serial": "0xe44dE6b1",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1"
+            "propertyId": "4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
           },
           {
             "name": "Chìa khóa ban công",
             "maintainStatus": "GOOD",
-            "serial": "0x026C58F7",
+            "serial": "0xEDB7db61",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1"
+            "propertyId": "4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
           },
           {
             "name": "Điều khiển điều hòa",
             "maintainStatus": "GOOD",
-            "serial": "0xc62C317a",
+            "serial": "0x6F4eDd0E",
             "price": 100000,
             "category": "Điều khiển",
-            "propertyId": "4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1"
+            "propertyId": "4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
           },
           {
             "name": "Máy điều hòa",
             "brand": "Daikin",
             "model": "FTKM35SVMV",
+            "category": "Điều hòa",
             "price": 5000000,
-            "serial": "0xAa3fd9a2",
+            "dateOfInstallation": "2021-08-06T07:13:12.454Z",
+            "serial": "0x3f8164Ff",
             "description": "Công nghệ Inverter, công suất 1.5 tấn",
             "maintainStatus": "GOOD",
             "enableWarranty": true,
-            "warrantyExpirationDate": "2026-12-11T11:44:23.181Z",
-            "propertyId": "4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1"
+            "warrantyExpirationDate": "2027-08-27T14:36:17.181Z",
+            "propertyId": "4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
           }
         ]
       }
@@ -120,19 +137,31 @@
           "name": "Lò nướng"
         },
         {
+          "name": "Máy lọc nước"
+        },
+        {
+          "name": "Máy sưởi"
+        },
+        {
           "name": "Máy sấy tóc"
+        },
+        {
+          "name": "Máy hút mùi"
+        },
+        {
+          "name": "Bàn và ghế"
         },
         {
           "name": "Máy phát điện dự phòng"
         },
         {
-          "name": "Máy giặt"
+          "name": "Giường"
+        },
+        {
+          "name": "Bàn ăn"
         },
         {
           "name": "Bàn làm việc"
-        },
-        {
-          "name": "Máy điều hòa"
         }
       ]
     },
@@ -160,38 +189,52 @@
           {
             "name": "Chìa khóa phòng",
             "maintainStatus": "GOOD",
-            "serial": "0xB1AF573A",
+            "serial": "0x666f69b8",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1"
+            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
           },
           {
             "name": "Chìa khóa ban công",
             "maintainStatus": "GOOD",
-            "serial": "0xfD29Ce2a",
+            "serial": "0x0E5Fce19",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1"
+            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
           },
           {
             "name": "Điều khiển điều hòa",
             "maintainStatus": "GOOD",
-            "serial": "0xeDa33FbA",
+            "serial": "0x3AbAA972",
             "price": 100000,
             "category": "Điều khiển",
-            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1"
+            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
           },
           {
             "name": "Máy điều hòa",
             "brand": "Daikin",
             "model": "FTKM35SVMV",
+            "category": "Điều hòa",
             "price": 5000000,
-            "serial": "0xdeA07Cfb",
+            "dateOfInstallation": "2021-06-17T22:39:59.069Z",
+            "serial": "0xcf8Bcb3c",
             "description": "Công nghệ Inverter, công suất 1.5 tấn",
             "maintainStatus": "GOOD",
             "enableWarranty": true,
-            "warrantyExpirationDate": "2026-09-14T07:07:51.791Z",
-            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1"
+            "warrantyExpirationDate": "2024-07-29T13:10:31.889Z",
+            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
           }
         ]
       }
@@ -213,6 +256,235 @@
     "property": {
       "connect": {
         "id": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1"
+      }
+    },
+    "unitFeatures": {
+      "connect": [
+        {
+          "name": "Bàn làm việc"
+        },
+        {
+          "name": "Tủ lạnh"
+        },
+        {
+          "name": "Bàn và ghế"
+        },
+        {
+          "name": "Bình nóng lạnh"
+        },
+        {
+          "name": "Lò nướng"
+        }
+      ]
+    },
+    "unitPriceLogs": {
+      "createMany": {
+        "data": [
+          {
+            "category": "WATER",
+            "price": 40000,
+            "status": 0,
+            "value": 0
+          },
+          {
+            "category": "ELECTRICITY",
+            "price": 4000,
+            "status": 0,
+            "value": 0
+          }
+        ]
+      }
+    },
+    "equipments": {
+      "createMany": {
+        "data": [
+          {
+            "name": "Chìa khóa phòng",
+            "maintainStatus": "GOOD",
+            "serial": "0xa9A10FdC",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
+          },
+          {
+            "name": "Chìa khóa ban công",
+            "maintainStatus": "GOOD",
+            "serial": "0x2eae02c4",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
+          },
+          {
+            "name": "Điều khiển điều hòa",
+            "maintainStatus": "GOOD",
+            "serial": "0x2e6BdE7d",
+            "price": 100000,
+            "category": "Điều khiển",
+            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
+          },
+          {
+            "name": "Máy điều hòa",
+            "brand": "Daikin",
+            "model": "FTKM35SVMV",
+            "category": "Điều hòa",
+            "price": 5000000,
+            "dateOfInstallation": "2020-07-26T05:20:20.642Z",
+            "serial": "0x03DB3f09",
+            "description": "Công nghệ Inverter, công suất 1.5 tấn",
+            "maintainStatus": "GOOD",
+            "enableWarranty": true,
+            "warrantyExpirationDate": "2027-01-24T05:01:38.629Z",
+            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "54f5cf7a-d1a2-4b7c-9d9f-8e8471c3e8e4",
+    "name": "Phòng 101",
+    "area": 22,
+    "price": 3100000,
+    "deposit": 3100000,
+    "description": "-KHƯƠNG ĐINH__Hạ ĐINH_ Nguyễn trãi_ THANH XUÂN\n      -ĐC ngõ 236/28 khương đình\n      -Phòng có DT ,22m2\n      -Điều hòa, nóng lạnh,. kệ bếp tủ bếp. t Giường tủ>quat trần\n      -Giá  -3x\n      => LH:    0982670385   Zalo a hu",
+    "status": "GOOD",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/103.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/104.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/105.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/106.jpg"
+    ],
+    "property": {
+      "connect": {
+        "id": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
+      }
+    },
+    "unitFeatures": {
+      "connect": [
+        {
+          "name": "Lò nướng"
+        },
+        {
+          "name": "Bình nóng lạnh"
+        },
+        {
+          "name": "Máy lọc nước"
+        },
+        {
+          "name": "Bàn và ghế"
+        },
+        {
+          "name": "Ban công"
+        },
+        {
+          "name": "Tủ lạnh"
+        }
+      ]
+    },
+    "unitPriceLogs": {
+      "createMany": {
+        "data": [
+          {
+            "category": "WATER",
+            "price": 40000,
+            "status": 0,
+            "value": 0
+          },
+          {
+            "category": "ELECTRICITY",
+            "price": 4000,
+            "status": 0,
+            "value": 0
+          }
+        ]
+      }
+    },
+    "equipments": {
+      "createMany": {
+        "data": [
+          {
+            "name": "Chìa khóa phòng",
+            "maintainStatus": "GOOD",
+            "serial": "0x785DCc8B",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
+          },
+          {
+            "name": "Chìa khóa ban công",
+            "maintainStatus": "GOOD",
+            "serial": "0xb9C7f8D9",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
+          },
+          {
+            "name": "Điều khiển điều hòa",
+            "maintainStatus": "GOOD",
+            "serial": "0xaDE7debf",
+            "price": 100000,
+            "category": "Điều khiển",
+            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
+          },
+          {
+            "name": "Máy điều hòa",
+            "brand": "Daikin",
+            "model": "FTKM35SVMV",
+            "category": "Điều hòa",
+            "price": 5000000,
+            "dateOfInstallation": "2022-09-11T03:03:02.423Z",
+            "serial": "0xc9d56Fc3",
+            "description": "Công nghệ Inverter, công suất 1.5 tấn",
+            "maintainStatus": "GOOD",
+            "enableWarranty": true,
+            "warrantyExpirationDate": "2027-09-06T23:15:06.250Z",
+            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "c8b2c4b1-74e5-4e1e-9d74-d85e6346bcbf",
+    "name": "Phòng 102",
+    "area": 22,
+    "price": 3100000,
+    "deposit": 3100000,
+    "description": "-KHƯƠNG ĐINH__Hạ ĐINH_ Nguyễn trãi_ THANH XUÂN\n      -ĐC ngõ 236/28 khương đình\n      -Phòng có DT ,22m2\n      -Điều hòa, nóng lạnh,. kệ bếp tủ bếp. t Giường tủ>quat trần\n      -Giá  -3x\n      => LH:    0982670385   Zalo a hu",
+    "status": "GOOD",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/103.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/104.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/105.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/106.jpg"
+    ],
+    "property": {
+      "connect": {
+        "id": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
       }
     },
     "unitFeatures": {
@@ -242,296 +514,52 @@
           {
             "name": "Chìa khóa phòng",
             "maintainStatus": "GOOD",
-            "serial": "0x84De4d42",
+            "serial": "0xc5d5992F",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1"
+            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
           },
           {
             "name": "Chìa khóa ban công",
             "maintainStatus": "GOOD",
-            "serial": "0x592AebAc",
+            "serial": "0x84F75fad",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1"
+            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
           },
           {
             "name": "Điều khiển điều hòa",
             "maintainStatus": "GOOD",
-            "serial": "0x9DBcFbDF",
+            "serial": "0x6abAcEEB",
             "price": 100000,
             "category": "Điều khiển",
-            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1"
+            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
           },
           {
             "name": "Máy điều hòa",
             "brand": "Daikin",
             "model": "FTKM35SVMV",
+            "category": "Điều hòa",
             "price": 5000000,
-            "serial": "0xCB2Fd556",
+            "dateOfInstallation": "2022-02-09T10:26:18.312Z",
+            "serial": "0xACcf7B0F",
             "description": "Công nghệ Inverter, công suất 1.5 tấn",
             "maintainStatus": "GOOD",
             "enableWarranty": true,
-            "warrantyExpirationDate": "2024-07-13T13:00:49.255Z",
-            "propertyId": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "id": "54f5cf7a-d1a2-4b7c-9d9f-8e8471c3e8e4",
-    "name": "Phòng 101",
-    "area": 22,
-    "price": 3100000,
-    "deposit": 3100000,
-    "description": "-KHƯƠNG ĐINH__Hạ ĐINH_ Nguyễn trãi_ THANH XUÂN\n      -ĐC ngõ 236/28 khương đình\n      -Phòng có DT ,22m2\n      -Điều hòa, nóng lạnh,. kệ bếp tủ bếp. t Giường tủ>quat trần\n      -Giá  -3x\n      => LH:    0982670385   Zalo a hu",
-    "status": "GOOD",
-    "imgUrls": [
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/103.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/104.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/105.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/106.jpg"
-    ],
-    "property": {
-      "connect": {
-        "id": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
-      }
-    },
-    "unitFeatures": {
-      "connect": [
-        {
-          "name": "Bình nóng lạnh"
-        },
-        {
-          "name": "Lò nướng"
-        },
-        {
-          "name": "Máy lọc nước"
-        },
-        {
-          "name": "Máy phát điện dự phòng"
-        },
-        {
-          "name": "Bàn và ghế"
-        },
-        {
-          "name": "Máy giặt"
-        },
-        {
-          "name": "Bàn làm việc"
-        },
-        {
-          "name": "Máy điều hòa"
-        },
-        {
-          "name": "Giường"
-        },
-        {
-          "name": "Bàn ăn"
-        },
-        {
-          "name": "Bồn tắm"
-        },
-        {
-          "name": "Tủ lạnh"
-        },
-        {
-          "name": "Máy sấy tóc"
-        },
-        {
-          "name": "Ban công"
-        }
-      ]
-    },
-    "unitPriceLogs": {
-      "createMany": {
-        "data": [
-          {
-            "category": "WATER",
-            "price": 40000,
-            "status": 0,
-            "value": 0
-          },
-          {
-            "category": "ELECTRICITY",
-            "price": 4000,
-            "status": 0,
-            "value": 0
-          }
-        ]
-      }
-    },
-    "equipments": {
-      "createMany": {
-        "data": [
-          {
-            "name": "Chìa khóa phòng",
-            "maintainStatus": "GOOD",
-            "serial": "0xAEcE091e",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
-          },
-          {
-            "name": "Chìa khóa ban công",
-            "maintainStatus": "GOOD",
-            "serial": "0xE4Ae4EEe",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
-          },
-          {
-            "name": "Điều khiển điều hòa",
-            "maintainStatus": "GOOD",
-            "serial": "0x9dCCe89f",
-            "price": 100000,
-            "category": "Điều khiển",
-            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
-          },
-          {
-            "name": "Máy điều hòa",
-            "brand": "Daikin",
-            "model": "FTKM35SVMV",
-            "price": 5000000,
-            "serial": "0x40D3Eb53",
-            "description": "Công nghệ Inverter, công suất 1.5 tấn",
-            "maintainStatus": "GOOD",
-            "enableWarranty": true,
-            "warrantyExpirationDate": "2027-12-26T18:25:15.687Z",
-            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "id": "c8b2c4b1-74e5-4e1e-9d74-d85e6346bcbf",
-    "name": "Phòng 102",
-    "area": 22,
-    "price": 3100000,
-    "deposit": 3100000,
-    "description": "-KHƯƠNG ĐINH__Hạ ĐINH_ Nguyễn trãi_ THANH XUÂN\n      -ĐC ngõ 236/28 khương đình\n      -Phòng có DT ,22m2\n      -Điều hòa, nóng lạnh,. kệ bếp tủ bếp. t Giường tủ>quat trần\n      -Giá  -3x\n      => LH:    0982670385   Zalo a hu",
-    "status": "GOOD",
-    "imgUrls": [
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/103.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/104.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/105.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/106.jpg"
-    ],
-    "property": {
-      "connect": {
-        "id": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
-      }
-    },
-    "unitFeatures": {
-      "connect": [
-        {
-          "name": "Bàn và ghế"
-        },
-        {
-          "name": "Bình nóng lạnh"
-        },
-        {
-          "name": "Tủ quần áo"
-        },
-        {
-          "name": "Bàn làm việc"
-        },
-        {
-          "name": "Lò nướng"
-        },
-        {
-          "name": "Máy sưởi"
-        },
-        {
-          "name": "Máy phát điện dự phòng"
-        },
-        {
-          "name": "Máy lọc nước"
-        },
-        {
-          "name": "Máy điều hòa"
-        },
-        {
-          "name": "Giường"
-        },
-        {
-          "name": "Máy hút mùi"
-        },
-        {
-          "name": "Internet"
-        },
-        {
-          "name": "Máy sấy tóc"
-        },
-        {
-          "name": "Ban công"
-        },
-        {
-          "name": "Tủ lạnh"
-        },
-        {
-          "name": "Máy giặt"
-        }
-      ]
-    },
-    "unitPriceLogs": {
-      "createMany": {
-        "data": [
-          {
-            "category": "WATER",
-            "price": 40000,
-            "status": 0,
-            "value": 0
-          },
-          {
-            "category": "ELECTRICITY",
-            "price": 4000,
-            "status": 0,
-            "value": 0
-          }
-        ]
-      }
-    },
-    "equipments": {
-      "createMany": {
-        "data": [
-          {
-            "name": "Chìa khóa phòng",
-            "maintainStatus": "GOOD",
-            "serial": "0xEdB65E37",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
-          },
-          {
-            "name": "Chìa khóa ban công",
-            "maintainStatus": "GOOD",
-            "serial": "0x5a3f2437",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
-          },
-          {
-            "name": "Điều khiển điều hòa",
-            "maintainStatus": "GOOD",
-            "serial": "0x47cceEBF",
-            "price": 100000,
-            "category": "Điều khiển",
-            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
-          },
-          {
-            "name": "Máy điều hòa",
-            "brand": "Daikin",
-            "model": "FTKM35SVMV",
-            "price": 5000000,
-            "serial": "0x0dCb99f2",
-            "description": "Công nghệ Inverter, công suất 1.5 tấn",
-            "maintainStatus": "GOOD",
-            "enableWarranty": true,
-            "warrantyExpirationDate": "2027-03-24T20:26:07.784Z",
-            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f"
+            "warrantyExpirationDate": "2027-04-29T16:44:12.947Z",
+            "propertyId": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
           }
         ]
       }
@@ -560,25 +588,25 @@
     "unitFeatures": {
       "connect": [
         {
-          "name": "Máy lọc nước"
+          "name": "Bàn làm việc"
         },
         {
-          "name": "Giường"
-        },
-        {
-          "name": "Lò nướng"
+          "name": "Bàn và ghế"
         },
         {
           "name": "Máy phát điện dự phòng"
         },
         {
-          "name": "Máy hút mùi"
+          "name": "Tủ quần áo"
         },
         {
-          "name": "Bàn làm việc"
+          "name": "Bình nóng lạnh"
         },
         {
-          "name": "Bồn tắm"
+          "name": "Máy sưởi"
+        },
+        {
+          "name": "Máy điều hòa"
         }
       ]
     },
@@ -606,38 +634,52 @@
           {
             "name": "Chìa khóa phòng",
             "maintainStatus": "GOOD",
-            "serial": "0x3f2E1fe6",
+            "serial": "0x9b0403DD",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "f78d5d39-0173-4de5-baa7-712b8f2b82a7"
+            "propertyId": "f78d5d39-0173-4de5-baa7-712b8f2b82a7",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
           },
           {
             "name": "Chìa khóa ban công",
             "maintainStatus": "GOOD",
-            "serial": "0x8aeA3618",
+            "serial": "0xfe60E8d3",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "f78d5d39-0173-4de5-baa7-712b8f2b82a7"
+            "propertyId": "f78d5d39-0173-4de5-baa7-712b8f2b82a7",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
           },
           {
             "name": "Điều khiển điều hòa",
             "maintainStatus": "GOOD",
-            "serial": "0x875fF1bf",
+            "serial": "0x0105e2da",
             "price": 100000,
             "category": "Điều khiển",
-            "propertyId": "f78d5d39-0173-4de5-baa7-712b8f2b82a7"
+            "propertyId": "f78d5d39-0173-4de5-baa7-712b8f2b82a7",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
           },
           {
             "name": "Máy điều hòa",
             "brand": "Daikin",
             "model": "FTKM35SVMV",
+            "category": "Điều hòa",
             "price": 5000000,
-            "serial": "0xEE3eCc6B",
+            "dateOfInstallation": "2023-03-07T00:25:24.171Z",
+            "serial": "0x0c05dF90",
             "description": "Công nghệ Inverter, công suất 1.5 tấn",
             "maintainStatus": "GOOD",
             "enableWarranty": true,
-            "warrantyExpirationDate": "2026-02-03T23:26:21.015Z",
-            "propertyId": "f78d5d39-0173-4de5-baa7-712b8f2b82a7"
+            "warrantyExpirationDate": "2027-12-11T01:06:11.923Z",
+            "propertyId": "f78d5d39-0173-4de5-baa7-712b8f2b82a7",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
           }
         ]
       }
@@ -666,19 +708,16 @@
           "name": "Máy sấy tóc"
         },
         {
-          "name": "Bàn làm việc"
-        },
-        {
-          "name": "Lò nướng"
-        },
-        {
-          "name": "Bàn và ghế"
+          "name": "Tủ lạnh"
         },
         {
           "name": "Giường"
         },
         {
-          "name": "Internet"
+          "name": "Máy hút mùi"
+        },
+        {
+          "name": "Máy giặt"
         }
       ]
     },
@@ -706,38 +745,52 @@
           {
             "name": "Chìa khóa phòng",
             "maintainStatus": "GOOD",
-            "serial": "0xcDFF1CAe",
+            "serial": "0xf0D35Fdf",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e"
+            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
           },
           {
             "name": "Chìa khóa ban công",
             "maintainStatus": "GOOD",
-            "serial": "0xEb5ce4fC",
+            "serial": "0xBBce1ad9",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e"
+            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
           },
           {
             "name": "Điều khiển điều hòa",
             "maintainStatus": "GOOD",
-            "serial": "0xC9eeaCCD",
+            "serial": "0xedB9Ce2e",
             "price": 100000,
             "category": "Điều khiển",
-            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e"
+            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
           },
           {
             "name": "Máy điều hòa",
             "brand": "Daikin",
             "model": "FTKM35SVMV",
+            "category": "Điều hòa",
             "price": 5000000,
-            "serial": "0xFa235ddC",
+            "dateOfInstallation": "2023-02-17T06:43:58.488Z",
+            "serial": "0x6dc58dAE",
             "description": "Công nghệ Inverter, công suất 1.5 tấn",
             "maintainStatus": "GOOD",
             "enableWarranty": true,
-            "warrantyExpirationDate": "2025-07-02T07:50:36.733Z",
-            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e"
+            "warrantyExpirationDate": "2026-09-30T04:11:16.544Z",
+            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
           }
         ]
       }
@@ -763,34 +816,22 @@
     "unitFeatures": {
       "connect": [
         {
-          "name": "Máy phát điện dự phòng"
-        },
-        {
-          "name": "Tủ quần áo"
-        },
-        {
-          "name": "Internet"
-        },
-        {
-          "name": "Bồn tắm"
-        },
-        {
-          "name": "Máy giặt"
-        },
-        {
-          "name": "Giường"
-        },
-        {
-          "name": "Bàn và ghế"
-        },
-        {
-          "name": "Tủ lạnh"
+          "name": "Bình nóng lạnh"
         },
         {
           "name": "Máy lọc nước"
         },
         {
-          "name": "Bình nóng lạnh"
+          "name": "Internet"
+        },
+        {
+          "name": "Máy hút mùi"
+        },
+        {
+          "name": "Máy sấy tóc"
+        },
+        {
+          "name": "Máy phát điện dự phòng"
         }
       ]
     },
@@ -818,38 +859,52 @@
           {
             "name": "Chìa khóa phòng",
             "maintainStatus": "GOOD",
-            "serial": "0x31fbA15c",
+            "serial": "0x321CadCA",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e"
+            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
           },
           {
             "name": "Chìa khóa ban công",
             "maintainStatus": "GOOD",
-            "serial": "0xa9F0cCb1",
+            "serial": "0xEbf6bfe5",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e"
+            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
           },
           {
             "name": "Điều khiển điều hòa",
             "maintainStatus": "GOOD",
-            "serial": "0x4cC5cd8e",
+            "serial": "0xceCcce6d",
             "price": 100000,
             "category": "Điều khiển",
-            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e"
+            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
           },
           {
             "name": "Máy điều hòa",
             "brand": "Daikin",
             "model": "FTKM35SVMV",
+            "category": "Điều hòa",
             "price": 5000000,
-            "serial": "0x10ae7dFa",
+            "dateOfInstallation": "2022-04-12T05:00:33.638Z",
+            "serial": "0xbF981f27",
             "description": "Công nghệ Inverter, công suất 1.5 tấn",
             "maintainStatus": "GOOD",
             "enableWarranty": true,
-            "warrantyExpirationDate": "2025-01-29T17:20:40.654Z",
-            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e"
+            "warrantyExpirationDate": "2027-12-23T05:59:20.192Z",
+            "propertyId": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
           }
         ]
       }
@@ -879,10 +934,28 @@
     "unitFeatures": {
       "connect": [
         {
-          "name": "Bàn ăn"
+          "name": "Bình nóng lạnh"
         },
         {
-          "name": "Bồn tắm"
+          "name": "Máy sưởi"
+        },
+        {
+          "name": "Ban công"
+        },
+        {
+          "name": "Tủ quần áo"
+        },
+        {
+          "name": "Máy lọc nước"
+        },
+        {
+          "name": "Giường"
+        },
+        {
+          "name": "Lò nướng"
+        },
+        {
+          "name": "Máy phát điện dự phòng"
         }
       ]
     },
@@ -910,38 +983,52 @@
           {
             "name": "Chìa khóa phòng",
             "maintainStatus": "GOOD",
-            "serial": "0xACfEC48A",
+            "serial": "0x57Cf8eac",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "a3f5e7c5-5b3d-4c9a-a5f1-6d2b9c8f7b3d"
+            "propertyId": "a3f5e7c5-5b3d-4c9a-a5f1-6d2b9c8f7b3d",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
           },
           {
             "name": "Chìa khóa ban công",
             "maintainStatus": "GOOD",
-            "serial": "0xF967E62a",
+            "serial": "0xAEcd651F",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "a3f5e7c5-5b3d-4c9a-a5f1-6d2b9c8f7b3d"
+            "propertyId": "a3f5e7c5-5b3d-4c9a-a5f1-6d2b9c8f7b3d",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
           },
           {
             "name": "Điều khiển điều hòa",
             "maintainStatus": "GOOD",
-            "serial": "0xdaDBc07A",
+            "serial": "0xE1AFcA3C",
             "price": 100000,
             "category": "Điều khiển",
-            "propertyId": "a3f5e7c5-5b3d-4c9a-a5f1-6d2b9c8f7b3d"
+            "propertyId": "a3f5e7c5-5b3d-4c9a-a5f1-6d2b9c8f7b3d",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
           },
           {
             "name": "Máy điều hòa",
             "brand": "Daikin",
             "model": "FTKM35SVMV",
+            "category": "Điều hòa",
             "price": 5000000,
-            "serial": "0x1ab4cF40",
+            "dateOfInstallation": "2022-06-26T23:27:01.530Z",
+            "serial": "0xdfdd33CB",
             "description": "Công nghệ Inverter, công suất 1.5 tấn",
             "maintainStatus": "GOOD",
             "enableWarranty": true,
-            "warrantyExpirationDate": "2025-05-31T15:44:13.895Z",
-            "propertyId": "a3f5e7c5-5b3d-4c9a-a5f1-6d2b9c8f7b3d"
+            "warrantyExpirationDate": "2025-07-04T16:26:12.759Z",
+            "propertyId": "a3f5e7c5-5b3d-4c9a-a5f1-6d2b9c8f7b3d",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
           }
         ]
       }
@@ -969,16 +1056,43 @@
     "unitFeatures": {
       "connect": [
         {
-          "name": "Tủ lạnh"
+          "name": "Ban công"
         },
         {
           "name": "Giường"
         },
         {
-          "name": "Máy lọc nước"
+          "name": "Bồn tắm"
+        },
+        {
+          "name": "Máy sưởi"
         },
         {
           "name": "Lò nướng"
+        },
+        {
+          "name": "Máy điều hòa"
+        },
+        {
+          "name": "Máy lọc nước"
+        },
+        {
+          "name": "Bình nóng lạnh"
+        },
+        {
+          "name": "Internet"
+        },
+        {
+          "name": "Tủ lạnh"
+        },
+        {
+          "name": "Bàn ăn"
+        },
+        {
+          "name": "Tủ quần áo"
+        },
+        {
+          "name": "Máy sấy tóc"
         }
       ]
     },
@@ -1006,38 +1120,52 @@
           {
             "name": "Chìa khóa phòng",
             "maintainStatus": "GOOD",
-            "serial": "0xF8fa62e7",
+            "serial": "0x6BccD9BC",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "4c5b2d8c-3e7a-4d8a-9b5f-2d8c5b7a1e7a"
+            "propertyId": "4c5b2d8c-3e7a-4d8a-9b5f-2d8c5b7a1e7a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
           },
           {
             "name": "Chìa khóa ban công",
             "maintainStatus": "GOOD",
-            "serial": "0x7ad8B4AF",
+            "serial": "0xA9cBF8da",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "4c5b2d8c-3e7a-4d8a-9b5f-2d8c5b7a1e7a"
+            "propertyId": "4c5b2d8c-3e7a-4d8a-9b5f-2d8c5b7a1e7a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
           },
           {
             "name": "Điều khiển điều hòa",
             "maintainStatus": "GOOD",
-            "serial": "0x90fB403a",
+            "serial": "0xbddEacFE",
             "price": 100000,
             "category": "Điều khiển",
-            "propertyId": "4c5b2d8c-3e7a-4d8a-9b5f-2d8c5b7a1e7a"
+            "propertyId": "4c5b2d8c-3e7a-4d8a-9b5f-2d8c5b7a1e7a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
           },
           {
             "name": "Máy điều hòa",
             "brand": "Daikin",
             "model": "FTKM35SVMV",
+            "category": "Điều hòa",
             "price": 5000000,
-            "serial": "0x1EEc0bB2",
+            "dateOfInstallation": "2022-09-16T22:40:26.942Z",
+            "serial": "0xa3CF228C",
             "description": "Công nghệ Inverter, công suất 1.5 tấn",
             "maintainStatus": "GOOD",
             "enableWarranty": true,
-            "warrantyExpirationDate": "2026-11-02T18:06:41.486Z",
-            "propertyId": "4c5b2d8c-3e7a-4d8a-9b5f-2d8c5b7a1e7a"
+            "warrantyExpirationDate": "2025-05-07T12:06:56.599Z",
+            "propertyId": "4c5b2d8c-3e7a-4d8a-9b5f-2d8c5b7a1e7a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
           }
         ]
       }
@@ -1057,448 +1185,6 @@
     "property": {
       "connect": {
         "id": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b"
-      }
-    },
-    "unitFeatures": {
-      "connect": [
-        {
-          "name": "Ban công"
-        },
-        {
-          "name": "Lò nướng"
-        },
-        {
-          "name": "Tủ lạnh"
-        },
-        {
-          "name": "Máy sưởi"
-        },
-        {
-          "name": "Giường"
-        },
-        {
-          "name": "Internet"
-        },
-        {
-          "name": "Tủ quần áo"
-        },
-        {
-          "name": "Máy hút mùi"
-        },
-        {
-          "name": "Bàn làm việc"
-        },
-        {
-          "name": "Máy điều hòa"
-        },
-        {
-          "name": "Máy lọc nước"
-        }
-      ]
-    },
-    "unitPriceLogs": {
-      "createMany": {
-        "data": [
-          {
-            "category": "WATER",
-            "price": 40000,
-            "status": 0,
-            "value": 0
-          },
-          {
-            "category": "ELECTRICITY",
-            "price": 4000,
-            "status": 0,
-            "value": 0
-          }
-        ]
-      }
-    },
-    "equipments": {
-      "createMany": {
-        "data": [
-          {
-            "name": "Chìa khóa phòng",
-            "maintainStatus": "GOOD",
-            "serial": "0x17Acdcc5",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b"
-          },
-          {
-            "name": "Chìa khóa ban công",
-            "maintainStatus": "GOOD",
-            "serial": "0xdAD4B535",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b"
-          },
-          {
-            "name": "Điều khiển điều hòa",
-            "maintainStatus": "GOOD",
-            "serial": "0x8b4cAAC9",
-            "price": 100000,
-            "category": "Điều khiển",
-            "propertyId": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b"
-          },
-          {
-            "name": "Máy điều hòa",
-            "brand": "Daikin",
-            "model": "FTKM35SVMV",
-            "price": 5000000,
-            "serial": "0x5AbABF87",
-            "description": "Công nghệ Inverter, công suất 1.5 tấn",
-            "maintainStatus": "GOOD",
-            "enableWarranty": true,
-            "warrantyExpirationDate": "2027-04-29T07:02:51.744Z",
-            "propertyId": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "id": "a3b2d7c4-5e6a-4b9f-8d2c-1f4a3e7c9b5d",
-    "name": "Tầng 2",
-    "area": 30,
-    "price": 3800000,
-    "deposit": 0,
-    "description": "Cho Thuê Ccmn hà nội \n      Địa chỉ ngõ 51 tương mai gần neu\n      👉Phòng đầy đủ nội thất như hình \n      👉Tài chính 3tr8\n      🍀Xem phòng freee \n      🌟Ib ngay cho e để biết thêm tt ạ \n       ☎️ Liên hệ :  Za.lo 0971537189\n      ",
-    "status": "GOOD",
-    "imgUrls": [
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg"
-    ],
-    "property": {
-      "connect": {
-        "id": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-      }
-    },
-    "unitFeatures": {
-      "connect": [
-        {
-          "name": "Máy sưởi"
-        },
-        {
-          "name": "Máy hút mùi"
-        },
-        {
-          "name": "Máy phát điện dự phòng"
-        },
-        {
-          "name": "Ban công"
-        }
-      ]
-    },
-    "unitPriceLogs": {
-      "createMany": {
-        "data": [
-          {
-            "category": "WATER",
-            "price": 40000,
-            "status": 0,
-            "value": 0
-          },
-          {
-            "category": "ELECTRICITY",
-            "price": 4000,
-            "status": 0,
-            "value": 0
-          }
-        ]
-      }
-    },
-    "equipments": {
-      "createMany": {
-        "data": [
-          {
-            "name": "Chìa khóa phòng",
-            "maintainStatus": "GOOD",
-            "serial": "0xdbe343bf",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          },
-          {
-            "name": "Chìa khóa ban công",
-            "maintainStatus": "GOOD",
-            "serial": "0x32BBB95a",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          },
-          {
-            "name": "Điều khiển điều hòa",
-            "maintainStatus": "GOOD",
-            "serial": "0xeEa85CBD",
-            "price": 100000,
-            "category": "Điều khiển",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          },
-          {
-            "name": "Máy điều hòa",
-            "brand": "Daikin",
-            "model": "FTKM35SVMV",
-            "price": 5000000,
-            "serial": "0x3b7238De",
-            "description": "Công nghệ Inverter, công suất 1.5 tấn",
-            "maintainStatus": "GOOD",
-            "enableWarranty": true,
-            "warrantyExpirationDate": "2026-03-14T15:03:47.190Z",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "id": "b4c1d8a5-6e7a-4b8c-9f1d-2e3a4d5b7f6c",
-    "name": "Tầng 3",
-    "area": 30,
-    "price": 3800000,
-    "deposit": 0,
-    "description": "Cho Thuê Ccmn hà nội \n      Địa chỉ ngõ 51 tương mai gần neu\n      👉Phòng đầy đủ nội thất như hình \n      👉Tài chính 3tr8\n      🍀Xem phòng freee \n      🌟Ib ngay cho e để biết thêm tt ạ \n       ☎️ Liên hệ :  Za.lo 0971537189\n      ",
-    "status": "GOOD",
-    "imgUrls": [
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg"
-    ],
-    "property": {
-      "connect": {
-        "id": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-      }
-    },
-    "unitFeatures": {
-      "connect": [
-        {
-          "name": "Máy giặt"
-        },
-        {
-          "name": "Internet"
-        },
-        {
-          "name": "Máy phát điện dự phòng"
-        },
-        {
-          "name": "Máy lọc nước"
-        },
-        {
-          "name": "Bình nóng lạnh"
-        },
-        {
-          "name": "Ban công"
-        },
-        {
-          "name": "Bàn ăn"
-        },
-        {
-          "name": "Tủ quần áo"
-        }
-      ]
-    },
-    "unitPriceLogs": {
-      "createMany": {
-        "data": [
-          {
-            "category": "WATER",
-            "price": 40000,
-            "status": 0,
-            "value": 0
-          },
-          {
-            "category": "ELECTRICITY",
-            "price": 4000,
-            "status": 0,
-            "value": 0
-          }
-        ]
-      }
-    },
-    "equipments": {
-      "createMany": {
-        "data": [
-          {
-            "name": "Chìa khóa phòng",
-            "maintainStatus": "GOOD",
-            "serial": "0x7B337dBF",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          },
-          {
-            "name": "Chìa khóa ban công",
-            "maintainStatus": "GOOD",
-            "serial": "0x638c6E58",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          },
-          {
-            "name": "Điều khiển điều hòa",
-            "maintainStatus": "GOOD",
-            "serial": "0x9DEdd56D",
-            "price": 100000,
-            "category": "Điều khiển",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          },
-          {
-            "name": "Máy điều hòa",
-            "brand": "Daikin",
-            "model": "FTKM35SVMV",
-            "price": 5000000,
-            "serial": "0x006EEaE4",
-            "description": "Công nghệ Inverter, công suất 1.5 tấn",
-            "maintainStatus": "GOOD",
-            "enableWarranty": true,
-            "warrantyExpirationDate": "2026-10-14T16:15:03.775Z",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "id": "d8e7c4b3-1f6a-4a9b-8c5e-2b3a5d7f1c4d",
-    "name": "Tầng 4",
-    "area": 30,
-    "price": 3800000,
-    "deposit": 0,
-    "description": "Cho Thuê Ccmn hà nội \n      Địa chỉ ngõ 51 tương mai gần neu\n      👉Phòng đầy đủ nội thất như hình \n      👉Tài chính 3tr8\n      🍀Xem phòng freee \n      🌟Ib ngay cho e để biết thêm tt ạ \n       ☎️ Liên hệ :  Za.lo 0971537189\n      ",
-    "status": "GOOD",
-    "imgUrls": [
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg"
-    ],
-    "property": {
-      "connect": {
-        "id": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-      }
-    },
-    "unitFeatures": {
-      "connect": [
-        {
-          "name": "Máy giặt"
-        },
-        {
-          "name": "Máy lọc nước"
-        },
-        {
-          "name": "Internet"
-        },
-        {
-          "name": "Bàn và ghế"
-        },
-        {
-          "name": "Máy phát điện dự phòng"
-        },
-        {
-          "name": "Máy hút mùi"
-        },
-        {
-          "name": "Máy sấy tóc"
-        },
-        {
-          "name": "Tủ quần áo"
-        },
-        {
-          "name": "Tủ lạnh"
-        },
-        {
-          "name": "Bình nóng lạnh"
-        },
-        {
-          "name": "Giường"
-        },
-        {
-          "name": "Bàn làm việc"
-        },
-        {
-          "name": "Ban công"
-        }
-      ]
-    },
-    "unitPriceLogs": {
-      "createMany": {
-        "data": [
-          {
-            "category": "WATER",
-            "price": 40000,
-            "status": 0,
-            "value": 0
-          },
-          {
-            "category": "ELECTRICITY",
-            "price": 4000,
-            "status": 0,
-            "value": 0
-          }
-        ]
-      }
-    },
-    "equipments": {
-      "createMany": {
-        "data": [
-          {
-            "name": "Chìa khóa phòng",
-            "maintainStatus": "GOOD",
-            "serial": "0x4aaf1DCD",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          },
-          {
-            "name": "Chìa khóa ban công",
-            "maintainStatus": "GOOD",
-            "serial": "0xE854AE1D",
-            "price": 100000,
-            "category": "Chìa khóa",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          },
-          {
-            "name": "Điều khiển điều hòa",
-            "maintainStatus": "GOOD",
-            "serial": "0x7b6CbD25",
-            "price": 100000,
-            "category": "Điều khiển",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          },
-          {
-            "name": "Máy điều hòa",
-            "brand": "Daikin",
-            "model": "FTKM35SVMV",
-            "price": 5000000,
-            "serial": "0xb69e1eFe",
-            "description": "Công nghệ Inverter, công suất 1.5 tấn",
-            "maintainStatus": "GOOD",
-            "enableWarranty": true,
-            "warrantyExpirationDate": "2026-05-30T01:21:01.270Z",
-            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "id": "f6b7d8a3-2e9c-4b1f-8d3e-7a5c4f2a6b1e",
-    "name": "Phòng cho nữ thuê",
-    "area": 20,
-    "price": 4000000,
-    "deposit": 4000000,
-    "description": "CÒN 1 PHÒNG DUY NHẤT CHO NỮ THUÊ - PHƯỜNG MINH KHAI, QUẬN HAI BÀ TRƯNG, HÀ NỘI\n      - Địa chỉ: Phường Minh Khai, Quận Hai Bà Trưng, Hà Nội\n      - Diện tích: 20m2\n      - Có chỗ nấu ăn, có thang thoát hiểm, có ban công thoáng mát.\n      - Phòng có đủ đồ như hình.\n      - phòng có vị trí đẹp. Nhà xây mới đét. Nhà cách phố 50m.\n      - Khu ở dân cư đông, an ninh tốt, hàng xóm thân thiện dễ gần, văn minh lịch sự.\n      - Xung quanh đầy đủ các tiện ích khác nhau: gần trường Bách Kinh Xây, Công Nghệ, gần chợ, siêu thị, trung tâm,...\n      - Rất phù hợp để an cư sinh sống (cho nữ thuê) chỉ việc xách valy vào ở.\n      + Giá Thuê: 4tr/tháng\n      => Liên Hệ Xem Phòng: 0973258928 (cô Hồng Thanh)",
-    "status": "GOOD",
-    "imgUrls": [
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/901.jpg",
-      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/902.jpg"
-    ],
-    "property": {
-      "connect": {
-        "id": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e"
       }
     },
     "unitFeatures": {
@@ -1528,38 +1214,529 @@
           {
             "name": "Chìa khóa phòng",
             "maintainStatus": "GOOD",
-            "serial": "0x34CfA6DC",
+            "serial": "0xA28eb46E",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e"
+            "propertyId": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
           },
           {
             "name": "Chìa khóa ban công",
             "maintainStatus": "GOOD",
-            "serial": "0x6b3CaE3d",
+            "serial": "0x5d8B8f0a",
             "price": 100000,
             "category": "Chìa khóa",
-            "propertyId": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e"
+            "propertyId": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
           },
           {
             "name": "Điều khiển điều hòa",
             "maintainStatus": "GOOD",
-            "serial": "0xc6b338b9",
+            "serial": "0xb59BbC8D",
             "price": 100000,
             "category": "Điều khiển",
-            "propertyId": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e"
+            "propertyId": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
           },
           {
             "name": "Máy điều hòa",
             "brand": "Daikin",
             "model": "FTKM35SVMV",
+            "category": "Điều hòa",
             "price": 5000000,
-            "serial": "0x6Ed4bDc9",
+            "dateOfInstallation": "2021-04-21T08:56:14.048Z",
+            "serial": "0xcab8BE01",
             "description": "Công nghệ Inverter, công suất 1.5 tấn",
             "maintainStatus": "GOOD",
             "enableWarranty": true,
-            "warrantyExpirationDate": "2026-10-02T03:07:17.226Z",
-            "propertyId": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e"
+            "warrantyExpirationDate": "2024-09-29T12:59:54.071Z",
+            "propertyId": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "a3b2d7c4-5e6a-4b9f-8d2c-1f4a3e7c9b5d",
+    "name": "Tầng 2",
+    "area": 30,
+    "price": 3800000,
+    "deposit": 0,
+    "description": "Cho Thuê Ccmn hà nội \n      Địa chỉ ngõ 51 tương mai gần neu\n      👉Phòng đầy đủ nội thất như hình \n      👉Tài chính 3tr8\n      🍀Xem phòng freee \n      🌟Ib ngay cho e để biết thêm tt ạ \n       ☎️ Liên hệ :  Za.lo 0971537189\n      ",
+    "status": "GOOD",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg"
+    ],
+    "property": {
+      "connect": {
+        "id": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
+      }
+    },
+    "unitFeatures": {
+      "connect": [
+        {
+          "name": "Tủ quần áo"
+        },
+        {
+          "name": "Máy sưởi"
+        },
+        {
+          "name": "Giường"
+        },
+        {
+          "name": "Bàn làm việc"
+        },
+        {
+          "name": "Máy hút mùi"
+        },
+        {
+          "name": "Máy điều hòa"
+        },
+        {
+          "name": "Internet"
+        },
+        {
+          "name": "Lò nướng"
+        },
+        {
+          "name": "Bàn ăn"
+        }
+      ]
+    },
+    "unitPriceLogs": {
+      "createMany": {
+        "data": [
+          {
+            "category": "WATER",
+            "price": 40000,
+            "status": 0,
+            "value": 0
+          },
+          {
+            "category": "ELECTRICITY",
+            "price": 4000,
+            "status": 0,
+            "value": 0
+          }
+        ]
+      }
+    },
+    "equipments": {
+      "createMany": {
+        "data": [
+          {
+            "name": "Chìa khóa phòng",
+            "maintainStatus": "GOOD",
+            "serial": "0xCB2675b2",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
+          },
+          {
+            "name": "Chìa khóa ban công",
+            "maintainStatus": "GOOD",
+            "serial": "0x6Cf7fc2E",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
+          },
+          {
+            "name": "Điều khiển điều hòa",
+            "maintainStatus": "GOOD",
+            "serial": "0xc7eB2b73",
+            "price": 100000,
+            "category": "Điều khiển",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
+          },
+          {
+            "name": "Máy điều hòa",
+            "brand": "Daikin",
+            "model": "FTKM35SVMV",
+            "category": "Điều hòa",
+            "price": 5000000,
+            "dateOfInstallation": "2024-05-21T06:49:26.044Z",
+            "serial": "0x67EC96d8",
+            "description": "Công nghệ Inverter, công suất 1.5 tấn",
+            "maintainStatus": "GOOD",
+            "enableWarranty": true,
+            "warrantyExpirationDate": "2027-06-06T18:13:51.865Z",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "b4c1d8a5-6e7a-4b8c-9f1d-2e3a4d5b7f6c",
+    "name": "Tầng 3",
+    "area": 30,
+    "price": 3800000,
+    "deposit": 0,
+    "description": "Cho Thuê Ccmn hà nội \n      Địa chỉ ngõ 51 tương mai gần neu\n      👉Phòng đầy đủ nội thất như hình \n      👉Tài chính 3tr8\n      🍀Xem phòng freee \n      🌟Ib ngay cho e để biết thêm tt ạ \n       ☎️ Liên hệ :  Za.lo 0971537189\n      ",
+    "status": "GOOD",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg"
+    ],
+    "property": {
+      "connect": {
+        "id": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
+      }
+    },
+    "unitFeatures": {
+      "connect": [
+        {
+          "name": "Máy điều hòa"
+        },
+        {
+          "name": "Tủ quần áo"
+        },
+        {
+          "name": "Bàn làm việc"
+        },
+        {
+          "name": "Máy sưởi"
+        },
+        {
+          "name": "Lò nướng"
+        },
+        {
+          "name": "Tủ lạnh"
+        },
+        {
+          "name": "Máy phát điện dự phòng"
+        },
+        {
+          "name": "Máy lọc nước"
+        },
+        {
+          "name": "Giường"
+        }
+      ]
+    },
+    "unitPriceLogs": {
+      "createMany": {
+        "data": [
+          {
+            "category": "WATER",
+            "price": 40000,
+            "status": 0,
+            "value": 0
+          },
+          {
+            "category": "ELECTRICITY",
+            "price": 4000,
+            "status": 0,
+            "value": 0
+          }
+        ]
+      }
+    },
+    "equipments": {
+      "createMany": {
+        "data": [
+          {
+            "name": "Chìa khóa phòng",
+            "maintainStatus": "GOOD",
+            "serial": "0x25D54E2E",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
+          },
+          {
+            "name": "Chìa khóa ban công",
+            "maintainStatus": "GOOD",
+            "serial": "0xd5Cd9B68",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
+          },
+          {
+            "name": "Điều khiển điều hòa",
+            "maintainStatus": "GOOD",
+            "serial": "0xeC9b8EB3",
+            "price": 100000,
+            "category": "Điều khiển",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
+          },
+          {
+            "name": "Máy điều hòa",
+            "brand": "Daikin",
+            "model": "FTKM35SVMV",
+            "category": "Điều hòa",
+            "price": 5000000,
+            "dateOfInstallation": "2024-01-29T15:30:47.448Z",
+            "serial": "0x9ae7ae1c",
+            "description": "Công nghệ Inverter, công suất 1.5 tấn",
+            "maintainStatus": "GOOD",
+            "enableWarranty": true,
+            "warrantyExpirationDate": "2027-05-31T00:33:54.237Z",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "d8e7c4b3-1f6a-4a9b-8c5e-2b3a5d7f1c4d",
+    "name": "Tầng 4",
+    "area": 30,
+    "price": 3800000,
+    "deposit": 0,
+    "description": "Cho Thuê Ccmn hà nội \n      Địa chỉ ngõ 51 tương mai gần neu\n      👉Phòng đầy đủ nội thất như hình \n      👉Tài chính 3tr8\n      🍀Xem phòng freee \n      🌟Ib ngay cho e để biết thêm tt ạ \n       ☎️ Liên hệ :  Za.lo 0971537189\n      ",
+    "status": "GOOD",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg"
+    ],
+    "property": {
+      "connect": {
+        "id": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a"
+      }
+    },
+    "unitFeatures": {
+      "connect": [
+        {
+          "name": "Bàn làm việc"
+        },
+        {
+          "name": "Ban công"
+        },
+        {
+          "name": "Máy điều hòa"
+        },
+        {
+          "name": "Máy hút mùi"
+        }
+      ]
+    },
+    "unitPriceLogs": {
+      "createMany": {
+        "data": [
+          {
+            "category": "WATER",
+            "price": 40000,
+            "status": 0,
+            "value": 0
+          },
+          {
+            "category": "ELECTRICITY",
+            "price": 4000,
+            "status": 0,
+            "value": 0
+          }
+        ]
+      }
+    },
+    "equipments": {
+      "createMany": {
+        "data": [
+          {
+            "name": "Chìa khóa phòng",
+            "maintainStatus": "GOOD",
+            "serial": "0x06145b62",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
+          },
+          {
+            "name": "Chìa khóa ban công",
+            "maintainStatus": "GOOD",
+            "serial": "0xBac39CCF",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
+          },
+          {
+            "name": "Điều khiển điều hòa",
+            "maintainStatus": "GOOD",
+            "serial": "0xd0F2Ef7a",
+            "price": 100000,
+            "category": "Điều khiển",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
+          },
+          {
+            "name": "Máy điều hòa",
+            "brand": "Daikin",
+            "model": "FTKM35SVMV",
+            "category": "Điều hòa",
+            "price": 5000000,
+            "dateOfInstallation": "2023-12-23T22:25:01.925Z",
+            "serial": "0x57d5bAB3",
+            "description": "Công nghệ Inverter, công suất 1.5 tấn",
+            "maintainStatus": "GOOD",
+            "enableWarranty": true,
+            "warrantyExpirationDate": "2028-06-01T07:10:30.246Z",
+            "propertyId": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "f6b7d8a3-2e9c-4b1f-8d3e-7a5c4f2a6b1e",
+    "name": "Phòng cho nữ thuê",
+    "area": 20,
+    "price": 4000000,
+    "deposit": 4000000,
+    "description": "CÒN 1 PHÒNG DUY NHẤT CHO NỮ THUÊ - PHƯỜNG MINH KHAI, QUẬN HAI BÀ TRƯNG, HÀ NỘI\n      - Địa chỉ: Phường Minh Khai, Quận Hai Bà Trưng, Hà Nội\n      - Diện tích: 20m2\n      - Có chỗ nấu ăn, có thang thoát hiểm, có ban công thoáng mát.\n      - Phòng có đủ đồ như hình.\n      - phòng có vị trí đẹp. Nhà xây mới đét. Nhà cách phố 50m.\n      - Khu ở dân cư đông, an ninh tốt, hàng xóm thân thiện dễ gần, văn minh lịch sự.\n      - Xung quanh đầy đủ các tiện ích khác nhau: gần trường Bách Kinh Xây, Công Nghệ, gần chợ, siêu thị, trung tâm,...\n      - Rất phù hợp để an cư sinh sống (cho nữ thuê) chỉ việc xách valy vào ở.\n      + Giá Thuê: 4tr/tháng\n      => Liên Hệ Xem Phòng: 0973258928 (cô Hồng Thanh)",
+    "status": "GOOD",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/901.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/902.jpg"
+    ],
+    "property": {
+      "connect": {
+        "id": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e"
+      }
+    },
+    "unitFeatures": {
+      "connect": [
+        {
+          "name": "Internet"
+        },
+        {
+          "name": "Tủ quần áo"
+        },
+        {
+          "name": "Máy giặt"
+        },
+        {
+          "name": "Bàn và ghế"
+        },
+        {
+          "name": "Giường"
+        },
+        {
+          "name": "Máy phát điện dự phòng"
+        },
+        {
+          "name": "Bàn ăn"
+        }
+      ]
+    },
+    "unitPriceLogs": {
+      "createMany": {
+        "data": [
+          {
+            "category": "WATER",
+            "price": 40000,
+            "status": 0,
+            "value": 0
+          },
+          {
+            "category": "ELECTRICITY",
+            "price": 4000,
+            "status": 0,
+            "value": 0
+          }
+        ]
+      }
+    },
+    "equipments": {
+      "createMany": {
+        "data": [
+          {
+            "name": "Chìa khóa phòng",
+            "maintainStatus": "GOOD",
+            "serial": "0xF3bddC3B",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg"
+            ]
+          },
+          {
+            "name": "Chìa khóa ban công",
+            "maintainStatus": "GOOD",
+            "serial": "0xEb41D47f",
+            "price": 100000,
+            "category": "Chìa khóa",
+            "propertyId": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg"
+            ]
+          },
+          {
+            "name": "Điều khiển điều hòa",
+            "maintainStatus": "GOOD",
+            "serial": "0x13D39B49",
+            "price": 100000,
+            "category": "Điều khiển",
+            "propertyId": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp"
+            ]
+          },
+          {
+            "name": "Máy điều hòa",
+            "brand": "Daikin",
+            "model": "FTKM35SVMV",
+            "category": "Điều hòa",
+            "price": 5000000,
+            "dateOfInstallation": "2023-07-23T18:46:15.275Z",
+            "serial": "0x0e6CBc03",
+            "description": "Công nghệ Inverter, công suất 1.5 tấn",
+            "maintainStatus": "GOOD",
+            "enableWarranty": true,
+            "warrantyExpirationDate": "2027-07-20T04:50:04.794Z",
+            "propertyId": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e",
+            "imgUrls": [
+              "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg"
+            ]
           }
         ]
       }

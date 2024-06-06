@@ -62,6 +62,9 @@ export class UnitResDto implements IUnitResDto {
   requested: boolean;
 
   @Expose()
+  isLiving: boolean;
+
+  @Expose()
   selfOccupied: boolean;
 
   @Expose()

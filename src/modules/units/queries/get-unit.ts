@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { RequestCategory } from 'src/libs';
+import { ContractStatus, RequestCategory } from 'src/libs';
 import { calculateRating } from 'src/libs/helpers';
 import { MemberResDto, UnitResDto } from 'src/shared/dto';
 import { UnitService } from '../unit.service';
@@ -48,21 +48,34 @@ export class GetUnitHandler implements IQueryHandler<GetUnitQuery> {
     });
 
     let requested: boolean = false;
+    let isLiving: boolean = false;
 
     if (member && member.id) {
-      requested = !!(await this.prisma.request.findFirst({
+      const hasRequested = await this.prisma.request.findFirst({
         where: {
           unitId: unitId,
           category: RequestCategory.UNIT_LEASE,
           senderId: member.id,
         },
-      }));
+      });
+
+      const isContracted = await this.prisma.contract.findFirst({
+        where: {
+          unitId,
+          tenantId: member.id,
+          status: { in: [ContractStatus.ACTIVE, ContractStatus.PENDING] },
+        },
+      });
+
+      requested = !!(hasRequested || isContracted);
+      isLiving = !!isContracted;
     }
 
     const { reviews } = unit;
 
     return plainToInstance(UnitResDto, {
       ...unit,
+      isLiving,
       requested,
       selfOccupied: Boolean(unit.tenants.find((i) => i.id === member.id)),
       rating: calculateRating(reviews),

@@ -141,6 +141,9 @@ export const fakeUnit = (
             price: 100_000,
             category: 'Chìa khóa',
             propertyId,
+            imgUrls: [
+              'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key_tag.jpeg',
+            ],
           },
           {
             name: `Chìa khóa ban công`,
@@ -149,6 +152,9 @@ export const fakeUnit = (
             price: 100_000,
             category: 'Chìa khóa',
             propertyId,
+            imgUrls: [
+              'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/key.jpg',
+            ],
           },
           {
             name: `Điều khiển điều hòa`,
@@ -157,18 +163,26 @@ export const fakeUnit = (
             price: 100_000,
             category: 'Điều khiển',
             propertyId,
+            imgUrls: [
+              'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/daikin_remote.webp',
+            ],
           },
           {
             name: 'Máy điều hòa',
             brand: 'Daikin',
             model: 'FTKM35SVMV',
+            category: 'Điều hòa',
             price: 5_000_000,
+            dateOfInstallation: faker.date.past({ years: 4 }),
             serial: faker.string.hexadecimal({ length: 8 }),
             description: 'Công nghệ Inverter, công suất 1.5 tấn',
             maintainStatus: 'GOOD',
             enableWarranty: true,
             warrantyExpirationDate: faker.date.future({ years: 4 }),
             propertyId,
+            imgUrls: [
+              'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/Daikiin-Alira-X-Streamer.jpg',
+            ],
           },
         ],
       },

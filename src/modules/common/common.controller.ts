@@ -1,8 +1,9 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/shared/decorators';
+import { CurrentMember, Public } from 'src/shared/decorators';
 import { CommonService } from './common.service';
 
+import { MemberResDto } from 'src/shared/dto';
 import districts from 'src/static/districts.json';
 import provinces from 'src/static/provinces.json';
 import wards from 'src/static/wards.json';
@@ -46,13 +47,16 @@ export class CommonController {
   }
 
   @Get('properties')
-  async getProperties() {
-    return this.commonService.getProperties();
+  async getProperties(@CurrentMember() member: MemberResDto) {
+    return this.commonService.getProperties({ member });
   }
 
   @Get('units')
-  async getUnits(@Query('propertyId') propertyId: string) {
-    return this.commonService.getUnits(propertyId);
+  async getUnits(
+    @CurrentMember() member: MemberResDto,
+    @Query('propertyId') propertyId: string,
+  ) {
+    return this.commonService.getUnits({ member, propertyId });
   }
 
   @Get('equipments')

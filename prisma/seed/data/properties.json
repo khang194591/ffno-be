@@ -16,16 +16,31 @@
     "amenities": {
       "connect": [
         {
-          "name": "Dịch vụ giặt là"
+          "name": "Quán cà phê"
         },
         {
-          "name": "Phòng họp"
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
         },
         {
           "name": "Truy cập internet tốc độ cao"
         },
         {
-          "name": "Quán cà phê"
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Phòng họp"
         },
         {
           "name": "Bãi đậu xe"
@@ -34,16 +49,16 @@
           "name": "Hồ bơi"
         },
         {
-          "name": "Thân thiện với vật nuôi"
-        },
-        {
-          "name": "Phòng gym"
+          "name": "Khu vực chơi cho trẻ em"
         },
         {
           "name": "Sân chơi"
         },
         {
-          "name": "Khu vực nướng BBQ"
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
         }
       ]
     }
@@ -66,40 +81,16 @@
     "amenities": {
       "connect": [
         {
-          "name": "Khu vực chơi cho trẻ em"
-        },
-        {
-          "name": "Phòng gym"
-        },
-        {
-          "name": "Sân thượng hoặc vườn"
-        },
-        {
-          "name": "Quầy bar/Phòng chờ"
-        },
-        {
-          "name": "Thân thiện với vật nuôi"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Quán cà phê"
-        },
-        {
-          "name": "Dịch vụ giặt là"
+          "name": "Khu vực tiệc ngoài trời"
         },
         {
           "name": "Bãi đậu xe"
         },
         {
-          "name": "Sân chơi"
+          "name": "Phòng gym"
         },
         {
-          "name": "Hồ bơi"
+          "name": "Dịch vụ trông trẻ"
         }
       ]
     }
@@ -123,31 +114,25 @@
     "amenities": {
       "connect": [
         {
-          "name": "Khu vực tiệc ngoài trời"
-        },
-        {
-          "name": "Khu vực chơi cho trẻ em"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Sân chơi"
-        },
-        {
           "name": "Quầy bar/Phòng chờ"
         },
         {
-          "name": "Truy cập internet tốc độ cao"
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
         },
         {
           "name": "Phòng họp"
         },
         {
-          "name": "Quán cà phê"
+          "name": "Dịch vụ quản lý tài sản"
         },
         {
           "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Sân thượng hoặc vườn"
         }
       ]
     }
@@ -172,37 +157,49 @@
     "amenities": {
       "connect": [
         {
-          "name": "Thân thiện với vật nuôi"
-        },
-        {
-          "name": "Khu vực tiệc ngoài trời"
-        },
-        {
           "name": "Dịch vụ quản lý tài sản"
+        },
+        {
+          "name": "Phòng họp"
         },
         {
           "name": "Dịch vụ giặt là"
         },
         {
-          "name": "Khu vực chơi cho trẻ em"
+          "name": "Truy cập internet tốc độ cao"
         },
         {
-          "name": "Sân thượng hoặc vườn"
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Khu vực chơi cho trẻ em"
         },
         {
           "name": "Phòng gym"
         },
         {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
+          "name": "Sân chơi"
         },
         {
           "name": "Hồ bơi"
         },
         {
-          "name": "Sân chơi"
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
+        },
+        {
+          "name": "Quán cà phê"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
         }
       ]
     }
@@ -224,28 +221,7 @@
     "amenities": {
       "connect": [
         {
-          "name": "Thân thiện với vật nuôi"
-        },
-        {
-          "name": "Khu vực tiệc ngoài trời"
-        },
-        {
-          "name": "Khu vực chơi cho trẻ em"
-        },
-        {
-          "name": "Phòng gym"
-        },
-        {
-          "name": "Quầy bar/Phòng chờ"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Dịch vụ giặt là"
-        },
-        {
-          "name": "Sân tennis"
+          "name": "Phòng họp"
         },
         {
           "name": "Dịch vụ trông trẻ"
@@ -254,22 +230,34 @@
           "name": "Sân thượng hoặc vườn"
         },
         {
-          "name": "Hồ bơi"
+          "name": "Dịch vụ quản lý tài sản"
         },
         {
-          "name": "Truy cập internet tốc độ cao"
-        },
-        {
-          "name": "Sân chơi"
+          "name": "Bãi đậu xe"
         },
         {
           "name": "Khu vực nướng BBQ"
         },
         {
-          "name": "Dịch vụ quản lý tài sản"
+          "name": "Dịch vụ trông trẻ"
         },
         {
-          "name": "Quán cà phê"
+          "name": "Truy cập internet tốc độ cao"
+        },
+        {
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Hồ bơi"
+        },
+        {
+          "name": "Sân chơi"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Khu vực chơi cho trẻ em"
         }
       ]
     }
@@ -295,43 +283,52 @@
     "amenities": {
       "connect": [
         {
-          "name": "Sân chơi"
-        },
-        {
-          "name": "Thân thiện với vật nuôi"
-        },
-        {
-          "name": "Khu vực tiệc ngoài trời"
+          "name": "Sân thượng hoặc vườn"
         },
         {
           "name": "Dịch vụ giặt là"
         },
         {
-          "name": "Khu vực nướng BBQ"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
           "name": "Khu vực chơi cho trẻ em"
-        },
-        {
-          "name": "Sân tennis"
-        },
-        {
-          "name": "Phòng gym"
         },
         {
           "name": "Dịch vụ quản lý tài sản"
         },
         {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Truy cập internet tốc độ cao"
+        },
+        {
+          "name": "Quán cà phê"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
+        },
+        {
           "name": "Bãi đậu xe"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Hồ bơi"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
         },
         {
           "name": "Phòng họp"
         },
         {
-          "name": "Quán cà phê"
+          "name": "Sân chơi"
         }
       ]
     }
@@ -355,28 +352,28 @@
     "amenities": {
       "connect": [
         {
-          "name": "Sân thượng hoặc vườn"
-        },
-        {
-          "name": "Khu vực chơi cho trẻ em"
+          "name": "Sân tennis"
         },
         {
           "name": "Phòng gym"
         },
         {
-          "name": "Khu vực tiệc ngoài trời"
-        },
-        {
-          "name": "Sân tennis"
-        },
-        {
-          "name": "Khu vực nướng BBQ"
+          "name": "Dịch vụ trông trẻ"
         },
         {
           "name": "Bãi đậu xe"
         },
         {
           "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Quán cà phê"
+        },
+        {
+          "name": "Sân thượng hoặc vườn"
+        },
+        {
+          "name": "Dịch vụ giặt là"
         }
       ]
     }
@@ -395,47 +392,7 @@
     "ownerId": "411abc4a-4ea1-4b7d-9df3-9f598ada5e62",
     "description": "Cho thuê nhà tập thể 128C Đại La, tầng 2\n      Dt 60m, 1 phòng khách, 2 phòng ngủ, 1 phòng tắm, 1 bếp, có điều hòa, nóng lạnh, tủ giường, giờ giấc tự do không chung chủ, cho ở nhóm sinh viên, hộ gia đình. Gần đại học Bách Khoa, Kinh Tế, Xây Dựng....\n      Giá 5,5 triệu/tháng. Đóng 3 tháng, cọc 1 tháng.\n      Liên hệ 0932491982 ( Ko tiếp môi giới)\n      ",
     "amenities": {
-      "connect": [
-        {
-          "name": "Dịch vụ quản lý tài sản"
-        },
-        {
-          "name": "Khu vực chơi cho trẻ em"
-        },
-        {
-          "name": "Sân thượng hoặc vườn"
-        },
-        {
-          "name": "Khu vực nướng BBQ"
-        },
-        {
-          "name": "Truy cập internet tốc độ cao"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Sân tennis"
-        },
-        {
-          "name": "Phòng gym"
-        },
-        {
-          "name": "Thân thiện với vật nuôi"
-        },
-        {
-          "name": "Hồ bơi"
-        },
-        {
-          "name": "Quầy bar/Phòng chờ"
-        },
-        {
-          "name": "Dịch vụ giặt là"
-        },
-        {
-          "name": "Bãi đậu xe"
-        }
-      ]
+      "connect": []
     }
   },
   {
@@ -457,7 +414,40 @@
     "amenities": {
       "connect": [
         {
+          "name": "Khu vực chơi cho trẻ em"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Dịch vụ giặt là"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Phòng họp"
+        },
+        {
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Hồ bơi"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
           "name": "Dịch vụ quản lý tài sản"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Truy cập internet tốc độ cao"
         }
       ]
     }
@@ -479,19 +469,28 @@
     "amenities": {
       "connect": [
         {
-          "name": "Khu vực tiệc ngoài trời"
+          "name": "Dịch vụ giặt là"
         },
         {
-          "name": "Quầy bar/Phòng chờ"
+          "name": "Thân thiện với vật nuôi"
         },
         {
-          "name": "Sân tennis"
+          "name": "Hồ bơi"
         },
         {
-          "name": "Sân chơi"
+          "name": "Phòng gym"
         },
         {
           "name": "Bãi đậu xe"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Dịch vụ quản lý tài sản"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
         }
       ]
     }
