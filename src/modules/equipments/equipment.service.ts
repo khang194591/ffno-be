@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
 import {
   CreateEquipmentDto,
+  EquipmentResDto,
   GetListEquipmentQuery,
   UpdateEquipmentDto,
 } from 'src/shared/dto';
@@ -36,17 +38,37 @@ export class EquipmentService {
     return equipment.id;
   }
 
-  async getEquipments(query: GetListEquipmentQuery) {
-    const { propertyId } = query;
-    if (propertyId) {
-      return this.getEquipmentsByPropertyId(propertyId);
+  async getEquipments(memberId: string, query: GetListEquipmentQuery) {
+    const { propertyId, unitId, take, skip } = query;
+
+    const where: Prisma.EquipmentWhereInput = {};
+
+    if (!propertyId && !unitId) {
+      where.property = { ownerId: memberId };
     }
 
-    const equipments = await this.prisma.equipment.findMany({
-      include: { property: true },
-    });
+    if (propertyId) {
+      where.propertyId = propertyId;
+    }
 
-    return equipments.map((equipment) => this.parseEquipment(equipment));
+    if (unitId) {
+      where.unitId = unitId;
+    }
+
+    const [total, equipments] = await this.prisma.$transaction([
+      this.prisma.equipment.count({ where }),
+      this.prisma.equipment.findMany({
+        where,
+        take,
+        skip,
+        include: { property: true, unit: true },
+      }),
+    ]);
+
+    return {
+      total,
+      data: plainToInstance(EquipmentResDto, equipments),
+    };
   }
 
   async getEquipmentsByPropertyId(propertyId: string) {

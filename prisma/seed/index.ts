@@ -19,6 +19,7 @@ import {
   propertyAmenities,
   unitFeatures,
 } from './helper';
+import { writeFileSync } from 'fs';
 
 const prisma = new PrismaClient();
 
@@ -334,6 +335,11 @@ const seed = async () => {
     }),
   ];
 
+  writeFileSync(
+    'prisma/seed/data/properties.json',
+    JSON.stringify(properties, null, 2),
+  );
+
   const units = [
     fakeUnit(propertyIds[0], {
       id: unitIds[0],
@@ -646,6 +652,8 @@ const seed = async () => {
     }),
   ];
 
+  writeFileSync('prisma/seed/data/units.json', JSON.stringify(units, null, 2));
+
   tenants.push(
     fakeMember({
       id: 'c7be62dd-4e32-42a3-b37d-0e9103339668',
@@ -667,6 +675,15 @@ const seed = async () => {
       name: 'Trịnh Khang',
       imgUrl: 'https://avatar.iran.liara.run/public/03',
     }),
+  );
+
+  writeFileSync(
+    'prisma/seed/data/tenants.json',
+    JSON.stringify(tenants, null, 2),
+  );
+  writeFileSync(
+    'prisma/seed/data/landlords.json',
+    JSON.stringify(landlords, null, 2),
   );
 
   await prisma.member.createMany({

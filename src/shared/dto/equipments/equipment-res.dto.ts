@@ -6,6 +6,7 @@ import {
   UnitStatus,
 } from 'src/libs';
 import { DecimalNumber } from 'src/shared/decorators';
+import { UnitResDto } from '../units';
 
 @Exclude()
 export class EquipmentResDto implements IEquipmentResDto {
@@ -47,6 +48,7 @@ export class EquipmentResDto implements IEquipmentResDto {
   property: IPropertyResDto;
 
   @Expose()
+  @Type(() => UnitResDto)
   unit: IUnitResDto;
 
   @Expose()

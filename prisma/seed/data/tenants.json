@@ -1,0 +1,41 @@
+[
+  {
+    "id": "00c70123-8c5f-4cae-ac8d-c419a4e05952",
+    "name": "Tăng Thế Phương",
+    "email": "ThePhuong.Tang43@hotmail.com",
+    "phone": "026 8634 8011",
+    "gender": "MALE",
+    "password": "$2b$10$rfTZt.T4aWlqfAtl5VPFWeIGGYKzhwIp.Cz8utOghQ0doPN9yW7Vm",
+    "role": "TENANT",
+    "address": "9794 Kim Duyên Path",
+    "dateOfBirth": "2023-11-23T07:31:00.452Z",
+    "identityNumber": "KMBN2ZM4D5DK",
+    "imgUrl": "https://avatar.iran.liara.run/public/48"
+  },
+  {
+    "id": "c7be62dd-4e32-42a3-b37d-0e9103339668",
+    "name": "Khang Trịnh",
+    "email": "khang194591@gmail.com",
+    "phone": "0281 0189 4080",
+    "gender": "MALE",
+    "password": "$2b$10$86AO2ciypxxCR7gr8FgVLO7yHCJ9bVD6BC.ufT.Wd16FUkNoYW1Uq",
+    "role": "TENANT",
+    "address": "19685 Thế Lực Freeway",
+    "dateOfBirth": "2024-01-21T14:40:19.112Z",
+    "identityNumber": "9L4MYAHH1VOC",
+    "imgUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ-wyEURnuJjTv_eY9Fgf_KPd4QA75b_A5D06wJ63IB7gKjOUUv=s288-c-no"
+  },
+  {
+    "id": "3c8f96f8-57c8-4846-9826-59b1277e9b63",
+    "name": "Trịnh Khang",
+    "email": "khang.td194591@sis.hust.edu.vn",
+    "phone": "029 7265 3376",
+    "gender": "FEMALE",
+    "password": "$2b$10$v77bR902tGDGTVwDsnYcD.5KE0yFatumK0Z6pdAXSpOxVlwQXMGI6",
+    "role": "TENANT",
+    "address": "9324 Đoàn Way",
+    "dateOfBirth": "2023-08-21T11:18:36.216Z",
+    "identityNumber": "RUG0ZS6V4RUQ",
+    "imgUrl": "https://avatar.iran.liara.run/public/03"
+  }
+]

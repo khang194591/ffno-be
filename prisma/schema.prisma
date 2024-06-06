@@ -340,6 +340,7 @@ enum InvoiceCategory {
 enum RequestCategory {
   UNIT_LEASE
   REPORT_ISSUE
+  REQUEST_EQUIPMENT
   EQUIPMENT_WARRANTY
   TERMINATE_CONTRACT
 }
@@ -348,6 +349,8 @@ enum RequestStatus {
   PENDING
   ACCEPTED
   REJECTED
+  HANDLING
+  DONE
 }
 
 enum ContractStatus {

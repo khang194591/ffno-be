@@ -64,14 +64,21 @@ export class UpdateRequestHandler
     });
 
     if (requestStatus === RequestStatus.ACCEPTED) {
-      await this.prisma.memberContacts.create({
-        data: {
-          type: ContactType.TENANT,
-          contactId: currentMemberId,
-          contactWithId: updatedRequest.senderId,
-        },
-      });
       switch (updatedRequest.category) {
+        case RequestCategory.REQUEST_EQUIPMENT:
+
+        case RequestCategory.UNIT_LEASE:
+          await this.prisma.memberContacts.create({
+            data: {
+              type: ContactType.TENANT,
+              contactId: currentMemberId,
+              contactWithId: updatedRequest.senderId,
+            },
+          });
+          await this.prisma.member.update({
+            where: { id: updatedRequest.senderId },
+            data: { unitId: null },
+          });
         case RequestCategory.TERMINATE_CONTRACT:
           await this.prisma.contract.update({
             where: { id: updatedRequest.contractId },

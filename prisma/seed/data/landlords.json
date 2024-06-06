@@ -1,0 +1,41 @@
+[
+  {
+    "id": "2c4378f7-a216-4a31-a891-e1be254ba970",
+    "name": "Landlord 01",
+    "email": "landlord_01@gmail.com",
+    "phone": "0282 2082 0321",
+    "gender": "FEMALE",
+    "password": "$2b$10$3HIibd1YeggQN3BZ2747huGnwKAUVoyR8V6VaLtOico44DQi3CgSW",
+    "role": "LANDLORD",
+    "address": "306 Bảo Sơn Tunnel",
+    "dateOfBirth": "2024-02-27T23:50:33.365Z",
+    "identityNumber": "T17IF2KIQVXW",
+    "imgUrl": "https://avatar.iran.liara.run/public/03"
+  },
+  {
+    "id": "9bc9db59-bcb9-4fcb-91fa-031e8fd2c4f5",
+    "name": "Landlord 02",
+    "email": "landlord_02@gmail.com",
+    "phone": "026 3977 9053",
+    "gender": "FEMALE",
+    "password": "$2b$10$bsVJTx0N4swbguFDrZ8r6eeBs7NBCEDw/NbJrl3pgGcaC8xsKg3TG",
+    "role": "LANDLORD",
+    "address": "27531 Hồ Springs",
+    "dateOfBirth": "2023-10-25T22:56:38.697Z",
+    "identityNumber": "6T2V32Q8WV98",
+    "imgUrl": "https://avatar.iran.liara.run/public/04"
+  },
+  {
+    "id": "411abc4a-4ea1-4b7d-9df3-9f598ada5e62",
+    "name": "Landlord 03",
+    "email": "landlord_03@gmail.com",
+    "phone": "0290 7804 6650",
+    "gender": "FEMALE",
+    "password": "$2b$10$XQN7oL/mR.EwcOnIzNWqUu9wdPNC8YGDcBIKSQsSJgjB./plbTISu",
+    "role": "LANDLORD",
+    "address": "670 Đinh Orchard",
+    "dateOfBirth": "2024-03-22T19:10:01.606Z",
+    "identityNumber": "TLHAWLNFQIH1",
+    "imgUrl": "https://avatar.iran.liara.run/public/05"
+  }
+]

@@ -1,0 +1,499 @@
+[
+  {
+    "id": "4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1",
+    "name": "Ngõ 151 Hoàng Hoa Thám",
+    "type": "SINGLE_UNIT",
+    "address": "Ngõ 151 Hoàng Hoa Thám",
+    "ward": "Phường Ngọc Hà",
+    "district": "Quận Ba Đình",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/4.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/5.jpg"
+    ],
+    "ownerId": "2c4378f7-a216-4a31-a891-e1be254ba970",
+    "description": "Ngõ 151 Hoàng Hoa Thám, trống 1 phòng Ở LUÔN\n      Full điều hoà, nóng lạnh, giường tủ quần áo\n      Cổng khoá vân tay, thoải mái giờ giấc, đảm bảo pccc\n      Giá chỉ: 2tr5 vệ sinh chung cùng tầng\n      Lh: 0353.935.788\n      ",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Dịch vụ giặt là"
+        },
+        {
+          "name": "Phòng họp"
+        },
+        {
+          "name": "Truy cập internet tốc độ cao"
+        },
+        {
+          "name": "Quán cà phê"
+        },
+        {
+          "name": "Bãi đậu xe"
+        },
+        {
+          "name": "Hồ bơi"
+        },
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Sân chơi"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2f7c529a-b7c7-42ad-bbbc-2cb1dc8395f1",
+    "name": "Phòng trọ sinh viên",
+    "type": "MULTIPLE_UNIT",
+    "address": "Ngõ 68/45 Triều Khúc",
+    "ward": "Phường Thanh Xuân Nam",
+    "district": "Quận Thanh Xuân",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/100.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/101.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/102.jpg"
+    ],
+    "ownerId": "2c4378f7-a216-4a31-a891-e1be254ba970",
+    "description": "Cho Thuê Phòng Trọ Sinh Viên\n      🏠 Địa chỉ : Ngõ 68/45 Triều Khúc\n      Giá cực tốt  :  3tr3\n      ✨Phòng 25m2 Không chung chủ , giờ giấc tự do. Có ban công siêu thoáng\n      ✨Thang máy , chỗ để xe siêu rộng , camera an ninh , máy giặt chung\n      Hệ thống pccc đạt chuẩn\n      ❣Nội thất : Full đồ như ảnh, điều hòa, nóng lạnh, Wc khép kín ,giường, tủ quần áo\n      Điện 4k nước 100k \n      Liên hệ chủ nhà   0385785252 có zalo (không môi giới)\n      ",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Khu vực chơi cho trẻ em"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Sân thượng hoặc vườn"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
+        },
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Quán cà phê"
+        },
+        {
+          "name": "Dịch vụ giặt là"
+        },
+        {
+          "name": "Bãi đậu xe"
+        },
+        {
+          "name": "Sân chơi"
+        },
+        {
+          "name": "Hồ bơi"
+        }
+      ]
+    }
+  },
+  {
+    "id": "1d3b4f3b-3b21-4d7a-a6e7-36c2b2a9db0f",
+    "name": "Khương đình hạ đình nguyễn trãi Thanh xuân",
+    "type": "SINGLE_UNIT",
+    "address": "ngõ 236/28 khương đình",
+    "ward": "Phường Khương Đình",
+    "district": "Quận Thanh Xuân",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/103.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/104.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/105.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/106.jpg"
+    ],
+    "ownerId": "2c4378f7-a216-4a31-a891-e1be254ba970",
+    "description": "-KHƯƠNG ĐINH__Hạ ĐINH_ Nguyễn trãi_ THANH XUÂN\n      -ĐC ngõ 236/28 khương đình\n      -Phòng có DT ,22m2\n      -Điều hòa, nóng lạnh,. kệ bếp tủ bếp. t Giường tủ>quat trần\n      -Giá  -3x\n      => LH:    0982670385   Zalo a hu",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Khu vực chơi cho trẻ em"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Sân chơi"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
+        },
+        {
+          "name": "Truy cập internet tốc độ cao"
+        },
+        {
+          "name": "Phòng họp"
+        },
+        {
+          "name": "Quán cà phê"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        }
+      ]
+    }
+  },
+  {
+    "id": "f78d5d39-0173-4de5-baa7-712b8f2b82a7",
+    "name": "2N1K ngõ 285 ĐỘI CẤN",
+    "type": "SINGLE_UNIT",
+    "address": "2N1K ngõ 285 ĐỘI CẤN",
+    "ward": "Phường Liễu Giai",
+    "district": "Quận Ba Đình",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/200.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/201.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/202.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/203.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/204.jpg"
+    ],
+    "ownerId": "9bc9db59-bcb9-4fcb-91fa-031e8fd2c4f5",
+    "description": "✔️Cho thuê 2N1K ngõ 285 ĐỘI CẤN\n➖ Diện tích/ Thiết kế: 60/2n1k\n➖Nội thất : full đồ\n➖Giá : 8tr/tháng\n𝑳𝒊𝒆̂𝒏 𝒉𝒆̣̂: 0365008686",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Dịch vụ quản lý tài sản"
+        },
+        {
+          "name": "Dịch vụ giặt là"
+        },
+        {
+          "name": "Khu vực chơi cho trẻ em"
+        },
+        {
+          "name": "Sân thượng hoặc vườn"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Hồ bơi"
+        },
+        {
+          "name": "Sân chơi"
+        }
+      ]
+    }
+  },
+  {
+    "id": "2e9b4c9b-0b21-47d9-b4a7-2b1c3f9f5b6e",
+    "name": "15/10 Gốc Đề Minh Khai",
+    "type": "MULTIPLE_UNIT",
+    "address": "15/10 Gốc Đề Minh Khai",
+    "ward": "Phường Minh Khai",
+    "district": "Quận Hai Bà Trưng",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/300.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/301.jpg"
+    ],
+    "ownerId": "9bc9db59-bcb9-4fcb-91fa-031e8fd2c4f5",
+    "description": "Nhà 6 tầng còn phòng ở luôn tại 15/10 Gốc Đề Minh Khai \n      👉phòng nhỏ 1,1tr- 1,5tr vệ sinh khép kín \n      👉phòng 2tr- 2,7tr -3,5tr -4,3tr  vệ sinh khép kín, nóng lạnh, điều hoà, giường tủ , kệ bếp , cửa sổ \n      điện: 3,5k/so \n      nước: 25k/so \n      lh: 0949454083 - 0968112640 Bác Toàn\n      ",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Khu vực chơi cho trẻ em"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Dịch vụ giặt là"
+        },
+        {
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Sân thượng hoặc vườn"
+        },
+        {
+          "name": "Hồ bơi"
+        },
+        {
+          "name": "Truy cập internet tốc độ cao"
+        },
+        {
+          "name": "Sân chơi"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Dịch vụ quản lý tài sản"
+        },
+        {
+          "name": "Quán cà phê"
+        }
+      ]
+    }
+  },
+  {
+    "id": "a3f5e7c5-5b3d-4c9a-a5f1-6d2b9c8f7b3d",
+    "name": "ngõ 279 Hoàng Mai",
+    "type": "SINGLE_UNIT",
+    "address": "ngõ 279 Hoàng Mai",
+    "ward": "Phường Thanh Trì",
+    "district": "Quận Hoàng Mai",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/501.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/502.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/503.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/504.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/505.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/506.jpg"
+    ],
+    "ownerId": "411abc4a-4ea1-4b7d-9df3-9f598ada5e62",
+    "description": "🎯M có  phòng cho thuê ở ngõ 279 Hoàng Mai giá 3tr \n      +Điện 4k/ số, nước 35k/ khối, wifi+ vệ sinh: 150k/1p\n      +Đầy đủ đh nl, máy giặt chung, giường tủ, vskk, chỉ việc đến ở . \n      + Giờ giấc tự do .Vào luôn được luôn. \n      + Gần time city, Hust, neu, hunt, uneti\n      Ib để biết rõ tt hơn.\n      Liên hệ c Dung 0936085718.",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Sân chơi"
+        },
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Dịch vụ giặt là"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Khu vực chơi cho trẻ em"
+        },
+        {
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Dịch vụ quản lý tài sản"
+        },
+        {
+          "name": "Bãi đậu xe"
+        },
+        {
+          "name": "Phòng họp"
+        },
+        {
+          "name": "Quán cà phê"
+        }
+      ]
+    }
+  },
+  {
+    "id": "4c5b2d8c-3e7a-4d8a-9b5f-2d8c5b7a1e7a",
+    "name": "Ngõ 71 Võ Chí Công -Cầu Giấy",
+    "type": "SINGLE_UNIT",
+    "address": "Ngõ 71 Võ Chí Công -Cầu Giấy",
+    "ward": "Phường Nghĩa Đô",
+    "district": "Quận Cầu Giấy",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/601.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/602.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/603.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/604.jpg"
+    ],
+    "ownerId": "411abc4a-4ea1-4b7d-9df3-9f598ada5e62",
+    "description": "Ngõ 71 Võ Chí Công -Cầu Giấy\n      Studio khép kín - full đồ - #4tr\n      K chung chủ - ở luôn \n      Call/zalo:0349213298❤️\n      ",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Sân thượng hoặc vườn"
+        },
+        {
+          "name": "Khu vực chơi cho trẻ em"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Bãi đậu xe"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        }
+      ]
+    }
+  },
+  {
+    "id": "7d8a5b9c-4f5e-49b8-9c7a-1b2c8f6a7d3b",
+    "name": "128C Đại La,",
+    "type": "SINGLE_UNIT",
+    "address": "128C Đại La,",
+    "ward": "Phường Đồng Tâm",
+    "district": "Quận Hai Bà Trưng",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/700.jpg"
+    ],
+    "ownerId": "411abc4a-4ea1-4b7d-9df3-9f598ada5e62",
+    "description": "Cho thuê nhà tập thể 128C Đại La, tầng 2\n      Dt 60m, 1 phòng khách, 2 phòng ngủ, 1 phòng tắm, 1 bếp, có điều hòa, nóng lạnh, tủ giường, giờ giấc tự do không chung chủ, cho ở nhóm sinh viên, hộ gia đình. Gần đại học Bách Khoa, Kinh Tế, Xây Dựng....\n      Giá 5,5 triệu/tháng. Đóng 3 tháng, cọc 1 tháng.\n      Liên hệ 0932491982 ( Ko tiếp môi giới)\n      ",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Dịch vụ quản lý tài sản"
+        },
+        {
+          "name": "Khu vực chơi cho trẻ em"
+        },
+        {
+          "name": "Sân thượng hoặc vườn"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Truy cập internet tốc độ cao"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Hồ bơi"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
+        },
+        {
+          "name": "Dịch vụ giặt là"
+        },
+        {
+          "name": "Bãi đậu xe"
+        }
+      ]
+    }
+  },
+  {
+    "id": "5b3e9a8c-2d7f-4d8b-9a5c-3e7d5a8b1c4a",
+    "name": "CCMN Hà Nội",
+    "type": "SINGLE_UNIT",
+    "address": "ngõ 51 tương mai",
+    "ward": "Phường Đồng Tâm",
+    "district": "Quận Hai Bà Trưng",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/801.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/802.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/803.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/804.jpg"
+    ],
+    "ownerId": "411abc4a-4ea1-4b7d-9df3-9f598ada5e62",
+    "description": "Cho Thuê Ccmn hà nội \n      Địa chỉ ngõ 51 tương mai gần neu\n      👉Phòng đầy đủ nội thất như hình \n      👉Tài chính 3tr8\n      🍀Xem phòng freee \n      🌟Ib ngay cho e để biết thêm tt ạ \n       ☎️ Liên hệ :  Za.lo 0971537189\n      ",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Dịch vụ quản lý tài sản"
+        }
+      ]
+    }
+  },
+  {
+    "id": "8f7c5b3a-1d6e-4b9a-7d5c-4e3b2a1c9d7e",
+    "name": "Minh Khai, Quận Hai Bà Trưng, Hà Nội",
+    "type": "SINGLE_UNIT",
+    "address": "Phường Minh Khai, Quận Hai Bà Trưng, Hà Nội",
+    "ward": "Phường Minh Khai",
+    "district": "Quận Hai Bà Trưng",
+    "province": "Thành phố Hà Nội",
+    "imgUrls": [
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/901.jpg",
+      "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/902.jpg"
+    ],
+    "ownerId": "411abc4a-4ea1-4b7d-9df3-9f598ada5e62",
+    "description": "CÒN 1 PHÒNG DUY NHẤT CHO NỮ THUÊ - PHƯỜNG MINH KHAI, QUẬN HAI BÀ TRƯNG, HÀ NỘI\n      - Địa chỉ: Phường Minh Khai, Quận Hai Bà Trưng, Hà Nội\n      - Diện tích: 20m2\n      - Có chỗ nấu ăn, có thang thoát hiểm, có ban công thoáng mát.\n      - Phòng có đủ đồ như hình.\n      - phòng có vị trí đẹp. Nhà xây mới đét. Nhà cách phố 50m.\n      - Khu ở dân cư đông, an ninh tốt, hàng xóm thân thiện dễ gần, văn minh lịch sự.\n      - Xung quanh đầy đủ các tiện ích khác nhau: gần trường Bách Kinh Xây, Công Nghệ, gần chợ, siêu thị, trung tâm,...\n      - Rất phù hợp để an cư sinh sống (cho nữ thuê) chỉ việc xách valy vào ở.\n      + Giá Thuê: 4tr/tháng\n      => Liên Hệ Xem Phòng: 0973258928 (cô Hồng Thanh)",
+    "amenities": {
+      "connect": [
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
+        },
+        {
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Sân chơi"
+        },
+        {
+          "name": "Bãi đậu xe"
+        }
+      ]
+    }
+  }
+]

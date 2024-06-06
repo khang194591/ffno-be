@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { CurrentMemberId } from 'src/shared/decorators';
 import {
   CreateEquipmentDto,
   GetListEquipmentQuery,
@@ -11,8 +12,11 @@ export class EquipmentController {
   constructor(private readonly equipmentService: EquipmentService) {}
 
   @Get()
-  async getEquipments(@Query() query: GetListEquipmentQuery) {
-    return this.equipmentService.getEquipments(query);
+  async getEquipments(
+    @CurrentMemberId() memberId: string,
+    @Query() query: GetListEquipmentQuery,
+  ) {
+    return this.equipmentService.getEquipments(memberId, query);
   }
 
   @Get(':id')

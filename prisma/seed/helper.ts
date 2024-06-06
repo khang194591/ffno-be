@@ -39,45 +39,6 @@ export function getRandomItemInArray<T = unknown>(array: T[]): T {
 
 export { equipmentCategories, propertyAmenities, unitFeatures };
 
-const fakePropertyImgUrls = [
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-binyamin-mellish-106399.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-binyamin-mellish-1396132.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-curtis-adams-3555615.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-jens-mahnke-1105754.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-164522.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-209315.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-210538.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-210617.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-221540.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-259588.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-276593.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-277667.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-280222.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-280229.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-460695.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-thgusstavo-santana-2102587.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vlad-bagacian-1212053.jpg',
-];
-
-const fakeUnitImgUrls = [
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-atbo-245208.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-colour-creation-112811.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-emma-pollard-1534924.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-jean-van-der-meulen-1457842.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-medhat-ayad-439227.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-210265.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-259962.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-265004.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-271624.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-pixabay-271816.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-tom-swinnen-2249959.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vecislavas-popa-1571453.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vecislavas-popa-1571459.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vecislavas-popa-1571468.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vecislavas-popa-1643383.jpg',
-  'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/pexels-vika-glitter-1648768.jpg',
-];
-
 export const fakeMember = (override = {}) => {
   const gender = getRandomEnumValue(Gender);
   // @ts-ignore
@@ -116,9 +77,7 @@ export const fakeProperty = (ownerId: string, override?: any) => {
     ward,
     district,
     province,
-    imgUrls: Array.from({ length: randomInt(2, 6) }).map(() =>
-      getRandomItemInArray(fakePropertyImgUrls),
-    ),
+    imgUrls: [],
     ownerId,
     description: faker.lorem.paragraph(),
     amenities: {
@@ -147,9 +106,7 @@ export const fakeUnit = (
         : randomInt(100) < 50
           ? UnitStatus.MAINTAINING
           : UnitStatus.BAD,
-    imgUrls: Array.from({ length: randomInt(2, 6) }).map(() =>
-      getRandomItemInArray(fakeUnitImgUrls),
-    ),
+    imgUrls: [],
     property: { connect: { id: propertyId } },
     unitFeatures: {
       connect: getRandomItemsInArray(unitFeatures).map((name) => ({
@@ -178,12 +135,40 @@ export const fakeUnit = (
       createMany: {
         data: [
           {
-            name: ``,
+            name: `Chìa khóa phòng`,
             maintainStatus: 'GOOD',
-            brand: faker.company.name(),
-            model: faker.commerce.productName(),
             serial: faker.string.hexadecimal({ length: 8 }),
-            price: 1000 * randomInt(500, 10000),
+            price: 100_000,
+            category: 'Chìa khóa',
+            propertyId,
+          },
+          {
+            name: `Chìa khóa ban công`,
+            maintainStatus: 'GOOD',
+            serial: faker.string.hexadecimal({ length: 8 }),
+            price: 100_000,
+            category: 'Chìa khóa',
+            propertyId,
+          },
+          {
+            name: `Điều khiển điều hòa`,
+            maintainStatus: 'GOOD',
+            serial: faker.string.hexadecimal({ length: 8 }),
+            price: 100_000,
+            category: 'Điều khiển',
+            propertyId,
+          },
+          {
+            name: 'Máy điều hòa',
+            brand: 'Daikin',
+            model: 'FTKM35SVMV',
+            price: 5_000_000,
+            serial: faker.string.hexadecimal({ length: 8 }),
+            description: 'Công nghệ Inverter, công suất 1.5 tấn',
+            maintainStatus: 'GOOD',
+            enableWarranty: true,
+            warrantyExpirationDate: faker.date.future({ years: 4 }),
+            propertyId,
           },
         ],
       },
@@ -244,17 +229,3 @@ export const fakeContract = (
     imgUrls: [],
   };
 };
-
-// export const fakeEquipment = (
-//   override?: Partial<Prisma.EquipmentCreateInput>,
-// ): Prisma.EquipmentCreateInput => {
-//   return {
-//     name: ``,
-//     maintainStatus: 'GOOD',
-//     brand: faker.company.name(),
-//     model: faker.commerce.productName(),
-//     serial: faker.string.hexadecimal({ length: 8 }),
-//     price: 1000 * randomInt(500, 10000),
-//     ...override,
-//   };
-// };

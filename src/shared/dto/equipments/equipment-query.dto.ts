@@ -1,7 +1,11 @@
 import { IsEnum, IsOptional, IsString, IsUUID } from 'class-validator';
 import { IGetListEquipmentDto, UnitStatus } from 'src/libs';
+import { GetListDto } from '../common';
 
-export class GetListEquipmentQuery implements IGetListEquipmentDto {
+export class GetListEquipmentQuery
+  extends GetListDto
+  implements IGetListEquipmentDto
+{
   @IsOptional()
   @IsUUID()
   propertyId?: string;
