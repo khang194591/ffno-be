@@ -20,6 +20,15 @@ export class NotificationService {
 
   async sendWebPushNotification(payload: NotificationPayload) {
     const pattern = NOTIFICATION_PATTERNS.SEND_WEB_PUSH;
+    await this.prisma.notification.create({
+      data: {
+        title: payload.title,
+        content: payload.content,
+        receiverId: payload.memberId,
+        contractId: payload.contractId,
+        requestId: payload.requestId,
+      },
+    });
     return await lastValueFrom(this.client.send(pattern, payload));
   }
 
@@ -42,6 +51,8 @@ export class NotificationService {
   }
 
   async markAsRead(memberId: string, notificationId: string) {
+    console.log(memberId, notificationId);
+
     return this.prisma.notification.update({
       where: { id: notificationId, receiverId: memberId },
       data: { isRead: true },

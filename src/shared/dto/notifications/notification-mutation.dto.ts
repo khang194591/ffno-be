@@ -20,4 +20,10 @@ export class NotificationResDto implements INotificationResDto {
 
   @Expose()
   createdAt: Date;
+
+  @Expose()
+  contractId?: string;
+
+  @Expose()
+  requestId?: string;
 }

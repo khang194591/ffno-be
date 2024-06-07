@@ -43,15 +43,18 @@ export class UpdateRequestHandler
       where: { requestId: id },
     });
 
-    const requestStatus = receivedRequests.every(
-      (request) => request.status === RequestStatus.ACCEPTED,
-    )
-      ? RequestStatus.ACCEPTED
-      : receivedRequests.some(
-            (request) => request.status === RequestStatus.REJECTED,
-          )
-        ? RequestStatus.REJECTED
-        : undefined;
+    const requestStatus =
+      status === RequestStatus.DONE
+        ? RequestStatus.DONE
+        : receivedRequests.every(
+              (request) => request.status === RequestStatus.ACCEPTED,
+            )
+          ? RequestStatus.ACCEPTED
+          : receivedRequests.some(
+                (request) => request.status === RequestStatus.REJECTED,
+              )
+            ? RequestStatus.REJECTED
+            : undefined;
 
     // Return when not change request status
     if (!requestStatus) {
@@ -66,7 +69,13 @@ export class UpdateRequestHandler
     if (requestStatus === RequestStatus.ACCEPTED) {
       switch (updatedRequest.category) {
         case RequestCategory.REQUEST_EQUIPMENT:
-
+          if (updatedRequest.status === RequestStatus.ACCEPTED) {
+            await this.prisma.request.update({
+              where: { id },
+              data: { status: 'HANDLING' },
+            });
+          }
+          break;
         case RequestCategory.UNIT_LEASE:
           await this.prisma.memberContacts.create({
             data: {
@@ -79,6 +88,7 @@ export class UpdateRequestHandler
             where: { id: updatedRequest.senderId },
             data: { unitId: null },
           });
+          break;
         case RequestCategory.TERMINATE_CONTRACT:
           await this.prisma.contract.update({
             where: { id: updatedRequest.contractId },
@@ -101,6 +111,13 @@ export class UpdateRequestHandler
               data: { maintainStatus: UnitStatus.BAD },
             });
           }
+          if (updatedRequest.status === RequestStatus.ACCEPTED) {
+            await this.prisma.request.update({
+              where: { id },
+              data: { status: 'HANDLING' },
+            });
+          }
+          break;
         case RequestCategory.EQUIPMENT_WARRANTY:
           if (updatedRequest.unitId) {
             await this.prisma.unit.update({
@@ -114,10 +131,21 @@ export class UpdateRequestHandler
               where: { id: updatedRequest.equipmentId },
               data: { maintainStatus: UnitStatus.MAINTAINING },
             });
+            break;
           }
         default:
           break;
       }
+    }
+
+    if (requestStatus === RequestStatus.DONE) {
+      this.notificationService.sendWebPushNotification({
+        title: 'Request status updated',
+        content: 'Request status updated',
+        memberId: updatedRequest.senderId,
+        link: `/requests/${updatedRequest.id}`,
+        requestId: updatedRequest.id,
+      });
     }
 
     // Send notifications
@@ -132,6 +160,7 @@ export class UpdateRequestHandler
             content: 'Request status updated',
             memberId,
             link: `/requests/${requestId}`,
+            requestId: requestId,
           }),
         ),
       );

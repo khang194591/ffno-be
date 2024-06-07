@@ -240,6 +240,8 @@ export const fakeContract = (
       terminationDate && terminationDate.isBefore()
         ? terminationDate.toDate()
         : null,
-    imgUrls: [],
+    imgUrls: [
+      'https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/hop-dong-thue-nha.png',
+    ],
   };
 };

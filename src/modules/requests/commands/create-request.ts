@@ -40,6 +40,7 @@ export class CreateRequestHandler
             content: request.description,
             memberId: receiver.memberId,
             link: `/requests/${request.id}`,
+            requestId: request.id,
           }),
         ),
       );

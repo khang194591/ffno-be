@@ -24,6 +24,6 @@ export class NotificationController {
     @CurrentMemberId() memberId: string,
     @Param() { id }: IdUUIDParams,
   ) {
-    return this.notificationService.markAsRead(id, memberId);
+    return this.notificationService.markAsRead(memberId, id);
   }
 }

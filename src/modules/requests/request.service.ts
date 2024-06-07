@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from 'src/config';
-import { RequestStatus } from 'src/libs';
+import { RequestCategory, RequestStatus } from 'src/libs';
 import { CreateRequestDto, RequestResDto } from 'src/shared/dto';
 
 @Injectable()
@@ -40,7 +40,9 @@ export class RequestService {
       });
 
       receiverIds.push(property.ownerId);
-      receiverIds.push(...tenants.map(({ id }) => id));
+      if (partialRequest.category === RequestCategory.UNIT_LEASE) {
+        receiverIds.push(...tenants.map(({ id }) => id));
+      }
     }
 
     if (contractId) {
