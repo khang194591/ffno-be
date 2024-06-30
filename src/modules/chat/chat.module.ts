@@ -14,9 +14,10 @@ import { ChatService } from './chat.service';
       useFactory: (configService: ConfigService) => {
         return ClientProxyFactory.create({
           options: {
-            port: configService.get('CHAT_SERVICE_PORT') ?? 3020,
+            host: 'localhost',
+            port: 6379,
           },
-          transport: Transport.TCP,
+          transport: Transport.REDIS,
         });
       },
       inject: [ConfigService],

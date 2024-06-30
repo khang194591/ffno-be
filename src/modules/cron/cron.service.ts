@@ -16,7 +16,6 @@ import {
 export class CronService {
   constructor(private readonly prisma: PrismaService) {}
 
-  // @Cron(CronExpression.EVERY_MINUTE)
   async bulkCreateMonthlyInvoice() {
     console.log('-------------------------------');
     const allUnits = await this.prisma.unit.findMany({
@@ -65,7 +64,7 @@ export class CronService {
     console.log(result.length);
   }
 
-  @Cron(CronExpression.EVERY_5_MINUTES)
+  // @Cron(CronExpression.EVERY_5_SECONDS)
   async fakeRequest() {
     const members = await this.prisma.member.findMany({
       where: { role: MemberRole.TENANT },
@@ -101,5 +100,36 @@ export class CronService {
         description: faker.lorem.paragraph(),
       },
     });
+  }
+
+  async handleUnitListing() {
+    const openUnits = await this.prisma.unit.findMany({
+      where: {
+        isListing: false,
+        startListingAt: {
+          in: [dayjs().startOf('day').toDate(), dayjs().endOf('day').toDate()],
+        },
+      },
+    });
+
+    const closeUnits = await this.prisma.unit.findMany({
+      where: {
+        isListing: true,
+        endListingAt: {
+          in: [dayjs().startOf('day').toDate(), dayjs().endOf('day').toDate()],
+        },
+      },
+    });
+
+    await this.prisma.$transaction([
+      this.prisma.unit.updateMany({
+        where: { id: { in: openUnits.map(({ id }) => id) } },
+        data: { isListing: true },
+      }),
+      this.prisma.unit.updateMany({
+        where: { id: { in: closeUnits.map(({ id }) => id) } },
+        data: { isListing: false },
+      }),
+    ]);
   }
 }

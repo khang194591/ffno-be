@@ -7,6 +7,7 @@ import {
   GetCurrentMemberQuery,
   GetListContactQuery,
   GetMemberQuery,
+  GetStatsQuery,
 } from './queries';
 
 @Controller('members')
@@ -23,6 +24,11 @@ export class MemberController {
     @Query() query: GetListContactDto,
   ) {
     return this.queryBus.execute(new GetListContactQuery(staffId, query));
+  }
+
+  @Get('stats')
+  async getStats(@CurrentMemberId() staffId: string) {
+    return this.queryBus.execute(new GetStatsQuery(staffId));
   }
 
   @Get('me')

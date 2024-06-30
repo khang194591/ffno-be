@@ -2,6 +2,7 @@ import { PartialType } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
+  IsDateString,
   IsDecimal,
   IsEnum,
   IsOptional,
@@ -66,4 +67,12 @@ export class OpenUnitDto implements IOpenUnitDto {
   @IsArray()
   @IsUUID('4', { each: true })
   unitIds: string[];
+
+  @IsOptional()
+  @IsDateString()
+  startListingAt: string;
+
+  @IsOptional()
+  @IsDateString()
+  endListingAt: string;
 }

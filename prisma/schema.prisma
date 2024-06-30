@@ -88,29 +88,31 @@ model Property {
 }
 
 model Unit {
-  id            String         @id @default(uuid())
+  id             String         @id @default(uuid())
   // Basic info
-  name          String
-  area          Decimal
-  price         Decimal
-  deposit       Decimal
-  description   String?
-  status        UnitStatus     @default(GOOD)
-  imgUrls       String[]
-  isListing     Boolean        @default(false)
+  name           String
+  area           Decimal
+  price          Decimal
+  deposit        Decimal
+  description    String?
+  status         UnitStatus     @default(GOOD)
+  imgUrls        String[]
+  isListing      Boolean        @default(false)
+  startListingAt DateTime?
+  endListingAt   DateTime?
   // Relations
-  payer         Member?        @relation(name: "payer", fields: [payerId], references: [id])
-  payerId       String?
-  tenants       Member[]
-  property      Property       @relation(fields: [propertyId], references: [id])
-  propertyId    String
-  invoices      Invoice[]
-  contracts     Contract[]
-  reviews       Review[]
-  unitPriceLogs UnitPriceLog[]
-  unitFeatures  UnitFeature[]
-  requests      Request[]
-  equipments    Equipment[]
+  payer          Member?        @relation(name: "payer", fields: [payerId], references: [id])
+  payerId        String?
+  tenants        Member[]
+  property       Property       @relation(fields: [propertyId], references: [id])
+  propertyId     String
+  invoices       Invoice[]
+  contracts      Contract[]
+  reviews        Review[]
+  unitPriceLogs  UnitPriceLog[]
+  unitFeatures   UnitFeature[]
+  requests       Request[]
+  equipments     Equipment[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
