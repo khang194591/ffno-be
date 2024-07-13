@@ -77,6 +77,7 @@ export class GetUnitHandler implements IQueryHandler<GetUnitQuery> {
       ...unit,
       isLiving,
       requested,
+      curSlot: unit.tenants.length,
       selfOccupied: Boolean(unit.tenants.find((i) => i.id === member.id)),
       rating: calculateRating(reviews),
     });

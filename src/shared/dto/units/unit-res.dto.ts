@@ -78,4 +78,13 @@ export class UnitResDto implements IUnitResDto {
   @Expose()
   @Type(() => EquipmentResDto)
   equipments: EquipmentResDto[];
+
+  @Expose()
+  @Type(() => Number)
+  @Transform(({ obj }) => obj.tenants?.length ?? 0)
+  curSlot: number;
+
+  @Expose()
+  @Type(() => Number)
+  maxSlot: number;
 }

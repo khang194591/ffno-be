@@ -185,7 +185,7 @@ const seed = async () => {
       -Giá  -3x
       => LH:    0982670385   Zalo a hu`,
     }),
-    fakeProperty(landlordIds[1], {
+    fakeProperty(landlordIds[0], {
       id: propertyIds[3],
       province: 'Thành phố Hà Nội',
       district: 'Quận Ba Đình',
@@ -206,7 +206,7 @@ const seed = async () => {
 ➖Giá : 8tr/tháng
 𝑳𝒊𝒆̂𝒏 𝒉𝒆̣̂: 0365008686`,
     }),
-    fakeProperty(landlordIds[1], {
+    fakeProperty(landlordIds[0], {
       id: propertyIds[4],
       province: 'Thành phố Hà Nội',
       district: 'Quận Hai Bà Trưng',
@@ -226,7 +226,7 @@ const seed = async () => {
       lh: 0949454083 - 0968112640 Bác Toàn
       `,
     }),
-    fakeProperty(landlordIds[2], {
+    fakeProperty(landlordIds[0], {
       id: propertyIds[5],
       province: 'Thành phố Hà Nội',
       district: 'Quận Hoàng Mai',
@@ -250,7 +250,7 @@ const seed = async () => {
       Ib để biết rõ tt hơn.
       Liên hệ c Dung 0936085718.`,
     }),
-    fakeProperty(landlordIds[2], {
+    fakeProperty(landlordIds[0], {
       id: propertyIds[6],
       province: 'Thành phố Hà Nội',
       district: 'Quận Cầu Giấy',

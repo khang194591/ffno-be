@@ -188,6 +188,7 @@ export const fakeUnit = (
       },
     },
     ...override,
+    maxSlot: override?.area ? +(override.area / 10).toFixed(0) : 4,
   };
 };
 

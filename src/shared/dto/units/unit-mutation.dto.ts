@@ -5,7 +5,9 @@ import {
   IsDateString,
   IsDecimal,
   IsEnum,
+  IsNumber,
   IsOptional,
+  IsPositive,
   IsString,
   IsUUID,
   IsUrl,
@@ -25,6 +27,11 @@ export class CreateUnitDto implements ICreateUnitDto {
 
   @IsString()
   name: string;
+
+  @IsNumber()
+  @IsPositive()
+  @Type(() => Number)
+  maxSlot: number;
 
   @IsDecimal()
   @Type(() => String)

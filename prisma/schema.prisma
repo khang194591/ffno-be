@@ -100,6 +100,7 @@ model Unit {
   isListing      Boolean        @default(false)
   startListingAt DateTime?
   endListingAt   DateTime?
+  maxSlot        Int
   // Relations
   payer          Member?        @relation(name: "payer", fields: [payerId], references: [id])
   payerId        String?

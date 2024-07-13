@@ -3,7 +3,9 @@ import {
   IsArray,
   IsDecimal,
   IsEnum,
+  IsNumber,
   IsOptional,
+  IsPositive,
   IsString,
   IsUrl,
   IsUUID,
@@ -16,6 +18,11 @@ import {
 } from 'src/libs';
 
 class CreateSimpleUnitDto implements ICreateSimpleUnitDto {
+  @IsNumber()
+  @IsPositive()
+  @Type(() => Number)
+  maxSlot: number;
+
   @IsString()
   name: string;
 

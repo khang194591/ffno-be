@@ -37,6 +37,7 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
       maxArea,
       minPrice,
       maxPrice,
+      maxSlot,
       take,
       skip,
     } = query;
@@ -51,6 +52,7 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
       unitFeatures: features && { some: { name: { in: features } } },
       area: { gte: minArea, lte: maxArea },
       price: { gte: minPrice, lte: maxPrice },
+      maxSlot: { lte: maxSlot },
     };
 
     const whereProperty: Prisma.PropertyWhereInput = {

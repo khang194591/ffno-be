@@ -16,13 +16,37 @@
     "amenities": {
       "connect": [
         {
-          "name": "Khu vực nướng BBQ"
+          "name": "Phòng gym"
         },
         {
-          "name": "Sân chơi"
+          "name": "Bãi đậu xe"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
         },
         {
           "name": "Truy cập internet tốc độ cao"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Dịch vụ giặt là"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Phòng họp"
         }
       ]
     }
@@ -45,10 +69,13 @@
     "amenities": {
       "connect": [
         {
-          "name": "Dịch vụ giặt là"
+          "name": "Hồ bơi"
         },
         {
-          "name": "Khu vực nướng BBQ"
+          "name": "Truy cập internet tốc độ cao"
+        },
+        {
+          "name": "Phòng gym"
         }
       ]
     }
@@ -72,28 +99,19 @@
     "amenities": {
       "connect": [
         {
-          "name": "Dịch vụ quản lý tài sản"
-        },
-        {
-          "name": "Dịch vụ giặt là"
-        },
-        {
-          "name": "Hồ bơi"
-        },
-        {
           "name": "Khu vực nướng BBQ"
         },
         {
           "name": "Sân thượng hoặc vườn"
         },
         {
-          "name": "Sân chơi"
+          "name": "Phòng gym"
         },
         {
-          "name": "Quầy bar/Phòng chờ"
+          "name": "Phòng họp"
         },
         {
-          "name": "Bãi đậu xe"
+          "name": "Dịch vụ trông trẻ"
         }
       ]
     }
@@ -113,54 +131,57 @@
       "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/203.jpg",
       "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/204.jpg"
     ],
-    "ownerId": "9bc9db59-bcb9-4fcb-91fa-031e8fd2c4f5",
+    "ownerId": "2c4378f7-a216-4a31-a891-e1be254ba970",
     "description": "✔️Cho thuê 2N1K ngõ 285 ĐỘI CẤN\n➖ Diện tích/ Thiết kế: 60/2n1k\n➖Nội thất : full đồ\n➖Giá : 8tr/tháng\n𝑳𝒊𝒆̂𝒏 𝒉𝒆̣̂: 0365008686",
     "amenities": {
       "connect": [
         {
-          "name": "Sân tennis"
+          "name": "Khu vực nướng BBQ"
         },
         {
-          "name": "Quầy bar/Phòng chờ"
-        },
-        {
-          "name": "Phòng gym"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Khu vực chơi cho trẻ em"
-        },
-        {
-          "name": "Bãi đậu xe"
+          "name": "Thân thiện với vật nuôi"
         },
         {
           "name": "Truy cập internet tốc độ cao"
         },
         {
-          "name": "Khu vực tiệc ngoài trời"
+          "name": "Quán cà phê"
         },
         {
-          "name": "Hồ bơi"
+          "name": "Dịch vụ trông trẻ"
         },
         {
-          "name": "Khu vực nướng BBQ"
+          "name": "Quầy bar/Phòng chờ"
         },
         {
-          "name": "Dịch vụ giặt là"
+          "name": "Khu vực chơi cho trẻ em"
         },
         {
-          "name": "Dịch vụ quản lý tài sản"
+          "name": "Sân tennis"
         },
         {
           "name": "Sân chơi"
         },
         {
+          "name": "Phòng họp"
+        },
+        {
           "name": "Sân thượng hoặc vườn"
+        },
+        {
+          "name": "Bãi đậu xe"
+        },
+        {
+          "name": "Dịch vụ giặt là"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Dịch vụ quản lý tài sản"
         }
       ]
     }
@@ -177,21 +198,15 @@
       "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/300.jpg",
       "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/301.jpg"
     ],
-    "ownerId": "9bc9db59-bcb9-4fcb-91fa-031e8fd2c4f5",
+    "ownerId": "2c4378f7-a216-4a31-a891-e1be254ba970",
     "description": "Nhà 6 tầng còn phòng ở luôn tại 15/10 Gốc Đề Minh Khai \n      👉phòng nhỏ 1,1tr- 1,5tr vệ sinh khép kín \n      👉phòng 2tr- 2,7tr -3,5tr -4,3tr  vệ sinh khép kín, nóng lạnh, điều hoà, giường tủ , kệ bếp , cửa sổ \n      điện: 3,5k/so \n      nước: 25k/so \n      lh: 0949454083 - 0968112640 Bác Toàn\n      ",
     "amenities": {
       "connect": [
         {
+          "name": "Quán cà phê"
+        },
+        {
           "name": "Sân chơi"
-        },
-        {
-          "name": "Bãi đậu xe"
-        },
-        {
-          "name": "Khu vực chơi cho trẻ em"
-        },
-        {
-          "name": "Sân thượng hoặc vườn"
         }
       ]
     }
@@ -212,45 +227,12 @@
       "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/505.jpg",
       "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/506.jpg"
     ],
-    "ownerId": "411abc4a-4ea1-4b7d-9df3-9f598ada5e62",
+    "ownerId": "2c4378f7-a216-4a31-a891-e1be254ba970",
     "description": "🎯M có  phòng cho thuê ở ngõ 279 Hoàng Mai giá 3tr \n      +Điện 4k/ số, nước 35k/ khối, wifi+ vệ sinh: 150k/1p\n      +Đầy đủ đh nl, máy giặt chung, giường tủ, vskk, chỉ việc đến ở . \n      + Giờ giấc tự do .Vào luôn được luôn. \n      + Gần time city, Hust, neu, hunt, uneti\n      Ib để biết rõ tt hơn.\n      Liên hệ c Dung 0936085718.",
     "amenities": {
       "connect": [
         {
-          "name": "Sân chơi"
-        },
-        {
-          "name": "Bãi đậu xe"
-        },
-        {
-          "name": "Truy cập internet tốc độ cao"
-        },
-        {
           "name": "Dịch vụ giặt là"
-        },
-        {
-          "name": "Khu vực chơi cho trẻ em"
-        },
-        {
-          "name": "Khu vực tiệc ngoài trời"
-        },
-        {
-          "name": "Phòng họp"
-        },
-        {
-          "name": "Khu vực nướng BBQ"
-        },
-        {
-          "name": "Sân thượng hoặc vườn"
-        },
-        {
-          "name": "Thân thiện với vật nuôi"
-        },
-        {
-          "name": "Dịch vụ quản lý tài sản"
-        },
-        {
-          "name": "Quầy bar/Phòng chờ"
         },
         {
           "name": "Hồ bơi"
@@ -259,7 +241,37 @@
           "name": "Quán cà phê"
         },
         {
+          "name": "Bãi đậu xe"
+        },
+        {
+          "name": "Sân chơi"
+        },
+        {
+          "name": "Phòng gym"
+        },
+        {
+          "name": "Khu vực chơi cho trẻ em"
+        },
+        {
           "name": "Sân tennis"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Sân thượng hoặc vườn"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
+        },
+        {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Khu vực tiệc ngoài trời"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
         }
       ]
     }
@@ -278,18 +290,15 @@
       "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/603.jpg",
       "https://srhsxpldcmvytzpynctu.supabase.co/storage/v1/object/public/Image/Seeding/604.jpg"
     ],
-    "ownerId": "411abc4a-4ea1-4b7d-9df3-9f598ada5e62",
+    "ownerId": "2c4378f7-a216-4a31-a891-e1be254ba970",
     "description": "Ngõ 71 Võ Chí Công -Cầu Giấy\n      Studio khép kín - full đồ - #4tr\n      K chung chủ - ở luôn \n      Call/zalo:0349213298❤️\n      ",
     "amenities": {
       "connect": [
         {
-          "name": "Dịch vụ trông trẻ"
+          "name": "Bãi đậu xe"
         },
         {
-          "name": "Sân tennis"
-        },
-        {
-          "name": "Sân chơi"
+          "name": "Thân thiện với vật nuôi"
         }
       ]
     }
@@ -310,46 +319,28 @@
     "amenities": {
       "connect": [
         {
-          "name": "Sân chơi"
-        },
-        {
-          "name": "Truy cập internet tốc độ cao"
-        },
-        {
-          "name": "Sân thượng hoặc vườn"
-        },
-        {
-          "name": "Khu vực nướng BBQ"
-        },
-        {
-          "name": "Khu vực chơi cho trẻ em"
-        },
-        {
-          "name": "Sân tennis"
-        },
-        {
-          "name": "Quầy bar/Phòng chờ"
-        },
-        {
-          "name": "Hồ bơi"
-        },
-        {
-          "name": "Quán cà phê"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Dịch vụ quản lý tài sản"
+          "name": "Phòng gym"
         },
         {
           "name": "Bãi đậu xe"
         },
         {
-          "name": "Dịch vụ giặt là"
+          "name": "Sân thượng hoặc vườn"
+        },
+        {
+          "name": "Sân tennis"
+        },
+        {
+          "name": "Quán cà phê"
+        },
+        {
+          "name": "Quầy bar/Phòng chờ"
         },
         {
           "name": "Phòng họp"
+        },
+        {
+          "name": "Dịch vụ giặt là"
         }
       ]
     }
@@ -373,34 +364,22 @@
     "amenities": {
       "connect": [
         {
-          "name": "Quán cà phê"
-        },
-        {
-          "name": "Khu vực nướng BBQ"
-        },
-        {
-          "name": "Bãi đậu xe"
+          "name": "Truy cập internet tốc độ cao"
         },
         {
           "name": "Thân thiện với vật nuôi"
         },
         {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Khu vực tiệc ngoài trời"
-        },
-        {
-          "name": "Sân chơi"
-        },
-        {
-          "name": "Dịch vụ trông trẻ"
-        },
-        {
-          "name": "Truy cập internet tốc độ cao"
-        },
-        {
           "name": "Sân tennis"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Khu vực nướng BBQ"
+        },
+        {
+          "name": "Dịch vụ trông trẻ"
         }
       ]
     }
@@ -422,40 +401,43 @@
     "amenities": {
       "connect": [
         {
-          "name": "Quán cà phê"
+          "name": "Truy cập internet tốc độ cao"
         },
         {
-          "name": "Phòng họp"
-        },
-        {
-          "name": "Khu vực tiệc ngoài trời"
-        },
-        {
-          "name": "Dịch vụ quản lý tài sản"
+          "name": "Sân tennis"
         },
         {
           "name": "Khu vực nướng BBQ"
         },
         {
-          "name": "Quầy bar/Phòng chờ"
+          "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Sân thượng hoặc vườn"
         },
         {
           "name": "Bãi đậu xe"
         },
         {
+          "name": "Dịch vụ quản lý tài sản"
+        },
+        {
           "name": "Sân chơi"
-        },
-        {
-          "name": "Hồ bơi"
-        },
-        {
-          "name": "Thân thiện với vật nuôi"
         },
         {
           "name": "Khu vực chơi cho trẻ em"
         },
         {
+          "name": "Thân thiện với vật nuôi"
+        },
+        {
+          "name": "Hồ bơi"
+        },
+        {
           "name": "Dịch vụ trông trẻ"
+        },
+        {
+          "name": "Phòng họp"
         }
       ]
     }

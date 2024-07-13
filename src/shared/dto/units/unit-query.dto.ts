@@ -2,7 +2,9 @@ import { Type } from 'class-transformer';
 import {
   IsArray,
   IsDecimal,
+  IsNumber,
   IsOptional,
+  IsPositive,
   IsString,
   IsUUID,
 } from 'class-validator';
@@ -58,6 +60,12 @@ export class GetListUnitDto extends GetListDto implements IGetListUnitDto {
   @IsDecimal()
   @Type(() => String)
   maxPrice?: DecimalNumber;
+
+  @IsOptional()
+  @IsNumber()
+  @IsPositive()
+  @Type(() => Number)
+  maxSlot?: number;
 }
 
 export class GetSimpleListUnitDto implements IGetSimpleListUnitDto {
