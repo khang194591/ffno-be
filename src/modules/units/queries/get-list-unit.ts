@@ -85,6 +85,9 @@ export class GetListUnitHandler implements IQueryHandler<GetListUnitQuery> {
         include: {
           units: {
             where: whereUnit,
+            include: {
+              tenants: { select: { id: true } },
+            },
           },
         },
       }),

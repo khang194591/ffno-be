@@ -75,8 +75,8 @@ export class UnitController {
   }
 
   @Patch('open')
-  async openUnit(@Body() { unitIds }: OpenUnitDto) {
-    return this.commandBus.execute(new OpenUnitCommand(unitIds));
+  async openUnit(@Body() data: OpenUnitDto) {
+    return this.commandBus.execute(new OpenUnitCommand(data));
   }
 
   @Patch('close')

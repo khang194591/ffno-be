@@ -1,9 +1,12 @@
 import { ForbiddenException } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { Prisma } from '@prisma/client';
+import dayjs from 'dayjs';
 import { PrismaService } from 'src/config';
 import {
   ContractStatus,
+  InvoiceCategory,
+  InvoiceStatus,
   MemberRole,
   RequestStatus,
   contractStatusRecord,
@@ -115,9 +118,26 @@ export class UpdateContractHandler
 
     // Move in tenant
     if (contractStatus === ContractStatus.ACTIVE) {
-      await this.prisma.unit.update({
+      const unit = await this.prisma.unit.update({
         where: { id: updatedContract.unitId },
         data: { tenants: { connect: { id: updatedContract.tenantId } } },
+      });
+      await this.prisma.invoice.create({
+        data: {
+          category: InvoiceCategory.DEPOSIT,
+          dueDate: dayjs().add(10, 'day').toDate(),
+          status: InvoiceStatus.PENDING,
+          total: unit.deposit,
+          unitId: unit.id,
+          memberId: updatedContract.tenantId,
+          items: {
+            create: {
+              amount: 1,
+              price: unit.deposit,
+              description: `Deposit of contract #${id}`,
+            },
+          },
+        },
       });
     }
 

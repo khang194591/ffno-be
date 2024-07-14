@@ -38,5 +38,15 @@ export class CronModule implements OnModuleInit {
         },
       },
     );
+
+    await this.queue.add(
+      QUEUE_JOB_NAMES.HANDLE_TERMINATE_CONTRACT,
+      { payload: {} },
+      {
+        repeat: {
+          cron: CronExpression.EVERY_1ST_DAY_OF_MONTH_AT_MIDNIGHT,
+        },
+      },
+    );
   }
 }

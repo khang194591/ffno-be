@@ -1,8 +1,11 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+import dayjs from 'dayjs';
 import { PrismaService } from 'src/config';
 import {
   ContactType,
   ContractStatus,
+  InvoiceCategory,
+  InvoiceStatus,
   RequestCategory,
   RequestStatus,
   UnitStatus,
@@ -90,13 +93,36 @@ export class UpdateRequestHandler
           });
           break;
         case RequestCategory.TERMINATE_CONTRACT:
-          await this.prisma.contract.update({
+          const contract = await this.prisma.contract.update({
             where: { id: updatedRequest.contractId },
             data: {
               terminationDate: new Date(),
               status: ContractStatus.EXPIRED,
             },
           });
+          await this.prisma.member.update({
+            where: { id: contract.tenantId },
+            data: { unitId: null },
+          });
+          if (updatedRequest.senderId === contract.landlordId) {
+            await this.prisma.invoice.create({
+              data: {
+                total: contract.deposit,
+                status: InvoiceStatus.PENDING,
+                unitId: contract.unitId,
+                dueDate: dayjs().add(10, 'day').toDate(),
+                memberId: contract.tenantId,
+                category: InvoiceCategory.DEPOSIT_REFUND,
+                items: {
+                  create: {
+                    amount: 1,
+                    price: contract.deposit,
+                    description: `Refund deposit for contract #${contract.id}`,
+                  },
+                },
+              },
+            });
+          }
           break;
         case RequestCategory.REPORT_ISSUE:
           if (updatedRequest.unitId) {

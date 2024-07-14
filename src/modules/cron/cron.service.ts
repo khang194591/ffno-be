@@ -1,16 +1,7 @@
-import { faker } from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
-import { randomInt } from 'crypto';
 import dayjs from 'dayjs';
 import { PrismaService } from 'src/config';
-import {
-  InvoiceCategory,
-  InvoiceStatus,
-  MemberRole,
-  RequestCategory,
-  RequestStatus,
-} from 'src/libs';
+import { ContractStatus, InvoiceCategory, InvoiceStatus } from 'src/libs';
 
 @Injectable()
 export class CronService {
@@ -64,44 +55,6 @@ export class CronService {
     console.log(result.length);
   }
 
-  // @Cron(CronExpression.EVERY_5_SECONDS)
-  async fakeRequest() {
-    const members = await this.prisma.member.findMany({
-      where: { role: MemberRole.TENANT },
-    });
-
-    const units = await this.prisma.unit.findMany({
-      where: { isListing: true },
-      include: { property: true, tenants: { select: { id: true } } },
-    });
-
-    const sender = members[randomInt(members.length)];
-
-    const unit = units[randomInt(units.length)];
-
-    await this.prisma.request.create({
-      data: {
-        name: `Request least ${unit.name} - ${unit.property.name}`,
-        unitId: unit.id,
-        senderId: sender.id,
-        status: RequestStatus.PENDING,
-        category: RequestCategory.UNIT_LEASE,
-        receivers: {
-          createMany: {
-            data: [
-              unit.property.ownerId,
-              ...unit.tenants.map(({ id }) => id),
-            ].map((memberId) => ({
-              memberId,
-              status: RequestStatus.PENDING,
-            })),
-          },
-        },
-        description: faker.lorem.paragraph(),
-      },
-    });
-  }
-
   async handleUnitListing() {
     const openUnits = await this.prisma.unit.findMany({
       where: {
@@ -131,5 +84,50 @@ export class CronService {
         data: { isListing: false },
       }),
     ]);
+  }
+
+  async handleTerminateContracts() {
+    const contracts = await this.prisma.contract.findMany({
+      where: {
+        status: ContractStatus.ACTIVE,
+        endDate: {
+          gte: dayjs().startOf('day').toDate(),
+          lte: dayjs().endOf('day').toDate(),
+        },
+      },
+    });
+
+    await this.prisma.$transaction(async (tx) => {
+      contracts.forEach(async (contract) => {
+        await tx.member.update({
+          where: { id: contract.tenantId },
+          data: { unitId: null },
+        });
+        await tx.contract.update({
+          where: { id: contract.id },
+          data: {
+            terminationDate: new Date(),
+            status: ContractStatus.EXPIRED,
+          },
+        });
+        await tx.invoice.create({
+          data: {
+            total: contract.deposit,
+            status: InvoiceStatus.PENDING,
+            unitId: contract.unitId,
+            dueDate: dayjs().add(10, 'day').toDate(),
+            memberId: contract.tenantId,
+            category: InvoiceCategory.DEPOSIT_REFUND,
+            items: {
+              create: {
+                amount: 1,
+                price: contract.deposit,
+                description: `Refund deposit for contract #${contract.id}`,
+              },
+            },
+          },
+        });
+      });
+    });
   }
 }

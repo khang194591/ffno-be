@@ -39,9 +39,10 @@ export class MemberResDto implements IMemberResDto {
   role: MemberRole;
 
   @Expose()
-  @Transform(
-    ({ value }) =>
-      value?.name + (value?.property?.name ? ` - ${value.property.name}` : ''),
+  @Transform(({ value }) =>
+    value
+      ? value.name + (value.property?.name ? ` - ${value.property.name}` : '')
+      : null,
   )
   unit: string;
 

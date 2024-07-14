@@ -338,6 +338,8 @@ enum InvoiceCategory {
   MERGED
   UNIT_CHARGE
   UNIT_PRICE_LOG
+  DEPOSIT
+  DEPOSIT_REFUND
 }
 
 enum RequestCategory {

@@ -17,4 +17,10 @@ export class QueueProcessors {
     console.log('Handle listing');
     await this.cronService.handleUnitListing();
   }
+
+  @Process({ name: QUEUE_JOB_NAMES.HANDLE_TERMINATE_CONTRACT })
+  async handleTerminate() {
+    console.log('Terminate contract');
+    await this.cronService.handleTerminateContracts();
+  }
 }
