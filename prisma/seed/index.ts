@@ -87,7 +87,7 @@ const seed = async () => {
     }),
   ];
 
-  const tenants = Array.from({ length: randomInt(10) }).map(() => fakeMember());
+  const tenants = Array.from({ length: randomInt(20) }).map(() => fakeMember());
 
   const propertyIds = [
     '4d5f4d8c-0c89-40a5-91d4-675cb9e7c9f1',
@@ -335,11 +335,6 @@ const seed = async () => {
       => Liên Hệ Xem Phòng: 0973258928 (cô Hồng Thanh)`,
     }),
   ];
-
-  writeFileSync(
-    'prisma/seed/data/properties.json',
-    JSON.stringify(properties, null, 2),
-  );
 
   const units = [
     fakeUnit(propertyIds[0], {
@@ -653,9 +648,7 @@ const seed = async () => {
     }),
   ];
 
-  writeFileSync('prisma/seed/data/units.json', JSON.stringify(units, null, 2));
-
-  tenants.push(
+  const testAccount = [
     fakeMember({
       id: 'c7be62dd-4e32-42a3-b37d-0e9103339668',
       email: 'khang194591@gmail.com',
@@ -665,9 +658,6 @@ const seed = async () => {
       imgUrl:
         'https://lh3.googleusercontent.com/a/ACg8ocJ-wyEURnuJjTv_eY9Fgf_KPd4QA75b_A5D06wJ63IB7gKjOUUv=s288-c-no',
     }),
-  );
-
-  tenants.push(
     fakeMember({
       id: '3c8f96f8-57c8-4846-9826-59b1277e9b63',
       email: 'khang.td194591@sis.hust.edu.vn',
@@ -676,20 +666,11 @@ const seed = async () => {
       name: 'Trịnh Khang',
       imgUrl: 'https://avatar.iran.liara.run/public/03',
     }),
-  );
-
-  writeFileSync(
-    'prisma/seed/data/tenants.json',
-    JSON.stringify(tenants, null, 2),
-  );
-  writeFileSync(
-    'prisma/seed/data/landlords.json',
-    JSON.stringify(landlords, null, 2),
-  );
+  ];
 
   await prisma.member.createMany({
     skipDuplicates: true,
-    data: [...tenants, ...landlords],
+    data: [...tenants, ...landlords, ...testAccount],
   });
 
   await prisma.equipmentCategory.createMany({
@@ -742,6 +723,17 @@ const seed = async () => {
           data: {
             contacts: {
               create: { type: ContactType.TENANT, contactWithId: member.id },
+            },
+          },
+        }),
+        prisma.member.update({
+          where: { id: member.id },
+          data: {
+            contacts: {
+              create: {
+                type: ContactType.TENANT,
+                contactWithId: unit.property.ownerId,
+              },
             },
           },
         }),

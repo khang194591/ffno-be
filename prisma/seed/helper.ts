@@ -49,7 +49,7 @@ export const fakeMember = (override = {}) => {
   return {
     id: v4(),
     name: `${lastName} ${firstName}`,
-    email: faker.internet.email({ lastName, firstName }),
+    email: `${firstName}.${lastName}@gmail.com`,
     phone: faker.phone.number(),
     gender,
     password: '$2b$10$rfTZt.T4aWlqfAtl5VPFWeIGGYKzhwIp.Cz8utOghQ0doPN9yW7Vm',

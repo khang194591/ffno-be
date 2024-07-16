@@ -80,12 +80,20 @@ export class UpdateRequestHandler
           }
           break;
         case RequestCategory.UNIT_LEASE:
-          await this.prisma.memberContacts.create({
-            data: {
-              type: ContactType.TENANT,
-              contactId: currentMemberId,
-              contactWithId: updatedRequest.senderId,
-            },
+          await this.prisma.memberContacts.createMany({
+            data: [
+              {
+                type: ContactType.TENANT,
+                contactId: currentMemberId,
+                contactWithId: updatedRequest.senderId,
+              },
+              {
+                type: ContactType.TENANT,
+                contactWithId: currentMemberId,
+                contactId: updatedRequest.senderId,
+              },
+            ],
+            skipDuplicates: true,
           });
           await this.prisma.member.update({
             where: { id: updatedRequest.senderId },
