@@ -95,10 +95,24 @@ export class UpdateRequestHandler
             ],
             skipDuplicates: true,
           });
-          await this.prisma.member.update({
-            where: { id: updatedRequest.senderId },
-            data: { unitId: null },
+          const unit = await this.prisma.unit.findUnique({
+            where: { id: updatedRequest.unitId },
+            include: { tenants: true },
           });
+
+          if (unit.maxSlot === unit.tenants.length + 1) {
+            await this.prisma.request.updateMany({
+              where: {
+                category: RequestCategory.UNIT_LEASE,
+                status: RequestStatus.PENDING,
+                unitId: updatedRequest.unitId,
+                senderId: { not: updatedRequest.senderId },
+              },
+              data: {
+                status: RequestStatus.REJECTED,
+              },
+            });
+          }
           break;
         case RequestCategory.TERMINATE_CONTRACT:
           const contract = await this.prisma.contract.update({

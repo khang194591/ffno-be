@@ -19,7 +19,6 @@ import {
   propertyAmenities,
   unitFeatures,
 } from './helper';
-import { writeFileSync } from 'fs';
 
 const prisma = new PrismaClient();
 

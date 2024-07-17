@@ -8,6 +8,7 @@ import {
   RequestStatus,
 } from 'src/libs';
 import { ContractResDto } from '../contracts';
+import { EquipmentResDto } from '../equipments';
 import { MemberResDto } from '../members';
 import { UnitResDto } from '../units';
 
@@ -80,4 +81,8 @@ export class RequestResDto implements IRequestResDto {
 
   @Expose()
   createdAt: Date;
+
+  @Expose()
+  @Type(() => EquipmentResDto)
+  equipment: EquipmentResDto;
 }

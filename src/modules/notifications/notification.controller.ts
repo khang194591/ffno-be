@@ -14,7 +14,7 @@ export class NotificationController {
     return this.notificationService.getAllNotification(memberId);
   }
 
-  @Put('mask-as-read')
+  @Put('mark-as-read')
   async markAllAsRead(@CurrentMemberId() memberId: string) {
     return this.notificationService.markAllAsRead(memberId);
   }
@@ -25,5 +25,13 @@ export class NotificationController {
     @Param() { id }: IdUUIDParams,
   ) {
     return this.notificationService.markAsRead(memberId, id);
+  }
+
+  @Put('mark-as-unread/:id')
+  async markAsUnread(
+    @CurrentMemberId() memberId: string,
+    @Param() { id }: IdUUIDParams,
+  ) {
+    return this.notificationService.markAsUnread(memberId, id);
   }
 }

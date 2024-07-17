@@ -42,6 +42,9 @@ export class NotificationService {
       where: {
         receiverId: memberId,
       },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
 
     return {
@@ -56,6 +59,15 @@ export class NotificationService {
     return this.prisma.notification.update({
       where: { id: notificationId, receiverId: memberId },
       data: { isRead: true },
+    });
+  }
+
+  async markAsUnread(memberId: string, notificationId: string) {
+    console.log(memberId, notificationId);
+
+    return this.prisma.notification.update({
+      where: { id: notificationId, receiverId: memberId },
+      data: { isRead: false },
     });
   }
 

@@ -55,6 +55,9 @@ export class GetListRequestHandler
           contract: {
             select: { id: true },
           },
+          equipment: {
+            select: { id: true, name: true },
+          },
           sender: { select: { id: true, name: true, imgUrl: true } },
           receivers: {
             select: {
